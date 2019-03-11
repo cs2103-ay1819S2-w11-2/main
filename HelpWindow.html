@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="stylesheets/coderay-asciidoctor.css"></head><body class="article"><div id="header"><h1>REM - REstaurant Manager - User Guide</h1></div><div id="content"><div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>By: <code>Team SE-EDU</code>      Since: <code>Jun 2016</code>      Licence: <code>MIT</code></p>
+<p>By: <code>Team W11-2</code>      Since: <code>Jan 2019</code>      Licence: <code>MIT</code></p>
 </div>
 </div>
 <div id="toc" class="toc">
@@ -201,8 +201,10 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <p>Parameters can be in any order</p>
 </li>
 <li>
-<p>All parameters involving time should be specified in <code>yyyy-MM-dd HH:mm</code> format, e.g. <code>2019-02-23 13:00</code>. If the date is unspecified, the current date will be used. In that situation, <code>HH:mm</code> format should be used, e.g. <code>13:00</code>.
-*</p>
+<p>All parameters involving time should be specified in <code>yyyy-MM-dd HH:mm</code> format, e.g. <code>2019-02-23 13:00</code>. If the date is unspecified, the current date will be used. In that situation, <code>HH:mm</code> format should be used, e.g. <code>13:00</code>. Users should take note that REM is not timezone-aware. We do not see the need to implement such features as it will rarely be the case that your restaurant needs to move to a different time zone.</p>
+</li>
+<li>
+<p>Only dates between year 2000 and 3000 are supported.</p>
 </li>
 </ul>
 </div>
@@ -234,7 +236,7 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <p>Adds a customer who signs up for membership.</p>
 </div>
 <div class="paragraph">
-<p>Format: <code>addMember n/CUSTOMER_NAME e/EMAIL p/PHONE_NUMBER [l/LOYALTY_POINTS] [se/EMAIL_SUBSCRIPTION_BOOLEAN] [ss/SMS_SUBSCRIPTION_BOOLEAN]</code></p>
+<p>Format: <code>addMember n/CUSTOMER_NAME e/EMAIL p/PHONE_NUMBER [l/LOYALTY_POINTS]</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -242,9 +244,6 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <ul>
 <li>
 <p>If loyalty points is not specified, it will be taken to be 0.</p>
-</li>
-<li>
-<p>If subscription settings is not specified, it will be assumed that the user is by default subscribed to the system.</p>
 </li>
 <li>
 <p>Email of all members must be unique.</p>
@@ -270,7 +269,7 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <p>Lists all members who matches all the equations given.</p>
 </div>
 <div class="paragraph">
-<p>Format: <code>listMembers [n/NAME_REGEX] [e/EMAIL_REGEX] [l/LOYALTY_POINTS_EQUATION] [se/TRUE_FALSE] [ss/TRUE_FALSE]</code></p>
+<p>Format: <code>listMembers [n/NAME_REGEX] [e/EMAIL_REGEX] [l/LOYALTY_POINTS_EQUATION]</code></p>
 </div>
 <div class="paragraph">
 <p>Example:</p>
@@ -278,12 +277,12 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <div class="ulist">
 <ul>
 <li>
-<p><code>listMembers l/&gt;10 se/true</code></p>
+<p><code>listMembers l/&gt;10</code></p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>Lists all members with greater than 10 loyalty points and with email subscription turned on.</p>
+<p>Lists all members with greater than 10 loyalty points.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -299,7 +298,7 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <div class="sect3">
 <h4 id="delete-members-code-deletemember-code"><a class="link" href="#delete-members-code-deletemember-code">3.2.3. Delete Members: <code>deleteMember</code></a></h4>
 <div class="paragraph">
-<p>Deletes the specified member from the management system. This command is irreversible.</p>
+<p>Deletes the specified member from the management system. This command is irreversible. Note that this action also deletes all bookings made by the member.</p>
 </div>
 <div class="paragraph">
 <p>Format: <code>deleteMember INDEX</code></p>
@@ -506,7 +505,7 @@ Each recipe will be indexed.</p>
 <p>Each ingredient input should have the format <code>1/INGREDIENT_1&amp;AMOUNT_IN_UNITS</code> where ingredient and amount in standardised units are separated by <code>&amp;</code>.</p>
 </li>
 <li>
-<p><code>AMOUNT_IN_UNITS</code> is allowed to take on a decimal and is in the units specified in  listIngredients.</p>
+<p><code>AMOUNT_IN_UNITS</code> is allowed to take on a decimal and is in the units specified in listIngredients.</p>
 </li>
 <li>
 <p>Number of ingredient inputs should correspond to <code>n/NUMBER_OF_INGREDIENTS</code>. If it does not, a message will appear to say incorrect number of inputs.</p>
@@ -676,17 +675,14 @@ Each dish of chicken rice requires 1/4 a full chicken and 1/10 a sack of rice</p
 <p>Add new ingredient into inventory. Previously not existing in inventory before.</p>
 </div>
 <div class="paragraph">
-<p>Format: <code>addIngredient in/INGREDIENT_NAME u/INGREDIENT_UNIT [a/AMOUNT] [w/INGREDIENT_WARNING_AMOUNT]</code></p>
+<p>Format: <code>addIngredient in/INGREDIENT_NAME q/INGREDIENT_QUANTITY u/INGREDIENT_UNIT  [w/INGREDIENT_WARNING_AMOUNT]</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
 <div class="ulist">
 <ul>
 <li>
-<p>If amount is not specified, amount is set to 0.</p>
-</li>
-<li>
-<p>Units are chosen based on the units that the stock was bought. Amount of ingredients for each dish should be converted by the user himself before <code>addRecipe</code> is called.</p>
+<p>If ingredient quantity is not specified, quantity is set to 0.</p>
 </li>
 <li>
 <p><code>w/INGREDIENT_WARNING_AMOUNT</code> User inputs warning amount that indicates a need for restock. Calling <code>listIngredients w/TRUE</code> will display all ingredients that fall below the minimum value.</p>
@@ -701,17 +697,17 @@ Each dish of chicken rice requires 1/4 a full chicken and 1/10 a sack of rice</p
 <div class="ulist">
 <ul>
 <li>
-<p><code>addIngredient in/chicken u/full chicken</code></p>
+<p><code>addIngredient in/chicken u/full chickens</code></p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>Adds 0 full chickens into inventory.</p>
+<p>Adds new ingredient, chicken (with default ingredient quantity as 0), into inventory.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>addIngredient in/chicken u/full chicken a/10</code></p>
+<p><code>addIngredient in/chicken q/10 u/full chickens</code></p>
 </li>
 </ul>
 </div>
@@ -721,12 +717,12 @@ Each dish of chicken rice requires 1/4 a full chicken and 1/10 a sack of rice</p
 <div class="ulist">
 <ul>
 <li>
-<p><code>addIngredient in/chicken u/full chicken a/10 w/2</code></p>
+<p><code>addIngredient in/chicken q/10 u/full chickens w/2</code></p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>Adds 10 full chickens into inventory when amount falls below 2, listIngredients w/TRUE will display chicken.</p>
+<p>Adds 10 full chickens into inventory and when amount falls below 2, <code>listIngredients w/TRUE</code> will display chicken.</p>
 </div>
 </div>
 <div class="sect3">
@@ -862,6 +858,9 @@ Previously existing in inventory before.</p>
 <div class="ulist">
 <ul>
 <li>
+<p>The default capacity of the restaurant is 200.</p>
+</li>
+<li>
 <p>If the capacity is full, the restaurant will not accept new bookings (refer to <a href="#create-new-booking-code-addbooking-code">addBooking command </a>). If this command causes the number of bookings to exceed the capacity, the <code>updateCapacity</code> command will not be executed and an error will be displayed.</p>
 </li>
 </ul>
@@ -879,7 +878,7 @@ Previously existing in inventory before.</p>
 </ul>
 </div>
 <div class="paragraph">
-<p>This updates the restaurants to cater for a capacity for 50 customers</p>
+<p>This updates the restaurants to cater for a capacity for 50 customers.</p>
 </div>
 </div>
 <div class="sect3">
@@ -902,6 +901,9 @@ Previously existing in inventory before.</p>
 </li>
 <li>
 <p>Customer INDEX refers to the index of the customer as displayed by the list.</p>
+</li>
+<li>
+<p>Bookings are a privileged feature restricted only to members. Thus we do not allow non-members to make bookings.</p>
 </li>
 </ul>
 </div>
@@ -1290,4 +1292,4 @@ e.g. <code>addRating 5</code></p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-03-06 14:05:09 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-03-11 12:16:40 UTC</div></div></div></body></html>
