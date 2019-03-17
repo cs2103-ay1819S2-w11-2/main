@@ -1,9 +1,9 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]--><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="Asciidoctor 1.5.6.1"><title>AddressBook Level 4 - Developer Guide</title><link rel="stylesheet" href="stylesheets/gh-pages.css">
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]--><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="Asciidoctor 1.5.6.1"><title>REstaurant Manager - Developer Guide</title><link rel="stylesheet" href="stylesheets/gh-pages.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="stylesheets/coderay-asciidoctor.css"></head><body class="article"><div id="site-header"><nav class="navbar navbar-light bg-light"><div class="container"><a class="navbar-brand" href="index.html">REstaurant Manager</a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="UserGuide.html">User Guide</a></li><li class="nav-item"><a class="nav-link active" href="DeveloperGuide.html">Developer Guide</a></li><li class="nav-item"><a class="nav-link" href="AboutUs.html">About Us</a></li><li class="nav-item"><a class="nav-link" href="ContactUs.html">Contact Us</a></li><li class="navitem"><a class="nav-link" href="https://github.com/cs2103-ay1819S2-w11-2/main"><span class="fa fa-github fa-lg" aria-hidden="true"></span>&nbsp;View on GitHub</a></li></ul></div></nav></div><div id="header"><h1>AddressBook Level 4 - Developer Guide</h1></div><div id="content"><div id="preamble">
+<link rel="stylesheet" href="stylesheets/coderay-asciidoctor.css"></head><body class="article"><div id="site-header"><nav class="navbar navbar-light bg-light"><div class="container"><a class="navbar-brand" href="index.html">REstaurant Manager</a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="UserGuide.html">User Guide</a></li><li class="nav-item"><a class="nav-link active" href="DeveloperGuide.html">Developer Guide</a></li><li class="nav-item"><a class="nav-link" href="AboutUs.html">About Us</a></li><li class="nav-item"><a class="nav-link" href="ContactUs.html">Contact Us</a></li><li class="navitem"><a class="nav-link" href="https://github.com/cs2103-ay1819S2-w11-2/main"><span class="fa fa-github fa-lg" aria-hidden="true"></span>&nbsp;View on GitHub</a></li></ul></div></nav></div><div id="header"><h1>REstaurant Manager - Developer Guide</h1></div><div id="content"><div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>By: <code>Team SE-EDU</code>      Since: <code>Jun 2016</code>      Licence: <code>MIT</code></p>
+<p>By: <code>Team W11-2</code>      Since: <code>Jan 2019</code>      Licence: <code>MIT</code></p>
 </div>
 </div>
 <div id="toc" class="toc">
@@ -30,9 +30,11 @@
 <li><a href="#implementation">3. Implementation</a>
 <ul class="sectlevel2">
 <li><a href="#undo-redo-feature">3.1. Undo/Redo feature</a></li>
-<li><a href="#proposed-data-encryption">3.2. [Proposed] Data Encryption</a></li>
-<li><a href="#logging">3.3. Logging</a></li>
-<li><a href="#Implementation-Configuration">3.4. Configuration</a></li>
+<li><a href="#data-structure-for-holding-records">3.2. Data structure for holding records</a></li>
+<li><a href="#the-code-editmember-code-command">3.3. The <code>editMember</code> command</a></li>
+<li><a href="#proposed-data-encryption">3.4. [Proposed] Data Encryption</a></li>
+<li><a href="#logging">3.5. Logging</a></li>
+<li><a href="#Implementation-Configuration">3.6. Configuration</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a>
@@ -490,6 +492,12 @@ The following class plays an important role at the architecture level:</p>
 </div>
 <div class="title">Figure 7. Structure of the Model Component</div>
 </div>
+<div class="imageblock">
+<div class="content">
+<img src="images/ModelItemDiagram.png" alt="ModelItemDiagram" width="800">
+</div>
+<div class="title">Figure 8. Structure of the Item Interface (split into a separate diagarm for clarity)</div>
+</div>
 <div class="paragraph">
 <p><strong>API</strong> : <a href="https://github.com/cs2103-ay1819S2-w11-2/main/src/main/java/seedu/address/model/Model.java"><code>Model.java</code></a></p>
 </div>
@@ -502,29 +510,15 @@ The following class plays an important role at the architecture level:</p>
 <p>stores a <code>UserPref</code> object that represents the user&#8217;s preferences.</p>
 </li>
 <li>
-<p>stores the Address Book data.</p>
+<p>stores the Restaurant Book data.</p>
 </li>
 <li>
-<p>exposes an unmodifiable <code>ObservableList&lt;Person&gt;</code> that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.</p>
+<p>exposes an unmodifiable <code>ObservableList&lt;Item&gt;</code> that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.</p>
 </li>
 <li>
 <p>does not depend on any of the other three components.</p>
 </li>
 </ul>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book</code>, which <code>Person</code> can reference. This would allow <code>Address Book</code> to only require one <code>Tag</code> object per unique <code>Tag</code>, instead of each <code>Person</code> needing their own <code>Tag</code> object. An example of how such a model may look like is given below.<br>
-<br>
-<span class="image"><img src="images/ModelClassBetterOopDiagram.png" alt="ModelClassBetterOopDiagram" width="800"></span>
-</td>
-</tr>
-</table>
 </div>
 </div>
 <div class="sect2">
@@ -533,7 +527,7 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book<
 <div class="content">
 <img src="images/StorageClassDiagram.png" alt="StorageClassDiagram" width="800">
 </div>
-<div class="title">Figure 8. Structure of the Storage Component</div>
+<div class="title">Figure 9. Structure of the Storage Component</div>
 </div>
 <div class="paragraph">
 <p><strong>API</strong> : <a href="https://github.com/cs2103-ay1819S2-w11-2/main/src/main/java/seedu/address/storage/Storage.java"><code>Storage.java</code></a></p>
@@ -769,20 +763,181 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </div>
 </div>
 <div class="sect2">
-<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">3.2. [Proposed] Data Encryption</a></h3>
+<h3 id="data-structure-for-holding-records"><a class="link" href="#data-structure-for-holding-records">3.2. Data structure for holding records</a></h3>
+<div class="paragraph">
+<p>Following the AB4 structure, the <code>RestaurantBook</code> (originally <code>AddressBook</code>) class serves as the main database, holding information of all records in the system. However, the database system required is more complicated than the one in AB4- there are four different kinds of records that need to be stored. The main operations are still largely CRUD (create, read, update, delete) in nature which are very similarly done. However, there are some differences between the types of records:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Some commands such as <code>addBooking</code> needs to keep track of the <code>Capacity</code> of the restaurant- we must not allow the restaurant to be overbooked. There is no equivalent of this in the <code>addMember</code>, <code>addIngredient</code> or <code>addStaff</code> commands.</p>
+</li>
+<li>
+<p>The <code>editMember</code> command requires all <code>Booking</code> associated to the <code>Member</code> to have an updated copy of all the <code>Member</code> details. Again, there is no equivalent of this in the other edit-style commands.</p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">3.2.1. Current implementation</a></h4>
+<div class="paragraph">
+<p>We created the interface <code>Item</code> to represent a record. A <code>UniqueItemList</code> was used to handle the bulk of the CRUD logic, much like the way the <code>UniquePersonList</code> in the original AB4 was used to handle the CRUD logic. As the <code>Staff</code> and <code>Member</code> class store common attributes (<code>Name</code>, <code>Phone</code>, <code>Email</code>), an abstract class <code>Person</code> was used to capture this. The relation between the types of <code>Item</code> is also captured in the class diagram of Figure 8. However, in the <code>Model</code> interface, the methods are kept separate (using methods like <code>addMember</code>, <code>addBooking</code> instead of having a more generic <code>addItem</code> method).</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">3.2.2. Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-implementation-of-data-structure"><a class="link" href="#aspect-implementation-of-data-structure">Aspect: Implementation of data structure</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Use the <code>Item</code> interface to capture the similarity between records.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Reduces code duplication as we do not need separate classes <code>UniqueMemberList</code>, <code>UniqueBookingList</code>, <code>UniqueIngredientList</code>, <code>UniqueStaffList</code>.</p>
+</li>
+<li>
+<p>Cons: As the operations for different records are not exactly the same, RestaurantBook needs to be aware of the differences between the similar operations.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Create four separate classes which do not inherit from any parent class or interface.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: The precise CRUD operations can be heavily customised for each type of record.</p>
+</li>
+<li>
+<p>Cons: Lots of code duplication.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Decision: Alternative 1 was adopted as the differences between the operations are relatively minor and can be done at the <code>RestaurantBook</code> level without creating too much confusion.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="aspect-implementation-of-the-model-interface"><a class="link" href="#aspect-implementation-of-the-model-interface">Aspect: Implementation of the model interface</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Maintain separate methods for the similar-looking CRUD-style methods</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Easier to implement.</p>
+</li>
+<li>
+<p>Cons: More code duplication, the <code>Model</code> API now contains many methods.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Generalize the methods so that there is only one of them for each type of command (e.g. <code>addItem</code> instead of <code>addBooking</code>, <code>addMember</code>) in the Model API.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Reduces the overall amount of code needed with less duplication. The <code>Model</code> API looks simpler on the surface with less methods.</p>
+</li>
+<li>
+<p>Cons: Violates Separation of Concerns principle, due to the differences across the similar-looking methods. Since the implementation of various <code>add</code> commands are slightly different (<code>addBooking</code> needs to check the restaurant capacity first), many if-else statements will be required in the control flow of <code>RestaurantBook#addItem</code> method, potentially using <code>instanceof</code> checks. These <code>instanceof</code> checks can potentially violate type safety.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Decision: Alternative 1 was adopted as we value simplicity over the potential problems that might arise with the generic methods.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="the-code-editmember-code-command"><a class="link" href="#the-code-editmember-code-command">3.3. The <code>editMember</code> command</a></h3>
+<div class="paragraph">
+<p>When a <code>Member</code> details (<code>Name</code>, <code>Phone</code>, or <code>Email</code>) is changed, the <code>Booking</code> object must reflect the change. This requires an internal modification to the <code>Booking</code> list.</p>
+</div>
+<div class="sect3">
+<h4 id="current-implementation-3"><a class="link" href="#current-implementation-3">3.3.1. Current implementation</a></h4>
+<div class="paragraph">
+<p>When <code>RestaurantBook#setMember()</code> is called, the bookings are replaced with a new set of bookings, in a way such that any <code>Booking</code> containing the modified member will be replaced with another <code>Booking</code> object that correctly reflects the modified customer.</p>
+</div>
+<div class="paragraph">
+<p>(Insert sequence diagram)</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">3.3.2. Design Considerations</a></h4>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Manually perform a corresponding change to the <code>Booking</code> list whenever the personal details of a member changes.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Easier to implement as it does not require much change to the already-existing AB4 codebase.</p>
+</li>
+<li>
+<p>Cons: Poor efficiency. This involves scanning through the entire list of bookings just to change the personal details of a single <code>Member</code>. Also, if some other command changes a <code>Member</code> details without going through the <code>RestaurantBook#setMember()</code> method, the update will not be reflected.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Make the <code>Member</code> class mutable. Whenever the <code>Member</code> details changes, the <code>Booking</code> will automatically extract the correct details of the <code>Member</code> and nothing needs to be done.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: This eases the load on the <code>RestaurantBook</code> class and does not require special treatment. It is also more efficient as no additional work is done.</p>
+</li>
+<li>
+<p>Cons: The current <code>undo</code> and <code>redo</code> commands rely on the immutabilty of the <code>Member</code> class to work correctly. Doing so may require a huge change in implementation of <code>undo</code> and <code>redo</code> commands. Also, allowing mutable variables can potentially be a source of other bugs.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 3:</strong> Assign each <code>Member</code> an ID and store the mapping from ID to <code>Member</code>. Instead of storing the full details of the <code>Member</code>, the <code>Booking</code> object simply stores the <code>ID</code> of the member that made the booking. When an update occurs, we simply need to update the ID to <code>Member</code> map.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Provides both lookup efficiency as well as immutability of the <code>Member</code> objects.</p>
+</li>
+<li>
+<p>Cons: Uses additional data structure to store the mappings, potentially making the code more difficult to maintain.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Decision: Alternative 1 was adopted as we felt that it was the simplest way to implement the feature. The additional efficiency gained may not even be significant, considering that in simple GUI apps like this, updating the UI is often the part of the program that uses the most resources. Optimizing the backend operations may not actually lead to a significant performance improvement.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">3.4. [Proposed] Data Encryption</a></h3>
 <div class="paragraph">
 <p><em>{Explain here how the data encryption feature will be implemented}</em></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">3.3. Logging</a></h3>
+<h3 id="logging"><a class="link" href="#logging">3.5. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.4, &#8220;Configuration&#8221;</a>)</p>
+<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.6, &#8220;Configuration&#8221;</a>)</p>
 </li>
 <li>
 <p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level</p>
@@ -813,7 +968,7 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </div>
 </div>
 <div class="sect2">
-<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.4. Configuration</a></h3>
+<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.6. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g user prefs file location, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
@@ -879,7 +1034,7 @@ Alternatively, you can download the AsciiDoc plugin for IntelliJ, which allows y
 <div class="content">
 <img src="images/chrome_save_as_pdf.png" alt="chrome save as pdf" width="300">
 </div>
-<div class="title">Figure 9. Saving documentation as PDF files in Chrome</div>
+<div class="title">Figure 10. Saving documentation as PDF files in Chrome</div>
 </div>
 </div>
 <div class="sect2">
@@ -2620,4 +2775,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-03-17 03:55:49 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-03-17 04:04:18 UTC</div></div></div></body></html>
