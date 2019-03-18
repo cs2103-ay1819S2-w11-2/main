@@ -32,9 +32,10 @@
 <li><a href="#undo-redo-feature">3.1. Undo/Redo feature</a></li>
 <li><a href="#data-structure-for-holding-records">3.2. Data structure for holding records</a></li>
 <li><a href="#the-code-editmember-code-command">3.3. The <code>editMember</code> command</a></li>
-<li><a href="#proposed-data-encryption">3.4. [Proposed] Data Encryption</a></li>
-<li><a href="#logging">3.5. Logging</a></li>
-<li><a href="#Implementation-Configuration">3.6. Configuration</a></li>
+<li><a href="#delete-feature">3.4. Delete Feature</a></li>
+<li><a href="#proposed-data-encryption">3.5. [Proposed] Data Encryption</a></li>
+<li><a href="#logging">3.6. Logging</a></li>
+<li><a href="#Implementation-Configuration">3.7. Configuration</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a>
@@ -924,20 +925,230 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </div>
 </div>
 <div class="sect2">
-<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">3.4. [Proposed] Data Encryption</a></h3>
+<h3 id="delete-feature"><a class="link" href="#delete-feature">3.4. Delete Feature</a></h3>
+<div class="paragraph">
+<p>The delete feature is used to delete a specific record in the restaurant book, i.e. deleting a member, staff, booking, ingredient or recipe.</p>
+</div>
+<div class="paragraph">
+<p>In comparison to the original AB4 codebase, REstaurant Manager has more than 1 type of record in the restaurant book, and has a high level of dependency/ coupling between certain components:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Between Member and Booking: a booking contains a specific member -  Booking is highly coupled to Member</p>
+</li>
+<li>
+<p>Between Ingredient and Recipe: a recipe contains ingredients – Recipe is highly coupled to Ingredient</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Therefore, there are some design considerations that we have to make when it comes to deleting a record.</p>
+</div>
+<div class="sect3">
+<h4 id="current-implementation-4"><a class="link" href="#current-implementation-4">3.4.1. Current implementation</a></h4>
+<div class="ulist">
+<ul>
+<li>
+<p>There are separate delete commands for each of the 4 components, namely <code>deleteMember</code>, <code>deleteBooking</code>, <code>deleteStaff</code>, <code>deleteIngredient</code> and <code>deleteRecipe</code>, and the command explicitly specifies the object being deleted. Each specific delete command has a <code>DeleteCommand</code> class that extends abstract class <code>Command</code> and is supported by a <code>CommandParser</code> class (e.g. <code>deleteIngredient</code> command has <code>deleteIngredientCommand</code> class and <code>deleteIngredientCommandParser</code> class).</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>(insert sequence diagram)</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The delete commands are called by typing the component-specific command, followed by an index, which refers to the index number shown in the most recent listing (e.g. <code>deleteIngredient 3</code>).</p>
+</li>
+<li>
+<p>When a member is deleted, all booking objects containing the deleted member must be similarly deleted.  Also, when an ingredient is deleted, all recipe objects containing the deleted ingredient must also be deleted.
+In other words, when RestaurantBook#deleteMember() or RestaurantBook#deleteIngredient() is called, this triggers all related bookings or ingredients to be deleted as well.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">3.4.2. Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-separate-delete-commands-generic-delete-command"><a class="link" href="#aspect-separate-delete-commands-generic-delete-command">Aspect: Separate delete commands/ Generic delete command</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong> Alternative 1 (current choice):</strong> separate commands for each component, i.e. <code>deleteMember</code>, <code>deleteBooking</code>, <code>deleteStaff</code>, <code>deleteIngredient</code>, <code>deleteRecipe</code> to delete from respective lists.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Easier implementation</p>
+</li>
+<li>
+<p>Cons:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Leads to code duplication, as each delete command requires an additional <code>Command</code> and <code>CommandParser</code> class.</p>
+</li>
+<li>
+<p>Inconvenient for user to type out a longer command (e.g. <code>deleteIngredient</code> vs <code>delete</code>).</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong> Alternative 2:</strong> one generic delete command, requiring the model to determine the active list (currently displayed list on the panel), and to delete from that particular list</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Shorter commands required from user, (e.g. <code>delete</code> vs <code>deleteIngredient</code>).</p>
+</li>
+<li>
+<p>Cons: Requires user to type in additional command prior to the <code>delete</code> command (e.g. list or filter command), to change the state of the intended list to active.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Decision: Alternative 1 was selected for the following reasons:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Aliases are implemented as a shortcut to the long commands (e.g. <code>db</code> for <code>deleteBooking</code>, <code>dm</code> for <code>deleteMember</code>).</p>
+</li>
+<li>
+<p>4 panels are implemented in U/I (link to u/i segment), 1 panel for each component provides easy cross-reference across linked records, and this supports Alternative 1&#8217;s implementation. All lists are active at the same time, and they display all unfiltered records by default. Firstly, it is hard for the user to detect an active list at first glance, since all lists are already displayed. Secondly, a specific delete command can be called without a prior command to mark the list as active (e.g.  <code>deleteIngredient</code> can be called directly to make changes to Ingredient list) which makes it more convenient for the user</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="aspect-deletion-by-index-deletion-by-field"><a class="link" href="#aspect-deletion-by-index-deletion-by-field">Aspect: Deletion by index/ Deletion by field</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong> Alternative 1 (current choice):</strong> delete records by index in the most recent listing.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Easier implementation as it does not require much change to the already-existing AB4 codebase.</p>
+</li>
+<li>
+<p>Standardized command format for all delete commands (e.g. <code>deleteIngredient INDEX</code> and <code>deleteBooking INDEX</code>).</p>
+</li>
+<li>
+<p>Index for a record is easily identified from its corresponding list.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Cons:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Index may be incorrectly typed, especially if the list is too long or there are similar records in the list.</p>
+</li>
+<li>
+<p>Unfiltered list may be too long for user to scroll through to find the index. Methods are required to filter the list or find a specific record before <code>delete INDEX</code> command is called.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong> Alternative 2:</strong> delete records by field.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Greater certainty that the right record is deleted.</p>
+</li>
+<li>
+<p>Cons:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Variations in command format for each delete command. They may have different prefixes and fields that the user has to type in.</p>
+</li>
+<li>
+<p>Some records are identified by more than 1 field, and all necessary fields must be provided for successful deletion of a record, making the command longer and harder to type (e.g. <code>deleteBooking</code> command requires <code>bookingWindow</code> and <code>customerName</code> fields to be present to delete a record).</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Decision: Alternative 1 was adopted as we felt it was the simplest way to implement the feature.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="aspect-highly-coupled-records"><a class="link" href="#aspect-highly-coupled-records">Aspect: Highly coupled records</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong> Alternative 1 (current choice):</strong> Deleting a member will result in the deletion of all bookings done by this member. Similarly, deleting an ingredient will result in the deletion of all recipes using this ingredient.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Easier to implement</p>
+</li>
+<li>
+<p>Cons: There is a possibility that the user accidentally deletes a record (e.g. member), and all other records (e.g. bookings made by this member) referencing this record is also accidentally deleted.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong> Alternative 2:</strong> Only records that are not referenced can be deleted. (e.g. During an attempt to delete a member that has made a booking, an error message is displayed to prompt the user that this member is referenced in the booking list. The user is required to manually delete all bookings done by this member before he is allowed to delete the member).</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Reduces the possibility that the user accidentally deletes a record (e.g. member), and all other records (e.g. bookings made by this member) referencing this record is also accidentally deleted.</p>
+</li>
+<li>
+<p>Cons: Inconvenient for the user to manually remove all referencing records before he can delete the referenced record.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Decision: Alternative 1 was adopted as it is an easier implementation and it makes it more convenient for the user to delete a record. It is intuitive that if a deleteMember or deleteIngredient command is called and these objects cease to exist in the restaurant book, the corresponding Booking or Recipe containing these objects should also cease to exist. To deal with the possibility that the member or ingredient is accidentally deleted, and all referenced bookings and recipes is unintentionally deleted, an additional field in the delete command can be added as a confirmation that these records should be deleted.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">3.5. [Proposed] Data Encryption</a></h3>
 <div class="paragraph">
 <p><em>{Explain here how the data encryption feature will be implemented}</em></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">3.5. Logging</a></h3>
+<h3 id="logging"><a class="link" href="#logging">3.6. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.6, &#8220;Configuration&#8221;</a>)</p>
+<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.7, &#8220;Configuration&#8221;</a>)</p>
 </li>
 <li>
 <p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level</p>
@@ -968,7 +1179,7 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </div>
 </div>
 <div class="sect2">
-<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.6. Configuration</a></h3>
+<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.7. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g user prefs file location, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
@@ -2775,4 +2986,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-03-17 04:04:18 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-03-18 09:23:49 UTC</div></div></div></body></html>
