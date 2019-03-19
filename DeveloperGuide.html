@@ -33,9 +33,12 @@
 <li><a href="#data-structure-for-holding-records">3.2. Data structure for holding records</a></li>
 <li><a href="#the-code-editmember-code-command">3.3. The <code>editMember</code> command</a></li>
 <li><a href="#delete-feature">3.4. Delete Feature</a></li>
-<li><a href="#proposed-data-encryption">3.5. [Proposed] Data Encryption</a></li>
-<li><a href="#logging">3.6. Logging</a></li>
-<li><a href="#Implementation-Configuration">3.7. Configuration</a></li>
+<li><a href="#the-code-stats-code-command">3.5. The <code>stats</code> command</a></li>
+<li><a href="#the-panel-ui-for-code-member-code-code-staff-code-code-booking-code-and-code-ingredient-code">3.6. The panel UI for <code>Member</code>, <code>Staff</code>, <code>Booking</code>, and <code>Ingredient</code></a></li>
+<li><a href="#current-implementation-6">3.7. Current implementation</a></li>
+<li><a href="#proposed-data-encryption">3.8. [Proposed] Data Encryption</a></li>
+<li><a href="#logging">3.9. Logging</a></li>
+<li><a href="#Implementation-Configuration">3.10. Configuration</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a>
@@ -1135,20 +1138,194 @@ In other words, when RestaurantBook#deleteMember() or RestaurantBook#deleteIngre
 </div>
 </div>
 <div class="sect2">
-<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">3.5. [Proposed] Data Encryption</a></h3>
+<h3 id="the-code-stats-code-command"><a class="link" href="#the-code-stats-code-command">3.5. The <code>stats</code> command</a></h3>
+<div class="paragraph">
+<p>When the <code>stats</code> command is entered, the current statistis of the amount of bookings is to be displayed to the user in the form of a bar chart.</p>
+</div>
+<div class="sect3">
+<h4 id="current-implementation-5"><a class="link" href="#current-implementation-5">3.5.1. Current implementation</a></h4>
+<div class="paragraph">
+<p>When the user enters the <code>stats</code> command, <code>RestaurantBookParser</code> calls the <code>Statistics</code> class. The Statistics class fetches the relevant data for user display (ie what are the axes, values, and legends of the bar chart). It would then call the <code>StatsWindow</code> class which handles the UI. The bar chart will appear in a new window and does not affect the current window.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-5"><a class="link" href="#design-considerations-5">3.5.2. Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-implementation-of-data-structure-2"><a class="link" href="#aspect-implementation-of-data-structure-2">Aspect: Implementation of data structure</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Doing the calculation only when the user wants to view the statistics.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Calculating only when needed is more efficient.</p>
+</li>
+<li>
+<p>Cons: The command would take some time to calculate before being able to display the statistics.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Every change to the database updates the statistics on the fly.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Displaying the statistics on the UI would be faster.</p>
+</li>
+<li>
+<p>Cons: Need to change the implementation of every command that causes a change to the database. Calculations have to be done every operation, potentially affecting the efficiency of the <code>add</code> or <code>delete</code> commands.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Decision: Alternative 1 was adopted as the other commands do not need to be changed and it is easier to implement. As the number of times the <code>stats</code> command is called is likely to be low as compared to an <code>add</code> or <code>delete</code> operation, doing the calculation after every operation would be a waste of computation power.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="aspect-design-of-ui-display"><a class="link" href="#aspect-design-of-ui-display">Aspect: Design of UI display</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Displaying the statistics in a new window.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: The statistics would be displayed independently from the database and would not interfere with each other.</p>
+</li>
+<li>
+<p>Cons: The user can open multiple windows which contains different data and not know which is the correct window.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Hide the displayed database to show the statistics. A separate command would be used to toggle the view.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: There would be only 1 window to manage at any point in time.</p>
+</li>
+<li>
+<p>Cons: Cannot view the statistics and the database concurrently.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Decision: Alternative 1 was adopted as it is an easier implementation. Implementing the <code>stats</code> window as a static window that will not change would not affect the other parts of the app, and there is no need to hide and show the current screen. Moreover, the user might want to view the statistics together with the database, which is only possible with multiple windows.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="the-panel-ui-for-code-member-code-code-staff-code-code-booking-code-and-code-ingredient-code"><a class="link" href="#the-panel-ui-for-code-member-code-code-staff-code-code-booking-code-and-code-ingredient-code">3.6. The panel UI for <code>Member</code>, <code>Staff</code>, <code>Booking</code>, and <code>Ingredient</code></a></h3>
+<div class="paragraph">
+<p>The restaurant book displays the entire database in the form of "cards", which is the same as AB4. Each item has its own panel.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="current-implementation-6"><a class="link" href="#current-implementation-6">3.7. Current implementation</a></h3>
+<div class="paragraph">
+<p>The panel is formatted in the <code>ItemListPanel.fxml</code> file, and each item has its own controller (<code>MemberListPanel</code>, <code>StaffListPanel</code>, <code>BookingListPanel</code>, and <code>IngredientListPanel</code>) that extends from <code>ItemListPanel</code>. The panel displays the database via cards. Each item has its own card (<code>MemberCard</code>, <code>StaffCard</code>, <code>BookingCard</code>, and <code>IngredientCard</code>).</p>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-6"><a class="link" href="#design-considerations-6">3.7.1. Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-design-of-card-display"><a class="link" href="#aspect-design-of-card-display">Aspect: Design of card display</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Making a separate fxml file for each type of item card.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Able to customise the card to suit the item.</p>
+</li>
+<li>
+<p>Cons: Need to duplicate common elements that all the cards share, such as the numbering on the list.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Using the same fxml file for each item card.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Less duplication.</p>
+</li>
+<li>
+<p>Cons: Hard to customise the contents of each card.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Decision: Alternative 1 was adopted as each card do not share much in common other than the numbering on the list. Each card needs to display different information. For example, the <code>Member</code> item would need to display the email, while the <code>Ingredient</code> item would need to display other fields such as the quantity. Hence, not much code is duplicated, and creating 4 files would be the easiest implementation.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="aspect-design-of-panel-display"><a class="link" href="#aspect-design-of-panel-display">Aspect: Design of panel display</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Using the same fxml file for each item panel.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Less duplication.</p>
+</li>
+<li>
+<p>Cons: Hard to customise the contents of each panel.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Making a separate fxml file for each item panel</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Able to customise the panel to suit the item.</p>
+</li>
+<li>
+<p>Cons: Need to duplicate common elements that all the item panels share.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Decision: Alternative 1 was adopted. Currently, the only difference between the panels is the header (implemented via a <code>label</code>) which contains the name of the item type. This only affects a single label, which is easy to edit via code. Hence, sharing the fxml file reduces the code duplication. If the display of the panels were to be modified in the future, say to add more padding or to change the size, only one fxml file needs to be modified.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">3.8. [Proposed] Data Encryption</a></h3>
 <div class="paragraph">
 <p><em>{Explain here how the data encryption feature will be implemented}</em></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">3.6. Logging</a></h3>
+<h3 id="logging"><a class="link" href="#logging">3.9. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.7, &#8220;Configuration&#8221;</a>)</p>
+<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.10, &#8220;Configuration&#8221;</a>)</p>
 </li>
 <li>
 <p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level</p>
@@ -1179,7 +1356,7 @@ In other words, when RestaurantBook#deleteMember() or RestaurantBook#deleteIngre
 </div>
 </div>
 <div class="sect2">
-<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.7. Configuration</a></h3>
+<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.10. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g user prefs file location, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
@@ -2986,4 +3163,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-03-18 09:23:49 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-03-19 02:13:38 UTC</div></div></div></body></html>
