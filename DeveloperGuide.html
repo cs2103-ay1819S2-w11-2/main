@@ -29,16 +29,17 @@
 </li>
 <li><a href="#implementation">3. Implementation</a>
 <ul class="sectlevel2">
-<li><a href="#undo-redo-feature">3.1. Undo/Redo feature</a></li>
-<li><a href="#data-structure-for-holding-records">3.2. Data structure for holding records</a></li>
-<li><a href="#the-code-editmember-code-command">3.3. The <code>editMember</code> command</a></li>
-<li><a href="#delete-feature">3.4. Delete Feature</a></li>
-<li><a href="#the-code-stats-code-command">3.5. The <code>stats</code> command</a></li>
-<li><a href="#the-panel-ui-for-code-member-code-code-staff-code-code-booking-code-and-code-ingredient-code">3.6. The panel UI for <code>Member</code>, <code>Staff</code>, <code>Booking</code>, and <code>Ingredient</code></a></li>
-<li><a href="#current-implementation-6">3.7. Current implementation</a></li>
-<li><a href="#proposed-data-encryption">3.8. [Proposed] Data Encryption</a></li>
-<li><a href="#logging">3.9. Logging</a></li>
-<li><a href="#Implementation-Configuration">3.10. Configuration</a></li>
+<li><a href="#add-feature">3.1. Add Feature</a></li>
+<li><a href="#undo-redo-feature">3.2. Undo/Redo feature</a></li>
+<li><a href="#data-structure-for-holding-records">3.3. Data structure for holding records</a></li>
+<li><a href="#the-code-editmember-code-command">3.4. The <code>editMember</code> command</a></li>
+<li><a href="#delete-feature">3.5. Delete Feature</a></li>
+<li><a href="#the-code-stats-code-command">3.6. The <code>stats</code> command</a></li>
+<li><a href="#the-panel-ui-for-code-member-code-code-staff-code-code-booking-code-and-code-ingredient-code">3.7. The panel UI for <code>Member</code>, <code>Staff</code>, <code>Booking</code>, and <code>Ingredient</code></a></li>
+<li><a href="#current-implementation-7">3.8. Current implementation</a></li>
+<li><a href="#proposed-data-encryption">3.9. [Proposed] Data Encryption</a></li>
+<li><a href="#logging">3.10. Logging</a></li>
+<li><a href="#Implementation-Configuration">3.11. Configuration</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a>
@@ -565,9 +566,119 @@ The following class plays an important role at the architecture level:</p>
 <p>This section describes some noteworthy details on how certain features are implemented.</p>
 </div>
 <div class="sect2">
-<h3 id="undo-redo-feature"><a class="link" href="#undo-redo-feature">3.1. Undo/Redo feature</a></h3>
+<h3 id="add-feature"><a class="link" href="#add-feature">3.1. Add Feature</a></h3>
+<div class="paragraph">
+<p>The add feature allows the user to add items to the <code>RestaurantBook</code>.
+It also populates the item added to the <code>RestaurantBook</code> with parameters supplied by the user.</p>
+</div>
 <div class="sect3">
 <h4 id="current-implementation"><a class="link" href="#current-implementation">3.1.1. Current Implementation</a></h4>
+<div class="paragraph">
+<p>The add feature is implemented as four separate commands, one for adding each type of item: <code>addMember</code>, <code>addBooking</code>, <code>addIngredient</code>, <code>addStaff</code>.
+Each command is implemented as a <code>AddCommand</code> class. For example, the <code>addMember</code> command is implemented as the <code>AddMember</code> class.
+All <code>AddCommand</code> class inherit from the <code>Command</code> class.
+As the general flow of the various add commands are similar, the <code>addMember</code> command will be used as an example here.
+The <code>AddMemberCommand</code> class adds the member to the <code>RestaurantBook</code> by utilising the <code>MemberModel#addMember</code> method exposed by the <code>MemberModel</code> interface, which facilitates the interaction with the <code>VersionedRestaurantBook</code> to add the member via the <code>VersionedRestaurantBook#addItem</code> method.
+The state of the <code>RestaurantBook</code> is then saved via the <code>Model#commitRestaurantBook</code> method exposed by the <code>Model</code> interface, which saves the <code>RestaurantBook</code> using the <code>VersionedRestaurantBook#commit</code> method.</p>
+</div>
+<div class="paragraph">
+<p>For the <code>AddBooking</code> command, the list of bookings is sorted after the new booking is added to ensure that bookings are ordered by time.</p>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram demonstrates how the add feature works.</p>
+</div>
+<div class="paragraph">
+<p>&lt;insert sequence diagram&gt;</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations"><a class="link" href="#design-considerations">3.1.2. Design Considerations</a></h4>
+<div class="paragraph">
+<p><strong>Aspect: Implementation of the four add commands</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice)</strong>: four separate add commands, one for each type of item</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Easier implementation</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Cons:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Causes code duplication, as all the add commands differ only by their parameters, and function similarly otherwise.</p>
+</li>
+<li>
+<p>More types of commands for the user to remember</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2</strong>: a single add command, with a type field to indicate the type of item to be added</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Reduces the number of distinct commands in the RestaurantBook, thus making the <code>RestaurantBook</code> a simpler application for users.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Cons</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Complicates the add command as the parameters for the add command depend on the command type parameter passed into the command</p>
+</li>
+<li>
+<p>May have to display a long usage guide comprising examples of adding all four types of items</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Decision: Alternative 1 was selected for the following reasons:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>A greater variety of add commands is more intuitive than a single complex command.</p>
+</li>
+<li>
+<p>Separating the add commands allows for greater versatility in customising the various add commands.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="undo-redo-feature"><a class="link" href="#undo-redo-feature">3.2. Undo/Redo feature</a></h3>
+<div class="sect3">
+<h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">3.2.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>The undo/redo mechanism is facilitated by <code>VersionedAddressBook</code>.
 It extends <code>AddressBook</code> with an undo/redo history, stored internally as an <code>addressBookStateList</code> and <code>currentStatePointer</code>.
@@ -697,7 +808,7 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations"><a class="link" href="#design-considerations">3.1.2. Design Considerations</a></h4>
+<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">3.2.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-how-undo-redo-executes"><a class="link" href="#aspect-how-undo-redo-executes">Aspect: How undo &amp; redo executes</a></h5>
 <div class="ulist">
@@ -767,7 +878,7 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </div>
 </div>
 <div class="sect2">
-<h3 id="data-structure-for-holding-records"><a class="link" href="#data-structure-for-holding-records">3.2. Data structure for holding records</a></h3>
+<h3 id="data-structure-for-holding-records"><a class="link" href="#data-structure-for-holding-records">3.3. Data structure for holding records</a></h3>
 <div class="paragraph">
 <p>Following the AB4 structure, the <code>RestaurantBook</code> (originally <code>AddressBook</code>) class serves as the main database, holding information of all records in the system. However, the database system required is more complicated than the one in AB4- there are four different kinds of records that need to be stored. The main operations are still largely CRUD (create, read, update, delete) in nature which are very similarly done. However, there are some differences between the types of records:</p>
 </div>
@@ -782,13 +893,13 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </ul>
 </div>
 <div class="sect3">
-<h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">3.2.1. Current implementation</a></h4>
+<h4 id="current-implementation-3"><a class="link" href="#current-implementation-3">3.3.1. Current implementation</a></h4>
 <div class="paragraph">
 <p>We created the interface <code>Item</code> to represent a record. A <code>UniqueItemList</code> was used to handle the bulk of the CRUD logic, much like the way the <code>UniquePersonList</code> in the original AB4 was used to handle the CRUD logic. As the <code>Staff</code> and <code>Member</code> class store common attributes (<code>Name</code>, <code>Phone</code>, <code>Email</code>), an abstract class <code>Person</code> was used to capture this. The relation between the types of <code>Item</code> is also captured in the class diagram of Figure 8. However, in the <code>Model</code> interface, the methods are kept separate (using methods like <code>addMember</code>, <code>addBooking</code> instead of having a more generic <code>addItem</code> method).</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">3.2.2. Design Considerations</a></h4>
+<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">3.3.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-implementation-of-data-structure"><a class="link" href="#aspect-implementation-of-data-structure">Aspect: Implementation of data structure</a></h5>
 <div class="ulist">
@@ -864,12 +975,12 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </div>
 </div>
 <div class="sect2">
-<h3 id="the-code-editmember-code-command"><a class="link" href="#the-code-editmember-code-command">3.3. The <code>editMember</code> command</a></h3>
+<h3 id="the-code-editmember-code-command"><a class="link" href="#the-code-editmember-code-command">3.4. The <code>editMember</code> command</a></h3>
 <div class="paragraph">
 <p>When a <code>Member</code> details (<code>Name</code>, <code>Phone</code>, or <code>Email</code>) is changed, the <code>Booking</code> object must reflect the change. This requires an internal modification to the <code>Booking</code> list.</p>
 </div>
 <div class="sect3">
-<h4 id="current-implementation-3"><a class="link" href="#current-implementation-3">3.3.1. Current implementation</a></h4>
+<h4 id="current-implementation-4"><a class="link" href="#current-implementation-4">3.4.1. Current implementation</a></h4>
 <div class="paragraph">
 <p>When <code>RestaurantBook#setMember()</code> is called, the bookings are replaced with a new set of bookings, in a way such that any <code>Booking</code> containing the modified member will be replaced with another <code>Booking</code> object that correctly reflects the modified customer.</p>
 </div>
@@ -878,7 +989,7 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">3.3.2. Design Considerations</a></h4>
+<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">3.4.2. Design Considerations</a></h4>
 <div class="ulist">
 <ul>
 <li>
@@ -928,7 +1039,7 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </div>
 </div>
 <div class="sect2">
-<h3 id="delete-feature"><a class="link" href="#delete-feature">3.4. Delete Feature</a></h3>
+<h3 id="delete-feature"><a class="link" href="#delete-feature">3.5. Delete Feature</a></h3>
 <div class="paragraph">
 <p>The delete feature is used to delete a specific record in the restaurant book, i.e. deleting a member, staff, booking, ingredient or recipe.</p>
 </div>
@@ -949,7 +1060,7 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 <p>Therefore, there are some design considerations that we have to make when it comes to deleting a record.</p>
 </div>
 <div class="sect3">
-<h4 id="current-implementation-4"><a class="link" href="#current-implementation-4">3.4.1. Current implementation</a></h4>
+<h4 id="current-implementation-5"><a class="link" href="#current-implementation-5">3.5.1. Current implementation</a></h4>
 <div class="ulist">
 <ul>
 <li>
@@ -973,7 +1084,7 @@ In other words, when RestaurantBook#deleteMember() or RestaurantBook#deleteIngre
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">3.4.2. Design Considerations</a></h4>
+<h4 id="design-considerations-5"><a class="link" href="#design-considerations-5">3.5.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-separate-delete-commands-generic-delete-command"><a class="link" href="#aspect-separate-delete-commands-generic-delete-command">Aspect: Separate delete commands/ Generic delete command</a></h5>
 <div class="ulist">
@@ -1138,18 +1249,18 @@ In other words, when RestaurantBook#deleteMember() or RestaurantBook#deleteIngre
 </div>
 </div>
 <div class="sect2">
-<h3 id="the-code-stats-code-command"><a class="link" href="#the-code-stats-code-command">3.5. The <code>stats</code> command</a></h3>
+<h3 id="the-code-stats-code-command"><a class="link" href="#the-code-stats-code-command">3.6. The <code>stats</code> command</a></h3>
 <div class="paragraph">
 <p>When the <code>stats</code> command is entered, the current statistis of the amount of bookings is to be displayed to the user in the form of a bar chart.</p>
 </div>
 <div class="sect3">
-<h4 id="current-implementation-5"><a class="link" href="#current-implementation-5">3.5.1. Current implementation</a></h4>
+<h4 id="current-implementation-6"><a class="link" href="#current-implementation-6">3.6.1. Current implementation</a></h4>
 <div class="paragraph">
 <p>When the user enters the <code>stats</code> command, <code>RestaurantBookParser</code> calls the <code>Statistics</code> class. The Statistics class fetches the relevant data for user display (ie what are the axes, values, and legends of the bar chart). It would then call the <code>StatsWindow</code> class which handles the UI. The bar chart will appear in a new window and does not affect the current window.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-5"><a class="link" href="#design-considerations-5">3.5.2. Design Considerations</a></h4>
+<h4 id="design-considerations-6"><a class="link" href="#design-considerations-6">3.6.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-implementation-of-data-structure-2"><a class="link" href="#aspect-implementation-of-data-structure-2">Aspect: Implementation of data structure</a></h5>
 <div class="ulist">
@@ -1225,18 +1336,18 @@ In other words, when RestaurantBook#deleteMember() or RestaurantBook#deleteIngre
 </div>
 </div>
 <div class="sect2">
-<h3 id="the-panel-ui-for-code-member-code-code-staff-code-code-booking-code-and-code-ingredient-code"><a class="link" href="#the-panel-ui-for-code-member-code-code-staff-code-code-booking-code-and-code-ingredient-code">3.6. The panel UI for <code>Member</code>, <code>Staff</code>, <code>Booking</code>, and <code>Ingredient</code></a></h3>
+<h3 id="the-panel-ui-for-code-member-code-code-staff-code-code-booking-code-and-code-ingredient-code"><a class="link" href="#the-panel-ui-for-code-member-code-code-staff-code-code-booking-code-and-code-ingredient-code">3.7. The panel UI for <code>Member</code>, <code>Staff</code>, <code>Booking</code>, and <code>Ingredient</code></a></h3>
 <div class="paragraph">
 <p>The restaurant book displays the entire database in the form of "cards", which is the same as AB4. Each item has its own panel.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="current-implementation-6"><a class="link" href="#current-implementation-6">3.7. Current implementation</a></h3>
+<h3 id="current-implementation-7"><a class="link" href="#current-implementation-7">3.8. Current implementation</a></h3>
 <div class="paragraph">
 <p>The panel is formatted in the <code>ItemListPanel.fxml</code> file, and each item has its own controller (<code>MemberListPanel</code>, <code>StaffListPanel</code>, <code>BookingListPanel</code>, and <code>IngredientListPanel</code>) that extends from <code>ItemListPanel</code>. The panel displays the database via cards. Each item has its own card (<code>MemberCard</code>, <code>StaffCard</code>, <code>BookingCard</code>, and <code>IngredientCard</code>).</p>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-6"><a class="link" href="#design-considerations-6">3.7.1. Design Considerations</a></h4>
+<h4 id="design-considerations-7"><a class="link" href="#design-considerations-7">3.8.1. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-design-of-card-display"><a class="link" href="#aspect-design-of-card-display">Aspect: Design of card display</a></h5>
 <div class="ulist">
@@ -1312,20 +1423,20 @@ In other words, when RestaurantBook#deleteMember() or RestaurantBook#deleteIngre
 </div>
 </div>
 <div class="sect2">
-<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">3.8. [Proposed] Data Encryption</a></h3>
+<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">3.9. [Proposed] Data Encryption</a></h3>
 <div class="paragraph">
 <p><em>{Explain here how the data encryption feature will be implemented}</em></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">3.9. Logging</a></h3>
+<h3 id="logging"><a class="link" href="#logging">3.10. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.10, &#8220;Configuration&#8221;</a>)</p>
+<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.11, &#8220;Configuration&#8221;</a>)</p>
 </li>
 <li>
 <p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level</p>
@@ -1356,7 +1467,7 @@ In other words, when RestaurantBook#deleteMember() or RestaurantBook#deleteIngre
 </div>
 </div>
 <div class="sect2">
-<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.10. Configuration</a></h3>
+<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.11. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g user prefs file location, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
@@ -3163,4 +3274,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-03-19 10:12:55 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-03-19 12:57:48 UTC</div></div></div></body></html>
