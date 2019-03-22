@@ -39,7 +39,7 @@
 <h2 id="introduction"><a class="link" href="#introduction">1. Introduction</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>REM is for small/medium size restaurant owners who <strong>prefer to use a desktop app for managing their restaurant</strong>. More importantly, REM is <strong>optimized for those who prefer to work with a Command Line Interface</strong> (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, REM can get your restaurant management tasks done faster than traditional GUI apps.</p>
+<p>REstaurant Manager (REM) is for small/medium size restaurant owners who <strong>prefer to use a desktop app for managing their restaurant</strong>. More importantly, REM is <strong>optimized for those who prefer to work with a Command Line Interface</strong> (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, REM can get your restaurant management tasks done faster than traditional GUI apps.</p>
 </div>
 <div class="paragraph">
 <p>As REM is targeted at <em>restaurant owners</em>, it aims to facilitate the management of a restaurant, in these 5 different areas:</p>
@@ -217,10 +217,7 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <p>For the exact specification of what date and time formats are allowed, please refer to the <code>LocalDateTime</code> class in Java.</p>
 </li>
 <li>
-<p>We also accept specifying a time without a date, in which case the current date will be used. In that situation, <code>HH:mm</code> (e.g. <code>13:00</code>) format should be used.</p>
-</li>
-<li>
-<p>Users should take note that REM is not timezone-aware. We do not see the need to implement such features as it will rarely be the case that your restaurant needs to move to a different time zone.</p>
+<p>Time without dates are also accepted. In that situation, <code>HH:mm</code> (e.g. <code>13:00</code>) format should be used and the date is automatically chosen to be the current date at the point of command execution.</p>
 </li>
 </ul>
 </div>
@@ -280,10 +277,10 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <div class="sect3">
 <h4 id="list-members-code-listmembers-code"><a class="link" href="#list-members-code-listmembers-code">3.2.2. List Members: <code>listMembers</code></a></h4>
 <div class="paragraph">
-<p>Lists all members who matches all the equations given.</p>
+<p>List members who match all the given condition(s).</p>
 </div>
 <div class="paragraph">
-<p>Format: <code>listMembers [n/NAME_REGEX] [e/EMAIL_REGEX] [l/LOYALTY_POINTS_EQUATION]</code></p>
+<p>Format: <code>listMembers [n/NAME] [l/LOYALTY_POINTS_MINIMUM]</code></p>
 </div>
 <div class="paragraph">
 <p>Example:</p>
@@ -291,12 +288,12 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <div class="ulist">
 <ul>
 <li>
-<p><code>listMembers l/&gt;10</code></p>
+<p><code>listMembers l/10</code></p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>Lists all members with greater than 10 loyalty points.</p>
+<p>Lists all members with at least 10 loyalty points.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -312,7 +309,7 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <div class="sect3">
 <h4 id="delete-members-code-deletemember-code"><a class="link" href="#delete-members-code-deletemember-code">3.2.3. Delete Members: <code>deleteMember</code></a></h4>
 <div class="paragraph">
-<p>Deletes the specified member from the management system. This command is irreversible. Note that this action also deletes all bookings made by the member.</p>
+<p>Deletes the specified member from the management system. Note that this action also deletes all bookings made by the member.</p>
 </div>
 <div class="paragraph">
 <p>Format: <code>deleteMember INDEX</code></p>
@@ -322,7 +319,7 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <div class="ulist">
 <ul>
 <li>
-<p>Deletes the person at the specified <code>INDEX</code>. The index refers to the index number shown in the most recent listing.</p>
+<p>Deletes the member at the specified <code>INDEX</code>. The index refers to the index number shown in the most recent listing.</p>
 </li>
 </ul>
 </div>
@@ -334,7 +331,7 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <div class="ulist">
 <ul>
 <li>
-<p><code>listMember</code></p>
+<p><code>listMembers</code></p>
 <div class="paragraph">
 <p><code>deleteMember 2</code></p>
 </div>
@@ -342,12 +339,12 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 </ul>
 </div>
 <div class="paragraph">
-<p>Deletes the 2nd person in the address book.</p>
+<p>Deletes the 2nd member in the restaurant book.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>listMember n/Betsy</code></p>
+<p><code>listMembers n/Betsy</code></p>
 <div class="paragraph">
 <p><code>deleteMember 1</code></p>
 </div>
@@ -355,7 +352,7 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 </ul>
 </div>
 <div class="paragraph">
-<p>Deletes the 1st person in the results of the listMember command.</p>
+<p>Deletes the 1st member in the results of the listMembers command.</p>
 </div>
 </div>
 <div class="sect3">
@@ -425,55 +422,6 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <p><code>notifySMS l/100 ss/true</code></p>
 </li>
 </ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="add-loyalty-points-code-addpoints-code"><a class="link" href="#add-loyalty-points-code-addpoints-code">3.2.6. Add Loyalty Points: <code>addPoints</code></a></h4>
-<div class="paragraph">
-<p>Adds specified number of loyalty points to the member specified</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>addPoints i/INDEX l/LOYALTY_POINTS</code></p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>Adds <code>LOYALTY_POINTS</code> to the person at the specified <code>INDEX</code>. The index refers to the index number shown in the most recent listing.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>Example:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>listMember</code></p>
-<div class="paragraph">
-<p><code>addPoints i/2 l/10</code></p>
-</div>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Adds 10 points to the 2nd person.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>listMember n/Betsy</code></p>
-<div class="paragraph">
-<p><code>addPoints i/1 l/5</code></p>
-</div>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Adds 5 points to the 1st person in the results of the listMember command.</p>
 </div>
 </div>
 </div>
@@ -1011,10 +959,10 @@ Each dish of chicken rice requires 1/4 a full chicken and 1/10 a sack of rice</p
 <div class="sect3">
 <h4 id="delete-staff-code-deletestaff-code"><a class="link" href="#delete-staff-code-deletestaff-code">3.5.2. Delete Staff: <code>deleteStaff</code></a></h4>
 <div class="paragraph">
-<p>Deletes the staff member with the specified id.</p>
+<p>Deletes the staff member with the specified index.</p>
 </div>
 <div class="paragraph">
-<p>Format: <code>deleteStaff STAFF_ID</code></p>
+<p>Format: <code>deleteStaff STAFF_INDEX</code></p>
 </div>
 <div class="paragraph">
 <p>Example</p>
@@ -1031,10 +979,10 @@ Each dish of chicken rice requires 1/4 a full chicken and 1/10 a sack of rice</p
 <div class="sect2">
 <h3 id="edit-staff-code-editstaff-code"><a class="link" href="#edit-staff-code-editstaff-code">3.6. Edit Staff: <code>editStaff</code></a></h3>
 <div class="paragraph">
-<p>Edits the staff member with the specified id.</p>
+<p>Edits the staff member with the specified index.</p>
 </div>
 <div class="paragraph">
-<p>Format: <code>editStaff STAFF_ID [n/NAME] [p/PHONE] [e/EMAIL] [a/APPOINTMENT]</code></p>
+<p>Format: <code>editStaff STAFF_INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/APPOINTMENT]</code></p>
 </div>
 <div class="paragraph">
 <p>Example</p>
@@ -1058,10 +1006,10 @@ Each dish of chicken rice requires 1/4 a full chicken and 1/10 a sack of rice</p
 <div class="sect3">
 <h4 id="set-shift-staff-code-setshift-code"><a class="link" href="#set-shift-staff-code-setshift-code">3.6.2. Set Shift Staff: <code>setShift</code></a></h4>
 <div class="paragraph">
-<p>Sets the shift of a staff with the specified <code>STAFF_ID</code>. If the staff already has a shift, then it will be overwritten.</p>
+<p>Sets the shift of a staff with the specified <code>STAFF_INDEX</code>. If the staff already has a shift, then it will be overwritten.</p>
 </div>
 <div class="paragraph">
-<p>Format: <code>setShift s/STAFF_ID ts/TIME_START te/TIME_END</code></p>
+<p>Format: <code>setShift s/STAFF_INDEX ts/TIME_START te/TIME_END</code></p>
 </div>
 <div class="paragraph">
 <p>Example:</p>
@@ -1161,7 +1109,7 @@ Each dish of chicken rice requires 1/4 a full chicken and 1/10 a sack of rice</p
 <div class="sectionbody">
 <div class="paragraph">
 <p><strong>Q</strong>: How do I transfer my data to another Computer?<br>
-<strong>A</strong>: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Address Book folder.</p>
+<strong>A</strong>: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Restaurant Book folder.</p>
 </div>
 </div>
 </div>
@@ -1183,18 +1131,6 @@ e.g. <code>listMembers l/&gt;10 se/true</code></p>
 <li>
 <p><strong>deleteMember</strong> <code>deleteMember INDEX</code><br>
 e.g. <code>deleteMember 2</code></p>
-</li>
-<li>
-<p><strong>notifyEmail</strong> <code>notifyEmail [l/LOYALTY_POINTS_MINIMUM] [se/TRUE_FALSE]</code><br>
-e.g. <code>notifyEmail l/100 se/true</code></p>
-</li>
-<li>
-<p><strong>notifySMS</strong> <code>notifySMS [l/LOYALTY_POINTS_MINIMUM] [ss/TRUE_FALSE]</code><br>
-e.g. <code>notifySMS l/100 ss/true</code></p>
-</li>
-<li>
-<p><strong>addPoints</strong> <code>addPoints i/INDEX l/LOYALTY_POINTS</code>
-e.g. <code>addPoints i/2 l/10</code></p>
 </li>
 </ul>
 </div>
@@ -1254,7 +1190,7 @@ e.g. <code>viewBooking ts/1200 te/1530</code></p>
 e.g. <code>updateCapacity 50</code></p>
 </li>
 <li>
-<p><strong>addBooking</strong> <code>addBooking [c/CUSTOMER_ID] n/NUMBER OF MEMBERS t/TIME [d/DATE]</code><br>
+<p><strong>addBooking</strong> <code>addBooking [c/CUSTOMER_INDEX] n/NUMBER OF MEMBERS t/TIME [d/DATE]</code><br>
 e.g. <code>addBooking 1 1300 25 Feb</code></p>
 </li>
 <li>
@@ -1276,14 +1212,14 @@ e.g. <code>cancelBooking 3</code></p>
 e.g. <code>addStaff n/John Doe c/91234567 a/Waiter</code></p>
 </li>
 <li>
-<p><strong>deleteStaff</strong> <code>deleteStaff STAFF_ID</code><br>
+<p><strong>deleteStaff</strong> <code>deleteStaff STAFF_INDEX</code><br>
 e.g. <code>deleteStaff 3</code></p>
 </li>
 <li>
 <p><strong>shiftStaff</strong> <code>shiftStaff</code></p>
 </li>
 <li>
-<p><strong>setShift</strong> <code>setShift s/STAFF_ID ts/TIME_START te/TIME_END</code><br>
+<p><strong>setShift</strong> <code>setShift s/STAFF_INDEX ts/TIME_START te/TIME_END</code><br>
 e.g. setShift <code>1 1200 1530</code></p>
 </li>
 </ul>
@@ -1314,4 +1250,4 @@ e.g. <code>addRating 5</code></p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-03-22 07:43:33 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-03-22 07:44:00 UTC</div></div></div></body></html>
