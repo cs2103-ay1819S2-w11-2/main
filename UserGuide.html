@@ -429,23 +429,24 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <div class="sect3">
 <h4 id="list-ingredients-code-listingredients-code"><a class="link" href="#list-ingredients-code-listingredients-code">3.3.1. List Ingredients: <code>listIngredients</code></a></h4>
 <div class="paragraph">
-<p>View ingredients in inventory. If <code>w/true</code>, all ingredients falling below the previously stated warning amount will be listed.</p>
+<p>List all ingredients in the inventory that has ingredient name containing any of the key words inputted,
+and has ingredient quantity falling below the ingredient warning amount.</p>
 </div>
 <div class="paragraph">
-<p>Format: <code>listIngredients [w/TRUE_FALSE]</code></p>
+<p>Format: <code>listIngredients [in/INGREDIENT_NAME] [w/]</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
 <div class="ulist">
 <ul>
 <li>
-<p>For each ingredient, standardised unit for ingredient and amount in units in existing inventory is displayed.</p>
+<p>If <code>in/INGREDIENT_NAME</code> is present, all ingredients with name containing any of the key words inputted will be listed.</p>
 </li>
 <li>
-<p>Each ingredient will be indexed.</p>
+<p>If <code>w/</code> is present, all ingredients with quantity falling below warning amount will be listed.</p>
 </li>
 <li>
-<p>By default, all ingredients will be listed.</p>
+<p>By default, when both <code>in/INGREDIENT_NAME</code> and <code>w/</code> are not present, <code>listIngredients</code> will list all ingredients.</p>
 </li>
 </ul>
 </div>
@@ -457,18 +458,40 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <div class="ulist">
 <ul>
 <li>
-<p>listIngredient <code>w/true</code></p>
+<p><code>listIngredient in/tomato</code></p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>All ingredients falling below warning amount will be listed.</p>
+<p>All ingredients with name containing the word 'tomato' will be listed,
+e.g. 'tomato sauce', 'tomato ketchup' will be listed.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>listIngredient w/</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>All ingredients with ingredient quantity falling below ingredient warning amount will be listed.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>listIngredient in/tomato w/</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>All ingredients with name containing the word 'tomato', and having ingredient quantity that falls below
+ingredient warning amount will be listed.</p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="add-ingredient-code-addingredient-code"><a class="link" href="#add-ingredient-code-addingredient-code">3.3.2. Add Ingredient: <code>addIngredient</code></a></h4>
 <div class="paragraph">
-<p>Add new ingredient into inventory. Previously not existing in inventory before.</p>
+<p>Adds new ingredient into inventory. Previously not existing in inventory before.</p>
 </div>
 <div class="paragraph">
 <p>Format: <code>addIngredient in/INGREDIENT_NAME u/INGREDIENT_UNIT [q/INGREDIENT_QUANTITY] [w/INGREDIENT_WARNING_AMOUNT]</code></p>
@@ -478,11 +501,12 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <div class="ulist">
 <ul>
 <li>
-<p>If ingredient quantity is not specified, quantity is set to 0.</p>
+<p>If ingredient quantity or warning amount is not specified, they are respectively set to 0.</p>
 </li>
 <li>
-<p>User inputs the warning amount for the ingredient <code>w/INGREDIENT_WARNING_AMOUNT</code> , and when the quantity in inventory falls below this stated amount, there is a need for restock of this ingredient.
-Calling <code>listIngredients w/TRUE</code> will display all ingredients that fall below their corresponding warning values.</p>
+<p>User inputs the warning amount for the ingredient <code>w/INGREDIENT_WARNING_AMOUNT</code> , and when the quantity in inventory
+falls below this stated amount, there is a need for restock of this ingredient.
+Calling <code>listIngredients w/</code> will display all ingredients that fall below their corresponding warning values.</p>
 </li>
 </ul>
 </div>
@@ -519,13 +543,13 @@ Calling <code>listIngredients w/TRUE</code> will display all ingredients that fa
 </ul>
 </div>
 <div class="paragraph">
-<p>Adds 10 full chickens into inventory and when amount falls below 2, <code>listIngredients w/TRUE</code> will display chicken.</p>
+<p>Adds 10 full chickens into inventory and when amount falls below 2, <code>listIngredients w/</code> will display chicken.</p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="restock-ingredient-code-restockingredient-code"><a class="link" href="#restock-ingredient-code-restockingredient-code">3.3.3. Restock Ingredient: <code>restockIngredient</code></a></h4>
 <div class="paragraph">
-<p>Restock ingredient from inventory based on specified <code>INDEX</code> via <code>listIngredients</code>.
+<p>Restock an ingredient in inventory, by a particular amount, based on specified <code>INDEX</code> via <code>listIngredients</code>.
 Previously existing in inventory before.</p>
 </div>
 <div class="paragraph">
@@ -545,16 +569,16 @@ Previously existing in inventory before.</p>
 </ul>
 </div>
 <div class="paragraph">
-<p>Adds 10 full chickens into inventory</p>
+<p>Increases the quantity of chickens by 10 in the inventory.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="deplete-ingredient-code-depleteingredient-code"><a class="link" href="#deplete-ingredient-code-depleteingredient-code">3.3.4. Deplete Ingredient: <code>depleteIngredient</code></a></h4>
+<h4 id="consume-ingredient-code-consumeingredient-code"><a class="link" href="#consume-ingredient-code-consumeingredient-code">3.3.4. Consume Ingredient: <code>consumeIngredient</code></a></h4>
 <div class="paragraph">
-<p>Deplete ingredient from inventory based on specified <code>INDEX</code> via <code>listIngredients</code>.</p>
+<p>Consume a particular amount of ingredient from inventory, based on specified <code>INDEX</code> via <code>listIngredients</code>.</p>
 </div>
 <div class="paragraph">
-<p>Format: <code>depleteIngredient i/INGREDIENT_INDEX q/INGREDIENT_QUANTITY</code></p>
+<p>Format: <code>consumeIngredient i/INGREDIENT_INDEX q/INGREDIENT_QUANTITY</code></p>
 </div>
 <div class="paragraph">
 <p>Example:</p>
@@ -564,19 +588,19 @@ Previously existing in inventory before.</p>
 <li>
 <p><code>listIngredients</code> (returns chicken as 3rd index)</p>
 <div class="paragraph">
-<p><code>depleteIngredient i/3 q/10</code></p>
+<p><code>consumeIngredient i/3 q/10</code></p>
 </div>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>Depletes 10 full chickens from inventory</p>
+<p>Decreases the quantity of chickens by 10 in the inventory.</p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="delete-ingredient-code-deleteingredient-code"><a class="link" href="#delete-ingredient-code-deleteingredient-code">3.3.5. Delete Ingredient: <code>deleteIngredient</code></a></h4>
 <div class="paragraph">
-<p>Delete ingredient from inventory based on specified <code>INDEX</code> via <code>listIngredients</code>. This command is irreversible.</p>
+<p>Delete ingredient from inventory based on specified <code>INDEX</code> via <code>listIngredients</code>.</p>
 </div>
 <div class="paragraph">
 <p>Format: <code>deleteIngredient INGREDIENT_INDEX</code></p>
@@ -606,28 +630,16 @@ Previously existing in inventory before.</p>
 </ul>
 </div>
 <div class="paragraph">
-<p>Delete chicken from ingredient inventory</p>
+<p>Delete chicken from inventory</p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="list-recipes-code-listrecipes-code"><a class="link" href="#list-recipes-code-listrecipes-code">3.3.6. List Recipes: <code>listRecipes</code></a></h4>
 <div class="paragraph">
-<p>View recipes of dishes served at the restaurant.</p>
+<p>List all recipes.</p>
 </div>
 <div class="paragraph">
 <p>Format: <code>listRecipes</code></p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>For each recipe, the list of ingredients and its corresponding amount in units required for the standard serving will be displayed.
-Each recipe will be indexed.</p>
-</li>
-</ul>
-</div>
-</div>
 </div>
 </div>
 <div class="sect3">
@@ -636,23 +648,22 @@ Each recipe will be indexed.</p>
 <p>Add recipe of dish served at the restaurant.</p>
 </div>
 <div class="paragraph">
-<p>Format: <code>addRecipe r/RECIPE_NAME n/NUMBER_OF_INGREDIENTS 1/INGREDIENT_1&amp;AMOUNT_IN_UNITS 2/INGREDIENT_2&amp;AMOUNT_IN_UNITS &#8230;&#8203;</code></p>
+<p>Format: <code>addRecipe r/RECIPE_NAME iq/INGREDIENT_INDEX&amp;INGREDIENT_QUANTITY__IN_RECIPE &#8230;&#8203;</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
 <div class="ulist">
 <ul>
 <li>
-<p>For all ingredient inputs, if ingredient is new, message appears as a prompt for user to <code>addIngredient</code> first, before adding recipe.</p>
+<p>The index refers to the index number shown in the most recent listing of ingredients in the ingredients panel.</p>
 </li>
 <li>
-<p>Each ingredient input should have the format <code>1/INGREDIENT_1&amp;AMOUNT_IN_UNITS</code> where ingredient and amount in standardised units are separated by <code>&amp;</code>.</p>
+<p>There should be at least 1 ingredient <code>iq/INGREDIENT_INDEX&amp;INGREDIENT_QUANTITY_IN_RECIPE</code> input</p>
 </li>
 <li>
-<p><code>AMOUNT_IN_UNITS</code> is allowed to take on a decimal and is in the units specified in listIngredients.</p>
-</li>
-<li>
-<p>Number of ingredient inputs should correspond to <code>n/NUMBER_OF_INGREDIENTS</code>. If it does not, a message will appear to say incorrect number of inputs.</p>
+<p>Each ingredient input should have the format <code>iq/INGREDIENT_INDEX&amp;NGREDIENT_QUANTITY_IN_RECIPE</code>
+where ingredient index and quantity of ingredient in recipe is separated by &amp;.
+Both the ingredient index and quantity must be an whole number.</p>
 </li>
 </ul>
 </div>
@@ -664,38 +675,22 @@ Each recipe will be indexed.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>listIngredients</code> (lists chicken - 10 full chickens, rice - 10 sacks)</p>
+<p><code>listIngredients</code>
+(list: chicken - 10 full chickens [indexed 4], rice - 10 bowls [indexed 9])</p>
 <div class="paragraph">
-<p><code>addRecipe r/Chicken Rice n/3 1/Chicken&amp;0.25 2/Rice&amp;0.1</code></p>
+<p><code>addRecipe r/Chicken Rice iq/4&amp;1 iq/9&amp;3</code></p>
 </div>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>Adds new recipe chicken rice with all existing ingredients.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>addIngredient in/chicken u/full chickens</code></p>
-<div class="paragraph">
-<p><code>addIngredient in/rice u/sacks</code></p>
-</div>
-<div class="paragraph">
-<p><code>addRecipe r/chicken rice n/3 1/chicken&amp;0.25 2/rice&amp;0.1</code></p>
-</div>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Adds new recipe chicken rice with non-existing ingredients.
-Each dish of chicken rice requires 1/4 a full chicken and 1/10 a sack of rice</p>
+<p>Adds a new recipe, chicken rice, which requires 1 full chicken and 3 bowls of rice.</p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="delete-recipe-code-deleterecipe-code"><a class="link" href="#delete-recipe-code-deleterecipe-code">3.3.8. Delete Recipe: <code>deleteRecipe</code></a></h4>
 <div class="paragraph">
-<p>Delete recipe of dish served at the restaurant, based on specified INDEX via listRecipes.</p>
+<p>Delete a recipe based on specified INDEX via <code>listRecipes</code>.</p>
 </div>
 <div class="paragraph">
 <p>Format: <code>deleteRecipe RECIPE_INDEX</code></p>
@@ -729,49 +724,13 @@ Each dish of chicken rice requires 1/4 a full chicken and 1/10 a sack of rice</p
 </div>
 </div>
 <div class="sect3">
-<h4 id="calculate-recipe-code-calculaterecipe-code"><a class="link" href="#calculate-recipe-code-calculaterecipe-code">3.3.9. Calculate Recipe: <code>calculateRecipe</code></a></h4>
+<h4 id="recipe-summary-code-recipesummary-code"><a class="link" href="#recipe-summary-code-recipesummary-code">3.3.9. Recipe Summary <code>recipeSummary</code></a></h4>
 <div class="paragraph">
-<p>Calculates number of dishes that can be prepared based on current inventory, based on specified <code>INDEX</code> via <code>listRecipes</code>.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>calculateRecipe [i/RECIPE_INDEX]</code></p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>If recipe name is not specified, all recipes will be listed.</p>
-</li>
-</ul>
-</div>
-</div>
+<p>Displays the number of dishes that can be made for each recipe, calculated based on the current inventory
+and the quantity required in each recipe.</p>
 </div>
 <div class="paragraph">
-<p>Example:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>calculateRecipe</code></p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Shows number of dishes that can be prepared for every recipe</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>listRecipes</code></p>
-<div class="paragraph">
-<p><code>calculateRecipe [i/3]</code></p>
-</div>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Calculates number of dishes that can be prepared for recipe at index 3.</p>
+<p>Format: <code>recipeSummary</code></p>
 </div>
 </div>
 </div>
@@ -1139,39 +1098,40 @@ e.g. <code>deleteMember 2</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>listIngredients</strong> <code>listIngredients [w/TRUE_FALSE]</code><br>
-e.g. listIngredient <code>w/true</code></p>
+<p><strong>listIngredients</strong> <code>listIngredients [in/INGREDIENT_NAME] [w/]</code><br>
+e.g. <code>listIngredients in/tomato w/</code></p>
 </li>
 <li>
 <p><strong>addIngredient</strong> <code>addIngredient in/INGREDIENT_NAME u/INGREDIENT_UNIT [q/INGREDIENT_QUANTITY] [w/INGREDIENT_WARNING_AMOUNT]</code><br>
-e.g. <code>addIngredient in/chicken u/full chicken</code></p>
+e.g. <code>addIngredient in/chicken u/full chickens</code></p>
 </li>
 <li>
 <p><strong>restockIngredient</strong> <code>restockIngredient i/INGREDIENT_INDEX q/INGREDIENT_QUANTITY</code><br>
 e.g. <code>restockIngredient i/3 q/10</code></p>
 </li>
 <li>
-<p><strong>depleteIngredient</strong> <code>depleteIngredient i/INGREDIENT_INDEX q/INGREDIENT_QUANTITY</code><br>
-e.g. <code>depleteIngredient i/3 q/10</code></p>
+<p><strong>consumeIngredient</strong> <code>consumeIngredient i/INGREDIENT_INDEX q/INGREDIENT_QUANTITY</code><br>
+e.g. <code>consumeIngredient i/3 q/10</code></p>
 </li>
 <li>
 <p><strong>deleteIngredient</strong> <code>delete INGREDIENT_INDEX</code><br>
 e.g. <code>deleteIngredient 3</code></p>
 </li>
 <li>
-<p><strong>listRecipes</strong> <code>listRecipes</code></p>
+<p><strong>listRecipies</strong> <code>listRecipes</code><br>
+e.g. <code>listRecipes</code></p>
 </li>
 <li>
-<p><strong>addRecipe</strong>  <code>addRecipe r/RECIPE_NAME n/NUMBER_OF_INGREDIENTS 1/INGREDIENT_1&amp;AMOUNT_IN_UNITS 2/INGREDIENT_2&amp;AMOUNT_IN_UNITS &#8230;&#8203;</code><br>
-e.g. <code>addRecipe r/Chicken Rice n/3 1/Chicken&amp;0.25 2/Rice&amp;0.1</code></p>
+<p><strong>addRecipe</strong>  <code>addRecipe r/RECIPE_NAME iq/INGREDIENT_INDEX&amp;INGREDIENT_QUANTITY_IN_RECIPE</code><br>
+e.g. <code>addRecipe r/Chicken Rice iq/4&amp;1 iq/9&amp;3</code></p>
 </li>
 <li>
 <p><strong>deleteRecipe</strong> <code>delete RECIPE_INDEX</code><br>
 e.g. <code>deleteRecipe 3</code></p>
 </li>
 <li>
-<p><strong>calculateRecipe</strong> <code>calculateRecipe [i/RECIPE_INDEX]</code><br>
-e.g. <code>calculateRecipe [i/3]</code></p>
+<p><strong>recipeSummary</strong> <code>recipeSummary</code><br>
+e.g. <code>recipeSummary</code></p>
 </li>
 </ul>
 </div>
@@ -1249,4 +1209,4 @@ e.g. <code>addRating 5</code></p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-03-25 14:51:10 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-03-25 14:55:09 UTC</div></div></div></body></html>
