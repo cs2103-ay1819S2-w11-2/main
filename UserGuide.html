@@ -99,6 +99,9 @@
 </ul>
 </div>
 <div class="paragraph">
+<p>This user guide is designed to provide assistance to Restaurant Managers who utilise REM.</p>
+</div>
+<div class="paragraph">
 <p>Interested? Jump to the <a href="#quick-start">Section 2, &#8220;Quick Start&#8221;</a> to get started. Enjoy!</p>
 </div>
 </div>
@@ -128,7 +131,8 @@
 <li>
 <p>Type the command in the command box and press <kbd>Enter</kbd> to execute it.<br>
 e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> will open the help window.</p>
-</li>
+<div class="ulist">
+<ul>
 <li>
 <p>Some example commands you can try:</p>
 <div class="ulist">
@@ -144,6 +148,9 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 </li>
 <li>
 <p><strong><code>exit</code></strong> : exits the app</p>
+</li>
+</ul>
+</div>
 </li>
 </ul>
 </div>
@@ -193,7 +200,7 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <div class="ulist">
 <ul>
 <li>
-<p>e.g. <code>addRecipe r/RECIPE_NAME n/NUMBER_OF_INGREDIENTS 1/INGREDIENT_1&amp;AMOUNT_IN_UNITS 2/INGREDIENT_2&amp;AMOUNT_IN_UNITS &#8230;&#8203;</code></p>
+<p>e.g. <code>addRecipe r/RECIPE_NAME iq/INGREDIENT_INDEX&amp;INGREDIENT_QUANTITY__IN_RECIPE &#8230;&#8203;</code></p>
 </li>
 </ul>
 </div>
@@ -459,7 +466,7 @@ and has ingredient quantity falling below the ingredient warning amount.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>listIngredient in/tomato</code></p>
+<p><code>listIngredients in/tomato</code></p>
 </li>
 </ul>
 </div>
@@ -470,7 +477,7 @@ e.g. 'tomato sauce', 'tomato ketchup' will be listed.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>listIngredient w/</code></p>
+<p><code>listIngredients w/</code></p>
 </li>
 </ul>
 </div>
@@ -480,7 +487,7 @@ e.g. 'tomato sauce', 'tomato ketchup' will be listed.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>listIngredient in/tomato w/</code></p>
+<p><code>listIngredients in/tomato w/</code></p>
 </li>
 </ul>
 </div>
@@ -505,7 +512,7 @@ ingredient warning amount will be listed.</p>
 <p>If ingredient quantity or warning amount is not specified, they are respectively set to 0.</p>
 </li>
 <li>
-<p>User inputs the warning amount for the ingredient <code>w/INGREDIENT_WARNING_AMOUNT</code> , and when the quantity in inventory
+<p>User inputs the warning amount for the ingredient <code>w/INGREDIENT_WARNING_AMOUNT</code>, and when the quantity in inventory
 falls below this stated amount, there is a need for restock of this ingredient.
 Calling <code>listIngredients w/</code> will display all ingredients that fall below their corresponding warning values.</p>
 </li>
@@ -519,92 +526,41 @@ Calling <code>listIngredients w/</code> will display all ingredients that fall b
 <div class="ulist">
 <ul>
 <li>
-<p><code>addIngredient in/chicken u/full chickens</code></p>
+<p><code>addIngredient in/chicken wings u/packets</code></p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>Adds new ingredient, chicken (with default ingredient quantity as 0), into inventory.</p>
+<p>Adds new ingredient, chicken wings (with default ingredient quantity as 0), counted in terms of packets, into inventory.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>addIngredient in/chicken q/10 u/full chickens</code></p>
+<p><code>addIngredient in/chicken wings q/10 u/packets</code></p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>Adds 10 full chickens into inventory.</p>
+<p>Adds 10 packets of chicken wings into inventory.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>addIngredient in/chicken q/10 u/full chickens w/2</code></p>
+<p><code>addIngredient in/chicken wings q/10 u/packets w/2</code></p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>Adds 10 full chickens into inventory and when amount falls below 2, <code>listIngredients w/</code> will display chicken.</p>
+<p>Adds 10 packets of chicken wing into inventory and when quantity in inventory falls below 2 packets, <code>listIngredients w/</code> will display chicken.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="restock-ingredient-code-restockingredient-code"><a class="link" href="#restock-ingredient-code-restockingredient-code">3.3.3. Restock Ingredient: <code>restockIngredient</code></a></h4>
+<h4 id="delete-ingredient-code-deleteingredient-code"><a class="link" href="#delete-ingredient-code-deleteingredient-code">3.3.3. Delete Ingredient: <code>deleteIngredient</code></a></h4>
 <div class="paragraph">
-<p>Restock an ingredient in inventory, by a particular amount, based on specified <code>INDEX</code> via <code>listIngredients</code>.
-Previously existing in inventory before.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>restockIngredient i/INGREDIENT_INDEX q/INGREDIENT_QUANTITY</code></p>
+<p>Deletes the specified ingredient from the restaurant book. Note that this action also deletes all recipes that contain this ingredient.</p>
 </div>
 <div class="paragraph">
-<p>Example:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>listIngredients</code> (returns chicken as 3rd index)</p>
-<div class="paragraph">
-<p><code>restockIngredient i/3 q/10</code></p>
-</div>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Increases the quantity of chickens by 10 in the inventory.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="consume-ingredient-code-consumeingredient-code"><a class="link" href="#consume-ingredient-code-consumeingredient-code">3.3.4. Consume Ingredient: <code>consumeIngredient</code></a></h4>
-<div class="paragraph">
-<p>Consume a particular amount of ingredient from inventory, based on specified <code>INDEX</code> via <code>listIngredients</code>.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>consumeIngredient i/INGREDIENT_INDEX q/INGREDIENT_QUANTITY</code></p>
-</div>
-<div class="paragraph">
-<p>Example:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>listIngredients</code> (returns chicken as 3rd index)</p>
-<div class="paragraph">
-<p><code>consumeIngredient i/3 q/10</code></p>
-</div>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Decreases the quantity of chickens by 10 in the inventory.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="delete-ingredient-code-deleteingredient-code"><a class="link" href="#delete-ingredient-code-deleteingredient-code">3.3.5. Delete Ingredient: <code>deleteIngredient</code></a></h4>
-<div class="paragraph">
-<p>Delete ingredient from inventory based on specified <code>INDEX</code> via <code>listIngredients</code>.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>deleteIngredient INGREDIENT_INDEX</code></p>
+<p>Format: <code>deleteIngredient INDEX</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -635,21 +591,63 @@ Previously existing in inventory before.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="list-recipes-code-listrecipes-code"><a class="link" href="#list-recipes-code-listrecipes-code">3.3.6. List Recipes: <code>listRecipes</code></a></h4>
+<h4 id="restock-ingredient-code-restockingredient-code"><a class="link" href="#restock-ingredient-code-restockingredient-code">3.3.4. Restock Ingredient: <code>restockIngredient</code></a></h4>
 <div class="paragraph">
-<p>List all recipes.</p>
+<p>Restock an ingredient in inventory, by a particular amount, based on specified <code>INDEX</code> via <code>listIngredients</code>.
+Previously existing in inventory before.</p>
 </div>
 <div class="paragraph">
-<p>Format: <code>listRecipes</code></p>
+<p>Format: <code>restockIngredient i/INDEX q/INGREDIENT_QUANTITY</code></p>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>listIngredients</code> (returns chicken as 3rd index)</p>
+<div class="paragraph">
+<p><code>restockIngredient i/3 q/10</code></p>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Increases the quantity of chickens by 10 in the inventory.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="add-recipe-code-addrecipe-code"><a class="link" href="#add-recipe-code-addrecipe-code">3.3.7. Add Recipe: <code>addRecipe</code></a></h4>
+<h4 id="consume-ingredient-code-consumeingredient-code"><a class="link" href="#consume-ingredient-code-consumeingredient-code">3.3.5. Consume Ingredient: <code>consumeIngredient</code></a></h4>
+<div class="paragraph">
+<p>Consume a particular amount of ingredient from inventory, based on specified <code>INDEX</code> via <code>listIngredients</code>.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>consumeIngredient i/INDEX q/INGREDIENT_QUANTITY</code></p>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>listIngredients</code> (returns chicken as 3rd index)</p>
+<div class="paragraph">
+<p><code>consumeIngredient i/3 q/10</code></p>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Decreases the quantity of chickens by 10 in the inventory.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="add-recipe-code-addrecipe-code"><a class="link" href="#add-recipe-code-addrecipe-code">3.3.6. Add Recipe: <code>addRecipe</code></a></h4>
 <div class="paragraph">
 <p>Add recipe of dish served at the restaurant.</p>
 </div>
 <div class="paragraph">
-<p>Format: <code>addRecipe r/RECIPE_NAME iq/INGREDIENT_INDEX&amp;INGREDIENT_QUANTITY__IN_RECIPE &#8230;&#8203;</code></p>
+<p>Format: <code>addRecipe r/RECIPE_NAME iq/INDEX&amp;INGREDIENT_QUANTITY__IN_RECIPE &#8230;&#8203;</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -659,10 +657,10 @@ Previously existing in inventory before.</p>
 <p>The index refers to the index number shown in the most recent listing of ingredients in the ingredients panel.</p>
 </li>
 <li>
-<p>There should be at least 1 ingredient <code>iq/INGREDIENT_INDEX&amp;INGREDIENT_QUANTITY_IN_RECIPE</code> input</p>
+<p>There should be at least 1 ingredient <code>iq/INDEX&amp;INGREDIENT_QUANTITY_IN_RECIPE</code> input.</p>
 </li>
 <li>
-<p>Each ingredient input should have the format <code>iq/INGREDIENT_INDEX&amp;NGREDIENT_QUANTITY_IN_RECIPE</code>
+<p>Each ingredient input should have the format <code>iq/INDEX&amp;NGREDIENT_QUANTITY_IN_RECIPE</code>
 where ingredient index and quantity of ingredient in recipe is separated by &amp;.
 Both the ingredient index and quantity must be an whole number.</p>
 </li>
@@ -689,19 +687,19 @@ Both the ingredient index and quantity must be an whole number.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="delete-recipe-code-deleterecipe-code"><a class="link" href="#delete-recipe-code-deleterecipe-code">3.3.8. Delete Recipe: <code>deleteRecipe</code></a></h4>
+<h4 id="delete-recipe-code-deleterecipe-code"><a class="link" href="#delete-recipe-code-deleterecipe-code">3.3.7. Delete Recipe: <code>deleteRecipe</code></a></h4>
 <div class="paragraph">
 <p>Delete a recipe based on specified INDEX via <code>listRecipes</code>.</p>
 </div>
 <div class="paragraph">
-<p>Format: <code>deleteRecipe RECIPE_INDEX</code></p>
+<p>Format: <code>deleteRecipe INDEX</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
 <div class="ulist">
 <ul>
 <li>
-<p>The index refers to the index number shown in the most recent listing.</p>
+<p>Deletes the recipe at the specified <code>INDEX</code>. The index refers to the index number shown in the most recent listing of recipe.</p>
 </li>
 </ul>
 </div>
@@ -713,10 +711,7 @@ Both the ingredient index and quantity must be an whole number.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>listRecipes</code></p>
-<div class="paragraph">
 <p><code>deleteRecipe 3</code></p>
-</div>
 </li>
 </ul>
 </div>
@@ -725,7 +720,7 @@ Both the ingredient index and quantity must be an whole number.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="recipe-summary-code-recipesummary-code"><a class="link" href="#recipe-summary-code-recipesummary-code">3.3.9. Recipe Summary <code>recipeSummary</code></a></h4>
+<h4 id="recipe-summary-code-recipesummary-code"><a class="link" href="#recipe-summary-code-recipesummary-code">3.3.8. Recipe Summary <code>recipeSummary</code></a></h4>
 <div class="paragraph">
 <p>Displays the number of dishes that can be made for each recipe, calculated based on the current inventory
 and the quantity required in each recipe.</p>
@@ -738,12 +733,12 @@ and the quantity required in each recipe.</p>
 <div class="sect2">
 <h3 id="booking-management"><a class="link" href="#booking-management">3.4. Booking Management</a></h3>
 <div class="sect3">
-<h4 id="view-booking-code-listbooking-code-coming-in-v2-0"><a class="link" href="#view-booking-code-listbooking-code-coming-in-v2-0">3.4.1. View Booking: <code>listBooking</code> [Coming in v2.0]</a></h4>
+<h4 id="list-booking-code-listbookings-code-coming-in-v2-0"><a class="link" href="#list-booking-code-listbookings-code-coming-in-v2-0">3.4.1. List Booking: <code>listBookings</code> [Coming in v2.0]</a></h4>
 <div class="paragraph">
 <p>View the current lists of bookings within a certain time frame</p>
 </div>
 <div class="paragraph">
-<p>Format: <code>listBooking [ts/TIME_START] [te/TIME_END]</code></p>
+<p>Format: <code>listBookings [ts/TIME_START] [te/TIME_END]</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -762,7 +757,7 @@ and the quantity required in each recipe.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>listBooking ts/2019-03-01 12:00 te/2019-03-04 15:00</code></p>
+<p><code>listBookings ts/2019-03-01 12:00 te/2019-03-04 15:00</code></p>
 </li>
 </ul>
 </div>
@@ -783,7 +778,7 @@ and the quantity required in each recipe.</p>
 <p>The default capacity of the restaurant is 200.</p>
 </li>
 <li>
-<p>If the capacity is full, the restaurant will not accept new bookings (refer to <a href="#create-new-booking-code-addbooking-code">addBooking command </a>). If this command causes the number of bookings to exceed the capacity, the <code>updateCapacity</code> command will not be executed and an error will be displayed.</p>
+<p>If the capacity is full, the restaurant will not accept new bookings (refer to <a href="#Create New Booking: <code>addBooking</code>">addBooking command </a>). If this command causes the number of bookings to exceed the capacity, the <code>updateCapacity</code> command will not be executed and an error will be displayed.</p>
 </li>
 </ul>
 </div>
@@ -800,11 +795,11 @@ and the quantity required in each recipe.</p>
 </ul>
 </div>
 <div class="paragraph">
-<p>This updates the restaurants to cater for a capacity for 50 customers.</p>
+<p>This updates the restaurants to cater for a capacity of 50 customers.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="create-new-booking-code-addbooking-code"><a class="link" href="#create-new-booking-code-addbooking-code">3.4.3. Create New Booking: <code>addBooking</code></a></h4>
+<h4 id="add-new-booking-code-addbooking-code"><a class="link" href="#add-new-booking-code-addbooking-code">3.4.3. Add New Booking: <code>addBooking</code></a></h4>
 <div class="paragraph">
 <p>Creates a new booking.</p>
 </div>
@@ -837,7 +832,7 @@ and the quantity required in each recipe.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>addBooking c/1 n/5 ts/2019-02-23 14:30</code></p>
+<p><code>addBooking c/1 n/5 ts/2019-02-23T14:30</code></p>
 </li>
 </ul>
 </div>
@@ -905,10 +900,7 @@ and the quantity required in each recipe.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>listBooking</code></p>
-<div class="paragraph">
 <p><code>deleteBooking 3</code></p>
-</div>
 </li>
 </ul>
 </div>
@@ -947,7 +939,7 @@ and the quantity required in each recipe.</p>
 <p>Deletes the staff member with the specified index.</p>
 </div>
 <div class="paragraph">
-<p>Format: <code>deleteStaff STAFF_INDEX</code></p>
+<p>Format: <code>deleteStaff INDEX</code></p>
 </div>
 <div class="paragraph">
 <p>Example</p>
@@ -966,7 +958,7 @@ and the quantity required in each recipe.</p>
 <p>Edits the staff member with the specified index.</p>
 </div>
 <div class="paragraph">
-<p>Format: <code>editStaff STAFF_INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/APPOINTMENT]</code></p>
+<p>Format: <code>editStaff INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/APPOINTMENT]</code></p>
 </div>
 <div class="paragraph">
 <p>Example</p>
@@ -1052,7 +1044,7 @@ and the quantity required in each recipe.</p>
 <div class="sect2">
 <h3 id="overall"><a class="link" href="#overall">3.7. Overall</a></h3>
 <div class="sect3">
-<h4 id="view-feedback-code-viewfeedback-code"><a class="link" href="#view-feedback-code-viewfeedback-code">3.7.1. View Feedback: <code>viewFeedback</code></a></h4>
+<h4 id="view-feedback-code-viewfeedback-code-coming-in-v2-0"><a class="link" href="#view-feedback-code-viewfeedback-code-coming-in-v2-0">3.7.1. View Feedback: <code>viewFeedback</code> [Coming in v2.0]</a></h4>
 <div class="paragraph">
 <p>Lists all feedback submitted by customers.</p>
 </div>
@@ -1061,7 +1053,7 @@ and the quantity required in each recipe.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="add-feedback-code-addfeedback-code"><a class="link" href="#add-feedback-code-addfeedback-code">3.7.2. Add Feedback: <code>addFeedback</code></a></h4>
+<h4 id="add-feedback-code-addfeedback-code-coming-in-v2-0"><a class="link" href="#add-feedback-code-addfeedback-code-coming-in-v2-0">3.7.2. Add Feedback: <code>addFeedback</code> [Coming in v2.0]</a></h4>
 <div class="paragraph">
 <p>Adds a feedback submitted by a customer.</p>
 </div>
@@ -1080,7 +1072,7 @@ and the quantity required in each recipe.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="add-rating-code-addrating-code"><a class="link" href="#add-rating-code-addrating-code">3.7.3. Add Rating: <code>addRating</code></a></h4>
+<h4 id="add-rating-code-addrating-code-coming-in-v2-0"><a class="link" href="#add-rating-code-addrating-code-coming-in-v2-0">3.7.3. Add Rating: <code>addRating</code> [Coming in v2.0]</a></h4>
 <div class="paragraph">
 <p>Adds a rating submitted by a customer. Ratings are on a 5 point scale.</p>
 </div>
@@ -1110,7 +1102,7 @@ and the quantity required in each recipe.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="view-graph-rating-code-graphrating-code"><a class="link" href="#view-graph-rating-code-graphrating-code">3.7.4. View Graph Rating: <code>graphRating</code></a></h4>
+<h4 id="view-graph-rating-code-graphrating-code-coming-in-v2-0"><a class="link" href="#view-graph-rating-code-graphrating-code-coming-in-v2-0">3.7.4. View Graph Rating: <code>graphRating</code> [Coming in v2.0]</a></h4>
 <div class="paragraph">
 <p>Displays a graph of average rating per month against months.</p>
 </div>
@@ -1119,7 +1111,7 @@ and the quantity required in each recipe.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="view-rating-statistics-code-ratingstats-code"><a class="link" href="#view-rating-statistics-code-ratingstats-code">3.7.5. View Rating Statistics: <code>ratingStats</code></a></h4>
+<h4 id="view-rating-statistics-code-ratingstats-code-coming-in-v2-0"><a class="link" href="#view-rating-statistics-code-ratingstats-code-coming-in-v2-0">3.7.5. View Rating Statistics: <code>ratingStats</code> [Coming in v2.0]</a></h4>
 <div class="paragraph">
 <p>Displays a summary of the overall rating statistics, such as the average rating and the rating distribution.</p>
 </div>
@@ -1171,7 +1163,7 @@ e.g. <code>listIngredients in/tomato w/</code></p>
 </li>
 <li>
 <p><strong>addIngredient</strong> <code>addIngredient in/INGREDIENT_NAME u/INGREDIENT_UNIT [q/INGREDIENT_QUANTITY] [w/INGREDIENT_WARNING_AMOUNT]</code><br>
-e.g. <code>addIngredient in/chicken u/full chickens</code></p>
+e.g. <code>addIngredient in/chicken u/full chickens q/100 w/10</code></p>
 </li>
 <li>
 <p><strong>restockIngredient</strong> <code>restockIngredient i/INGREDIENT_INDEX q/INGREDIENT_QUANTITY</code><br>
@@ -1182,19 +1174,15 @@ e.g. <code>restockIngredient i/3 q/10</code></p>
 e.g. <code>consumeIngredient i/3 q/10</code></p>
 </li>
 <li>
-<p><strong>deleteIngredient</strong> <code>delete INGREDIENT_INDEX</code><br>
+<p><strong>deleteIngredient</strong> <code>delete INDEX</code><br>
 e.g. <code>deleteIngredient 3</code></p>
 </li>
 <li>
-<p><strong>listRecipies</strong> <code>listRecipes</code><br>
-e.g. <code>listRecipes</code></p>
-</li>
-<li>
-<p><strong>addRecipe</strong>  <code>addRecipe r/RECIPE_NAME iq/INGREDIENT_INDEX&amp;INGREDIENT_QUANTITY_IN_RECIPE</code><br>
+<p><strong>addRecipe</strong>  <code>addRecipe r/RECIPE_NAME iq/INGREDIENT_INDEX&amp;INGREDIENT_QUANTITY_IN_RECIPE &#8230;&#8203;</code><br>
 e.g. <code>addRecipe r/Chicken Rice iq/4&amp;1 iq/9&amp;3</code></p>
 </li>
 <li>
-<p><strong>deleteRecipe</strong> <code>delete RECIPE_INDEX</code><br>
+<p><strong>deleteRecipe</strong> <code>delete INDEX</code><br>
 e.g. <code>deleteRecipe 3</code></p>
 </li>
 <li>
@@ -1209,7 +1197,7 @@ e.g. <code>recipeSummary</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>listBooking</strong> <code>listBooking [ts/TIME_START] [te/TIME_END]</code><br>
+<p><strong>listBookings</strong> <code>listBookings [ts/TIME_START] [te/TIME_END]</code><br>
 e.g. <code>listBooking ts/1200 te/1530</code></p>
 </li>
 <li>
@@ -1277,4 +1265,4 @@ e.g. <code>addRating 5</code></p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-01 03:48:54 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-01 17:52:03 UTC</div></div></div></body></html>

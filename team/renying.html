@@ -1,0 +1,766 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]--><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="Asciidoctor 1.5.6.1"><title>Ren Ying - Project Portfolio</title><link rel="stylesheet" href="../stylesheets/gh-pages.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="../stylesheets/coderay-asciidoctor.css"></head><body class="article"><div id="site-header"><nav class="navbar navbar-light bg-light"><div class="container"><a class="navbar-brand" href="../index.html">REstaurant Manager</a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="../UserGuide.html">User Guide</a></li><li class="nav-item"><a class="nav-link" href="../DeveloperGuide.html">Developer Guide</a></li><li class="nav-item"><a class="nav-link active" href="../AboutUs.html">About Us</a></li><li class="nav-item"><a class="nav-link" href="../ContactUs.html">Contact Us</a></li><li class="navitem"><a class="nav-link" href="https://github.com/cs2103-ay1819S2-w11-2/main"><span class="fa fa-github fa-lg" aria-hidden="true"></span>&nbsp;View on GitHub</a></li></ul></div></nav></div><div id="header"><h1>Ren Ying - Project Portfolio</h1></div><div id="content"><div class="sect1">
+<h2 id="project-restaurant-manager"><a class="link" href="#project-restaurant-manager">PROJECT: REstaurant Manager</a></h2>
+<div class="sectionbody">
+<hr>
+</div>
+</div>
+<div class="sect1">
+<h2 id="overview"><a class="link" href="#overview">Overview</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This portfolio summarises my contributions made throughout the project.</p>
+</div>
+<div class="paragraph">
+<p>REstaurant Manager (REM) is a desktop application tailored to restaurant owners of small/medium size restaurants.
+This application provides a single platform for them to manage many areas of the restaurant:
+customers with membership, staff, bookings, ingredient and recipe inventory.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="summary-of-contributions"><a class="link" href="#summary-of-contributions">Summary of contributions</a></h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Major enhancement</strong>: added <strong>ingredient and recipe feature</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>What it does: allows the user to add, restock and consume ingredients, keeping track of the quantity of ingredient remaining in the inventory. Ingredients with quantity in inventory falling below the user-inputted warning amount can also be listed.
+User can also add recipes, keeping track of the ingredients, and its required quantity in each recipe.</p>
+</li>
+<li>
+<p>Justification:
+This feature improves the product significantly, as the recipe and ingredient features help to keep track of dishes served in the restaurant and inventory status for the ingredients. This can enable the users to make decisions, such as to restock ingredients, or limit number of bookings, to ensure smooth running of restaurant.</p>
+</li>
+<li>
+<p>Highlights: (insert highlights)</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Code contributed</strong>: [<a href="https://github.com">Functional code</a>] [<a href="https://github.com">Test code</a>] <em>{give links to collated code files}</em></p>
+</li>
+<li>
+<p><strong>Other contributions</strong>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Project management: (insert contributions)</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Managed releases <code>v1.3</code> - <code>v1.5rc</code> (3 releases) on GitHub</p>
+</li>
+<li>
+<p>Wrote tests to increase coverage (Pull requests <a href="https://github.com">#28</a>, <a href="https://github.com">#35</a>, <a href="https://github.com">#78</a>, <a href="https://github.com">#110</a>, <a href="https://github.com">#118</a>)</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Documentation:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Did cosmetic tweaks to existing contents of the User Guide: (Pull requests <a href="https://github.com">#28</a>, <a href="https://github.com">#127</a>)</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Community:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>PRs reviewed (with non-trivial review comments):  (Pull requests <a href="https://github.com">#106</a>, <a href="https://github.com">#104</a>)</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="contributions-to-the-user-guide"><a class="link" href="#contributions-to-the-user-guide">Contributions to the User Guide</a></h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users.</em></p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect2">
+<h3 id="inventory-management"><a class="link" href="#inventory-management">Inventory Management</a></h3>
+<div class="sect3">
+<h4 id="list-ingredients-code-listingredients-code"><a class="link" href="#list-ingredients-code-listingredients-code">List Ingredients: <code>listIngredients</code></a></h4>
+<div class="paragraph">
+<p>List all ingredients in the inventory that has ingredient name containing any of the key words inputted,
+and has ingredient quantity falling below the ingredient warning amount.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>listIngredients [in/INGREDIENT_NAME] [w/]</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>If <code>in/INGREDIENT_NAME</code> is present, all ingredients with name containing any of the key words inputted will be listed.</p>
+</li>
+<li>
+<p>If <code>w/</code> is present, all ingredients with quantity falling below warning amount will be listed.</p>
+</li>
+<li>
+<p>By default, when both <code>in/INGREDIENT_NAME</code> and <code>w/</code> are not present, <code>listIngredients</code> will list all ingredients.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>listIngredients in/tomato</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>All ingredients with name containing the word 'tomato' will be listed,
+e.g. 'tomato sauce', 'tomato ketchup' will be listed.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>listIngredients w/</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>All ingredients with ingredient quantity falling below ingredient warning amount will be listed.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>listIngredients in/tomato w/</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>All ingredients with name containing the word 'tomato', and having ingredient quantity that falls below
+ingredient warning amount will be listed.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="add-ingredient-code-addingredient-code"><a class="link" href="#add-ingredient-code-addingredient-code">Add Ingredient: <code>addIngredient</code></a></h4>
+<div class="paragraph">
+<p>Adds new ingredient into inventory. Previously not existing in inventory before.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>addIngredient in/INGREDIENT_NAME u/INGREDIENT_UNIT [q/INGREDIENT_QUANTITY] [w/INGREDIENT_WARNING_AMOUNT]</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>If ingredient quantity or warning amount is not specified, they are respectively set to 0.</p>
+</li>
+<li>
+<p>User inputs the warning amount for the ingredient <code>w/INGREDIENT_WARNING_AMOUNT</code>, and when the quantity in inventory
+falls below this stated amount, there is a need for restock of this ingredient.
+Calling <code>listIngredients w/</code> will display all ingredients that fall below their corresponding warning values.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>addIngredient in/chicken wings u/packets</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Adds new ingredient, chicken wings (with default ingredient quantity as 0), counted in terms of packets, into inventory.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>addIngredient in/chicken wings q/10 u/packets</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Adds 10 packets of chicken wings into inventory.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>addIngredient in/chicken wings q/10 u/packets w/2</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Adds 10 packets of chicken wing into inventory and when quantity in inventory falls below 2 packets, <code>listIngredients w/</code> will display chicken.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="delete-ingredient-code-deleteingredient-code"><a class="link" href="#delete-ingredient-code-deleteingredient-code">Delete Ingredient: <code>deleteIngredient</code></a></h4>
+<div class="paragraph">
+<p>Deletes the specified ingredient from the restaurant book. Note that this action also deletes all recipes that contain this ingredient.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>deleteIngredient INDEX</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>The index refers to the index number shown in the most recent listing.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>listIngredients</code> (returns chicken as 3rd index)</p>
+<div class="paragraph">
+<p><code>deleteIngredient 3</code></p>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Delete chicken from inventory</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="restock-ingredient-code-restockingredient-code"><a class="link" href="#restock-ingredient-code-restockingredient-code">Restock Ingredient: <code>restockIngredient</code></a></h4>
+<div class="paragraph">
+<p>Restock an ingredient in inventory, by a particular amount, based on specified <code>INDEX</code> via <code>listIngredients</code>.
+Previously existing in inventory before.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>restockIngredient i/INDEX q/INGREDIENT_QUANTITY</code></p>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>listIngredients</code> (returns chicken as 3rd index)</p>
+<div class="paragraph">
+<p><code>restockIngredient i/3 q/10</code></p>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Increases the quantity of chickens by 10 in the inventory.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="consume-ingredient-code-consumeingredient-code"><a class="link" href="#consume-ingredient-code-consumeingredient-code">Consume Ingredient: <code>consumeIngredient</code></a></h4>
+<div class="paragraph">
+<p>Consume a particular amount of ingredient from inventory, based on specified <code>INDEX</code> via <code>listIngredients</code>.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>consumeIngredient i/INDEX q/INGREDIENT_QUANTITY</code></p>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>listIngredients</code> (returns chicken as 3rd index)</p>
+<div class="paragraph">
+<p><code>consumeIngredient i/3 q/10</code></p>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Decreases the quantity of chickens by 10 in the inventory.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="add-recipe-code-addrecipe-code"><a class="link" href="#add-recipe-code-addrecipe-code">Add Recipe: <code>addRecipe</code></a></h4>
+<div class="paragraph">
+<p>Add recipe of dish served at the restaurant.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>addRecipe r/RECIPE_NAME iq/INDEX&amp;INGREDIENT_QUANTITY__IN_RECIPE &#8230;&#8203;</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>The index refers to the index number shown in the most recent listing of ingredients in the ingredients panel.</p>
+</li>
+<li>
+<p>There should be at least 1 ingredient <code>iq/INDEX&amp;INGREDIENT_QUANTITY_IN_RECIPE</code> input.</p>
+</li>
+<li>
+<p>Each ingredient input should have the format <code>iq/INDEX&amp;NGREDIENT_QUANTITY_IN_RECIPE</code>
+where ingredient index and quantity of ingredient in recipe is separated by &amp;.
+Both the ingredient index and quantity must be an whole number.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>listIngredients</code>
+(list: chicken - 10 full chickens [indexed 4], rice - 10 bowls [indexed 9])</p>
+<div class="paragraph">
+<p><code>addRecipe r/Chicken Rice iq/4&amp;1 iq/9&amp;3</code></p>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Adds a new recipe, chicken rice, which requires 1 full chicken and 3 bowls of rice.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="delete-recipe-code-deleterecipe-code"><a class="link" href="#delete-recipe-code-deleterecipe-code">Delete Recipe: <code>deleteRecipe</code></a></h4>
+<div class="paragraph">
+<p>Delete a recipe based on specified INDEX via <code>listRecipes</code>.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>deleteRecipe INDEX</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Deletes the recipe at the specified <code>INDEX</code>. The index refers to the index number shown in the most recent listing of recipe.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>deleteRecipe 3</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Delete recipe at index 3.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="recipe-summary-code-recipesummary-code"><a class="link" href="#recipe-summary-code-recipesummary-code">Recipe Summary <code>recipeSummary</code></a></h4>
+<div class="paragraph">
+<p>Displays the number of dishes that can be made for each recipe, calculated based on the current inventory
+and the quantity required in each recipe.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>recipeSummary</code></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="contributions-to-the-developer-guide"><a class="link" href="#contributions-to-the-developer-guide">Contributions to the Developer Guide</a></h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project.</em></p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect2">
+<h3 id="delete-feature"><a class="link" href="#delete-feature">Delete Feature</a></h3>
+<div class="paragraph">
+<p>The delete feature is used to delete a specific record in the restaurant book, i.e. deleting a member, staff, booking, ingredient or recipe.</p>
+</div>
+<div class="paragraph">
+<p>In comparison to the original AB4 codebase, REstaurant Manager has more than 1 type of record in the restaurant book, and has a high level of dependency/ coupling between certain components:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Between Member and Booking: a booking contains a specific member -  Booking is highly coupled to Member</p>
+</li>
+<li>
+<p>Between Ingredient and Recipe: a recipe contains ingredients – Recipe is highly coupled to Ingredient</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Therefore, there are some design considerations that we have to make when it comes to deleting a record.</p>
+</div>
+<div class="sect3">
+<h4 id="current-implementation"><a class="link" href="#current-implementation">Current implementation</a></h4>
+<div class="ulist">
+<ul>
+<li>
+<p>There are separate delete commands for each of the 4 components, namely <code>deleteMember</code>, <code>deleteBooking</code>, <code>deleteStaff</code>, <code>deleteIngredient</code> and <code>deleteRecipe</code>, and the command explicitly specifies the object being deleted. Each specific delete command has a <code>DeleteCommand</code> class that extends abstract class <code>Command</code> and is supported by a <code>CommandParser</code> class (e.g. <code>deleteIngredient</code> command has <code>deleteIngredientCommand</code> class and <code>deleteIngredientCommandParser</code> class).</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/DeleteIngredientSequenceDiagram.png" alt="DeleteIngredientSequenceDiagram" width="800">
+</div>
+<div class="title">Figure 1. Sequence Diagram for DeleteIngredient</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The delete commands are called by typing the component-specific command, followed by an index, which refers to the index number shown in the most recent listing (e.g. <code>deleteIngredient 3</code>).</p>
+</li>
+<li>
+<p>When a member is deleted, all booking objects containing the deleted member must be similarly deleted.  Also, when an ingredient is deleted, all recipe objects containing the deleted ingredient must also be deleted.
+In other words, when RestaurantBook#deleteMember() or RestaurantBook#deleteIngredient() is called, this triggers all related bookings or recipes to be deleted as well.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations"><a class="link" href="#design-considerations">Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-separate-delete-commands-generic-delete-command"><a class="link" href="#aspect-separate-delete-commands-generic-delete-command">Aspect: Separate delete commands/ Generic delete command</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong> Alternative 1 (current choice):</strong> separate commands for each component, i.e. <code>deleteMember</code>, <code>deleteBooking</code>, <code>deleteStaff</code>, <code>deleteIngredient</code>, <code>deleteRecipe</code> to delete from respective lists.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Easier implementation</p>
+</li>
+<li>
+<p>Cons:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Leads to code duplication, as each delete command requires an additional <code>Command</code> and <code>CommandParser</code> class.</p>
+</li>
+<li>
+<p>Inconvenient for user to type out a longer command (e.g. <code>deleteIngredient</code> vs <code>delete</code>).</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong> Alternative 2:</strong> one generic delete command, requiring the model to determine the active list (currently displayed list on the panel), and to delete from that particular list</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Shorter commands required from user, (e.g. <code>delete</code> vs <code>deleteIngredient</code>).</p>
+</li>
+<li>
+<p>Cons: Requires user to type in additional command prior to the <code>delete</code> command (e.g. list or filter command), to change the state of the intended list to active.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Decision: Alternative 1 was selected for the following reasons:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Aliases are implemented as a shortcut to the long commands (e.g. <code>db</code> for <code>deleteBooking</code>, <code>dm</code> for <code>deleteMember</code>). It is no longer inconvenient for users as they can type the shorter command.</p>
+</li>
+<li>
+<p>4 panels are implemented in U/I (link to u/i segment), 1 panel for each component provides easy cross-reference across linked records, and this supports Alternative 1&#8217;s implementation. All lists are active at the same time, and they display all unfiltered records by default. Firstly, it is hard for the user to detect an active list at first glance, since all lists are already displayed. Secondly, a specific delete command can be called without a prior command to mark the list as active (e.g.  <code>deleteIngredient</code> can be called directly to make changes to Ingredient list) which makes it more convenient for the user</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="aspect-deletion-by-index-deletion-by-field"><a class="link" href="#aspect-deletion-by-index-deletion-by-field">Aspect: Deletion by index/ Deletion by field</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong> Alternative 1 (current choice):</strong> delete records by index in the most recent listing.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Easier implementation as it does not require much change to the already-existing AB4 codebase.</p>
+</li>
+<li>
+<p>Standardized command format for all delete commands (e.g. <code>deleteIngredient INDEX</code> and <code>deleteBooking INDEX</code>).</p>
+</li>
+<li>
+<p>Index for a record is easily identified from its corresponding list.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Cons:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Index may be incorrectly typed, especially if the list is too long or there are similar records in the list.</p>
+</li>
+<li>
+<p>Unfiltered list may be too long for user to scroll through to find the index. Methods are required to filter the list or find a specific record before <code>delete INDEX</code> command is called.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong> Alternative 2:</strong> delete records by field.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Greater certainty that the right record is deleted.</p>
+</li>
+<li>
+<p>Cons:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Variations in command format for each delete command. They may have different prefixes and fields that the user has to type in.</p>
+</li>
+<li>
+<p>Some records are identified by more than 1 field, and all necessary fields must be provided for successful deletion of a record, making the command longer and harder to type (e.g. <code>deleteBooking</code> command requires <code>bookingWindow</code> and <code>customerName</code> fields to be present to delete a record).</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Decision: Alternative 1 was adopted for greater standardisation across the 5 components (Member, Bookings, Ingredient, Recipe, and Staff).</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="aspect-highly-coupled-records"><a class="link" href="#aspect-highly-coupled-records">Aspect: Highly coupled records</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong> Alternative 1 (current choice):</strong> Deleting a member will result in the deletion of all bookings done by this member. Similarly, deleting an ingredient will result in the deletion of all recipes using this ingredient.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Easier to implement</p>
+</li>
+<li>
+<p>Cons: There is a possibility that the user accidentally deletes a record (e.g. member), and all other records (e.g. bookings made by this member) referencing this record is also accidentally deleted.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong> Alternative 2:</strong> Only records that are not referenced can be deleted. (e.g. During an attempt to delete a member that has made a booking, an error message is displayed to prompt the user that this member is referenced in the booking list. The user is required to manually delete all bookings done by this member before he is allowed to delete the member).</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Reduces the possibility that the user accidentally deletes a record (e.g. member), and all other records (e.g. bookings made by this member) referencing this record is also accidentally deleted.</p>
+</li>
+<li>
+<p>Cons: Inconvenient for the user to manually remove all referencing records before he can delete the referenced record.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Decision: Alternative 1 was adopted as it is an easier implementation and it makes it more convenient for the user to delete a record. It is intuitive that if a deleteMember or deleteIngredient command is called and these objects cease to exist in the restaurant book, the corresponding Booking or Recipe containing these objects should also cease to exist. To deal with the possibility that the member or ingredient is accidentally deleted, and all referenced bookings and recipes is unintentionally deleted, an additional field in the delete command can be added as a confirmation that these records should be deleted.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="product-scope"><a class="link" href="#product-scope">Appendix A: Product Scope</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><strong>Target user profile</strong>: a restaurant owner who:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>has a need to manage a significant number of <a href="#restaurant-records">restaurant records</a></p>
+</li>
+<li>
+<p>prefer desktop apps over other types</p>
+</li>
+<li>
+<p>can type fast</p>
+</li>
+<li>
+<p>prefers typing over mouse input</p>
+</li>
+<li>
+<p>is reasonably comfortable using <a href="#cli">CLI</a> apps</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Value proposition</strong>: manage records faster than a typical mouse/GUI driven app</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="user-stories"><a class="link" href="#user-stories">Appendix B: User Stories</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Priorities: High (must have) - <code>* * *</code>, Medium (nice to have) - <code>* *</code>, Low (unlikely to have) - <code>*</code></p>
+</div>
+<table class="tableblock frame-all grid-all" style="width: 59%;">
+<colgroup>
+<col style="width: 22%;">
+<col style="width: 23%;">
+<col style="width: 25%;">
+<col style="width: 30%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Priority</th>
+<th class="tableblock halign-left valign-top">As a &#8230;&#8203;</th>
+<th class="tableblock halign-left valign-top">I want to &#8230;&#8203;</th>
+<th class="tableblock halign-left valign-top">So that I can&#8230;&#8203;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">restaurant owner</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Member Management:</strong> keep track of the members of the restaurant</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">reward members with special benefits</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">restaurant owner</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Booking Management:</strong> manage the bookings made by customers</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ensure customers who have made bookings have a table</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">restaurant owner</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Booking Management:</strong> view which bookings clash and which are available</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ensure restaurant will not be overbooked</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">restaurant owner</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Inventory Management:</strong> keep track of food inventory</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">do necessary restocking</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">restaurant owner</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Inventory Management:</strong> keep track of my recipes and necessary ingredients</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">know what customers can order</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">restaurant owner</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Staff Management:</strong> keep track of the staff working for my restaurant</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">hire staff accordingly</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">restaurant owner</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Staff Management:</strong> keep track of what shift each staff is working</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">assign shifts and pay them accordingly</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">restaurant owner</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Booking Management:</strong> view the statistics of customers</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">plan for resources and for future business expansion</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">restaurant owner</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Booking Management:</strong> view the frequency statistics based on booking time</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">hire more staff at peak periods appropriately</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">restaurant owner</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Inventory Management:</strong> predict how many dishes can be prepared with current food inventory</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">plan for business operations</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>*</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">restaurant owner</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">keep track of my profits</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>*</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">restaurant owner</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">view my total expenditure</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>*</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">restaurant owner</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">keep track of customer feedback</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">improve on my restaurant</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-01 17:52:03 UTC</div></div></div></body></html>

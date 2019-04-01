@@ -77,12 +77,12 @@
 <div class="sect2">
 <h3 id="booking-management"><a class="link" href="#booking-management">Booking Management</a></h3>
 <div class="sect3">
-<h4 id="view-booking-code-listbooking-code-coming-in-v2-0"><a class="link" href="#view-booking-code-listbooking-code-coming-in-v2-0">View Booking: <code>listBooking</code> [Coming in v2.0]</a></h4>
+<h4 id="list-booking-code-listbookings-code-coming-in-v2-0"><a class="link" href="#list-booking-code-listbookings-code-coming-in-v2-0">List Booking: <code>listBookings</code> [Coming in v2.0]</a></h4>
 <div class="paragraph">
 <p>View the current lists of bookings within a certain time frame</p>
 </div>
 <div class="paragraph">
-<p>Format: <code>listBooking [ts/TIME_START] [te/TIME_END]</code></p>
+<p>Format: <code>listBookings [ts/TIME_START] [te/TIME_END]</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -101,7 +101,7 @@
 <div class="ulist">
 <ul>
 <li>
-<p><code>listBooking ts/2019-03-01 12:00 te/2019-03-04 15:00</code></p>
+<p><code>listBookings ts/2019-03-01 12:00 te/2019-03-04 15:00</code></p>
 </li>
 </ul>
 </div>
@@ -122,7 +122,7 @@
 <p>The default capacity of the restaurant is 200.</p>
 </li>
 <li>
-<p>If the capacity is full, the restaurant will not accept new bookings (refer to <a href="#create-new-booking-code-addbooking-code">addBooking command </a>). If this command causes the number of bookings to exceed the capacity, the <code>updateCapacity</code> command will not be executed and an error will be displayed.</p>
+<p>If the capacity is full, the restaurant will not accept new bookings (refer to <a href="#Create New Booking: <code>addBooking</code>">addBooking command </a>). If this command causes the number of bookings to exceed the capacity, the <code>updateCapacity</code> command will not be executed and an error will be displayed.</p>
 </li>
 </ul>
 </div>
@@ -139,11 +139,11 @@
 </ul>
 </div>
 <div class="paragraph">
-<p>This updates the restaurants to cater for a capacity for 50 customers.</p>
+<p>This updates the restaurants to cater for a capacity of 50 customers.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="create-new-booking-code-addbooking-code"><a class="link" href="#create-new-booking-code-addbooking-code">Create New Booking: <code>addBooking</code></a></h4>
+<h4 id="add-new-booking-code-addbooking-code"><a class="link" href="#add-new-booking-code-addbooking-code">Add New Booking: <code>addBooking</code></a></h4>
 <div class="paragraph">
 <p>Creates a new booking.</p>
 </div>
@@ -176,7 +176,7 @@
 <div class="ulist">
 <ul>
 <li>
-<p><code>addBooking c/1 n/5 ts/2019-02-23 14:30</code></p>
+<p><code>addBooking c/1 n/5 ts/2019-02-23T14:30</code></p>
 </li>
 </ul>
 </div>
@@ -244,10 +244,7 @@
 <div class="ulist">
 <ul>
 <li>
-<p><code>listBooking</code></p>
-<div class="paragraph">
 <p><code>deleteBooking 3</code></p>
-</div>
 </li>
 </ul>
 </div>
@@ -470,4 +467,4 @@
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-01 03:48:55 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-01 17:52:03 UTC</div></div></div></body></html>
