@@ -1,0 +1,473 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]--><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="Asciidoctor 1.5.6.1"><title>Ling Yan Hao - Project Portfolio</title><link rel="stylesheet" href="../stylesheets/gh-pages.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="../stylesheets/coderay-asciidoctor.css"></head><body class="article"><div id="site-header"><nav class="navbar navbar-light bg-light"><div class="container"><a class="navbar-brand" href="../index.html">REstaurant Manager</a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="../UserGuide.html">User Guide</a></li><li class="nav-item"><a class="nav-link" href="../DeveloperGuide.html">Developer Guide</a></li><li class="nav-item"><a class="nav-link active" href="../AboutUs.html">About Us</a></li><li class="nav-item"><a class="nav-link" href="../ContactUs.html">Contact Us</a></li><li class="navitem"><a class="nav-link" href="https://github.com/cs2103-ay1819S2-w11-2/main"><span class="fa fa-github fa-lg" aria-hidden="true"></span>&nbsp;View on GitHub</a></li></ul></div></nav></div><div id="header"><h1>Ling Yan Hao - Project Portfolio</h1></div><div id="content"><div class="sect1">
+<h2 id="project-restaurant-manager"><a class="link" href="#project-restaurant-manager">PROJECT: REstaurant Manager</a></h2>
+<div class="sectionbody">
+<hr>
+</div>
+</div>
+<div class="sect1">
+<h2 id="overview"><a class="link" href="#overview">Overview</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>REstaurant Manager (REM) is a desktop application that turns your restaurant into a smart restaurant. It is meant for restaurant owners to manage their member base, staff, bookings and food inventory.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="summary-of-contributions"><a class="link" href="#summary-of-contributions">Summary of contributions</a></h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Code contributed: (insert link)</p>
+</li>
+<li>
+<p><strong>Major enhancement</strong>: added <strong>booking feature</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>What it does: allows the user to manage bookings. The system will reject new bookings and suggest better alternative timeslots if the restaurant hits capacity.</p>
+</li>
+<li>
+<p>Justification: When a restaurant needs to manage a large number of bookings, the restaurant can be overbooked.</p>
+</li>
+<li>
+<p>Highlights: This feature affects the existing delete and edit commands for members as changing a member&#8217;s personal details requires a corresponding update in the booking panel. It required a significant restructuring of the <code>Model</code> component. The implementation too was challenging as it required changes to existing commands.</p>
+</li>
+<li>
+<p>Credits: <em>{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}</em></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Minor enhancement</strong>: (insert enchancement)</p>
+</li>
+<li>
+<p><strong>Code contributed</strong>: [<a href="https://github.com">Functional code</a>] [<a href="https://github.com">Test code</a>] <em>{give links to collated code files}</em></p>
+</li>
+<li>
+<p><strong>Other contributions</strong>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Project management: (todo)</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="contributions-to-the-user-guide"><a class="link" href="#contributions-to-the-user-guide">Contributions to the User Guide</a></h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users.</em></p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect2">
+<h3 id="booking-management"><a class="link" href="#booking-management">Booking Management</a></h3>
+<div class="sect3">
+<h4 id="view-booking-code-listbooking-code-coming-in-v2-0"><a class="link" href="#view-booking-code-listbooking-code-coming-in-v2-0">View Booking: <code>listBooking</code> [Coming in v2.0]</a></h4>
+<div class="paragraph">
+<p>View the current lists of bookings within a certain time frame</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>listBooking [ts/TIME_START] [te/TIME_END]</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>The start and end times are optional arguments. If not specified, the list of all bookings (i.e. including future and past bookings) made so far will be displayed.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>listBooking ts/2019-03-01 12:00 te/2019-03-04 15:00</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="update-restaurant-capacity-code-updatecapacity-code"><a class="link" href="#update-restaurant-capacity-code-updatecapacity-code">Update Restaurant Capacity: <code>updateCapacity</code></a></h4>
+<div class="paragraph">
+<p>Update the capacity of the restaurant.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>updateCapacity NUMBER</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>The default capacity of the restaurant is 200.</p>
+</li>
+<li>
+<p>If the capacity is full, the restaurant will not accept new bookings (refer to <a href="#create-new-booking-code-addbooking-code">addBooking command </a>). If this command causes the number of bookings to exceed the capacity, the <code>updateCapacity</code> command will not be executed and an error will be displayed.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>updateCapacity 50</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>This updates the restaurants to cater for a capacity for 50 customers.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="create-new-booking-code-addbooking-code"><a class="link" href="#create-new-booking-code-addbooking-code">Create New Booking: <code>addBooking</code></a></h4>
+<div class="paragraph">
+<p>Creates a new booking.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>addBooking c/CUSTOMER_INDEX n/NUMBER OF PERSONS ts/START_TIME</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>If the restaurant is full (as determined by the <code>updateCapacity</code> command), a message will appear telling the user that the restaurant is fully booked.</p>
+</li>
+<li>
+<p>All bookings will last for 1 hour.</p>
+</li>
+<li>
+<p>Customer INDEX refers to the index of the customer as displayed by the list.</p>
+</li>
+<li>
+<p>Bookings are a privileged feature restricted only to members. REM does not allow non-members to make bookings.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>addBooking c/1 n/5 ts/2019-02-23 14:30</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Adds a booking for the first customer on the current list, on 23 Feb, at 1430 hrs</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="edit-booking-code-editbooking-code"><a class="link" href="#edit-booking-code-editbooking-code">Edit Booking: <code>editBooking</code></a></h4>
+<div class="paragraph">
+<p>Edits a booking by changing either the time, number of persons of both.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>editBooking INDEX [ts/TIME_START] [n/NUMBER_OF_PEOPLE]</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Edits the booking at the specified <code>INDEX</code>. The index refers to the index number shown in the most recent listing. REM will not execute this operation if this causes capacity to be exceeded.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="paragraph">
+<p>*<code>editBooking 3 ts/12:00 n/6</code></p>
+</div>
+<div class="paragraph">
+<p>Edits the booking at index 3, changing the booking time to 12:00 for 6 persons. Since the date was unspecified, the current date (at the point of entering the command) will be used.</p>
+</div>
+<div class="paragraph">
+<p>*<code>editBooking 4 ts/2019-03-30T17:00</code></p>
+</div>
+<div class="paragraph">
+<p>Edits the booking at index 4, changing the booking time to 30 March 2019, 12:00. The number of persons remains unchanged as it was previously unspecified.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="delete-booking-code-deletebooking-code"><a class="link" href="#delete-booking-code-deletebooking-code">Delete Booking: <code>deleteBooking</code></a></h4>
+<div class="paragraph">
+<p>Deletes a booking.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>deleteBooking INDEX</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Deletes the booking at the specified <code>INDEX</code>. The index refers to the index number shown in the most recent listing.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>listBooking</code></p>
+<div class="paragraph">
+<p><code>deleteBooking 3</code></p>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Deletes the booking with index 3.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="contributions-to-the-developer-guide"><a class="link" href="#contributions-to-the-developer-guide">Contributions to the Developer Guide</a></h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project.</em></p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect2">
+<h3 id="Design-Model"><a class="link" href="#Design-Model">Model component</a></h3>
+<div class="imageblock">
+<div class="content">
+<img src="../images/ModelClassDiagram.png" alt="ModelClassDiagram" width="800">
+</div>
+<div class="title">Figure 1. Structure of the Model Component</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/ModelItemDiagram.png" alt="ModelItemDiagram" width="800">
+</div>
+<div class="title">Figure 2. Structure of the Item Interface (split into a separate diagarm for clarity)</div>
+</div>
+<div class="paragraph">
+<p><strong>API</strong> : <a href="{repoURL}/src/main/java/seedu/address/model/Model.java"><code>Model.java</code></a></p>
+</div>
+<div class="paragraph">
+<p>The <code>Model</code>,</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>stores a <code>UserPref</code> object that represents the user&#8217;s preferences.</p>
+</li>
+<li>
+<p>stores the Restaurant Book data.</p>
+</li>
+<li>
+<p>exposes an unmodifiable <code>ObservableList&lt;Item&gt;</code> that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.</p>
+</li>
+<li>
+<p>does not depend on any of the other three components.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="data-structure-for-holding-records"><a class="link" href="#data-structure-for-holding-records">Data structure for holding records</a></h3>
+<div class="paragraph">
+<p>Following the AB4 structure, the <code>RestaurantBook</code> (originally <code>AddressBook</code>) class serves as the main database, holding information of all records in the system. However, the database system required is more complicated than the one in AB4- there are four different kinds of records that need to be stored. The main operations are still largely CRUD (create, read, update, delete) in nature which are very similarly done. However, there are some differences between the types of records:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Some commands such as <code>addBooking</code> needs to keep track of the <code>Capacity</code> of the restaurant- we must not allow the restaurant to be overbooked. There is no equivalent of this in the <code>addMember</code>, <code>addIngredient</code> or <code>addStaff</code> commands.</p>
+</li>
+<li>
+<p>The <code>editMember</code> command requires all <code>Booking</code> associated to the <code>Member</code> to have an updated copy of all the <code>Member</code> details. Again, there is no equivalent of this in the other edit-style commands.</p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="current-implementation"><a class="link" href="#current-implementation">Current implementation</a></h4>
+<div class="paragraph">
+<p>We created the interface <code>Item</code> to represent a record. A <code>UniqueItemList</code> was used to handle the bulk of the CRUD logic, much like the way the <code>UniquePersonList</code> in the original AB4 was used to handle the CRUD logic. As the <code>Staff</code> and <code>Member</code> class store common attributes (<code>Name</code>, <code>Phone</code>, <code>Email</code>), an abstract class <code>Person</code> was used to capture this. The relation between the types of <code>Item</code> is also captured in the class diagram of Figure 8. However, in the <code>Model</code> interface, the methods are kept separate (using methods like <code>addMember</code>, <code>addBooking</code> instead of having a more generic <code>addItem</code> method).</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations"><a class="link" href="#design-considerations">Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-implementation-of-data-structure"><a class="link" href="#aspect-implementation-of-data-structure">Aspect: Implementation of data structure</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Use the <code>Item</code> interface to capture the similarity between records.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Reduces code duplication as we do not need separate classes <code>UniqueMemberList</code>, <code>UniqueBookingList</code>, <code>UniqueIngredientList</code>, <code>UniqueStaffList</code>.</p>
+</li>
+<li>
+<p>Cons: As the operations for different records are not exactly the same, RestaurantBook needs to be aware of the differences between the similar operations.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Create four separate classes which do not inherit from any parent class or interface.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: The precise CRUD operations can be heavily customised for each type of record.</p>
+</li>
+<li>
+<p>Cons: Lots of code duplication.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Decision: Alternative 1 was adopted as the differences between the operations are relatively minor and can be done at the <code>RestaurantBook</code> level without creating too much confusion.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="aspect-implementation-of-the-model-interface"><a class="link" href="#aspect-implementation-of-the-model-interface">Aspect: Implementation of the model interface</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Maintain separate methods for the similar-looking CRUD-style methods</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Easier to implement.</p>
+</li>
+<li>
+<p>Cons: More code duplication, the <code>Model</code> API now contains many methods.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Generalize the methods so that there is only one of them for each type of command (e.g. <code>addItem</code> instead of <code>addBooking</code>, <code>addMember</code>) in the Model API.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Reduces the overall amount of code needed with less duplication. The <code>Model</code> API looks simpler on the surface with less methods.</p>
+</li>
+<li>
+<p>Cons: Violates Separation of Concerns principle, due to the differences across the similar-looking methods. Since the implementation of various <code>add</code> commands are slightly different (<code>addBooking</code> needs to check the restaurant capacity first), many if-else statements will be required in the control flow of <code>RestaurantBook#addItem</code> method, potentially using <code>instanceof</code> checks. These <code>instanceof</code> checks can potentially violate type safety.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Decision: Alternative 1 was adopted as we value simplicity over the potential problems that might arise with the generic methods.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="the-code-editmember-code-command"><a class="link" href="#the-code-editmember-code-command">The <code>editMember</code> command</a></h3>
+<div class="paragraph">
+<p>When a <code>Member</code> details (<code>Name</code>, <code>Phone</code>, or <code>Email</code>) is changed, the <code>Booking</code> object must reflect the change. This requires an internal modification to the <code>Booking</code> list.</p>
+</div>
+<div class="sect3">
+<h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">Current implementation</a></h4>
+<div class="paragraph">
+<p>When <code>RestaurantBook#setMember()</code> is called, the bookings are replaced with a new set of bookings, in a way such that any <code>Booking</code> containing the modified member will be replaced with another <code>Booking</code> object that correctly reflects the modified customer.</p>
+</div>
+<div class="paragraph">
+<p>(Insert sequence diagram)</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">Design Considerations</a></h4>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Manually perform a corresponding change to the <code>Booking</code> list whenever the personal details of a member changes.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Easier to implement as it does not require much change to the already-existing AB4 codebase.</p>
+</li>
+<li>
+<p>Cons: Poor efficiency. This involves scanning through the entire list of bookings just to change the personal details of a single <code>Member</code>. Also, if some other command changes a <code>Member</code> details without going through the <code>RestaurantBook#setMember()</code> method, the update will not be reflected.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Make the <code>Member</code> class mutable. Whenever the <code>Member</code> details changes, the <code>Booking</code> will automatically extract the correct details of the <code>Member</code> and nothing needs to be done.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: This eases the load on the <code>RestaurantBook</code> class and does not require special treatment. It is also more efficient as no additional work is done.</p>
+</li>
+<li>
+<p>Cons: The current <code>undo</code> and <code>redo</code> commands rely on the immutabilty of the <code>Member</code> class to work correctly. Doing so may require a huge change in implementation of <code>undo</code> and <code>redo</code> commands. Also, allowing mutable variables can potentially be a source of other bugs.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 3:</strong> Assign each <code>Member</code> an ID and store the mapping from ID to <code>Member</code>. Instead of storing the full details of the <code>Member</code>, the <code>Booking</code> object simply stores the <code>ID</code> of the member that made the booking. When an update occurs, we simply need to update the ID to <code>Member</code> map.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Provides both lookup efficiency as well as immutability of the <code>Member</code> objects.</p>
+</li>
+<li>
+<p>Cons: Uses additional data structure to store the mappings, potentially making the code more difficult to maintain.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Decision: Alternative 1 was adopted as we felt that it was the simplest way to implement the feature. The additional efficiency gained may not even be significant, considering that in simple GUI apps like this, updating the UI is often the part of the program that uses the most resources. Optimizing the backend operations may not actually lead to a significant performance improvement.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-01 03:35:03 UTC</div></div></div></body></html>
