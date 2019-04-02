@@ -33,7 +33,7 @@
 <li><a href="#undo-redo-feature">3.2. Undo/Redo feature</a></li>
 <li><a href="#the-code-editmember-code-command">3.3. The <code>editMember</code> command</a></li>
 <li><a href="#delete-feature">3.4. Delete Feature</a></li>
-<li><a href="#the-code-stats-code-command">3.5. The <code>stats</code> command</a></li>
+<li><a href="#the-code-statsdays-code-command">3.5. The <code>statsdays</code> command</a></li>
 <li><a href="#the-panel-ui-for-code-member-code-code-staff-code-code-booking-code-and-code-ingredient-code">3.6. The panel UI for <code>Member</code>, <code>Staff</code>, <code>Booking</code>, and <code>Ingredient</code></a></li>
 <li><a href="#proposed-data-encryption">3.7. [Proposed] Data Encryption</a></li>
 <li><a href="#logging">3.8. Logging</a></li>
@@ -1242,14 +1242,14 @@ In other words, when RestaurantBook#deleteMember() or RestaurantBook#deleteIngre
 </div>
 </div>
 <div class="sect2">
-<h3 id="the-code-stats-code-command"><a class="link" href="#the-code-stats-code-command">3.5. The <code>stats</code> command</a></h3>
+<h3 id="the-code-statsdays-code-command"><a class="link" href="#the-code-statsdays-code-command">3.5. The <code>statsdays</code> command</a></h3>
 <div class="paragraph">
-<p>When the <code>stats</code> command is entered, the current statistis of the amount of bookings is to be displayed to the user in the form of a bar chart.</p>
+<p>When the <code>statsdays</code> command is entered, the current statistis of the amount of bookings is to be displayed to the user in the form of a bar chart.</p>
 </div>
 <div class="sect3">
 <h4 id="current-implementation-6"><a class="link" href="#current-implementation-6">3.5.1. Current implementation</a></h4>
 <div class="paragraph">
-<p>When the user enters the <code>stats</code> command, <code>RestaurantBookParser</code> calls the <code>Statistics</code> class. The Statistics class fetches the relevant data for user display (ie what are the axes, values, and legends of the bar chart). It would then call the <code>StatsWindow</code> class which handles the UI. The bar chart will appear in a new window and does not affect the current window.</p>
+<p>When the user enters the <code>statsdays</code> command, <code>RestaurantBookParser</code> calls the <code>Statistics</code> class. The Statistics class fetches the relevant data for user display (ie what are the axes, values, and legends of the bar chart). It would then call the <code>StatsWindow</code> class which handles the UI. The bar chart will appear in a new window and does not affect the current window.</p>
 </div>
 </div>
 <div class="sect3">
@@ -2108,14 +2108,14 @@ e.g. <code>seedu.address.logic.LogicManagerTest</code></p>
 </li>
 </ul>
 </div>
-<h3 id="use-case-find-member" class="discrete">Use case: Find member</h3>
+<h3 id="use-case-list-members" class="discrete">Use case: List members</h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>User requests to find members and gives a list of words</p>
+<p>User requests to list members and gives a list of words</p>
 </li>
 <li>
 <p>RestaurantBook shows a list of members whose name contains any of the words given</p>
@@ -2135,7 +2135,7 @@ e.g. <code>seedu.address.logic.LogicManagerTest</code></p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>3a1. RestaurantBook shows an error message.</p>
+<p>3a1. RestaurantBook lists all members instead.</p>
 <div class="paragraph">
 <p>Use case resumes at step 1.</p>
 </div>
@@ -2551,4 +2551,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-02 02:01:41 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-02 06:19:49 UTC</div></div></div></body></html>

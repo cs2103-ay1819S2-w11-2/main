@@ -263,9 +263,6 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <li>
 <p>If loyalty points is not specified, it will be taken to be 0.</p>
 </li>
-<li>
-<p>Email of all members must be unique.</p>
-</li>
 </ul>
 </div>
 </div>
@@ -284,13 +281,49 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <div class="sect3">
 <h4 id="list-members-code-listmembers-code"><a class="link" href="#list-members-code-listmembers-code">3.2.2. List Members: <code>listMembers</code></a></h4>
 <div class="paragraph">
-<p>List members who match all the given condition(s).</p>
+<p>Lists all members whose names contain any of the list of words (case-insensitive) and who has at least the specified amount of loyalty points.</p>
 </div>
 <div class="paragraph">
-<p>Format: <code>listMembers [n/NAME] [l/LOYALTY_POINTS_MINIMUM]</code></p>
+<p>Format: <code>listMembers [n/NAME1 NAME2 &#8230;&#8203;] [l/LOYALTY_POINTS_MINIMUM]</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>If loyalty points is not specified, it will be taken to be 0.</p>
+</li>
+<li>
+<p>The search is case insensitive. e.g hans will match Hans</p>
+</li>
+<li>
+<p>The order of the keywords does not matter. e.g. Hans Bo will match Bo Hans</p>
+</li>
+<li>
+<p>Only full words will be matched e.g. Han will not match Hans</p>
+</li>
+<li>
+<p>Persons matching at least one keyword will be returned (i.e. OR search). e.g. Hans Bo will return Hans Gruber, Bo Yang</p>
+</li>
+<li>
+<p>If the name field is not specified, all names will match</p>
+</li>
+</ul>
+</div>
+</div>
 </div>
 <div class="paragraph">
 <p>Example:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>listMembers n/Betsy Tim John</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Lists all members having names Betsy, Tim, or John.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -305,12 +338,22 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <div class="ulist">
 <ul>
 <li>
+<p><code>listMembers n/Betsy Tim l/6</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Lists all members having names Betsy or Tim, and with at least 6 loyalty points.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
 <p><code>listMembers</code></p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>All the members will be listed.</p>
+<p>Lists all members.</p>
 </div>
 </div>
 <div class="sect3">
@@ -363,7 +406,42 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 </div>
 </div>
 <div class="sect3">
-<h4 id="notify-via-email-code-notifyemail-code-code-coming-in-v2-0-code"><a class="link" href="#notify-via-email-code-notifyemail-code-code-coming-in-v2-0-code">3.2.4. Notify Via Email: <code>notifyEmail</code> <code>[coming in v2.0]</code></a></h4>
+<h4 id="edit-member-code-editmember-code"><a class="link" href="#edit-member-code-editmember-code">3.2.4. Edit Member: <code>editMember</code></a></h4>
+<div class="paragraph">
+<p>Edits an existing member in the restaurant book.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>editMember INDEX [n/NAME] [p/PHONE] [e/EMAIL] [l/LOYALTY_POINTS]</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Edits the member at the specified <code>INDEX</code>. The index refers to the index number shown in the most recent listing.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="paragraph">
+<p>*<code>editmember 1 p/91234567 e/johndoe@example.com</code></p>
+</div>
+<div class="paragraph">
+<p>Edits the phone number and email address of the 1st person to be <code>91234567</code> and <code>johndoe@example.com</code> respectively.</p>
+</div>
+<div class="paragraph">
+<p>*<code>editmember 2 n/Betsy Crower</code></p>
+</div>
+<div class="paragraph">
+<p>Edits the name of the 2nd person to be Betsy Crower.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="notify-via-email-code-notifyemail-code-code-coming-in-v2-0-code"><a class="link" href="#notify-via-email-code-notifyemail-code-code-coming-in-v2-0-code">3.2.5. Notify Via Email: <code>notifyEmail</code> <code>[coming in v2.0]</code></a></h4>
 <div class="paragraph">
 <p>Notifies all members with at least a minimum amount of loyalty points and with the specified email subscription settings.</p>
 </div>
@@ -399,7 +477,7 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 </div>
 </div>
 <div class="sect3">
-<h4 id="notify-via-sms-code-notifysms-code-code-coming-in-v2-0-code"><a class="link" href="#notify-via-sms-code-notifysms-code-code-coming-in-v2-0-code">3.2.5. Notify Via SMS: <code>notifySMS</code> <code>[coming in v2.0]</code></a></h4>
+<h4 id="notify-via-sms-code-notifysms-code-code-coming-in-v2-0-code"><a class="link" href="#notify-via-sms-code-notifysms-code-code-coming-in-v2-0-code">3.2.6. Notify Via SMS: <code>notifySMS</code> <code>[coming in v2.0]</code></a></h4>
 <div class="paragraph">
 <p>Notifies all members with at least a minimum amount of loyalty points and with the specified SMS subscription settings.</p>
 </div>
@@ -1010,6 +1088,20 @@ and the quantity required in each recipe.</p>
 <div class="paragraph">
 <p>Format: <code>statsdays DAYS</code></p>
 </div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p><code>DAYS</code> is an integer from 1 to 10000, inclusive</p>
+</li>
+<li>
+<p>The command considers all bookings from today&#8217;s date to (todays&#8217;s date - DAYS + 1)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
 <div class="paragraph">
 <p>Example:</p>
 </div>
@@ -1028,6 +1120,20 @@ and the quantity required in each recipe.</p>
 </div>
 <div class="paragraph">
 <p>Format: <code>statstime DAYS</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p><code>DAYS</code> is an integer from 1 to 10000, inclusive</p>
+</li>
+<li>
+<p>The command considers all bookings from today&#8217;s date to (todays&#8217;s date - DAYS + 1)</p>
+</li>
+</ul>
+</div>
+</div>
 </div>
 <div class="paragraph">
 <p>Example:</p>
@@ -1265,4 +1371,4 @@ e.g. <code>addRating 5</code></p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-02 02:01:41 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-02 06:19:49 UTC</div></div></div></body></html>
