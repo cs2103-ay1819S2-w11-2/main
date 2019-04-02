@@ -992,10 +992,27 @@ and the quantity required in each recipe.</p>
 <div class="sect3">
 <h4 id="add-staff-code-addstaff-code"><a class="link" href="#add-staff-code-addstaff-code">3.5.1. Add Staff: <code>addStaff</code></a></h4>
 <div class="paragraph">
-<p>Add a new staff member to the list of all staff.</p>
+<p>Add a new staff member to the list of all staff.
+The name of the new staff member must not be identical to the name of any existing staff member.</p>
 </div>
 <div class="paragraph">
 <p>Format: <code>addStaff n/NAME p/PHONE e/EMAIL a/APPOINTMENT</code></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>NAME</code> must only contain alphanumeric characters and spaces.</p>
+</li>
+<li>
+<p><code>PHONE</code> must contain only digits, and should be at least 3 digits long</p>
+</li>
+<li>
+<p><code>EMAIL</code> must be a valid email address</p>
+</li>
+<li>
+<p><code>APPOINTMENT</code> must only contain alphanumeric characters and spaces.</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
 <p>Example:</p>
@@ -1014,10 +1031,17 @@ and the quantity required in each recipe.</p>
 <div class="sect3">
 <h4 id="delete-staff-code-deletestaff-code"><a class="link" href="#delete-staff-code-deletestaff-code">3.5.2. Delete Staff: <code>deleteStaff</code></a></h4>
 <div class="paragraph">
-<p>Deletes the staff member with the specified index.</p>
+<p>Deletes the staff member with the specified index from the system.</p>
 </div>
 <div class="paragraph">
 <p>Format: <code>deleteStaff INDEX</code></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>INDEX</code> must be a valid index number in the most recent listing.</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
 <p>Example</p>
@@ -1029,6 +1053,9 @@ and the quantity required in each recipe.</p>
 </li>
 </ul>
 </div>
+<div class="paragraph">
+<p>Deletes the staff at index 3 shown in the most recent listing.</p>
+</div>
 </div>
 <div class="sect3">
 <h4 id="edit-staff-code-editstaff-code"><a class="link" href="#edit-staff-code-editstaff-code">3.5.3. Edit Staff: <code>editStaff</code></a></h4>
@@ -1037,6 +1064,16 @@ and the quantity required in each recipe.</p>
 </div>
 <div class="paragraph">
 <p>Format: <code>editStaff INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/APPOINTMENT]</code></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>INDEX</code> must be a valid index number in the most recent listing.</p>
+</li>
+<li>
+<p>The requirements for the optional fields <code>NAME</code>, <code>PHONE</code>, <code>EMAIL</code>, <code>APPOINTMENT</code> are identical to that of the addStaff command.</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
 <p>Example</p>
@@ -1048,23 +1085,28 @@ and the quantity required in each recipe.</p>
 </li>
 </ul>
 </div>
-</div>
-<div class="sect3">
-<h4 id="view-shift-staff-code-shiftstaff-code"><a class="link" href="#view-shift-staff-code-shiftstaff-code">3.5.4. View Shift Staff: <code>shiftStaff</code></a></h4>
 <div class="paragraph">
-<p>Lists all staff members working at the current time.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>shiftStaff</code></p>
+<p>Edits the staff at index 1 shown in the most recent listing, by changing the phone number to 97654321 and appointment to Manager.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="set-shift-staff-code-setshift-code"><a class="link" href="#set-shift-staff-code-setshift-code">3.5.5. Set Shift Staff: <code>setShift</code></a></h4>
+<h4 id="add-shift-to-staff-code-addshift-code"><a class="link" href="#add-shift-to-staff-code-addshift-code">3.5.4. Add Shift to Staff: <code>addShift</code></a></h4>
 <div class="paragraph">
-<p>Sets the shift of a staff with the specified <code>STAFF_INDEX</code>. If the staff already has a shift, then it will be overwritten.</p>
+<p>Adds a shift to the shift roster of an existing staff member in the restaurant with the specified index.
+The new shift added must start and end on different days of the week, must have a positive duration, and must not clash with any existing shift.</p>
 </div>
 <div class="paragraph">
-<p>Format: <code>setShift s/STAFF_INDEX ts/TIME_START te/TIME_END</code></p>
+<p>Format: <code>addShift INDEX sd/START_DAY_OF_WEEK ts/START_TIME ed/END_DAY_OF_WEEK te/END_TIME</code></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>START_DAY_OF_WEEK</code> and <code>END_DAY_OF_WEEK</code> must be one of <code>MONDAY</code>, <code>TUESDAY</code>, <code>WEDNESDAY</code>, <code>THURSDAY</code>, <code>FRIDAY</code>, <code>SATURDAY</code>, <code>SUNDAY</code>.</p>
+</li>
+<li>
+<p><code>START_TIME</code> and <code>END_TIME</code> must be valid 24-hour time in <code>HH:MM</code> format.</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
 <p>Example:</p>
@@ -1072,9 +1114,42 @@ and the quantity required in each recipe.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>setShift s/1 ts/2019-02-23 09:30 ts/2019-02-23 17:30</code></p>
+<p><code>addshift 1 sd/MONDAY ts/12:00 ed/MONDAY te/14:00</code></p>
 </li>
 </ul>
+</div>
+<div class="paragraph">
+<p>Adds a shift from 12pm to 2pm every Monday to the roster of the staff member with index 1 shown in the most recent listing.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="delete-shift-from-staff-code-deleteshift-code"><a class="link" href="#delete-shift-from-staff-code-deleteshift-code">3.5.5. Delete Shift from Staff: <code>deleteShift</code></a></h4>
+<div class="paragraph">
+<p>Deletes a shift from the shift roster of an existing staff member in the restaurant with the specified index.
+The shift to be deleted must exist in the specified staff member&#8217;s shift roster.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>deleteshift INDEX sd/START_DAY_OF_WEEK ts/START_TIME ed/END_DAY_OF_WEEK te/END_TIME</code></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The requirements for the fields <code>START_DAY_OF_WEEK</code>, <code>START_TIME</code>, <code>END_DAY_OF_WEEK</code>, <code>END_TIME</code> are identical to that of the addShift command.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>deleteshift 1 sd/TUESDAY ts/08:00 ed/TUESDAY te/10:30</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Deletes the shift from 8am to 10.30am every Tuesday from the roster of the staff member with index 1 shown in the most recent listing.</p>
 </div>
 </div>
 </div>
@@ -1329,19 +1404,24 @@ e.g. <code>deleteBooking 3</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>addStaff</strong> <code>addStaff n/STAFF_NAME c/CONTACT_NUMBER a/APPOINTMENT</code><br>
-e.g. <code>addStaff n/John Doe c/91234567 a/Waiter</code></p>
+<p><strong>addStaff</strong> <code>addStaff n/NAME p/PHONE e/EMAIL a/APPOINTMENT</code><br>
+e.g. <code>addStaff n/John Doe p/91234567 e/john@example.com a/Waiter</code></p>
 </li>
 <li>
-<p><strong>deleteStaff</strong> <code>deleteStaff STAFF_INDEX</code><br>
+<p><strong>deleteStaff</strong> <code>deleteStaff INDEX</code><br>
 e.g. <code>deleteStaff 3</code></p>
 </li>
 <li>
-<p><strong>shiftStaff</strong> <code>shiftStaff</code></p>
+<p><strong>editStaff</strong> <code>editStaff INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/APPOINTMENT]</code><br>
+e.g. <code>addshift 1 sd/MONDAY ts/12:00 ed/MONDAY te/14:00</code></p>
 </li>
 <li>
-<p><strong>setShift</strong> <code>setShift s/STAFF_INDEX ts/TIME_START te/TIME_END</code><br>
-e.g. setShift <code>1 1200 1530</code></p>
+<p><strong>addShift</strong> <code>addShift INDEX sd/START_DAY_OF_WEEK ts/START_TIME ed/END_DAY_OF_WEEK te/END_TIME</code><br>
+e.g. <code>setShift 1 1200 1530</code></p>
+</li>
+<li>
+<p><strong>deleteShift</strong> <code>deleteshift INDEX sd/START_DAY_OF_WEEK ts/START_TIME ed/END_DAY_OF_WEEK te/END_TIME</code><br>
+e.g. <code>deleteshift 1 sd/TUESDAY ts/08:00 ed/TUESDAY te/10:30</code></p>
 </li>
 </ul>
 </div>
@@ -1371,4 +1451,4 @@ e.g. <code>addRating 5</code></p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-02 06:19:49 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-02 07:08:30 UTC</div></div></div></body></html>
