@@ -10,7 +10,16 @@
 <h2 id="overview"><a class="link" href="#overview">Overview</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>REstaurant Manager (REM) is a desktop application that turns your restaurant into a smart restaurant. It is meant for restaurant owners to manage their member base, staff, bookings and food inventory.</p>
+<p>This portfolio serves to illustrate my contributions to the project REstaurant Manager (REM). REM is a CS2103T project meant for new developers to gain a hands-on experience at software engineering. REM is a desktop application meant for restaurant owners to manage their members, staff, bookings and food inventory.</p>
+</div>
+<div class="paragraph">
+<p>As a developer, I was primarily in charged of the booking feature which involved the following:
+* Add and delete bookings from the system
+* Edit existing bookings
+* Ensure that the restaurant does not get overbooked</p>
+</div>
+<div class="paragraph">
+<p>As the overall team leader, I was responsible for setting clear goals and directions for the team and listening to teammates' feedback for suggestions. I also ensured that the tasks were done on time and complied with the module requirements.</p>
 </div>
 </div>
 </div>
@@ -20,39 +29,40 @@
 <div class="ulist">
 <ul>
 <li>
-<p>Code contributed: (insert link)</p>
+<p>Code contributed: [<a href="https://nus-cs2103-ay1819s2.github.io/cs2103-dashboard/#search=lingyanhao&amp;sort=displayName&amp;since=2019-02-10&amp;until=2019-03-25&amp;timeframe=day&amp;reverse=false&amp;repoSort=true">Code</a>]</p>
 </li>
 <li>
 <p><strong>Major enhancement</strong>: added <strong>booking feature</strong></p>
 <div class="ulist">
 <ul>
 <li>
-<p>What it does: allows the user to manage bookings. The system will reject new bookings and suggest better alternative timeslots if the restaurant hits capacity.</p>
+<p>What it does: allows the user to manage bookings. The system will reject new bookings and suggest better alternative timeslots if the restaurant is full.</p>
 </li>
 <li>
-<p>Justification: When a restaurant needs to manage a large number of bookings, the restaurant can be overbooked.</p>
+<p>Justification: When a restaurant needs to manage a large number of bookings, it can be difficult for owners to keep track of how many people are in the restaurant at each point in time. Having a system that rejects new bookings when the restaurant is full can help prevent overbooking.</p>
 </li>
 <li>
-<p>Highlights: This feature affects the existing delete and edit commands for members as changing a member&#8217;s personal details requires a corresponding update in the booking panel. It required a significant restructuring of the <code>Model</code> component. The implementation too was challenging as it required changes to existing commands.</p>
-</li>
-<li>
-<p>Credits: <em>{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}</em></p>
+<p>Highlights: This feature affects the existing delete and edit commands for members as changing a member&#8217;s personal details requires a corresponding update in the booking panel. It required a significant restructuring of the <code>Model</code> component.</p>
 </li>
 </ul>
 </div>
-</li>
-<li>
-<p><strong>Minor enhancement</strong>: (insert enchancement)</p>
-</li>
-<li>
-<p><strong>Code contributed</strong>: [<a href="https://github.com">Functional code</a>] [<a href="https://github.com">Test code</a>] <em>{give links to collated code files}</em></p>
 </li>
 <li>
 <p><strong>Other contributions</strong>:</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Project management: (todo)</p>
+<p>Project management:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Setup organisation/team repo</p>
+</li>
+<li>
+<p>Setup Travis CI, Appveyor and Coveralls</p>
+</li>
+</ul>
+</div>
 </li>
 </ul>
 </div>
@@ -405,15 +415,24 @@
 <div class="sect2">
 <h3 id="the-code-editmember-code-command"><a class="link" href="#the-code-editmember-code-command">The <code>editMember</code> command</a></h3>
 <div class="paragraph">
-<p>When a <code>Member</code> details (<code>Name</code>, <code>Phone</code>, or <code>Email</code>) is changed, the <code>Booking</code> object must reflect the change. This requires an internal modification to the <code>Booking</code> list.</p>
+<p>When a <code>Member</code> details (<code>Name</code>, <code>Phone</code>, or <code>Email</code>) is changed, the <code>Booking</code> object must reflect the change. This requires an internal modification to the <code>Booking</code> objects in some way.</p>
 </div>
 <div class="sect3">
 <h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">Current implementation</a></h4>
 <div class="paragraph">
-<p>When <code>RestaurantBook#setMember()</code> is called, the bookings are replaced with a new set of bookings, in a way such that any <code>Booking</code> containing the modified member will be replaced with another <code>Booking</code> object that correctly reflects the modified customer.</p>
+<p>When <code>RestaurantBook#setMember()</code> is called, the bookings are replaced with a new set of bookings. If an existing booking contains the modified member, the member will be replaced with a new <code>Booking</code> object that containing the updated member.</p>
 </div>
+</div>
+<div class="sect3">
+<h4 id="proposed-implementation"><a class="link" href="#proposed-implementation">Proposed implementation</a></h4>
 <div class="paragraph">
-<p>(Insert sequence diagram)</p>
+<p>Each member is assigned an ID. Along with this, maintain a master list of ID to <code>Member</code> mappings. The <code>Booking</code> class only keep tracks of the <code>Member</code> s id, calling the <code>MasterMemberList</code> to obtain the <code>Member</code> object when necessary. The following (simplified) class diagram demonstrates the associations between <code>Booking</code>, <code>MasterMemberList</code> and <code>Member</code>:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/editmemberclassdiagram.png" alt="editmemberclassdiagram" width="800">
+</div>
+<div class="title">Figure 3. A class diagram showing the proposed implementation of managing the <code>Booking</code> and <code>Member</code> dependencies. This diagram is heavily simplified as unrelated methods and attributes are not shown.</div>
 </div>
 </div>
 <div class="sect3">
@@ -447,24 +466,24 @@
 </div>
 </li>
 <li>
-<p><strong>Alternative 3:</strong> Assign each <code>Member</code> an ID and store the mapping from ID to <code>Member</code>. Instead of storing the full details of the <code>Member</code>, the <code>Booking</code> object simply stores the <code>ID</code> of the member that made the booking. When an update occurs, we simply need to update the ID to <code>Member</code> map.</p>
+<p><strong>Alternative 3 (proposed) :</strong> Assign each <code>Member</code> an ID and store the mapping from ID to <code>Member</code>. Instead of storing the full details of the <code>Member</code>, the <code>Booking</code> object simply stores the <code>ID</code> of the member that made the booking. When an update occurs, we simply need to update the ID to <code>Member</code> map.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Provides both lookup efficiency as well as immutability of the <code>Member</code> objects.</p>
+<p>Pros: The <code>RestaurantBook#setMember()</code> method does not depend on the <code>Booking</code> class, reducing coupling and dependency. The execution of the <code>editMember</code> command only changes <code>Member</code> objects without changing <code>Booking</code> objects.</p>
 </li>
 <li>
-<p>Cons: Uses additional data structure to store the mappings, potentially making the code more difficult to maintain.</p>
+<p>Cons: Uses additional data structure to store the mappings and requires significantly more code changes.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p>Decision: Alternative 1 was adopted as we felt that it was the simplest way to implement the feature. The additional efficiency gained may not even be significant, considering that in simple GUI apps like this, updating the UI is often the part of the program that uses the most resources. Optimizing the backend operations may not actually lead to a significant performance improvement.</p>
+<p>Decision: Alternative 1 was adopted as we felt that it was the simplest way to implement the feature, requiring minimal code changes to the existing codebase. However, we feel that alternative 3 is a better implementation but did not adopt it due to time constraints.</p>
 </li>
 </ul>
 </div>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-02 07:08:30 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-02 07:33:23 UTC</div></div></div></body></html>
