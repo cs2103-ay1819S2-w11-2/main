@@ -1,0 +1,600 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]--><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="Asciidoctor 1.5.6.1"><title>Wang Zhi Jian - Project Portfolio</title><link rel="stylesheet" href="../stylesheets/gh-pages.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="../stylesheets/coderay-asciidoctor.css"></head><body class="article"><div id="site-header"><nav class="navbar navbar-light bg-light"><div class="container"><a class="navbar-brand" href="../index.html">REstaurant Manager</a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="../UserGuide.html">User Guide</a></li><li class="nav-item"><a class="nav-link" href="../DeveloperGuide.html">Developer Guide</a></li><li class="nav-item"><a class="nav-link active" href="../AboutUs.html">About Us</a></li><li class="nav-item"><a class="nav-link" href="../ContactUs.html">Contact Us</a></li><li class="navitem"><a class="nav-link" href="https://github.com/cs2103-ay1819S2-w11-2/main"><span class="fa fa-github fa-lg" aria-hidden="true"></span>&nbsp;View on GitHub</a></li></ul></div></nav></div><div id="header"><h1>Wang Zhi Jian - Project Portfolio</h1></div><div id="content"><div class="sect1">
+<h2 id="project-restaurant-manager"><a class="link" href="#project-restaurant-manager">PROJECT: REstaurant Manager</a></h2>
+<div class="sectionbody">
+<hr>
+</div>
+</div>
+<div class="sect1">
+<h2 id="overview"><a class="link" href="#overview">Overview</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>REstaurant Manager (REM) is a desktop application that turns your restaurant into a smart restaurant. It is meant for restaurant owners to manage their member base, staff, bookings and food inventory.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="summary-of-contributions"><a class="link" href="#summary-of-contributions">Summary of contributions</a></h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Code contributed: (insert link)</p>
+</li>
+<li>
+<p><strong>Major enhancement</strong>: added <strong>staff feature</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>What it does: allows the user to manage the staff working in a restaurant. Users can also manage the shift roster of the staff working in a restaurant, and to know which staff members are active in the restaurant at the current time.</p>
+</li>
+<li>
+<p>Justification: A restaurant needs to know the number and type of staff working in the restaurant, as well as when each staff member is active, so that it knows if there is sufficient staff to serve customers at any time, and also make manpower and hiring decisions.</p>
+</li>
+<li>
+<p>Highlights: This feature required handling of time ranges for the implementation of the weekly staff shift rosters, which was tricky to implement as care must be taken to handle overnight shifts and shifts across days. It also required an immutable shift roster, which required significant changes to the code.</p>
+</li>
+<li>
+<p>Credits: <em>{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}</em></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Code contributed</strong>: <a href="https://nus-cs2103-ay1819s2.github.io/cs2103-dashboard/#search=zj-cs2103&amp;sort=displayName&amp;since=2019-02-10&amp;until=2019-04-02&amp;timeframe=day&amp;reverse=false&amp;repoSort=true">Link</a></p>
+</li>
+<li>
+<p><strong>Other contributions</strong>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Project management:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Managed the release for <a href="https://github.com/cs2103-ay1819S2-w11-2/main/releases/tag/v1.2">v1.2</a>.</p>
+</li>
+<li>
+<p>Wrote tests to improve coverage (Pull requests <a href="https://github.com/cs2103-ay1819S2-w11-2/main/pull/52">#52</a>, <a href="https://github.com/cs2103-ay1819S2-w11-2/main/pull/58">#58</a>, <a href="https://github.com/cs2103-ay1819S2-w11-2/main/pull/88">#88</a>, <a href="https://github.com/cs2103-ay1819S2-w11-2/main/pull/99">#99</a>, <a href="https://github.com/cs2103-ay1819S2-w11-2/main/pull/131">#131</a>, <a href="https://github.com/cs2103-ay1819S2-w11-2/main/pull/135">#135</a></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="contributions-to-the-user-guide"><a class="link" href="#contributions-to-the-user-guide">Contributions to the User Guide</a></h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users.</em></p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect2">
+<h3 id="staff-management"><a class="link" href="#staff-management">Staff Management</a></h3>
+<div class="sect3">
+<h4 id="add-staff-code-addstaff-code"><a class="link" href="#add-staff-code-addstaff-code">Add Staff: <code>addStaff</code></a></h4>
+<div class="paragraph">
+<p>Add a new staff member to the list of all staff.
+The name of the new staff member must not be identical to the name of any existing staff member.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>addStaff n/NAME p/PHONE e/EMAIL a/APPOINTMENT</code></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>NAME</code> must only contain alphanumeric characters and spaces.</p>
+</li>
+<li>
+<p><code>PHONE</code> must contain only digits, and should be at least 3 digits long</p>
+</li>
+<li>
+<p><code>EMAIL</code> must be a valid email address</p>
+</li>
+<li>
+<p><code>APPOINTMENT</code> must only contain alphanumeric characters and spaces.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>addStaff n/John Doe p/91234567 e/john@example.com a/Waiter</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Adds a new staff with name John Doe, phone number 91234567, email <a href="mailto:john@example.com">john@example.com</a> and appointment Waiter to the restaurant.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="delete-staff-code-deletestaff-code"><a class="link" href="#delete-staff-code-deletestaff-code">Delete Staff: <code>deleteStaff</code></a></h4>
+<div class="paragraph">
+<p>Deletes the staff member with the specified index from the system.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>deleteStaff INDEX</code></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>INDEX</code> must be a valid index number in the most recent listing.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Example</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>deleteStaff 3</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Deletes the staff at index 3 shown in the most recent listing.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="edit-staff-code-editstaff-code"><a class="link" href="#edit-staff-code-editstaff-code">Edit Staff: <code>editStaff</code></a></h4>
+<div class="paragraph">
+<p>Edits the staff member with the specified index.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>editStaff INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/APPOINTMENT]</code></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>INDEX</code> must be a valid index number in the most recent listing.</p>
+</li>
+<li>
+<p>The requirements for the optional fields <code>NAME</code>, <code>PHONE</code>, <code>EMAIL</code>, <code>APPOINTMENT</code> are identical to that of the addStaff command.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Example</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>editStaff 1 p/98765432 a/Manager</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Edits the staff at index 1 shown in the most recent listing, by changing the phone number to 97654321 and appointment to Manager.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="add-shift-to-staff-code-addshift-code"><a class="link" href="#add-shift-to-staff-code-addshift-code">Add Shift to Staff: <code>addShift</code></a></h4>
+<div class="paragraph">
+<p>Adds a shift to the shift roster of an existing staff member in the restaurant with the specified index.
+The new shift added must start and end on different days of the week, must have a positive duration, and must not clash with any existing shift.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>addShift INDEX sd/START_DAY_OF_WEEK ts/START_TIME ed/END_DAY_OF_WEEK te/END_TIME</code></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>START_DAY_OF_WEEK</code> and <code>END_DAY_OF_WEEK</code> must be one of <code>MONDAY</code>, <code>TUESDAY</code>, <code>WEDNESDAY</code>, <code>THURSDAY</code>, <code>FRIDAY</code>, <code>SATURDAY</code>, <code>SUNDAY</code>.</p>
+</li>
+<li>
+<p><code>START_TIME</code> and <code>END_TIME</code> must be valid 24-hour time in <code>HH:MM</code> format.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>addshift 1 sd/MONDAY ts/12:00 ed/MONDAY te/14:00</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Adds a shift from 12pm to 2pm every Monday to the roster of the staff member with index 1 shown in the most recent listing.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="delete-shift-from-staff-code-deleteshift-code"><a class="link" href="#delete-shift-from-staff-code-deleteshift-code">Delete Shift from Staff: <code>deleteShift</code></a></h4>
+<div class="paragraph">
+<p>Deletes a shift from the shift roster of an existing staff member in the restaurant with the specified index.
+The shift to be deleted must exist in the specified staff member&#8217;s shift roster.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>deleteshift INDEX sd/START_DAY_OF_WEEK ts/START_TIME ed/END_DAY_OF_WEEK te/END_TIME</code></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The requirements for the fields <code>START_DAY_OF_WEEK</code>, <code>START_TIME</code>, <code>END_DAY_OF_WEEK</code>, <code>END_TIME</code> are identical to that of the addShift command.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>deleteshift 1 sd/TUESDAY ts/08:00 ed/TUESDAY te/10:30</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Deletes the shift from 8am to 10.30am every Tuesday from the roster of the staff member with index 1 shown in the most recent listing.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="contributions-to-the-developer-guide"><a class="link" href="#contributions-to-the-developer-guide">Contributions to the Developer Guide</a></h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project.</em></p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect2">
+<h3 id="add-feature"><a class="link" href="#add-feature">Add Feature</a></h3>
+<div class="paragraph">
+<p>The add feature allows the user to add items to the <code>RestaurantBook</code>.
+It also populates the item added to the <code>RestaurantBook</code> with parameters supplied by the user.</p>
+</div>
+<div class="sect3">
+<h4 id="current-implementation"><a class="link" href="#current-implementation">Current Implementation</a></h4>
+<div class="paragraph">
+<p>The add feature is implemented as four separate commands, one for adding each type of item: <code>addMember</code>, <code>addBooking</code>, <code>addIngredient</code>, <code>addStaff</code>.
+Each command is implemented as a <code>AddCommand</code> class. For example, the <code>addMember</code> command is implemented as the <code>AddMember</code> class.
+All <code>AddCommand</code> class inherit from the <code>Command</code> class.
+As the general flow of the various add commands are similar, the <code>addMember</code> command will be used as an example here.
+The <code>AddMemberCommand</code> class adds the member to the <code>RestaurantBook</code> by utilising the <code>MemberModel#addMember</code> method exposed by the <code>MemberModel</code> interface, which facilitates the interaction with the <code>VersionedRestaurantBook</code> to add the member via the <code>VersionedRestaurantBook#addItem</code> method.
+The state of the <code>RestaurantBook</code> is then saved via the <code>Model#commitRestaurantBook</code> method exposed by the <code>Model</code> interface, which saves the <code>RestaurantBook</code> using the <code>VersionedRestaurantBook#commit</code> method.</p>
+</div>
+<div class="paragraph">
+<p>For the <code>AddBooking</code> command, the list of bookings is sorted after the new booking is added to ensure that bookings are ordered by time.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations"><a class="link" href="#design-considerations">Design Considerations</a></h4>
+<div class="paragraph">
+<p><strong>Aspect: Implementation of the four add commands</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice)</strong>: four separate add commands, one for each type of item</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Easier implementation</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Cons:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Causes code duplication, as all the add commands differ only by their parameters, and function similarly otherwise.</p>
+</li>
+<li>
+<p>More types of commands for the user to remember</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2</strong>: a single add command, with a type field to indicate the type of item to be added</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Reduces the number of distinct commands in the RestaurantBook, thus making the <code>RestaurantBook</code> a simpler application for users.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Cons</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Complicates the add command as the parameters for the add command depend on the command type parameter passed into the command</p>
+</li>
+<li>
+<p>May have to display a long usage guide comprising examples of adding all four types of items</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Decision: Alternative 1 was selected for the following reasons:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>A greater variety of add commands is more intuitive than a single complex command.</p>
+</li>
+<li>
+<p>Separating the add commands allows for greater versatility in customising the various add commands.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="shifts-feature"><a class="link" href="#shifts-feature">Shifts feature</a></h3>
+<div class="paragraph">
+<p>The shifts feature allows users to maintain shift rosters for staff members, as well as</p>
+</div>
+<div class="sect3">
+<h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">Current Implementation</a></h4>
+<div class="paragraph">
+<p>The shifts feature comprises of two main commands: the <code>addshift</code> command and the <code>deleteshift</code> command.
+The <code>addshift</code> command allows shifts to be added to the shift roster of a staff member, and the <code>deleteshift</code> command allows shifts to be deleted from the shift roster of a staff member.
+The shifts feature is supported by two models, the <code>Shift</code> model and the <code>ShiftRoster</code> model. The <code>Shift</code> model represents a single shift that takes place during a single interval of time, while the <code>ShiftRoster</code> model stores an immutable, sorted list of shifts for a single staff member.
+The following seqeuence diagram shows how the <code>addshift</code> command works.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/AddShiftSequenceDiagram.png" alt="AddShiftSequenceDiagram" width="700">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-implementation-of-the-shift-roster"><a class="link" href="#aspect-implementation-of-the-shift-roster">Aspect: Implementation of the shift roster</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Store a weekly shift roster for each staff member, which stores a list of sorted shifts.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Enables the possibility of storing shifts for staff members who work multiple shifts.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Cons:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Must ensure that there are no clashes between any two shifts in a single shift roster.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Each staff member can only have one shift over a single interval of time.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Easy to implement.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Cons:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Impossible to represent all the shifts for staff members that work for more than one shift.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Decision: Alternative 1 was adopted as it provides greater versatility, and it is likely for a single staff member to work different shifts on multiple days in a week.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="aspect-implementation-of-the-time-range-of-shifts"><a class="link" href="#aspect-implementation-of-the-time-range-of-shifts">Aspect: Implementation of the time range of shifts</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Represent weekly shifts by storing the start day and time as well as the end day and time in a date range, where the start day and end day are different.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Enables to possibility of storing shifts across multiple days.</p>
+</li>
+<li>
+<p>Greater certainty as to exactly when a shift starts and ends.</p>
+</li>
+<li>
+<p>Allows validation checks by ensuring that shifts are of positive duration.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Cons:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Tedious to check if two shifts clash in the shift roster.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Represent weekly shifts by storing only the start day, start time and end time. If the end time is before the start time, then it is assumed that the shift ends on the next day.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Easy to implement.</p>
+</li>
+<li>
+<p>Easy to check if two shifts clash in the shift roster.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Cons:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Impossible to provide validation checks as there are no invalid shifts.</p>
+</li>
+<li>
+<p>Implicit assumption that the shift ends on the following day if the end time is earlier than the start time may be confusing for users.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Decision: Alternative 1 was adopted as it allows shifts to be more flexible, and provides greater certainty for the time intervals of the shifts.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="aspect-implementation-of-the-code-deleteshift-code-command"><a class="link" href="#aspect-implementation-of-the-code-deleteshift-code-command">Aspect: Implementation of the <code>deleteShift</code> command</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Requiring the user to specify the exact start day and time as well as the end day and time of the shift to be deleted.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Provides greater certainty for the shift that is to be deleted as shifts are not indexed.</p>
+</li>
+<li>
+<p>Requiring the user to key in the exact shift to be deleted acts as a form of confirmation for the deletion.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Cons:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Causes the command to be long winded and hard to type.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong> Alternative 2:</strong> Requiring the user to specify the index of the shift to be deleted.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Reduces the number of parameters in the <code>deleteShift</code> command, thus making the command easier to type.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Cons:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>As the shifts are not indexed, the user may delete the incorrect shift by mistake.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Decision: Alternative 1 was adopted as it is more reliable and provides certainty for which shift is to be deleted.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-02 14:10:10 UTC</div></div></div></body></html>

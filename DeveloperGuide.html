@@ -34,11 +34,12 @@
 <li><a href="#data-structure-for-holding-records">3.3. Data structure for holding records</a></li>
 <li><a href="#the-code-editmember-code-command">3.4. The <code>editMember</code> command</a></li>
 <li><a href="#delete-feature">3.5. Delete Feature</a></li>
-<li><a href="#the-code-statsdays-code-command">3.6. The <code>statsdays</code> command</a></li>
-<li><a href="#the-panel-ui-for-code-member-code-code-staff-code-code-booking-code-and-code-ingredient-code">3.7. The panel UI for <code>Member</code>, <code>Staff</code>, <code>Booking</code>, and <code>Ingredient</code></a></li>
-<li><a href="#proposed-data-encryption">3.8. [Proposed] Data Encryption</a></li>
-<li><a href="#logging">3.9. Logging</a></li>
-<li><a href="#Implementation-Configuration">3.10. Configuration</a></li>
+<li><a href="#shifts-feature">3.6. Shifts feature</a></li>
+<li><a href="#the-code-statsdays-code-command">3.7. The <code>statsdays</code> command</a></li>
+<li><a href="#the-panel-ui-for-code-member-code-code-staff-code-code-booking-code-and-code-ingredient-code">3.8. The panel UI for <code>Member</code>, <code>Staff</code>, <code>Booking</code>, and <code>Ingredient</code></a></li>
+<li><a href="#proposed-data-encryption">3.9. [Proposed] Data Encryption</a></li>
+<li><a href="#logging">3.10. Logging</a></li>
+<li><a href="#Implementation-Configuration">3.11. Configuration</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a>
@@ -576,12 +577,6 @@ The state of the <code>RestaurantBook</code> is then saved via the <code>Model#c
 </div>
 <div class="paragraph">
 <p>For the <code>AddBooking</code> command, the list of bookings is sorted after the new booking is added to ensure that bookings are ordered by time.</p>
-</div>
-<div class="paragraph">
-<p>The following sequence diagram demonstrates how the add feature works.</p>
-</div>
-<div class="paragraph">
-<p>&lt;insert sequence diagram&gt;</p>
 </div>
 </div>
 <div class="sect3">
@@ -1254,18 +1249,248 @@ In other words, when RestaurantBook#deleteMember() or RestaurantBook#deleteIngre
 </div>
 </div>
 <div class="sect2">
-<h3 id="the-code-statsdays-code-command"><a class="link" href="#the-code-statsdays-code-command">3.6. The <code>statsdays</code> command</a></h3>
+<h3 id="shifts-feature"><a class="link" href="#shifts-feature">3.6. Shifts feature</a></h3>
+<div class="paragraph">
+<p>The shifts feature allows users to maintain shift rosters for staff members, as well as</p>
+</div>
+<div class="sect3">
+<h4 id="current-implementation-6"><a class="link" href="#current-implementation-6">3.6.1. Current Implementation</a></h4>
+<div class="paragraph">
+<p>The shifts feature comprises of two main commands: the <code>addshift</code> command and the <code>deleteshift</code> command.
+The <code>addshift</code> command allows shifts to be added to the shift roster of a staff member, and the <code>deleteshift</code> command allows shifts to be deleted from the shift roster of a staff member.
+The shifts feature is supported by two models, the <code>Shift</code> model and the <code>ShiftRoster</code> model. The <code>Shift</code> model represents a single shift that takes place during a single interval of time, while the <code>ShiftRoster</code> model stores an immutable, sorted list of shifts for a single staff member.
+The following seqeuence diagram shows how the <code>addshift</code> command works.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/AddShiftSequenceDiagram.png" alt="AddShiftSequenceDiagram" width="700">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-6"><a class="link" href="#design-considerations-6">3.6.2. Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-implementation-of-the-shift-roster"><a class="link" href="#aspect-implementation-of-the-shift-roster">Aspect: Implementation of the shift roster</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Store a weekly shift roster for each staff member, which stores a list of sorted shifts.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Enables the possibility of storing shifts for staff members who work multiple shifts.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Cons:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Must ensure that there are no clashes between any two shifts in a single shift roster.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Each staff member can only have one shift over a single interval of time.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Easy to implement.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Cons:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Impossible to represent all the shifts for staff members that work for more than one shift.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Decision: Alternative 1 was adopted as it provides greater versatility, and it is likely for a single staff member to work different shifts on multiple days in a week.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="aspect-implementation-of-the-time-range-of-shifts"><a class="link" href="#aspect-implementation-of-the-time-range-of-shifts">Aspect: Implementation of the time range of shifts</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Represent weekly shifts by storing the start day and time as well as the end day and time in a date range, where the start day and end day are different.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Enables to possibility of storing shifts across multiple days.</p>
+</li>
+<li>
+<p>Greater certainty as to exactly when a shift starts and ends.</p>
+</li>
+<li>
+<p>Allows validation checks by ensuring that shifts are of positive duration.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Cons:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Tedious to check if two shifts clash in the shift roster.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Represent weekly shifts by storing only the start day, start time and end time. If the end time is before the start time, then it is assumed that the shift ends on the next day.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Easy to implement.</p>
+</li>
+<li>
+<p>Easy to check if two shifts clash in the shift roster.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Cons:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Impossible to provide validation checks as there are no invalid shifts.</p>
+</li>
+<li>
+<p>Implicit assumption that the shift ends on the following day if the end time is earlier than the start time may be confusing for users.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Decision: Alternative 1 was adopted as it allows shifts to be more flexible, and provides greater certainty for the time intervals of the shifts.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="aspect-implementation-of-the-code-deleteshift-code-command"><a class="link" href="#aspect-implementation-of-the-code-deleteshift-code-command">Aspect: Implementation of the <code>deleteShift</code> command</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Requiring the user to specify the exact start day and time as well as the end day and time of the shift to be deleted.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Provides greater certainty for the shift that is to be deleted as shifts are not indexed.</p>
+</li>
+<li>
+<p>Requiring the user to key in the exact shift to be deleted acts as a form of confirmation for the deletion.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Cons:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Causes the command to be long winded and hard to type.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong> Alternative 2:</strong> Requiring the user to specify the index of the shift to be deleted.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Reduces the number of parameters in the <code>deleteShift</code> command, thus making the command easier to type.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Cons:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>As the shifts are not indexed, the user may delete the incorrect shift by mistake.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Decision: Alternative 1 was adopted as it is more reliable and provides certainty for which shift is to be deleted.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="the-code-statsdays-code-command"><a class="link" href="#the-code-statsdays-code-command">3.7. The <code>statsdays</code> command</a></h3>
 <div class="paragraph">
 <p>When the <code>statsdays</code> command is entered, the current statistis of the amount of bookings is to be displayed to the user in the form of a bar chart.</p>
 </div>
 <div class="sect3">
-<h4 id="current-implementation-6"><a class="link" href="#current-implementation-6">3.6.1. Current implementation</a></h4>
+<h4 id="current-implementation-7"><a class="link" href="#current-implementation-7">3.7.1. Current implementation</a></h4>
 <div class="paragraph">
 <p>When the user enters the <code>statsdays</code> command, <code>RestaurantBookParser</code> calls the <code>Statistics</code> class. The Statistics class fetches the relevant data for user display (ie what are the axes, values, and legends of the bar chart). It would then call the <code>StatsWindow</code> class which handles the UI. The bar chart will appear in a new window and does not affect the current window.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-6"><a class="link" href="#design-considerations-6">3.6.2. Design Considerations</a></h4>
+<h4 id="design-considerations-7"><a class="link" href="#design-considerations-7">3.7.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-implementation-of-data-structure-2"><a class="link" href="#aspect-implementation-of-data-structure-2">Aspect: Implementation of data structure</a></h5>
 <div class="ulist">
@@ -1341,18 +1566,18 @@ In other words, when RestaurantBook#deleteMember() or RestaurantBook#deleteIngre
 </div>
 </div>
 <div class="sect2">
-<h3 id="the-panel-ui-for-code-member-code-code-staff-code-code-booking-code-and-code-ingredient-code"><a class="link" href="#the-panel-ui-for-code-member-code-code-staff-code-code-booking-code-and-code-ingredient-code">3.7. The panel UI for <code>Member</code>, <code>Staff</code>, <code>Booking</code>, and <code>Ingredient</code></a></h3>
+<h3 id="the-panel-ui-for-code-member-code-code-staff-code-code-booking-code-and-code-ingredient-code"><a class="link" href="#the-panel-ui-for-code-member-code-code-staff-code-code-booking-code-and-code-ingredient-code">3.8. The panel UI for <code>Member</code>, <code>Staff</code>, <code>Booking</code>, and <code>Ingredient</code></a></h3>
 <div class="paragraph">
 <p>The restaurant book displays the entire database in the form of "cards", which is the same as AB4. Each item has its own panel.</p>
 </div>
 <div class="sect3">
-<h4 id="current-implementation-7"><a class="link" href="#current-implementation-7">3.7.1. Current implementation</a></h4>
+<h4 id="current-implementation-8"><a class="link" href="#current-implementation-8">3.8.1. Current implementation</a></h4>
 <div class="paragraph">
 <p>The panel is formatted in the <code>ItemListPanel.fxml</code> file, and each item has its own controller (<code>MemberListPanel</code>, <code>StaffListPanel</code>, <code>BookingListPanel</code>, and <code>IngredientListPanel</code>) that extends from <code>ItemListPanel</code>. The panel displays the database via cards. Each item has its own card (<code>MemberCard</code>, <code>StaffCard</code>, <code>BookingCard</code>, and <code>IngredientCard</code>).</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-7"><a class="link" href="#design-considerations-7">3.7.2. Design Considerations</a></h4>
+<h4 id="design-considerations-8"><a class="link" href="#design-considerations-8">3.8.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-design-of-card-display"><a class="link" href="#aspect-design-of-card-display">Aspect: Design of card display</a></h5>
 <div class="ulist">
@@ -1428,20 +1653,20 @@ In other words, when RestaurantBook#deleteMember() or RestaurantBook#deleteIngre
 </div>
 </div>
 <div class="sect2">
-<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">3.8. [Proposed] Data Encryption</a></h3>
+<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">3.9. [Proposed] Data Encryption</a></h3>
 <div class="paragraph">
 <p><em>{Explain here how the data encryption feature will be implemented}</em></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">3.9. Logging</a></h3>
+<h3 id="logging"><a class="link" href="#logging">3.10. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.10, &#8220;Configuration&#8221;</a>)</p>
+<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.11, &#8220;Configuration&#8221;</a>)</p>
 </li>
 <li>
 <p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level</p>
@@ -1472,7 +1697,7 @@ In other words, when RestaurantBook#deleteMember() or RestaurantBook#deleteIngre
 </div>
 </div>
 <div class="sect2">
-<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.10. Configuration</a></h3>
+<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.11. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g user prefs file location, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
@@ -2563,4 +2788,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-02 07:33:23 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-02 14:10:10 UTC</div></div></div></body></html>
