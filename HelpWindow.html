@@ -212,22 +212,6 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 </div>
 </div>
 </div>
-<div class="paragraph">
-<p><strong>Date and Time Format</strong></p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>All parameters labelled as DATE_TIME should follow the yyyy-MM-ddTHH:mm format, (e.g. <code>2019-02-23T13:00</code> means 23 Feb 2019, 1300 hrs). yyyy-MM-ddTHH:mm:SS format is also accepted.</p>
-</li>
-<li>
-<p>For the exact specification of what date and time formats are allowed, please refer to the <code>LocalDateTime</code> class in Java.</p>
-</li>
-<li>
-<p>Time without dates are also accepted. In that situation, <code>HH:mm</code> (e.g. <code>13:00</code>) format should be used and the date is automatically chosen to be the current date at the point of command execution.</p>
-</li>
-</ul>
-</div>
 <div class="sect2">
 <h3 id="general"><a class="link" href="#general">3.1. General</a></h3>
 <div class="sect3">
@@ -810,6 +794,28 @@ and the quantity required in each recipe.</p>
 </div>
 <div class="sect2">
 <h3 id="booking-management"><a class="link" href="#booking-management">3.4. Booking Management</a></h3>
+<div class="paragraph">
+<p>The booking section models booking made by members.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>A booking consists of a member, a start time and an integer representing the number of persons coming to the restaurant.</p>
+</li>
+<li>
+<p>In this section, <code>TIME</code> parameters follow the yyyy-MM-ddTHH:mm (e.g. <code>2019-02-23T13:00</code> means 23 Feb 2019, 1300 hrs) or HH:mm (e.g. <code>12:00</code>) format. If the HH:mm format is used, the date is automatically chosen to be the current date at the point of command execution.</p>
+</li>
+<li>
+<p>For the exact specification of what date and time formats are allowed, please refer to the <code>LocalDateTime</code> and <code>LocalTime</code> class in Java.</p>
+</li>
+<li>
+<p>In order to ensure that the restaurant does not get overbooked, REM allows you to adjust the restaurant capacity. This capacity indicates the maximum number of customers that can be present in the restaurant at any given time. REM assumes that customers stay in the restaurant for 1 hour before leaving, although the end time is not displayed on screen.</p>
+</li>
+<li>
+<p>REM does not allow non-members to make bookings and every booking must correspond to a single member. If this member is deleted, all bookings made by the member will also be deleted.</p>
+</li>
+</ul>
+</div>
 <div class="sect3">
 <h4 id="list-booking-code-listbookings-code-coming-in-v2-0"><a class="link" href="#list-booking-code-listbookings-code-coming-in-v2-0">3.4.1. List Booking: <code>listBookings</code> [Coming in v2.0]</a></h4>
 <div class="paragraph">
@@ -843,7 +849,7 @@ and the quantity required in each recipe.</p>
 <div class="sect3">
 <h4 id="update-restaurant-capacity-code-updatecapacity-code"><a class="link" href="#update-restaurant-capacity-code-updatecapacity-code">3.4.2. Update Restaurant Capacity: <code>updateCapacity</code></a></h4>
 <div class="paragraph">
-<p>Update the capacity of the restaurant.</p>
+<p>Want to ensure that your restaurant does not get overbooked? Make sure to update the capacity of the restaurant accordingly.</p>
 </div>
 <div class="paragraph">
 <p>Format: <code>updateCapacity NUMBER</code></p>
@@ -856,7 +862,7 @@ and the quantity required in each recipe.</p>
 <p>The default capacity of the restaurant is 200.</p>
 </li>
 <li>
-<p>If the capacity is full, the restaurant will not accept new bookings (refer to <a href="#Create New Booking: <code>addBooking</code>">addBooking command </a>). If this command causes the number of bookings to exceed the capacity, the <code>updateCapacity</code> command will not be executed and an error will be displayed.</p>
+<p>If the capacity is full, the restaurant will not accept new bookings (refer to <a href="#Create New Booking: <code>addBooking</code>">addBooking command </a>).</p>
 </li>
 </ul>
 </div>
@@ -873,7 +879,7 @@ and the quantity required in each recipe.</p>
 </ul>
 </div>
 <div class="paragraph">
-<p>This updates the restaurants to cater for a capacity of 50 customers.</p>
+<p>This updates the restaurants to cater for a capacity of 50 customers. If any operation results in having more than 50 customers at any point in time, REM will show an error message indicating that the restaurant is full (unless the <code>updateCapacity</code> command is used again).</p>
 </div>
 </div>
 <div class="sect3">
@@ -882,15 +888,12 @@ and the quantity required in each recipe.</p>
 <p>Creates a new booking.</p>
 </div>
 <div class="paragraph">
-<p>Format: <code>addBooking c/CUSTOMER_INDEX n/NUMBER OF PERSONS ts/START_TIME</code></p>
+<p>Format: <code>addBooking c/CUSTOMER_INDEX n/NUMBER OF PERSONS ts/TIME_START</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
 <div class="ulist">
 <ul>
-<li>
-<p>If the restaurant is full (as determined by the <code>updateCapacity</code> command), a message will appear telling the user that the restaurant is fully booked.</p>
-</li>
 <li>
 <p>All bookings will last for 1 hour.</p>
 </li>
@@ -924,7 +927,7 @@ and the quantity required in each recipe.</p>
 <p>Edits a booking by changing either the time, number of persons of both.</p>
 </div>
 <div class="paragraph">
-<p>Format: <code>editBooking INDEX [ts/TIME_START] [n/NUMBER_OF_PEOPLE]</code></p>
+<p>Format: <code>editBooking INDEX [ts/TIME_START] [n/NUMBER_OF_PERSONS]</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -1451,4 +1454,4 @@ e.g. <code>addRating 5</code></p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-04 13:48:06 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-04 13:52:57 UTC</div></div></div></body></html>
