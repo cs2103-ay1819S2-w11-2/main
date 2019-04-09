@@ -33,13 +33,14 @@
 <li><a href="#undo-redo-feature">3.2. Undo/Redo feature</a></li>
 <li><a href="#data-structure-for-holding-records">3.3. Data structure for holding records</a></li>
 <li><a href="#the-code-editmember-code-command">3.4. The <code>editMember</code> command</a></li>
-<li><a href="#delete-feature">3.5. Delete Feature</a></li>
-<li><a href="#shifts-feature">3.6. Shifts feature</a></li>
-<li><a href="#the-code-statstime-code-command">3.7. The <code>statstime</code> command</a></li>
-<li><a href="#the-panel-ui-for-code-member-code-code-staff-code-code-booking-code-and-code-ingredient-code">3.8. The panel UI for <code>Member</code>, <code>Staff</code>, <code>Booking</code>, and <code>Ingredient</code></a></li>
-<li><a href="#proposed-data-encryption">3.9. [Proposed] Data Encryption</a></li>
-<li><a href="#logging">3.10. Logging</a></li>
-<li><a href="#Implementation-Configuration">3.11. Configuration</a></li>
+<li><a href="#suggesting-alternative-booking-timeslots">3.5. Suggesting alternative booking timeslots</a></li>
+<li><a href="#delete-feature">3.6. Delete Feature</a></li>
+<li><a href="#shifts-feature">3.7. Shifts feature</a></li>
+<li><a href="#the-code-statstime-code-command">3.8. The <code>statstime</code> command</a></li>
+<li><a href="#the-panel-ui-for-code-member-code-code-staff-code-code-booking-code-and-code-ingredient-code">3.9. The panel UI for <code>Member</code>, <code>Staff</code>, <code>Booking</code>, and <code>Ingredient</code></a></li>
+<li><a href="#proposed-data-encryption">3.10. [Proposed] Data Encryption</a></li>
+<li><a href="#logging">3.11. Logging</a></li>
+<li><a href="#Implementation-Configuration">3.12. Configuration</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a>
@@ -78,8 +79,9 @@
 <li><a href="#instructions-for-manual-testing">Appendix G: Instructions for Manual Testing</a>
 <ul class="sectlevel2">
 <li><a href="#launch-and-shutdown">G.1. Launch and Shutdown</a></li>
-<li><a href="#deleting-a-member">G.2. Deleting a member</a></li>
-<li><a href="#saving-data">G.3. Saving data</a></li>
+<li><a href="#add-and-delete-bookings">G.2. Add and delete bookings</a></li>
+<li><a href="#capacity-tests-for-booking-feature">G.3. Capacity tests for booking feature</a></li>
+<li><a href="#saving-data">G.4. Saving data</a></li>
 </ul>
 </li>
 </ul>
@@ -883,7 +885,7 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 <div class="sect3">
 <h4 id="current-implementation-3"><a class="link" href="#current-implementation-3">3.3.1. Current implementation</a></h4>
 <div class="paragraph">
-<p>We created the interface <code>Item</code> to represent a record. A <code>UniqueItemList</code> was used to handle the bulk of the CRUD logic, much like the way the <code>UniquePersonList</code> in the original AB4 was used to handle the CRUD logic. As the <code>Staff</code> and <code>Member</code> class store common attributes (<code>Name</code>, <code>Phone</code>, <code>Email</code>), an abstract class <code>Person</code> was used to capture this. The relation between the types of <code>Item</code> is also captured in the class diagram of Figure 8. However, in the <code>Model</code> interface, the methods are kept separate (using methods like <code>addMember</code>, <code>addBooking</code> instead of having a more generic <code>addItem</code> method).</p>
+<p>We created the interface <code>Item</code> to represent a record. A <code>UniqueItemList</code> was used to handle the bulk of the CRUD logic, much like the way the <code>UniquePersonList</code> in the original AB4 was used to handle the CRUD logic. As the <code>Staff</code> and <code>Member</code> class store common attributes (<code>Name</code>, <code>Phone</code>, <code>Email</code>), an abstract class <code>Person</code> was used to capture this. However, in the <code>Model</code> interface, the methods are kept separate (using methods like <code>addMember</code>, <code>addBooking</code> instead of having a more generic <code>addItem</code> method).</p>
 </div>
 </div>
 <div class="sect3">
@@ -984,6 +986,15 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </div>
 <div class="title">Figure 10. A class diagram showing the proposed implementation of managing the <code>Booking</code> and <code>Member</code> dependencies. This diagram is heavily simplified as unrelated methods and attributes are not shown.</div>
 </div>
+<div class="paragraph">
+<p>This proposed implementation simplifies the execution of the <code>editMember</code> command. The interactions between the various components of the proposed sequence diagram can be represented as follows:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/editmembersequencediagram.png" alt="editmembersequencediagram" width="800">
+</div>
+<div class="title">Figure 11. A sequence diagram showing the proposed implementation of the <code>editMember</code> command. For simplicity, we do not show the <code>Logic</code> component and we only focus on the <code>Model</code> component.</div>
+</div>
 </div>
 <div class="sect3">
 <h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">3.4.3. Design Considerations</a></h4>
@@ -1036,7 +1047,80 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </div>
 </div>
 <div class="sect2">
-<h3 id="delete-feature"><a class="link" href="#delete-feature">3.5. Delete Feature</a></h3>
+<h3 id="suggesting-alternative-booking-timeslots"><a class="link" href="#suggesting-alternative-booking-timeslots">3.5. Suggesting alternative booking timeslots</a></h3>
+<div class="paragraph">
+<p>REM does not allow additional bookings to be added into the system if this causes the capacity to be exceeded. Instead of displaying a message saying that the restaurant is full, we want to suggest an alternative timing to the user instead. In order to achieve this, REM calculates the earliest timeslot after the input date and time that can be accepted.</p>
+</div>
+<div class="sect3">
+<h4 id="current-implementation-5"><a class="link" href="#current-implementation-5">3.5.1. Current implementation</a></h4>
+<div class="paragraph">
+<p>All calculations involving the restaurant capacity is done in the <code>Capacity</code> class. In particular, the following related methods are implemented:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>Capacity#canAccomodate(List&lt;Booking&gt; bookings)</code>&#8201;&#8212;&#8201;Checks if the capacity is sufficient to hold the bookings.</p>
+</li>
+<li>
+<p><code>Capacity#canAddBooking(Booking toAdd, List&lt;Booking&gt; existingBookings)</code>&#8201;&#8212;&#8201;Checks if the booking list stays within capacity after adding the booking. Guarantees immutability of <code>existingBookings</code>.</p>
+</li>
+<li>
+<p><code>Capacity#suggestNextAvailableTime(Booking toAdd, List&lt;Booking&gt; existingBookings)</code>&#8201;&#8212;&#8201;The next available time that the restaurant can accommodate the booking, subjected to the constraint that the returned time must occur after <code>toAdd</code>. In other words, suggestion always shifts the booking later and never earlier.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>In this document, we will focus on the implementation of <code>suggestNextAvailableTime</code>:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The program first check that the input satisfies the preconditions of the method which are required for the method to return a meaningful answer. These are pre-conditions:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>The number of persons of the booking cannot exceed the capacity value (if my restaurant can only seat 20 people, I will never be able to make space for a booking of 30).</p>
+</li>
+<li>
+<p><code>existingBookings</code> must fit within the capacity (if this condition is violated, it is impossible to add a new booking in a way that fits within capacity).</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>The program then checks if the current booking can be accepted. If yes, the start time of the booking is returned and no further computations needs to be done.</p>
+</li>
+<li>
+<p>As the final answer must correspond to a customer leaving (the best time for a customer to arrive is when another customer leaves), the set of all end times among the existing bookings are generated and sorted in chronological order. This is the list of all the potential answers.</p>
+</li>
+<li>
+<p>For each possible answer, these two conditions are checked:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>The returned time must be later than the start time of the incoming booking.</p>
+</li>
+<li>
+<p>The incoming booking <code>toAdd</code> must fit within the capacity (as determined by <code>canAddBooking</code> method) after the time is modified accordingly.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>If both conditions pass, the end time of the booking is successfully returned. The pre-conditions in Step 1 ensures that at least one of the end times is valid. Since the list is sorted, only the earliest one will be returned (i.e. it is impossible to run through the loop without returning an answer).
+The current implementation can be described by the following activity diagram:</p>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/suggesttimeslot.png" alt="suggesttimeslot" width="800">
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="delete-feature"><a class="link" href="#delete-feature">3.6. Delete Feature</a></h3>
 <div class="paragraph">
 <p>The delete feature is used to delete a specific record in the restaurant book, i.e. deleting a member, staff, booking, ingredient or recipe.</p>
 </div>
@@ -1057,7 +1141,7 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 <p>Therefore, there are some design considerations that we have to make when it comes to deleting a record.</p>
 </div>
 <div class="sect3">
-<h4 id="current-implementation-5"><a class="link" href="#current-implementation-5">3.5.1. Current implementation</a></h4>
+<h4 id="current-implementation-6"><a class="link" href="#current-implementation-6">3.6.1. Current implementation</a></h4>
 <div class="ulist">
 <ul>
 <li>
@@ -1069,7 +1153,7 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 <div class="content">
 <img src="images/DeleteIngredientSequenceDiagram.png" alt="DeleteIngredientSequenceDiagram" width="800">
 </div>
-<div class="title">Figure 11. Sequence Diagram for DeleteIngredient</div>
+<div class="title">Figure 12. Sequence Diagram for DeleteIngredient</div>
 </div>
 <div class="ulist">
 <ul>
@@ -1084,7 +1168,7 @@ In other words, when RestaurantBook#deleteMember() or RestaurantBook#deleteIngre
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-5"><a class="link" href="#design-considerations-5">3.5.2. Design Considerations</a></h4>
+<h4 id="design-considerations-5"><a class="link" href="#design-considerations-5">3.6.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-separate-delete-commands-generic-delete-command"><a class="link" href="#aspect-separate-delete-commands-generic-delete-command">Aspect: Separate delete commands/ Generic delete command</a></h5>
 <div class="ulist">
@@ -1249,12 +1333,12 @@ In other words, when RestaurantBook#deleteMember() or RestaurantBook#deleteIngre
 </div>
 </div>
 <div class="sect2">
-<h3 id="shifts-feature"><a class="link" href="#shifts-feature">3.6. Shifts feature</a></h3>
+<h3 id="shifts-feature"><a class="link" href="#shifts-feature">3.7. Shifts feature</a></h3>
 <div class="paragraph">
 <p>The shifts feature allows users to maintain shift rosters for staff members, as well as</p>
 </div>
 <div class="sect3">
-<h4 id="current-implementation-6"><a class="link" href="#current-implementation-6">3.6.1. Current Implementation</a></h4>
+<h4 id="current-implementation-7"><a class="link" href="#current-implementation-7">3.7.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>The shifts feature comprises of two main commands: the <code>addshift</code> command and the <code>deleteshift</code> command.
 The <code>addshift</code> command allows shifts to be added to the shift roster of a staff member, and the <code>deleteshift</code> command allows shifts to be deleted from the shift roster of a staff member.
@@ -1268,7 +1352,7 @@ The following seqeuence diagram shows how the <code>addshift</code> command work
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-6"><a class="link" href="#design-considerations-6">3.6.2. Design Considerations</a></h4>
+<h4 id="design-considerations-6"><a class="link" href="#design-considerations-6">3.7.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-implementation-of-the-shift-roster"><a class="link" href="#aspect-implementation-of-the-shift-roster">Aspect: Implementation of the shift roster</a></h5>
 <div class="ulist">
@@ -1479,12 +1563,12 @@ The following seqeuence diagram shows how the <code>addshift</code> command work
 </div>
 </div>
 <div class="sect2">
-<h3 id="the-code-statstime-code-command"><a class="link" href="#the-code-statstime-code-command">3.7. The <code>statstime</code> command</a></h3>
+<h3 id="the-code-statstime-code-command"><a class="link" href="#the-code-statstime-code-command">3.8. The <code>statstime</code> command</a></h3>
 <div class="paragraph">
 <p>When the <code>statstime</code> command is entered, the current statistis of the amount of bookings is to be displayed to the user in the form of a bar chart.</p>
 </div>
 <div class="sect3">
-<h4 id="current-implementation-7"><a class="link" href="#current-implementation-7">3.7.1. Current implementation</a></h4>
+<h4 id="current-implementation-8"><a class="link" href="#current-implementation-8">3.8.1. Current implementation</a></h4>
 <div class="paragraph">
 <p>When the user enters the <code>statstime</code> command, the command will be parsed, and the <code>Statistics</code> class would be called. The Statistics class fetches the relevant data for user display (ie what are the axes, values, and legends of the bar chart). It would then call the <code>StatsWindow</code> class which handles the UI. The bar chart will appear in a new window and does not affect the current window.</p>
 </div>
@@ -1492,14 +1576,14 @@ The following seqeuence diagram shows how the <code>addshift</code> command work
 <div class="content">
 <img src="images/StatsTimeSequenceDiagram.png" alt="StatsTimeSequenceDiagram" width="1000">
 </div>
-<div class="title">Figure 12. StatsTime Sequence Diagram</div>
+<div class="title">Figure 13. StatsTime Sequence Diagram</div>
 </div>
 <div class="paragraph">
 <p>The <em>Sequence Diagram</em> given above shows how the components interact with each other for the scenario where the user issues the command <code>statstime 100</code>.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-7"><a class="link" href="#design-considerations-7">3.7.2. Design Considerations</a></h4>
+<h4 id="design-considerations-7"><a class="link" href="#design-considerations-7">3.8.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-implementation-of-data-structure-2"><a class="link" href="#aspect-implementation-of-data-structure-2">Aspect: Implementation of data structure</a></h5>
 <div class="ulist">
@@ -1575,18 +1659,18 @@ The following seqeuence diagram shows how the <code>addshift</code> command work
 </div>
 </div>
 <div class="sect2">
-<h3 id="the-panel-ui-for-code-member-code-code-staff-code-code-booking-code-and-code-ingredient-code"><a class="link" href="#the-panel-ui-for-code-member-code-code-staff-code-code-booking-code-and-code-ingredient-code">3.8. The panel UI for <code>Member</code>, <code>Staff</code>, <code>Booking</code>, and <code>Ingredient</code></a></h3>
+<h3 id="the-panel-ui-for-code-member-code-code-staff-code-code-booking-code-and-code-ingredient-code"><a class="link" href="#the-panel-ui-for-code-member-code-code-staff-code-code-booking-code-and-code-ingredient-code">3.9. The panel UI for <code>Member</code>, <code>Staff</code>, <code>Booking</code>, and <code>Ingredient</code></a></h3>
 <div class="paragraph">
 <p>The restaurant book displays the entire database in the form of "cards", which is the same as AB4. Each item has its own panel.</p>
 </div>
 <div class="sect3">
-<h4 id="current-implementation-8"><a class="link" href="#current-implementation-8">3.8.1. Current implementation</a></h4>
+<h4 id="current-implementation-9"><a class="link" href="#current-implementation-9">3.9.1. Current implementation</a></h4>
 <div class="paragraph">
 <p>The panel is formatted in the <code>ItemListPanel.fxml</code> file, and each item has its own controller (<code>MemberListPanel</code>, <code>StaffListPanel</code>, <code>BookingListPanel</code>, and <code>IngredientListPanel</code>) that extends from <code>ItemListPanel</code>. The panel displays the database via cards. Each item has its own card (<code>MemberCard</code>, <code>StaffCard</code>, <code>BookingCard</code>, and <code>IngredientCard</code>).</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-8"><a class="link" href="#design-considerations-8">3.8.2. Design Considerations</a></h4>
+<h4 id="design-considerations-8"><a class="link" href="#design-considerations-8">3.9.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-design-of-card-display"><a class="link" href="#aspect-design-of-card-display">Aspect: Design of card display</a></h5>
 <div class="ulist">
@@ -1662,20 +1746,20 @@ The following seqeuence diagram shows how the <code>addshift</code> command work
 </div>
 </div>
 <div class="sect2">
-<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">3.9. [Proposed] Data Encryption</a></h3>
+<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">3.10. [Proposed] Data Encryption</a></h3>
 <div class="paragraph">
 <p><em>{Explain here how the data encryption feature will be implemented}</em></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">3.10. Logging</a></h3>
+<h3 id="logging"><a class="link" href="#logging">3.11. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.11, &#8220;Configuration&#8221;</a>)</p>
+<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.12, &#8220;Configuration&#8221;</a>)</p>
 </li>
 <li>
 <p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level</p>
@@ -1706,7 +1790,7 @@ The following seqeuence diagram shows how the <code>addshift</code> command work
 </div>
 </div>
 <div class="sect2">
-<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.11. Configuration</a></h3>
+<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.12. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g user prefs file location, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
@@ -1772,7 +1856,7 @@ Alternatively, you can download the AsciiDoc plugin for IntelliJ, which allows y
 <div class="content">
 <img src="images/chrome_save_as_pdf.png" alt="chrome save as pdf" width="300">
 </div>
-<div class="title">Figure 13. Saving documentation as PDF files in Chrome</div>
+<div class="title">Figure 14. Saving documentation as PDF files in Chrome</div>
 </div>
 </div>
 <div class="sect2">
@@ -2740,44 +2824,67 @@ Expected: The most recent window size and location is retained.</p>
 </li>
 </ol>
 </div>
-<div class="paragraph">
-<p><em>{ more test cases &#8230;&#8203; }</em></p>
-</div>
 </div>
 <div class="sect2">
-<h3 id="deleting-a-member"><a class="link" href="#deleting-a-member">G.2. Deleting a member</a></h3>
+<h3 id="add-and-delete-bookings"><a class="link" href="#add-and-delete-bookings">G.2. Add and delete bookings</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Deleting a member while all members are listed</p>
+<p>Add and delete bookings</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>Prerequisites: List all members using the <code>listMembers</code> command. Multiple members in the list.</p>
+<p>Prerequisites: List all members using the <code>listMembers</code> command. List of members is non-empty.</p>
 </li>
 <li>
-<p>Test case: <code>deleteMember 1</code><br>
-Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.</p>
+<p>Test case: <code>addbooking c/1 n/7 ts/2019-04-07T12:00</code>
+Expected: A new booking is added. The name, phone number, booking time as well as number of persons is shown in the Booking column.</p>
 </li>
 <li>
-<p>Test case: <code>deleteMember 0</code><br>
-Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.</p>
-</li>
-<li>
-<p>Other incorrect delete commands to try: <code>deleteMember</code>, <code>deleteMember x</code> (where x is larger than the list size) <em>{give more}</em><br>
-Expected: Similar to previous.</p>
+<p>Test case: <code>deletebooking 1</code>
+Expected: The booking corresponding to the first index is deleted.</p>
 </li>
 </ol>
 </div>
 </li>
 </ol>
-</div>
-<div class="paragraph">
-<p><em>{ more test cases &#8230;&#8203; }</em></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="saving-data"><a class="link" href="#saving-data">G.3. Saving data</a></h3>
+<h3 id="capacity-tests-for-booking-feature"><a class="link" href="#capacity-tests-for-booking-feature">G.3. Capacity tests for booking feature</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Test that the capacity constraint is enforced</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequeisites: At least 2 members listed using the <code>listMembers</code> command. Booking column should be empty (if not, delete the bookings as per previous section). The commands below are to be executed in sequence.</p>
+</li>
+<li>
+<p>Test case: <code>updateCapacity 10</code>
+Expected: The capacity is successfully updated to 10 with a suitable message shown.</p>
+</li>
+<li>
+<p>Test case: <code>addbooking c/1 n/7 ts/2019-04-07T12:00</code>
+Expected: The booking is successfully added into the system.</p>
+</li>
+<li>
+<p>Test case: <code>addbooking c/2 n/7 ts/2019-04-07T11:30</code>
+Expected: The system rejects the booking and instead suggests an alternative timeslot of 2019-04-07T13:00. (Explanation: if this booking is accepted, there will be 7+7=14 customers in the restaurant at 2019-04-07T12:00. This exceeds the capacity of 10 and thus REM rejects the booking. For more details, refer to <code>addbooking</code> command in the User Guide.)</p>
+</li>
+<li>
+<p>Test case: <code>addbooking c/2 n/7 ts/2019-04-07T10:30</code>
+Expected: The booking is successfully added into the system. (Explanation: REM assumes that bookings last for 1 hour. Since this member is expected to leave by 2019-04-07T11:30, the restaurant will be empty at 2019-04-07T12:00. This set of bookings does not cause the capacity of 10 to be exceeded. For more details, refer to <code>addbooking</code> command in the User Guide.)</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="saving-data"><a class="link" href="#saving-data">G.4. Saving data</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -2797,4 +2904,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-09 05:26:35 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-09 10:02:45 UTC</div></div></div></body></html>

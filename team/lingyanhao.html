@@ -18,13 +18,10 @@
 <div class="ulist">
 <ul>
 <li>
-<p>Add and delete bookings from the system</p>
+<p>Add, delete and edit bookings from the system</p>
 </li>
 <li>
-<p>Edit existing bookings</p>
-</li>
-<li>
-<p>Ensure that the restaurant does not get overbooked</p>
+<p>Suggest alternative timings if user tries to add a booking when restaurant is fully booked</p>
 </li>
 </ul>
 </div>
@@ -34,7 +31,7 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="summary-of-contributions"><a class="link" href="#summary-of-contributions">Summary of contributions</a></h2>
+<h2 id="summary-of-contributions"><a class="link" href="#summary-of-contributions">Summary of Contributions</a></h2>
 <div class="sectionbody">
 <div class="ulist">
 <ul>
@@ -49,30 +46,42 @@
 <p>What it does: allows the user to manage bookings. The system will reject new bookings and suggest better alternative timeslots if the restaurant is full.</p>
 </li>
 <li>
-<p>Justification: When a restaurant needs to manage a large number of bookings, it can be difficult for owners to keep track of how many people are in the restaurant at each point in time. Having a system that rejects new bookings when the restaurant is full can help prevent overbooking.</p>
+<p>Justification: When a restaurant needs to manage a large number of bookings, it can be difficult for owners to keep track of how many people are in the restaurant at each point in time. Having a system that rejects new bookings when the restaurant is full can help prevent overbooking. If the user tries to enter a booking when the restaurant is full, not only is the booking rejected, an alternative booking timeslot is also suggested.</p>
 </li>
 <li>
-<p>Highlights: This feature affects the existing delete and edit commands for members as changing a member&#8217;s personal details requires a corresponding update in the booking panel. It required a significant restructuring of the <code>Model</code> component.</p>
+<p>Highlights: This feature affects the existing delete and edit commands for members as changing a member&#8217;s personal details requires a corresponding update in the booking panel. It required a significant restructuring of the <code>Model</code> component from AB4.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
 <p><strong>Other contributions</strong>:</p>
+</li>
+<li>
+<p>Community:</p>
 <div class="ulist">
 <ul>
+<li>
+<p>PRs reviewed (with non-trivial review comments): [<a href="https://github.com/cs2103-ay1819S2-w11-2/main/pull/110" class="bare">https://github.com/cs2103-ay1819S2-w11-2/main/pull/110</a>], [<a href="https://github.com/cs2103-ay1819S2-w11-2/main/pull/138" class="bare">https://github.com/cs2103-ay1819S2-w11-2/main/pull/138</a>]</p>
+</li>
+<li>
+<p>Reported bugs for other teams: [<a href="https://github.com/CS2103-AY1819S2-W14-3/main/issues/309" class="bare">https://github.com/CS2103-AY1819S2-W14-3/main/issues/309</a>], [<a href="https://github.com/CS2103-AY1819S2-W14-3/main/issues/308" class="bare">https://github.com/CS2103-AY1819S2-W14-3/main/issues/308</a>]</p>
+</li>
+</ul>
+</div>
+</li>
 <li>
 <p>Project management:</p>
 <div class="ulist">
 <ul>
 <li>
+<p>Managed release v1.1 on GitHub</p>
+</li>
+<li>
 <p>Setup organisation/team repo</p>
 </li>
 <li>
-<p>Setup Travis CI, Appveyor and Coveralls</p>
-</li>
-</ul>
-</div>
+<p>Setup Travis CI, Appveyor and Coveralls and Codacy</p>
 </li>
 </ul>
 </div>
@@ -90,7 +99,7 @@
 </colgroup>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users.</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>This section shows some samples of sections I contributed to the user guide. It shows my ability to write friendly documentation for end-users.</em></p></td>
 </tr>
 </tbody>
 </table>
@@ -197,7 +206,7 @@
 <div class="ulist">
 <ul>
 <li>
-<p>All bookings will last for 1 hour.</p>
+<p>All bookings will last for 1 hour, although the end time is not shown in the UI.</p>
 </li>
 <li>
 <p>Customer INDEX refers to the index of the customer as displayed by the list.</p>
@@ -205,22 +214,48 @@
 <li>
 <p>Bookings are a privileged feature restricted only to members. REM does not allow non-members to make bookings.</p>
 </li>
+<li>
+<p>If the booking is rejected due to capacity constraints, a message will appear suggesting an alternative timeslot. This timeslot is the earliest timeslot after the input date and time that can be accepted. Note that this does not automatically add the booking into REM- a separate <code>addBooking</code> command needs to be entered to accept the newly suggested timeslot.</p>
+</li>
 </ul>
 </div>
 </div>
 </div>
 <div class="paragraph">
-<p>Example:</p>
+<p>Example (execute these commands in the order listed with no other commands inserted in between, starting with a list of at least 2 members and an initially empty list of bookings):</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>addBooking c/1 n/5 ts/2019-02-23T14:30</code></p>
+<p><code>updateCapacity 10</code> (updates the restaurant capacity to 10)</p>
+</li>
+<li>
+<p><code>addBooking c/1 n/7 ts/2019-04-07T12:00</code> (adds a booking for the first customer on the current list, on 7 Apr, at 1200 hrs)</p>
+</li>
+<li>
+<p><code>addbooking c/2 n/7 ts/2019-04-07T11:30</code> (adds a booking for the second customer on the current list, on 7 Apr, at 1200 hrs)</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>Adds a booking for the first customer on the current list, on 23 Feb, at 1430 hrs</p>
+<p>This command will fail to execute. As bookings last for 1 hour, accepting this command will cause the restaurant to exceed the capacity of 10 customers at 2019-04-07T12:00 (in fact, 7+7=14 customers will be present if this command executes). Thus this booking is rejected.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/capacityexplanation.png" alt="capacityexplanation" width="800">
+</div>
+<div class="title">Figure 1. A pictorial representation showing why the capacity will be exceeded</div>
+</div>
+<div class="paragraph">
+<p>The user may also notice that an alternative booking time of 2019-04-07T13:00 is suggested by REM. The suggested booking time is the next available slot after the input time (in this case, 2019-04-07T11:30) that can hold the booking of 7 members. In this case, the restaurant is only free at 2019-04-07T13:00 after the previous group of 7 customers leave (recall that bookings last for 1 hour).</p>
+</div>
+<div class="paragraph">
+<p>The below screenshot shows what happens:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/altbookingtime.png" alt="altbookingtime" width="800">
+</div>
 </div>
 </div>
 <div class="sect3">
@@ -303,47 +338,10 @@
 </colgroup>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project.</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>This section shows some sample of sections I contributed to the developer guide. It shows my ability to write technical documentation for potential developers who may wish to take over the software.</em></p></td>
 </tr>
 </tbody>
 </table>
-<div class="sect2">
-<h3 id="Design-Model"><a class="link" href="#Design-Model">Model component</a></h3>
-<div class="imageblock">
-<div class="content">
-<img src="../images/ModelClassDiagram.png" alt="ModelClassDiagram" width="800">
-</div>
-<div class="title">Figure 1. Structure of the Model Component</div>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/ModelItemDiagram.png" alt="ModelItemDiagram" width="800">
-</div>
-<div class="title">Figure 2. Structure of the Item Interface (split into a separate diagarm for clarity)</div>
-</div>
-<div class="paragraph">
-<p><strong>API</strong> : <a href="{repoURL}/src/main/java/seedu/address/model/Model.java"><code>Model.java</code></a></p>
-</div>
-<div class="paragraph">
-<p>The <code>Model</code>,</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>stores a <code>UserPref</code> object that represents the user&#8217;s preferences.</p>
-</li>
-<li>
-<p>stores the Restaurant Book data.</p>
-</li>
-<li>
-<p>exposes an unmodifiable <code>ObservableList&lt;Item&gt;</code> that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.</p>
-</li>
-<li>
-<p>does not depend on any of the other three components.</p>
-</li>
-</ul>
-</div>
-</div>
 <div class="sect2">
 <h3 id="data-structure-for-holding-records"><a class="link" href="#data-structure-for-holding-records">Data structure for holding records</a></h3>
 <div class="paragraph">
@@ -362,7 +360,7 @@
 <div class="sect3">
 <h4 id="current-implementation"><a class="link" href="#current-implementation">Current implementation</a></h4>
 <div class="paragraph">
-<p>We created the interface <code>Item</code> to represent a record. A <code>UniqueItemList</code> was used to handle the bulk of the CRUD logic, much like the way the <code>UniquePersonList</code> in the original AB4 was used to handle the CRUD logic. As the <code>Staff</code> and <code>Member</code> class store common attributes (<code>Name</code>, <code>Phone</code>, <code>Email</code>), an abstract class <code>Person</code> was used to capture this. The relation between the types of <code>Item</code> is also captured in the class diagram of Figure 8. However, in the <code>Model</code> interface, the methods are kept separate (using methods like <code>addMember</code>, <code>addBooking</code> instead of having a more generic <code>addItem</code> method).</p>
+<p>We created the interface <code>Item</code> to represent a record. A <code>UniqueItemList</code> was used to handle the bulk of the CRUD logic, much like the way the <code>UniquePersonList</code> in the original AB4 was used to handle the CRUD logic. As the <code>Staff</code> and <code>Member</code> class store common attributes (<code>Name</code>, <code>Phone</code>, <code>Email</code>), an abstract class <code>Person</code> was used to capture this. However, in the <code>Model</code> interface, the methods are kept separate (using methods like <code>addMember</code>, <code>addBooking</code> instead of having a more generic <code>addItem</code> method).</p>
 </div>
 </div>
 <div class="sect3">
@@ -461,7 +459,16 @@
 <div class="content">
 <img src="../images/editmemberclassdiagram.png" alt="editmemberclassdiagram" width="800">
 </div>
-<div class="title">Figure 3. A class diagram showing the proposed implementation of managing the <code>Booking</code> and <code>Member</code> dependencies. This diagram is heavily simplified as unrelated methods and attributes are not shown.</div>
+<div class="title">Figure 2. A class diagram showing the proposed implementation of managing the <code>Booking</code> and <code>Member</code> dependencies. This diagram is heavily simplified as unrelated methods and attributes are not shown.</div>
+</div>
+<div class="paragraph">
+<p>This proposed implementation simplifies the execution of the <code>editMember</code> command. The interactions between the various components of the proposed sequence diagram can be represented as follows:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/editmembersequencediagram.png" alt="editmembersequencediagram" width="800">
+</div>
+<div class="title">Figure 3. A sequence diagram showing the proposed implementation of the <code>editMember</code> command. For simplicity, we do not show the <code>Logic</code> component and we only focus on the <code>Model</code> component.</div>
 </div>
 </div>
 <div class="sect3">
@@ -514,5 +521,78 @@
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="suggesting-alternative-booking-timeslots"><a class="link" href="#suggesting-alternative-booking-timeslots">Suggesting alternative booking timeslots</a></h3>
+<div class="paragraph">
+<p>REM does not allow additional bookings to be added into the system if this causes the capacity to be exceeded. Instead of displaying a message saying that the restaurant is full, we want to suggest an alternative timing to the user instead. In order to achieve this, REM calculates the earliest timeslot after the input date and time that can be accepted.</p>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-09 05:26:35 UTC</div></div></div></body></html>
+<div class="sect3">
+<h4 id="current-implementation-3"><a class="link" href="#current-implementation-3">Current implementation</a></h4>
+<div class="paragraph">
+<p>All calculations involving the restaurant capacity is done in the <code>Capacity</code> class. In particular, the following related methods are implemented:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>Capacity#canAccomodate(List&lt;Booking&gt; bookings)</code>&#8201;&#8212;&#8201;Checks if the capacity is sufficient to hold the bookings.</p>
+</li>
+<li>
+<p><code>Capacity#canAddBooking(Booking toAdd, List&lt;Booking&gt; existingBookings)</code>&#8201;&#8212;&#8201;Checks if the booking list stays within capacity after adding the booking. Guarantees immutability of <code>existingBookings</code>.</p>
+</li>
+<li>
+<p><code>Capacity#suggestNextAvailableTime(Booking toAdd, List&lt;Booking&gt; existingBookings)</code>&#8201;&#8212;&#8201;The next available time that the restaurant can accommodate the booking, subjected to the constraint that the returned time must occur after <code>toAdd</code>. In other words, suggestion always shifts the booking later and never earlier.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>In this document, we will focus on the implementation of <code>suggestNextAvailableTime</code>:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The program first check that the input satisfies the preconditions of the method which are required for the method to return a meaningful answer. These are pre-conditions:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>The number of persons of the booking cannot exceed the capacity value (if my restaurant can only seat 20 people, I will never be able to make space for a booking of 30).</p>
+</li>
+<li>
+<p><code>existingBookings</code> must fit within the capacity (if this condition is violated, it is impossible to add a new booking in a way that fits within capacity).</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>The program then checks if the current booking can be accepted. If yes, the start time of the booking is returned and no further computations needs to be done.</p>
+</li>
+<li>
+<p>As the final answer must correspond to a customer leaving (the best time for a customer to arrive is when another customer leaves), the set of all end times among the existing bookings are generated and sorted in chronological order. This is the list of all the potential answers.</p>
+</li>
+<li>
+<p>For each possible answer, these two conditions are checked:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>The returned time must be later than the start time of the incoming booking.</p>
+</li>
+<li>
+<p>The incoming booking <code>toAdd</code> must fit within the capacity (as determined by <code>canAddBooking</code> method) after the time is modified accordingly.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>If both conditions pass, the end time of the booking is successfully returned. The pre-conditions in Step 1 ensures that at least one of the end times is valid. Since the list is sorted, only the earliest one will be returned (i.e. it is impossible to run through the loop without returning an answer).
+The current implementation can be described by the following activity diagram:</p>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/suggesttimeslot.png" alt="suggesttimeslot" width="800">
+</div>
+</div>
+</div>
+</div>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-09 10:02:45 UTC</div></div></div></body></html>

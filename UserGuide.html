@@ -1020,7 +1020,7 @@ and the quantity required in each recipe.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>All bookings will last for 1 hour.</p>
+<p>All bookings will last for 1 hour, although the end time is not shown in the UI.</p>
 </li>
 <li>
 <p>Customer INDEX refers to the index of the customer as displayed by the list.</p>
@@ -1028,22 +1028,48 @@ and the quantity required in each recipe.</p>
 <li>
 <p>Bookings are a privileged feature restricted only to members. REM does not allow non-members to make bookings.</p>
 </li>
+<li>
+<p>If the booking is rejected due to capacity constraints, a message will appear suggesting an alternative timeslot. This timeslot is the earliest timeslot after the input date and time that can be accepted. Note that this does not automatically add the booking into REM- a separate <code>addBooking</code> command needs to be entered to accept the newly suggested timeslot.</p>
+</li>
 </ul>
 </div>
 </div>
 </div>
 <div class="paragraph">
-<p>Example:</p>
+<p>Example (execute these commands in the order listed with no other commands inserted in between, starting with a list of at least 2 members and an initially empty list of bookings):</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>addBooking c/1 n/5 ts/2019-02-23T14:30</code></p>
+<p><code>updateCapacity 10</code> (updates the restaurant capacity to 10)</p>
+</li>
+<li>
+<p><code>addBooking c/1 n/7 ts/2019-04-07T12:00</code> (adds a booking for the first customer on the current list, on 7 Apr, at 1200 hrs)</p>
+</li>
+<li>
+<p><code>addbooking c/2 n/7 ts/2019-04-07T11:30</code> (adds a booking for the second customer on the current list, on 7 Apr, at 1200 hrs)</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>Adds a booking for the first customer on the current list, on 23 Feb, at 1430 hrs</p>
+<p>This command will fail to execute. As bookings last for 1 hour, accepting this command will cause the restaurant to exceed the capacity of 10 customers at 2019-04-07T12:00 (in fact, 7+7=14 customers will be present if this command executes). Thus this booking is rejected.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/capacityexplanation.png" alt="capacityexplanation" width="800">
+</div>
+<div class="title">Figure 5. A pictorial representation showing why the capacity will be exceeded</div>
+</div>
+<div class="paragraph">
+<p>The user may also notice that an alternative booking time of 2019-04-07T13:00 is suggested by REM. The suggested booking time is the next available slot after the input time (in this case, 2019-04-07T11:30) that can hold the booking of 7 members. In this case, the restaurant is only free at 2019-04-07T13:00 after the previous group of 7 customers leave (recall that bookings last for 1 hour).</p>
+</div>
+<div class="paragraph">
+<p>The below screenshot shows what happens:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/altbookingtime.png" alt="altbookingtime" width="800">
+</div>
 </div>
 </div>
 <div class="sect3">
@@ -1598,4 +1624,4 @@ e.g. <code>addRating 5</code></p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-09 05:26:35 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-09 10:02:45 UTC</div></div></div></body></html>
