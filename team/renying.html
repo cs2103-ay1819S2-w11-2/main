@@ -179,10 +179,19 @@ ingredient warning amount will be listed.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>If ingredient quantity or warning amount is not specified, they are respectively set to 0.</p>
+<p><code>INGREDIENT_NAME</code> and <code>INGREDIENT_UNIT</code> must contain only alphabets and spaces, and must contain at least 2 characters of the alphabet. (i.e, <code>in/c</code> is not accepted while <code>in/ch</code> is).</p>
 </li>
 <li>
-<p>User inputs the warning amount for the ingredient <code>w/INGREDIENT_WARNING_AMOUNT</code>, and when the quantity in inventory
+<p>All leading whitespaces for <code>INGREDIENT_NAME</code> and <code>INGREDIENT_UNIT</code> will be trimmed.</p>
+</li>
+<li>
+<p><code>INGREDIENT_QUANTITY</code> and <code>INGREDIENT_WARNING_AMOUNT</code> must be an integer between 0 and 2,147,483,647 inclusive.</p>
+</li>
+<li>
+<p>If <code>INGREDIENT_QUANTITY</code> or <code>INGREDIENT_WARNING_AMOUNT</code> is not specified, they are respectively set to 0.</p>
+</li>
+<li>
+<p>If user inputs the warning amount for the ingredient <code>w/INGREDIENT_WARNING_AMOUNT</code>, and when the quantity in inventory
 falls below this stated amount, there is a need for restock of this ingredient.
 Calling <code>listIngredients w/</code> will display all ingredients that fall below their corresponding warning values.</p>
 </li>
@@ -269,6 +278,17 @@ Previously existing in inventory before.</p>
 <div class="paragraph">
 <p>Format: <code>restockIngredient i/INDEX q/INGREDIENT_QUANTITY</code></p>
 </div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>New ingredient quantity after <code>restockIngredient</code> command was called, must be an integer with value at most 2,147,483,647.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
 <div class="paragraph">
 <p>Example:</p>
 </div>
@@ -283,7 +303,8 @@ Previously existing in inventory before.</p>
 </ul>
 </div>
 <div class="paragraph">
-<p>Increases the quantity of chickens by 10 in the inventory.</p>
+<p>Increases the quantity of chickens by 10 in the inventory. Assuming that the previous quantity for chicken was 20, the new quantity
+after <code>restockIngredient i/3 q/10</code> was called, will be 30.</p>
 </div>
 </div>
 <div class="sect3">
@@ -293,6 +314,18 @@ Previously existing in inventory before.</p>
 </div>
 <div class="paragraph">
 <p>Format: <code>consumeIngredient i/INDEX q/INGREDIENT_QUANTITY</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Ingredient quantity to be consumed must be at most the ingredient quantity present in the inventory.
+New ingredient quantity after <code>consumeIngredient</code> command was called, must be non-negative.</p>
+</li>
+</ul>
+</div>
+</div>
 </div>
 <div class="paragraph">
 <p>Example:</p>
@@ -308,7 +341,8 @@ Previously existing in inventory before.</p>
 </ul>
 </div>
 <div class="paragraph">
-<p>Decreases the quantity of chickens by 10 in the inventory.</p>
+<p>Decreases the quantity of chickens by 10 in the inventory. Assuming that the previous quantity for chicken was 20, the new quantity
+                                                          after <code>consumeIngredient i/3 q/10</code> was called, will be 10.</p>
 </div>
 </div>
 <div class="sect3">
@@ -327,12 +361,27 @@ Previously existing in inventory before.</p>
 <p>The index refers to the index number shown in the most recent listing of ingredients in the ingredients panel.</p>
 </li>
 <li>
+<p><code>RECIPE_NAME</code> must contain only alphabets and spaces, and must contain at least 2 characters of the alphabet. (i.e, <code>r/c</code> is not accepted while <code>r/ch</code> is).</p>
+</li>
+<li>
+<p>All leading whitespaces for <code>RECIPE_NAME</code> will be trimmed.</p>
+</li>
+<li>
+<p><code>INGREDIENT_QUANTITY_IN_RECIPE</code> must be an integer between 1 and 2,147,483,647 inclusive, and refers to the quantity of
+ingredient required in 1 serving of the recipe.</p>
+</li>
+<li>
 <p>There should be at least 1 ingredient <code>iq/INDEX&amp;INGREDIENT_QUANTITY_IN_RECIPE</code> input.</p>
 </li>
 <li>
 <p>Each ingredient input should have the format <code>iq/INDEX&amp;NGREDIENT_QUANTITY_IN_RECIPE</code>
 where ingredient index and quantity of ingredient in recipe is separated by &amp;.
 Both the ingredient index and quantity must be an whole number.</p>
+</li>
+<li>
+<p>Upon adding a new recipe, the number of servings of this recipe, according to the current ingredient quantity in inventory, is calculated
+and displayed on the recipe panel. Upon  executing <code>restockIngredient</code> or <code>consumeIngredient</code>, the number of servings will be
+automatically adjusted and displayed.</p>
 </li>
 </ul>
 </div>
@@ -341,19 +390,75 @@ Both the ingredient index and quantity must be an whole number.</p>
 <div class="paragraph">
 <p>Example:</p>
 </div>
+<div class="paragraph">
+<p>(Assuming that at this point, the restaurant book is empty.)</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>addrecipe r/cheese fries iq/1&amp;1 iq/2&amp;1</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>listIngredients</code>
-(list: chicken - 10 full chickens [indexed 4], rice - 10 bowls [indexed 9])</p>
-<div class="paragraph">
-<p><code>addRecipe r/Chicken Rice iq/4&amp;1 iq/9&amp;3</code></p>
+<p>Adds cheese fries into the recipe panel. For each serving of cheese fries, 1 slice of cheese and 1
+packet of fries is needed.</p>
+</li>
+<li>
+<p>There are 20 slices of cheese for 20 servings of cheese fries, but only 10 packets of fries for 10 servings of cheese fries.
+Overall, there can only be 10 servings of cheese fries prepared. Upon success, the recipe panel should look like this:</p>
+<div class="imageblock">
+<div class="content">
+<img src="../images/addRecipe-addIngredientCommand.png" alt="addRecipe addIngredientCommand" width="1000">
+</div>
+<div class="title">Figure 1. Successfully adding 2 ingredients into restaurant book</div>
 </div>
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p>Adds a new recipe, chicken rice, which requires 1 full chicken and 3 bowls of rice.</p>
+</li>
+<li>
+<p><code>addrecipe r/cheese fries iq/1&amp;1 iq/2&amp;1</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Adds cheese fries into the recipe panel. For each serving of cheese fries, 1 slice of cheese and 1
+packet of fries is needed.</p>
+</li>
+<li>
+<p>There are 20 slices of cheese for 20 servings of cheese fries, but only 10 packets of fries for 10 servings of cheese fries.
+Overall, there can only be 10 servings of cheese fries prepared. Upon success, the recipe panel should look like this:</p>
+<div class="imageblock">
+<div class="content">
+<img src="../images/addRecipe-successful.png" alt="addRecipe successful" width="1000">
+</div>
+<div class="title">Figure 2. Successfully adding 1 recipe, displaying the number of servings possible.</div>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><code>restockingredient i/2 q/10</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Restocks fries by 10 packets, and change in ingredient quantity is reflected in ingredient&#8217;s panel.</p>
+</li>
+<li>
+<p>Now, there are 20 slices of cheese for 20 servings of cheese fries, and 20 packets of fries for 20 servings of cheese fries.
+Overall, there can be 20 servings of cheese fries prepared. Upon success, the recipe panel should look like this, with the reflected
+change in number of servings of cheese fries:</p>
+<div class="imageblock">
+<div class="content">
+<img src="../images/addRecipe-restockIngredient.png" alt="addRecipe restockIngredient" width="1000">
+</div>
+<div class="title">Figure 3. Successfully restocking 1 ingredient, displays the new number of servings possible.</div>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ol>
 </div>
 </div>
 <div class="sect3">
@@ -392,7 +497,7 @@ Both the ingredient index and quantity must be an whole number.</p>
 <div class="sect3">
 <h4 id="recipe-summary-code-recipesummary-code-code-coming-in-v2-0-code"><a class="link" href="#recipe-summary-code-recipesummary-code-code-coming-in-v2-0-code">Recipe Summary <code>recipeSummary</code> <code>[coming in v2.0]</code></a></h4>
 <div class="paragraph">
-<p>Displays the number of dishes that can be made for each recipe, calculated based on the current inventory
+<p>Displays the number of servings that can be made for each recipe, calculated based on the current inventory
 and the quantity required in each recipe.</p>
 </div>
 <div class="paragraph">
@@ -449,7 +554,7 @@ and the quantity required in each recipe.</p>
 <div class="content">
 <img src="../images/DeleteIngredientSequenceDiagram.png" alt="DeleteIngredientSequenceDiagram" width="800">
 </div>
-<div class="title">Figure 1. Sequence Diagram for DeleteIngredient</div>
+<div class="title">Figure 4. Sequence Diagram for DeleteIngredient</div>
 </div>
 <div class="ulist">
 <ul>
@@ -763,4 +868,4 @@ In other words, when RestaurantBook#deleteMember() or RestaurantBook#deleteIngre
 </tbody>
 </table>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-05 03:01:09 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-09 05:25:50 UTC</div></div></div></body></html>
