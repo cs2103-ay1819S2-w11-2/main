@@ -803,24 +803,20 @@ automatically adjusted and displayed.</p>
 <p>Example:</p>
 </div>
 <div class="paragraph">
-<p>(Assuming that at this point, the restaurant book is empty.)</p>
+<p>(Assuming that the restaurant book is empty.)</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p><code>addrecipe r/cheese fries iq/1&amp;1 iq/2&amp;1</code></p>
+<p><code>addingredient in/cheese u/slices q/20</code>
+<code>addingredient in/fries u/packets q/10</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p>Adds cheese fries into the recipe panel. For each serving of cheese fries, 1 slice of cheese and 1
-packet of fries is needed.</p>
-</li>
-<li>
-<p>There are 20 slices of cheese for 20 servings of cheese fries, but only 10 packets of fries for 10 servings of cheese fries.
-Overall, there can only be 10 servings of cheese fries prepared. Upon success, the recipe panel should look like this:</p>
+<p>Adds cheese, and fries into the ingredient panel. Upon success, the ingredient panel should look like this:</p>
 <div class="imageblock">
 <div class="content">
-<img src="images/addRecipe-addIngredientCommand.png" alt="addRecipe addIngredientCommand" width="1000">
+<img src="images/addRecipe-addIngredientCommand.png" alt="addRecipe addIngredientCommand" width="300">
 </div>
 <div class="title">Figure 2. Successfully adding 2 ingredients into restaurant book</div>
 </div>
@@ -837,7 +833,7 @@ Overall, there can only be 10 servings of cheese fries prepared. Upon success, t
 packet of fries is needed.</p>
 </li>
 <li>
-<p>There are 20 slices of cheese for 20 servings of cheese fries, but only 10 packets of fries for 10 servings of cheese fries.
+<p>There are 20 slices of cheese sufficient for 20 servings of cheese fries, but only 10 packets of fries sufficient for 10 servings of cheese fries.
 Overall, there can only be 10 servings of cheese fries prepared. Upon success, the recipe panel should look like this:</p>
 <div class="imageblock">
 <div class="content">
@@ -857,7 +853,7 @@ Overall, there can only be 10 servings of cheese fries prepared. Upon success, t
 <p>Restocks fries by 10 packets, and change in ingredient quantity is reflected in ingredient&#8217;s panel.</p>
 </li>
 <li>
-<p>Now, there are 20 slices of cheese for 20 servings of cheese fries, and 20 packets of fries for 20 servings of cheese fries.
+<p>Now, there are 20 slices of cheese sufficient for 20 servings of cheese fries, and 20 packets of fries sufficient for 20 servings of cheese fries.
 Overall, there can be 20 servings of cheese fries prepared. Upon success, the recipe panel should look like this, with the reflected
 change in number of servings of cheese fries:</p>
 <div class="imageblock">
@@ -1624,4 +1620,4 @@ e.g. <code>addRating 5</code></p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-09 14:53:55 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-09 15:24:12 UTC</div></div></div></body></html>
