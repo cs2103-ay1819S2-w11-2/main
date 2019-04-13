@@ -92,6 +92,8 @@ The name of the new staff member must not be identical to the name of any existi
 <div class="paragraph">
 <p>Format: <code>addStaff n/NAME p/PHONE e/EMAIL a/APPOINTMENT</code></p>
 </div>
+<div class="sidebarblock">
+<div class="content">
 <div class="ulist">
 <ul>
 <li>
@@ -108,6 +110,8 @@ The name of the new staff member must not be identical to the name of any existi
 </li>
 </ul>
 </div>
+</div>
+</div>
 <div class="paragraph">
 <p>Example:</p>
 </div>
@@ -123,6 +127,54 @@ The name of the new staff member must not be identical to the name of any existi
 </div>
 </div>
 <div class="sect3">
+<h4 id="list-staff-code-liststaff-code"><a class="link" href="#list-staff-code-liststaff-code">List Staff: <code>listStaff</code></a></h4>
+<div class="paragraph">
+<p>Lists all staff members whose names and appointments contain a certain list of given keywords.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>listStaff [n/NAME_1 NAME_2 &#8230;&#8203;] [a/APPOINTMENT_1 APPOINTMENT_2 &#8230;&#8203;]</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Keywords should be separated by spaces.</p>
+</li>
+<li>
+<p>All leading, trailing and extra spaces in the list of keywords for <code>NAME</code> and <code>APPOINTMENT</code> will be ignored.</p>
+</li>
+<li>
+<p>Keywords are case-insensitive.</p>
+</li>
+<li>
+<p>The list of keywords for <code>NAME</code> and <code>APPOINTMENT</code> must only contain alphanumeric characters.</p>
+</li>
+<li>
+<p>Only staff members whose names contain the exact keywords and whose appointments contain the exact keywords will be displayed.</p>
+</li>
+<li>
+<p>If no keywords are provided for <code>NAME</code> or <code>APPOINTMENT</code>, then the corresponding field will be ignored in the filtering.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>listStaff n/alice bob charlie a/cook</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Displays all staff members who are cooks, and whose names contain the words 'alice', 'bob' and 'charlie'.</p>
+</div>
+</div>
+<div class="sect3">
 <h4 id="delete-staff-code-deletestaff-code"><a class="link" href="#delete-staff-code-deletestaff-code">Delete Staff: <code>deleteStaff</code></a></h4>
 <div class="paragraph">
 <p>Deletes the staff member with the specified index from the system.</p>
@@ -130,12 +182,16 @@ The name of the new staff member must not be identical to the name of any existi
 <div class="paragraph">
 <p>Format: <code>deleteStaff INDEX</code></p>
 </div>
+<div class="sidebarblock">
+<div class="content">
 <div class="ulist">
 <ul>
 <li>
 <p><code>INDEX</code> must be a valid index number in the most recent listing.</p>
 </li>
 </ul>
+</div>
+</div>
 </div>
 <div class="paragraph">
 <p>Example</p>
@@ -159,6 +215,8 @@ The name of the new staff member must not be identical to the name of any existi
 <div class="paragraph">
 <p>Format: <code>editStaff INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/APPOINTMENT]</code></p>
 </div>
+<div class="sidebarblock">
+<div class="content">
 <div class="ulist">
 <ul>
 <li>
@@ -168,6 +226,8 @@ The name of the new staff member must not be identical to the name of any existi
 <p>The requirements for the optional fields <code>NAME</code>, <code>PHONE</code>, <code>EMAIL</code>, <code>APPOINTMENT</code> are identical to that of the addStaff command.</p>
 </li>
 </ul>
+</div>
+</div>
 </div>
 <div class="paragraph">
 <p>Example</p>
@@ -192,6 +252,8 @@ The new shift added must start and end on different days of the week, must have 
 <div class="paragraph">
 <p>Format: <code>addShift INDEX sd/START_DAY_OF_WEEK ts/START_TIME ed/END_DAY_OF_WEEK te/END_TIME</code></p>
 </div>
+<div class="sidebarblock">
+<div class="content">
 <div class="ulist">
 <ul>
 <li>
@@ -201,6 +263,8 @@ The new shift added must start and end on different days of the week, must have 
 <p><code>START_TIME</code> and <code>END_TIME</code> must be valid 24-hour time in <code>HH:MM</code> format.</p>
 </li>
 </ul>
+</div>
+</div>
 </div>
 <div class="paragraph">
 <p>Example:</p>
@@ -225,12 +289,16 @@ The shift to be deleted must exist in the specified staff member&#8217;s shift r
 <div class="paragraph">
 <p>Format: <code>deleteshift INDEX sd/START_DAY_OF_WEEK ts/START_TIME ed/END_DAY_OF_WEEK te/END_TIME</code></p>
 </div>
+<div class="sidebarblock">
+<div class="content">
 <div class="ulist">
 <ul>
 <li>
 <p>The requirements for the fields <code>START_DAY_OF_WEEK</code>, <code>START_TIME</code>, <code>END_DAY_OF_WEEK</code>, <code>END_TIME</code> are identical to that of the addShift command.</p>
 </li>
 </ul>
+</div>
+</div>
 </div>
 <div class="paragraph">
 <p>Example:</p>
@@ -597,4 +665,4 @@ The following seqeuence diagram shows how the <code>addshift</code> command work
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-13 11:34:00 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-13 11:43:48 UTC</div></div></div></body></html>

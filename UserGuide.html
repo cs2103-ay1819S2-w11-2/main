@@ -136,7 +136,7 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <div class="ulist">
 <ul>
 <li>
-<p>Some example commands you can try:</p>
+<p>After launching the application, below are some sample commands you can try:</p>
 <div class="ulist">
 <ul>
 <li>
@@ -158,7 +158,7 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 </div>
 </li>
 <li>
-<p>Refer to <a href="#Features">Section 3, &#8220;Features&#8221;</a> for details of each command.</p>
+<p>You can refer to <a href="#Features">Section 3, &#8220;Features&#8221;</a> for details of each command.</p>
 </li>
 </ol>
 </div>
@@ -175,40 +175,47 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <div class="ulist">
 <ul>
 <li>
-<p>Commands begin with the intended task, followed by a number of parameters preceded by a key (a unique alphabet and forward slash). The intended task (<code>addMember</code>) is non case-sensitive in the program and can be typed quickly as <code>addmember</code>, but is written in this manner for the user guide to be easily read.</p>
+<p>Commands begin with the intended task, followed by a number of parameters preceded by a key (comprised of a one or more letters and forward slash, for example, <code>n/</code>). The intended task is non case-sensitive in the program and can be typed quickly as (for example, <code>addMember</code> can be typed as <code>addmember</code>), but is written in this manner in the user guide for greater readability.</p>
+</li>
+<li>
+<p>Words in UPPER_CASE are the parameters to be supplied by the user. For example, <code>CUSTOMER_NAME</code>, <code>EMAIL</code> and <code>PHONE_NUMBER</code> in the command below are the parameters to be supplied by the user.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>e.g. <code>addMember n/CUSTOMER_NAME e/EMAIL p/PHONE_NUMBER</code>.</p>
+<p><code>addMember n/CUSTOMER_NAME e/EMAIL p/PHONE_NUMBER</code>.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p>Words in UPPER_CASE are the parameters to be supplied by the user.</p>
-</li>
-<li>
-<p>Items in square brackets are optional.</p>
+<p>Parameters in square brackets are optional parameters and can be omitted. For example, <code>LOYALTY_POINTS</code> below is an optional parameter.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>e.g. <code>addMember n/CUSTOMER_NAME e/EMAIL p/PHONE_NUMBER [l/LOYALTY_POINTS]</code></p>
+<p><code>addMember n/CUSTOMER_NAME e/EMAIL p/PHONE_NUMBER [l/LOYALTY_POINTS]</code></p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p>Items with <code>&#8230;&#8203;</code> after them can be used multiple times including zero times</p>
+<p>Parameters with <code>&#8230;&#8203;</code> after them can be used multiple times (including zero times) in the command. For example, <code>INGREDIENT_INDEX&amp;INGREDIENT_QUANTITY_IN_RECIPE</code> can be specified multiple times in the command below.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>e.g. <code>addRecipe r/RECIPE_NAME iq/INGREDIENT_INDEX&amp;INGREDIENT_QUANTITY__IN_RECIPE &#8230;&#8203;</code></p>
+<p><code>addRecipe r/RECIPE_NAME iq/INGREDIENT_INDEX&amp;INGREDIENT_QUANTITY_IN_RECIPE &#8230;&#8203;</code></p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p>Parameters can be in any order</p>
+<p>Parameters can be supplied in any order. For example, the following way of writing the <code>addMember</code> command above is also valid.</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>addMember p/PHONE_NUMBER n/CUSTOMER_NAME e/EMAIL</code></p>
+</li>
+</ul>
+</div>
 </li>
 </ul>
 </div>
@@ -219,13 +226,16 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <div class="sect3">
 <h4 id="viewing-help-code-help-code"><a class="link" href="#viewing-help-code-help-code">3.1.1. Viewing help : <code>help</code></a></h4>
 <div class="paragraph">
+<p>Displays this user guide to the user.</p>
+</div>
+<div class="paragraph">
 <p>Format: <code>help</code></p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="exit-code-exit-code"><a class="link" href="#exit-code-exit-code">3.1.2. Exit: <code>exit</code></a></h4>
 <div class="paragraph">
-<p>Exit the program.</p>
+<p>Exits the program.</p>
 </div>
 <div class="paragraph">
 <p>Format: <code>exit</code></p>
@@ -1148,6 +1158,8 @@ The name of the new staff member must not be identical to the name of any existi
 <div class="paragraph">
 <p>Format: <code>addStaff n/NAME p/PHONE e/EMAIL a/APPOINTMENT</code></p>
 </div>
+<div class="sidebarblock">
+<div class="content">
 <div class="ulist">
 <ul>
 <li>
@@ -1164,6 +1176,8 @@ The name of the new staff member must not be identical to the name of any existi
 </li>
 </ul>
 </div>
+</div>
+</div>
 <div class="paragraph">
 <p>Example:</p>
 </div>
@@ -1179,19 +1193,71 @@ The name of the new staff member must not be identical to the name of any existi
 </div>
 </div>
 <div class="sect3">
-<h4 id="delete-staff-code-deletestaff-code"><a class="link" href="#delete-staff-code-deletestaff-code">3.5.2. Delete Staff: <code>deleteStaff</code></a></h4>
+<h4 id="list-staff-code-liststaff-code"><a class="link" href="#list-staff-code-liststaff-code">3.5.2. List Staff: <code>listStaff</code></a></h4>
+<div class="paragraph">
+<p>Lists all staff members whose names and appointments contain a certain list of given keywords.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>listStaff [n/NAME_1 NAME_2 &#8230;&#8203;] [a/APPOINTMENT_1 APPOINTMENT_2 &#8230;&#8203;]</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Keywords should be separated by spaces.</p>
+</li>
+<li>
+<p>All leading, trailing and extra spaces in the list of keywords for <code>NAME</code> and <code>APPOINTMENT</code> will be ignored.</p>
+</li>
+<li>
+<p>Keywords are case-insensitive.</p>
+</li>
+<li>
+<p>The list of keywords for <code>NAME</code> and <code>APPOINTMENT</code> must only contain alphanumeric characters.</p>
+</li>
+<li>
+<p>Only staff members whose names contain the exact keywords and whose appointments contain the exact keywords will be displayed.</p>
+</li>
+<li>
+<p>If no keywords are provided for <code>NAME</code> or <code>APPOINTMENT</code>, then the corresponding field will be ignored in the filtering.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>listStaff n/alice bob charlie a/cook</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Displays all staff members who are cooks, and whose names contain the words 'alice', 'bob' and 'charlie'.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="delete-staff-code-deletestaff-code"><a class="link" href="#delete-staff-code-deletestaff-code">3.5.3. Delete Staff: <code>deleteStaff</code></a></h4>
 <div class="paragraph">
 <p>Deletes the staff member with the specified index from the system.</p>
 </div>
 <div class="paragraph">
 <p>Format: <code>deleteStaff INDEX</code></p>
 </div>
+<div class="sidebarblock">
+<div class="content">
 <div class="ulist">
 <ul>
 <li>
 <p><code>INDEX</code> must be a valid index number in the most recent listing.</p>
 </li>
 </ul>
+</div>
+</div>
 </div>
 <div class="paragraph">
 <p>Example</p>
@@ -1208,13 +1274,15 @@ The name of the new staff member must not be identical to the name of any existi
 </div>
 </div>
 <div class="sect3">
-<h4 id="edit-staff-code-editstaff-code"><a class="link" href="#edit-staff-code-editstaff-code">3.5.3. Edit Staff: <code>editStaff</code></a></h4>
+<h4 id="edit-staff-code-editstaff-code"><a class="link" href="#edit-staff-code-editstaff-code">3.5.4. Edit Staff: <code>editStaff</code></a></h4>
 <div class="paragraph">
 <p>Edits the staff member with the specified index.</p>
 </div>
 <div class="paragraph">
 <p>Format: <code>editStaff INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/APPOINTMENT]</code></p>
 </div>
+<div class="sidebarblock">
+<div class="content">
 <div class="ulist">
 <ul>
 <li>
@@ -1224,6 +1292,8 @@ The name of the new staff member must not be identical to the name of any existi
 <p>The requirements for the optional fields <code>NAME</code>, <code>PHONE</code>, <code>EMAIL</code>, <code>APPOINTMENT</code> are identical to that of the addStaff command.</p>
 </li>
 </ul>
+</div>
+</div>
 </div>
 <div class="paragraph">
 <p>Example</p>
@@ -1240,7 +1310,7 @@ The name of the new staff member must not be identical to the name of any existi
 </div>
 </div>
 <div class="sect3">
-<h4 id="add-shift-to-staff-code-addshift-code"><a class="link" href="#add-shift-to-staff-code-addshift-code">3.5.4. Add Shift to Staff: <code>addShift</code></a></h4>
+<h4 id="add-shift-to-staff-code-addshift-code"><a class="link" href="#add-shift-to-staff-code-addshift-code">3.5.5. Add Shift to Staff: <code>addShift</code></a></h4>
 <div class="paragraph">
 <p>Adds a shift to the shift roster of an existing staff member in the restaurant with the specified index.
 The new shift added must start and end on different days of the week, must have a positive duration, and must not clash with any existing shift.</p>
@@ -1248,6 +1318,8 @@ The new shift added must start and end on different days of the week, must have 
 <div class="paragraph">
 <p>Format: <code>addShift INDEX sd/START_DAY_OF_WEEK ts/START_TIME ed/END_DAY_OF_WEEK te/END_TIME</code></p>
 </div>
+<div class="sidebarblock">
+<div class="content">
 <div class="ulist">
 <ul>
 <li>
@@ -1257,6 +1329,8 @@ The new shift added must start and end on different days of the week, must have 
 <p><code>START_TIME</code> and <code>END_TIME</code> must be valid 24-hour time in <code>HH:MM</code> format.</p>
 </li>
 </ul>
+</div>
+</div>
 </div>
 <div class="paragraph">
 <p>Example:</p>
@@ -1273,7 +1347,7 @@ The new shift added must start and end on different days of the week, must have 
 </div>
 </div>
 <div class="sect3">
-<h4 id="delete-shift-from-staff-code-deleteshift-code"><a class="link" href="#delete-shift-from-staff-code-deleteshift-code">3.5.5. Delete Shift from Staff: <code>deleteShift</code></a></h4>
+<h4 id="delete-shift-from-staff-code-deleteshift-code"><a class="link" href="#delete-shift-from-staff-code-deleteshift-code">3.5.6. Delete Shift from Staff: <code>deleteShift</code></a></h4>
 <div class="paragraph">
 <p>Deletes a shift from the shift roster of an existing staff member in the restaurant with the specified index.
 The shift to be deleted must exist in the specified staff member&#8217;s shift roster.</p>
@@ -1281,12 +1355,16 @@ The shift to be deleted must exist in the specified staff member&#8217;s shift r
 <div class="paragraph">
 <p>Format: <code>deleteshift INDEX sd/START_DAY_OF_WEEK ts/START_TIME ed/END_DAY_OF_WEEK te/END_TIME</code></p>
 </div>
+<div class="sidebarblock">
+<div class="content">
 <div class="ulist">
 <ul>
 <li>
 <p>The requirements for the fields <code>START_DAY_OF_WEEK</code>, <code>START_TIME</code>, <code>END_DAY_OF_WEEK</code>, <code>END_TIME</code> are identical to that of the addShift command.</p>
 </li>
 </ul>
+</div>
+</div>
 </div>
 <div class="paragraph">
 <p>Example:</p>
@@ -1550,23 +1628,20 @@ e.g. <code>recipeSummary</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>listBookings</strong> <code>listBookings [ts/TIME_START] [te/TIME_END]</code><br>
-e.g. <code>listBooking ts/1200 te/1530</code></p>
-</li>
-<li>
 <p><strong>updateCapacity</strong> <code>updateCapacity NUMBER</code><br>
 e.g. <code>updateCapacity 50</code></p>
 </li>
 <li>
-<p><strong>addBooking</strong> <code>addBooking [c/CUSTOMER_INDEX] n/NUMBER OF MEMBERS t/TIME [d/DATE]</code><br>
-e.g. <code>addBooking 1 1300 25 Feb</code></p>
+<p><strong>addBooking</strong> <code>addBooking c/CUSTOMER_INDEX n/NUMBER OF MEMBERS ts/TIME_START<br>
+e.g. `addBooking c/1 n/7 ts/2019-04-07T12:00</code></p>
 </li>
 <li>
 <p><strong>deleteBooking</strong> <code>deleteBooking INDEX</code><br>
 e.g. <code>deleteBooking 3</code></p>
 </li>
 <li>
-<p><strong>bookingSummary</strong> <code>bookingSummary</code></p>
+<p><strong>editBooking</strong> <code>editStaff INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/APPOINTMENT]</code><br>
+e.g. <code>editBooking 3 ts/12:00 n/6</code></p>
 </li>
 </ul>
 </div>
@@ -1578,6 +1653,10 @@ e.g. <code>deleteBooking 3</code></p>
 <li>
 <p><strong>addStaff</strong> <code>addStaff n/NAME p/PHONE e/EMAIL a/APPOINTMENT</code><br>
 e.g. <code>addStaff n/John Doe p/91234567 e/john@example.com a/Waiter</code></p>
+</li>
+<li>
+<p><strong>listStaff</strong> <code>listStaff [n/NAME_1 NAME_2 &#8230;&#8203;] [a/APPOINTMENT_1 APPOINTMENT_2 &#8230;&#8203;]</code><br>
+e.g. <code>listStaff n/alice bob charlie a/cook</code></p>
 </li>
 <li>
 <p><strong>deleteStaff</strong> <code>deleteStaff INDEX</code><br>
@@ -1623,4 +1702,4 @@ e.g. <code>addRating 5</code></p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-13 11:34:00 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-13 11:43:48 UTC</div></div></div></body></html>
