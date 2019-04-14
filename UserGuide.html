@@ -30,7 +30,7 @@
 <li><a href="#inventory-management-2">5.3. Inventory Management</a></li>
 <li><a href="#booking-management-2">5.4. Booking Management</a></li>
 <li><a href="#staff-management-2">5.5. Staff Management</a></li>
-<li><a href="#overall-management">5.6. Overall Management</a></li>
+<li><a href="#statistics-2">5.6. Statistics</a></li>
 </ul>
 </li>
 </ul>
@@ -83,6 +83,16 @@
 <ul>
 <li>
 <p>Manage the contact details of the staff, and facilitate their shift work allocation</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Statistics</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Collates bookings data into graphs</p>
 </li>
 </ul>
 </div>
@@ -441,14 +451,22 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <div class="paragraph">
 <p>Example:</p>
 </div>
-<div class="paragraph">
-<p>*<code>editmember 1 p/91234567 e/johndoe@example.com</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>editmember 1 p/91234567 e/johndoe@example.com</code></p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
 <p>Edits the phone number and email address of the 1st person to be <code>91234567</code> and <code>johndoe@example.com</code> respectively.</p>
 </div>
-<div class="paragraph">
-<p>*<code>editmember 2 n/Betsy Crower</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>editmember 2 n/Betsy Crower</code></p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
 <p>Edits the name of the 2nd person to be Betsy Crower.</p>
@@ -1570,12 +1588,12 @@ The shift to be deleted must exist in the specified staff member&#8217;s shift r
 <div class="ulist">
 <ul>
 <li>
-<p><strong>addMember</strong> <code>addMember n/CUSTOMER_NAME e/EMAIL p/PHONE_NUMBER [l/LOYALTY_POINTS] [se/EMAIL_SUBSCRIPTION_BOOLEAN] [ss/SMS_SUBSCRIPTION_BOOLEAN]</code><br>
+<p><strong>addMember</strong> <code>addMember n/CUSTOMER_NAME e/EMAIL p/PHONE_NUMBER [l/LOYALTY_POINTS]</code><br>
 e.g. <code>addMember n/John Doe e/johnd@gmail.com p/81234567</code></p>
 </li>
 <li>
-<p><strong>listMembers</strong> <code>listMembers [n/NAME_REGEX] [e/EMAIL_REGEX] [l/LOYALTY_POINTS_EQUATION] [se/TRUE_FALSE] [ss/TRUE_FALSE]</code><br>
-e.g. <code>listMembers l/&gt;10 se/true</code></p>
+<p><strong>listMembers</strong> <code>listMembers [n/NAME1 NAME2 &#8230;&#8203;] [l/LOYALTY_POINTS_MINIMUM]</code><br>
+e.g. <code>listMembers n/bob</code>, <code>listMembers l/20</code></p>
 </li>
 <li>
 <p><strong>deleteMember</strong> <code>deleteMember INDEX</code><br>
@@ -1678,28 +1696,19 @@ e.g. <code>deleteshift 1 sd/TUESDAY ts/08:00 ed/TUESDAY te/10:30</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="overall-management"><a class="link" href="#overall-management">5.6. Overall Management</a></h3>
+<h3 id="statistics-2"><a class="link" href="#statistics-2">5.6. Statistics</a></h3>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>viewFeedback</strong> <code>viewFeedback</code></p>
+<p><strong>statsdays</strong> <code>statsdays DAYS</code><br>
+e.g. <code>statsdays 30</code></p>
 </li>
 <li>
-<p><strong>addFeedback</strong> <code>addFeedback FEEDBACK</code><br>
-e.g. <code>addFeedback Good service and food!</code></p>
-</li>
-<li>
-<p><strong>addRating</strong> <code>addRating RATING</code><br>
-e.g. <code>addRating 5</code></p>
-</li>
-<li>
-<p><strong>graphRating</strong> <code>graphRating</code></p>
-</li>
-<li>
-<p><strong>ratingStats</strong> <code>ratingStats</code></p>
+<p><strong>statstime</strong> <code>statstime DAYS</code><br>
+e.g. <code>statstime 30</code></p>
 </li>
 </ul>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-14 11:43:54 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-14 12:29:49 UTC</div></div></div></body></html>
