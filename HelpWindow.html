@@ -261,7 +261,77 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 </div>
 </div>
 <div class="sect3">
-<h4 id="history-code-history-code"><a class="link" href="#history-code-history-code">3.1.4. History: <code>history</code></a></h4>
+<h4 id="undoing-previous-command-code-undo-code"><a class="link" href="#undoing-previous-command-code-undo-code">3.1.4. Undoing previous command : <code>undo</code></a></h4>
+<div class="paragraph">
+<p>Restores the restaurant book to the state before the previous <em>undoable</em> command was executed.<br>
+Format: <code>undo</code></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Undoable commands: those commands that modify the restaurant book&#8217;s content (<code>add</code>, <code>delete</code>, <code>edit</code> and <code>clear</code>).</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>deleteMember 1</code><br>
+<code>undo</code> (reverses the <code>deleteMember 1</code> command)<br></p>
+</li>
+<li>
+<p><code>deleteMember 1</code><br>
+<code>clear</code><br>
+<code>undo</code> (reverses the <code>clear</code> command)<br>
+<code>undo</code> (reverses the <code>deleteMember 1</code> command)<br></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="redoing-the-previously-undone-command-code-redo-code"><a class="link" href="#redoing-the-previously-undone-command-code-redo-code">3.1.5. Redoing the previously undone command : <code>redo</code></a></h4>
+<div class="paragraph">
+<p>Reverses the most recent <code>undo</code> command.<br>
+Format: <code>redo</code></p>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>deleteMember 1</code><br>
+<code>undo</code> (reverses the <code>deleteMember 1</code> command)<br>
+<code>redo</code> (reapplies the <code>deleteMember 1</code> command)<br></p>
+</li>
+<li>
+<p><code>deleteMember 1</code><br>
+<code>redo</code><br>
+The <code>redo</code> command fails as there are no <code>undo</code> commands executed previously.</p>
+</li>
+<li>
+<p><code>deleteMember 1</code><br>
+<code>clear</code><br>
+<code>undo</code> (reverses the <code>clear</code> command)<br>
+<code>undo</code> (reverses the <code>deleteMember 1</code> command)<br>
+<code>redo</code> (reapplies the <code>deleteMember 1</code> command)<br>
+<code>redo</code> (reapplies the <code>clear</code> command)<br></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="history-code-history-code"><a class="link" href="#history-code-history-code">3.1.6. History: <code>history</code></a></h4>
 <div class="paragraph">
 <p>Lists commands entered, displayed from most recent to earliest.</p>
 </div>
@@ -278,7 +348,8 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <p>Adds a customer who signs up for membership.</p>
 </div>
 <div class="paragraph">
-<p>Format: <code>addMember n/CUSTOMER_NAME e/EMAIL p/PHONE_NUMBER [l/LOYALTY_POINTS]</code></p>
+<p>Format: <code>addMember n/CUSTOMER_NAME e/EMAIL p/PHONE_NUMBER [l/LOYALTY_POINTS]</code><br>
+Shortcut: <code>am n/CUSTOMER_NAME e/EMAIL p/PHONE_NUMBER [l/LOYALTY_POINTS]</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -297,7 +368,7 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <div class="ulist">
 <ul>
 <li>
-<p><code>addMember n/John Doe e/johnd@gmail.com p/81234567</code></p>
+<p><code>addMember n/John Doe e/johnd@gmail.com p/81234567 l/20</code></p>
 </li>
 </ul>
 </div>
@@ -308,7 +379,8 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <p>Lists all members whose names contain any of the list of words (case-insensitive) and who has at least the specified amount of loyalty points.</p>
 </div>
 <div class="paragraph">
-<p>Format: <code>listMembers [n/NAME1 NAME2 &#8230;&#8203;] [l/LOYALTY_POINTS_MINIMUM]</code></p>
+<p>Format: <code>listMembers [n/NAME1 NAME2 &#8230;&#8203;] [l/LOYALTY_POINTS_MINIMUM]</code><br>
+Shortcut: <code>lm [n/NAME1 NAME2 &#8230;&#8203;] [l/LOYALTY_POINTS_MINIMUM]</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -386,7 +458,8 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <p>Deletes the specified member from the management system. Note that this action also deletes all bookings made by the member.</p>
 </div>
 <div class="paragraph">
-<p>Format: <code>deleteMember INDEX</code></p>
+<p>Format: <code>deleteMember INDEX</code><br>
+Shortcut: <code>dm INDEX</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -435,7 +508,8 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <p>Edits an existing member in the restaurant book.</p>
 </div>
 <div class="paragraph">
-<p>Format: <code>editMember INDEX [n/NAME] [p/PHONE] [e/EMAIL] [l/LOYALTY_POINTS]</code></p>
+<p>Format: <code>editMember INDEX [n/NAME] [p/PHONE] [e/EMAIL] [l/LOYALTY_POINTS]</code><br>
+Shortcut: <code>em INDEX [n/NAME] [p/PHONE] [e/EMAIL] [l/LOYALTY_POINTS]</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -551,7 +625,8 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 and has ingredient quantity falling below the ingredient warning amount.</p>
 </div>
 <div class="paragraph">
-<p>Format: <code>listIngredients [in/INGREDIENT_NAME] [w/]</code></p>
+<p>Format: <code>listIngredients [in/INGREDIENT_NAME] [w/]</code><br>
+Shortcut: <code>li [in/INGREDIENT_NAME] [w/]</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -612,7 +687,8 @@ ingredient warning amount will be listed.</p>
 <p>Adds new ingredient into inventory. Previously not existing in inventory before.</p>
 </div>
 <div class="paragraph">
-<p>Format: <code>addIngredient in/INGREDIENT_NAME u/INGREDIENT_UNIT [q/INGREDIENT_QUANTITY] [w/INGREDIENT_WARNING_AMOUNT]</code></p>
+<p>Format: <code>addIngredient in/INGREDIENT_NAME u/INGREDIENT_UNIT [q/INGREDIENT_QUANTITY] [w/INGREDIENT_WARNING_AMOUNT]</code><br>
+Shortcut: <code>ai in/INGREDIENT_NAME u/INGREDIENT_UNIT [q/INGREDIENT_QUANTITY] [w/INGREDIENT_WARNING_AMOUNT]</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -676,10 +752,11 @@ Calling <code>listIngredients w/</code> will display all ingredients that fall b
 <div class="sect3">
 <h4 id="delete-ingredient-code-deleteingredient-code"><a class="link" href="#delete-ingredient-code-deleteingredient-code">3.3.3. Delete Ingredient: <code>deleteIngredient</code></a></h4>
 <div class="paragraph">
-<p>Deletes the specified ingredient from the restaurant book. Note that this action also deletes all recipes that contain this ingredient.</p>
+<p>Deletes the specified ingredient from the restaurant book. Note that this action also deletes all recipes that contain this ingredient, and all affected recipes will be shown upon deletion.</p>
 </div>
 <div class="paragraph">
-<p>Format: <code>deleteIngredient INDEX</code></p>
+<p>Format: <code>deleteIngredient INDEX</code><br>
+Shortcut: <code>di INDEX</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -716,7 +793,8 @@ Calling <code>listIngredients w/</code> will display all ingredients that fall b
 Previously existing in inventory before.</p>
 </div>
 <div class="paragraph">
-<p>Format: <code>restockIngredient i/INDEX q/INGREDIENT_QUANTITY</code></p>
+<p>Format: <code>restockIngredient i/INDEX q/INGREDIENT_QUANTITY</code><br>
+Shortcut: <code>ri i/INDEX q/INGREDIENT_QUANTITY</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -753,7 +831,8 @@ after <code>restockIngredient i/3 q/10</code> was called, will be 30.</p>
 <p>Consume a particular amount of ingredient from inventory, based on specified <code>INDEX</code> via <code>listIngredients</code>.</p>
 </div>
 <div class="paragraph">
-<p>Format: <code>consumeIngredient i/INDEX q/INGREDIENT_QUANTITY</code></p>
+<p>Format: <code>consumeIngredient i/INDEX q/INGREDIENT_QUANTITY</code><br>
+Shortcut: <code>ci i/INDEX q/INGREDIENT_QUANTITY</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -791,7 +870,8 @@ New ingredient quantity after <code>consumeIngredient</code> command was called,
 <p>Add recipe of dish served at the restaurant.</p>
 </div>
 <div class="paragraph">
-<p>Format: <code>addRecipe r/RECIPE_NAME iq/INDEX&amp;INGREDIENT_QUANTITY__IN_RECIPE &#8230;&#8203;</code></p>
+<p>Format: <code>addRecipe r/RECIPE_NAME iq/INDEX&amp;INGREDIENT_QUANTITY<em>IN_RECIPE &#8230;&#8203;</code><br>
+Shortcut: <code>ar r/RECIPE_NAME iq/INDEX&amp;INGREDIENT_QUANTITY</em>IN_RECIPE &#8230;&#8203;</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -836,15 +916,15 @@ automatically adjusted and displayed.</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p><code>addingredient in/cheese u/slices q/20</code>
-<code>addingredient in/fries u/packets q/10</code></p>
+<p><code>addIngredient in/cheese u/slices q/20</code><br>
+<code>addIngredient in/fries u/packets q/10</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p>Adds cheese, and fries into the ingredient panel. Upon success, the ingredient panel should look like this:</p>
+<p>These commands add cheese and fries into the ingredient panel. Upon success, the ingredient panel should look like this:</p>
 <div class="imageblock">
 <div class="content">
-<img src="images/addRecipe-addIngredientCommand.png" alt="addRecipe addIngredientCommand" width="300">
+<img src="images/addRecipe-addIngredientCommand.png" alt="addRecipe addIngredientCommand" width="1000">
 </div>
 <div class="title">Figure 2. Successfully adding 2 ingredients into restaurant book</div>
 </div>
@@ -853,11 +933,11 @@ automatically adjusted and displayed.</p>
 </div>
 </li>
 <li>
-<p><code>addrecipe r/cheese fries iq/1&amp;1 iq/2&amp;1</code></p>
+<p><code>addRecipe r/cheese fries iq/1&amp;1 iq/2&amp;1</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p>Adds cheese fries into the recipe panel. For each serving of cheese fries, 1 slice of cheese and 1
+<p>This command adds cheese fries into the recipe panel. For each serving of cheese fries, 1 slice of cheese and 1
 packet of fries is needed.</p>
 </li>
 <li>
@@ -874,11 +954,11 @@ Overall, there can only be 10 servings of cheese fries prepared. Upon success, t
 </div>
 </li>
 <li>
-<p><code>restockingredient i/2 q/10</code></p>
+<p><code>restockIngredient i/2 q/10</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p>Restocks fries by 10 packets, and change in ingredient quantity is reflected in ingredient&#8217;s panel.</p>
+<p>Restocks fries by 10 packets, and change in ingredient quantity of fries is reflected in ingredient&#8217;s panel.</p>
 </li>
 <li>
 <p>Now, there are 20 slices of cheese sufficient for 20 servings of cheese fries, and 20 packets of fries sufficient for 20 servings of cheese fries.
@@ -903,7 +983,8 @@ change in number of servings of cheese fries:</p>
 <p>Delete a recipe based on specified INDEX via <code>listRecipes</code>.</p>
 </div>
 <div class="paragraph">
-<p>Format: <code>deleteRecipe INDEX</code></p>
+<p>Format: <code>deleteRecipe INDEX</code><br>
+Shortcut:  <code>dr INDEX</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -971,7 +1052,8 @@ and the quantity required in each recipe.</p>
 <p>View the current lists of bookings within a certain time frame</p>
 </div>
 <div class="paragraph">
-<p>Format: <code>listBookings [ts/TIME_START] [te/TIME_END]</code></p>
+<p>Format: <code>listBookings [ts/TIME_START] [te/TIME_END]</code><br>
+Shortcut: <code>em INDEX [n/NAME] [p/PHONE] [e/EMAIL] [l/LOYALTY_POINTS]</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -1001,7 +1083,8 @@ and the quantity required in each recipe.</p>
 <p>Want to ensure that your restaurant does not get overbooked? Make sure to update the capacity of the restaurant accordingly.</p>
 </div>
 <div class="paragraph">
-<p>Format: <code>updateCapacity NUMBER</code></p>
+<p>Format: <code>updateCapacity NUMBER</code><br>
+Shortcut: <code>uc NUMBER</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -1037,7 +1120,8 @@ and the quantity required in each recipe.</p>
 <p>Creates a new booking.</p>
 </div>
 <div class="paragraph">
-<p>Format: <code>addBooking c/CUSTOMER_INDEX n/NUMBER OF PERSONS ts/TIME_START</code></p>
+<p>Format: <code>addBooking c/CUSTOMER_INDEX n/NUMBER OF PERSONS ts/TIME_START</code><br>
+Shortcut: <code>ab c/CUSTOMER_INDEX n/NUMBER OF PERSONS ts/TIME_START</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -1102,7 +1186,8 @@ and the quantity required in each recipe.</p>
 <p>Edits a booking by changing either the time, number of persons of both.</p>
 </div>
 <div class="paragraph">
-<p>Format: <code>editBooking INDEX [ts/TIME_START] [n/NUMBER_OF_PERSONS]</code></p>
+<p>Format: <code>editBooking INDEX [ts/TIME_START] [n/NUMBER_OF_PERSONS]</code><br>
+Shortcut: <code>eb INDEX [ts/TIME_START] [n/NUMBER_OF_PERSONS]</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -1145,7 +1230,8 @@ and the quantity required in each recipe.</p>
 <p>Deletes a booking.</p>
 </div>
 <div class="paragraph">
-<p>Format: <code>deleteBooking INDEX</code></p>
+<p>Format: <code>deleteBooking INDEX</code><br>
+Shortcut: <code>db INDEX</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -1182,7 +1268,8 @@ and the quantity required in each recipe.</p>
 The name of the new staff member must not be identical to the name of any existing staff member.</p>
 </div>
 <div class="paragraph">
-<p>Format: <code>addStaff n/NAME p/PHONE e/EMAIL a/APPOINTMENT</code></p>
+<p>Format: <code>addStaff n/NAME p/PHONE e/EMAIL a/APPOINTMENT</code><br>
+Shortcut: <code>as n/NAME p/PHONE e/EMAIL a/APPOINTMENT</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -1224,7 +1311,8 @@ The name of the new staff member must not be identical to the name of any existi
 <p>Lists all staff members whose names and appointments contain a certain list of given keywords.</p>
 </div>
 <div class="paragraph">
-<p>Format: <code>listStaff [n/NAME_1 NAME_2 &#8230;&#8203;] [a/APPOINTMENT_1 APPOINTMENT_2 &#8230;&#8203;]</code></p>
+<p>Format: <code>listStaff [n/NAME_1 NAME_2 &#8230;&#8203;] [a/APPOINTMENT_1 APPOINTMENT_2 &#8230;&#8203;]</code><br>
+Shortcut: <code>ls [n/NAME_1 NAME_2 &#8230;&#8203;] [a/APPOINTMENT_1 APPOINTMENT_2 &#8230;&#8203;]</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -1272,7 +1360,8 @@ The name of the new staff member must not be identical to the name of any existi
 <p>Deletes the staff member with the specified index from the system.</p>
 </div>
 <div class="paragraph">
-<p>Format: <code>deleteStaff INDEX</code></p>
+<p>Format: <code>deleteStaff INDEX</code><br>
+Shortcut: <code>ds INDEX</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -1305,7 +1394,8 @@ The name of the new staff member must not be identical to the name of any existi
 <p>Edits the staff member with the specified index.</p>
 </div>
 <div class="paragraph">
-<p>Format: <code>editStaff INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/APPOINTMENT]</code></p>
+<p>Format: <code>editStaff INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/APPOINTMENT]</code><br>
+Shortcut: <code>es INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/APPOINTMENT]</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -1342,7 +1432,8 @@ The name of the new staff member must not be identical to the name of any existi
 The new shift added must start and end on different days of the week, must have a positive duration, and must not clash with any existing shift.</p>
 </div>
 <div class="paragraph">
-<p>Format: <code>addShift INDEX sd/START_DAY_OF_WEEK ts/START_TIME ed/END_DAY_OF_WEEK te/END_TIME</code></p>
+<p>Format: <code>addShift INDEX sd/START_DAY_OF_WEEK ts/START_TIME ed/END_DAY_OF_WEEK te/END_TIME</code><br>
+Shortcut: <code>ash INDEX sd/START_DAY_OF_WEEK ts/START_TIME ed/END_DAY_OF_WEEK te/END_TIME</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -1379,7 +1470,8 @@ The new shift added must start and end on different days of the week, must have 
 The shift to be deleted must exist in the specified staff member&#8217;s shift roster.</p>
 </div>
 <div class="paragraph">
-<p>Format: <code>deleteshift INDEX sd/START_DAY_OF_WEEK ts/START_TIME ed/END_DAY_OF_WEEK te/END_TIME</code></p>
+<p>Format: <code>deleteshift INDEX sd/START_DAY_OF_WEEK ts/START_TIME ed/END_DAY_OF_WEEK te/END_TIME</code><br>
+Shortcut: <code>dsh INDEX sd/START_DAY_OF_WEEK ts/START_TIME ed/END_DAY_OF_WEEK te/END_TIME</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -1415,7 +1507,8 @@ The shift to be deleted must exist in the specified staff member&#8217;s shift r
 <p>Displays the number of customers in bookings over the past few days in a bar graph.</p>
 </div>
 <div class="paragraph">
-<p>Format: <code>statsdays DAYS</code></p>
+<p>Format: <code>statsdays DAYS</code><br>
+Shortcut: <code>sd DAYS</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -1451,7 +1544,8 @@ The shift to be deleted must exist in the specified staff member&#8217;s shift r
 <p>Displays the number of customers in bookings over the past few days in a bar graph, grouped by hour of the day.</p>
 </div>
 <div class="paragraph">
-<p>Format: <code>statstime DAYS</code></p>
+<p>Format: <code>statstime DAYS</code><br>
+Shortcut: <code>st DAYS</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -1588,6 +1682,12 @@ The shift to be deleted must exist in the specified staff member&#8217;s shift r
 <li>
 <p><strong>history</strong> <code>history</code></p>
 </li>
+<li>
+<p><strong>undo</strong> <code>undo</code></p>
+</li>
+<li>
+<p><strong>redo</strong> <code>redo</code></p>
+</li>
 </ul>
 </div>
 </div>
@@ -1596,16 +1696,68 @@ The shift to be deleted must exist in the specified staff member&#8217;s shift r
 <div class="ulist">
 <ul>
 <li>
-<p><strong>addMember</strong> <code>addMember n/CUSTOMER_NAME e/EMAIL p/PHONE_NUMBER [l/LOYALTY_POINTS]</code><br>
-e.g. <code>addMember n/John Doe e/johnd@gmail.com p/81234567</code></p>
+<p><strong>addMember</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Format: <code>addMember n/CUSTOMER_NAME e/EMAIL p/PHONE_NUMBER [l/LOYALTY_POINTS]</code></p>
 </li>
 <li>
-<p><strong>listMembers</strong> <code>listMembers [n/NAME1 NAME2 &#8230;&#8203;] [l/LOYALTY_POINTS_MINIMUM]</code><br>
-e.g. <code>listMembers n/bob</code>, <code>listMembers l/20</code></p>
+<p>Shortcut: <code>am n/CUSTOMER_NAME e/EMAIL p/PHONE_NUMBER [l/LOYALTY_POINTS]</code></p>
 </li>
 <li>
-<p><strong>deleteMember</strong> <code>deleteMember INDEX</code><br>
-e.g. <code>deleteMember 2</code></p>
+<p>e.g. <code>`addMember n/John Doe e/johnd@gmail.com p/81234567 l/20</code></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>listMembers</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Format: <code>listMembers [n/NAME1 NAME2 &#8230;&#8203;] [l/LOYALTY_POINTS_MINIMUM]</code></p>
+</li>
+<li>
+<p>Shortcut: <code>lm [n/NAME1 NAME2 &#8230;&#8203;] [l/LOYALTY_POINTS_MINIMUM]</code></p>
+</li>
+<li>
+<p>e.g. <code>listMembers n/Betsy Tim l/6</code></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>deleteMember</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Format: <code>deleteMember INDEX</code></p>
+</li>
+<li>
+<p>Shortcut: <code>dm INDEX</code></p>
+</li>
+<li>
+<p>e.g. <code>deleteMember 2</code></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>editMember</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Format: <code>editMember INDEX [n/NAME] [p/PHONE] [e/EMAIL] [l/LOYALTY_POINTS]</code></p>
+</li>
+<li>
+<p>Shortcut: <code>em INDEX [n/NAME] [p/PHONE] [e/EMAIL] [l/LOYALTY_POINTS]</code></p>
+</li>
+<li>
+<p>e.g. <code>editmember 1 p/91234567 e/johndoe@example.com</code></p>
+</li>
+</ul>
+</div>
 </li>
 </ul>
 </div>
@@ -1615,36 +1767,116 @@ e.g. <code>deleteMember 2</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>listIngredients</strong> <code>listIngredients [in/INGREDIENT_NAME] [w/]</code><br>
-e.g. <code>listIngredients in/tomato w/</code></p>
+<p><strong>listIngredients</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Format: <code>listIngredients [in/INGREDIENT_NAME] [w/]</code><br></p>
 </li>
 <li>
-<p><strong>addIngredient</strong> <code>addIngredient in/INGREDIENT_NAME u/INGREDIENT_UNIT [q/INGREDIENT_QUANTITY] [w/INGREDIENT_WARNING_AMOUNT]</code><br>
-e.g. <code>addIngredient in/chicken u/full chickens q/100 w/10</code></p>
+<p>Shortcut: <code>li [in/INGREDIENT_NAME] [w/]</code></p>
 </li>
 <li>
-<p><strong>restockIngredient</strong> <code>restockIngredient i/INGREDIENT_INDEX q/INGREDIENT_QUANTITY</code><br>
-e.g. <code>restockIngredient i/3 q/10</code></p>
+<p>e.g. <code>listIngredients in/tomato w/</code></p>
+</li>
+</ul>
+</div>
 </li>
 <li>
-<p><strong>consumeIngredient</strong> <code>consumeIngredient i/INGREDIENT_INDEX q/INGREDIENT_QUANTITY</code><br>
-e.g. <code>consumeIngredient i/3 q/10</code></p>
+<p><strong>addIngredient</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Format: <code>addIngredient in/INGREDIENT_NAME u/INGREDIENT_UNIT [q/INGREDIENT_QUANTITY] [w/INGREDIENT_WARNING_AMOUNT]</code></p>
 </li>
 <li>
-<p><strong>deleteIngredient</strong> <code>delete INDEX</code><br>
-e.g. <code>deleteIngredient 3</code></p>
+<p>Shortcut: <code>ai in/INGREDIENT_NAME u/INGREDIENT_UNIT [q/INGREDIENT_QUANTITY] [w/INGREDIENT_WARNING_AMOUNT]</code></p>
 </li>
 <li>
-<p><strong>addRecipe</strong>  <code>addRecipe r/RECIPE_NAME iq/INGREDIENT_INDEX&amp;INGREDIENT_QUANTITY_IN_RECIPE &#8230;&#8203;</code><br>
-e.g. <code>addRecipe r/Chicken Rice iq/4&amp;1 iq/9&amp;3</code></p>
+<p>e.g. <code>addIngredient in/chicken u/full chickens q/100 w/10</code></p>
+</li>
+</ul>
+</div>
 </li>
 <li>
-<p><strong>deleteRecipe</strong> <code>delete INDEX</code><br>
-e.g. <code>deleteRecipe 3</code></p>
+<p><strong>restockIngredient</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Format: <code>restockIngredient i/INGREDIENT_INDEX q/INGREDIENT_QUANTITY</code></p>
 </li>
 <li>
-<p><strong>recipeSummary</strong> <code>recipeSummary</code><br>
-e.g. <code>recipeSummary</code></p>
+<p>Shortcut: <code>ri i/INGREDIENT_INDEX q/INGREDIENT_QUANTITY</code></p>
+</li>
+<li>
+<p>e.g. <code>restockIngredient i/3 q/10</code></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>consumeIngredient</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Format: <code>consumeIngredient i/INGREDIENT_INDEX q/INGREDIENT_QUANTITY</code></p>
+</li>
+<li>
+<p>Shortcut: <code>ci i/INGREDIENT_INDEX q/INGREDIENT_QUANTITY</code></p>
+</li>
+<li>
+<p>e.g. <code>consumeIngredient i/3 q/10</code></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>deleteIngredient</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Format: <code>deleteIngredient INDEX</code></p>
+</li>
+<li>
+<p>Shortcut: <code>di INDEX</code></p>
+</li>
+<li>
+<p>e.g. <code>deleteIngredient 3</code></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>addRecipe</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Format: <code>addRecipe r/RECIPE_NAME iq/INGREDIENT_INDEX&amp;INGREDIENT_QUANTITY_IN_RECIPE &#8230;&#8203;</code></p>
+</li>
+<li>
+<p>Shortcut: <code>ar r/RECIPE_NAME iq/INGREDIENT_INDEX&amp;INGREDIENT_QUANTITY_IN_RECIPE &#8230;&#8203;</code></p>
+</li>
+<li>
+<p>e.g. <code>addRecipe r/Chicken Rice iq/4&amp;1 iq/9&amp;3</code></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>deleteRecipe</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Format: <code>deleteRecipe INDEX</code></p>
+</li>
+<li>
+<p>Shortcut: <code>dr INDEX</code></p>
+</li>
+<li>
+<p>e.g. <code>deleteRecipe 3</code></p>
+</li>
+</ul>
+</div>
 </li>
 </ul>
 </div>
@@ -1654,20 +1886,68 @@ e.g. <code>recipeSummary</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>updateCapacity</strong> <code>updateCapacity NUMBER</code><br>
-e.g. <code>updateCapacity 50</code></p>
+<p><strong>updateCapacity</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Format: <code>updateCapacity NUMBER</code></p>
 </li>
 <li>
-<p><strong>addBooking</strong> <code>addBooking c/CUSTOMER_INDEX n/NUMBER OF MEMBERS ts/TIME_START</code><br>
-e.g. <code>addBooking c/1 n/7 ts/2019-04-07T12:00</code></p>
+<p>Shortcut: <code>uc NUMBER</code></p>
 </li>
 <li>
-<p><strong>deleteBooking</strong> <code>deleteBooking INDEX</code><br>
-e.g. <code>deleteBooking 3</code></p>
+<p>e.g. <code>updateCapacity 50</code></p>
+</li>
+</ul>
+</div>
 </li>
 <li>
-<p><strong>editBooking</strong> <code>editStaff INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/APPOINTMENT]</code><br>
-e.g. <code>editBooking 3 ts/12:00 n/6</code></p>
+<p><strong>addBooking</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Format: <code>addBooking c/CUSTOMER_INDEX n/NUMBER OF MEMBERS ts/TIME_START</code></p>
+</li>
+<li>
+<p>Shortcut: <code>ab c/CUSTOMER_INDEX n/NUMBER OF MEMBERS ts/TIME_START</code></p>
+</li>
+<li>
+<p>e.g. <code>addBooking c/1 n/7 ts/2019-04-07T12:00</code></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>deleteBooking</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Format: <code>deleteBooking INDEX</code></p>
+</li>
+<li>
+<p>Shortcut: <code>db INDEX</code></p>
+</li>
+<li>
+<p>e.g. <code>deleteBooking 3</code></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>editBooking</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Format: <code>editBooking INDEX [ts/TIME_START] [n/NUMBER_OF_PERSONS]</code></p>
+</li>
+<li>
+<p>Shortcut: <code>eb INDEX [ts/TIME_START] [n/NUMBER_OF_PERSONS]</code></p>
+</li>
+<li>
+<p>e.g. <code>editBooking 3 ts/12:00 n/6</code></p>
+</li>
+</ul>
+</div>
 </li>
 </ul>
 </div>
@@ -1677,28 +1957,98 @@ e.g. <code>editBooking 3 ts/12:00 n/6</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>addStaff</strong> <code>addStaff n/NAME p/PHONE e/EMAIL a/APPOINTMENT</code><br>
-e.g. <code>addStaff n/John Doe p/91234567 e/john@example.com a/Waiter</code></p>
+<p><strong>addStaff</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Format: <code>addStaff n/NAME p/PHONE e/EMAIL a/APPOINTMENT</code></p>
 </li>
 <li>
-<p><strong>listStaff</strong> <code>listStaff [n/NAME_1 NAME_2 &#8230;&#8203;] [a/APPOINTMENT_1 APPOINTMENT_2 &#8230;&#8203;]</code><br>
-e.g. <code>listStaff n/alice bob charlie a/cook</code></p>
+<p>Shortcut: <code>as n/NAME p/PHONE e/EMAIL a/APPOINTMENT</code></p>
 </li>
 <li>
-<p><strong>deleteStaff</strong> <code>deleteStaff INDEX</code><br>
+<p>e.g. <code>addStaff n/John Doe p/91234567 e/john@example.com a/Waiter</code></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>listStaff</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Format: <code>listStaff [n/NAME_1 NAME_2 &#8230;&#8203;] [a/APPOINTMENT_1 APPOINTMENT_2 &#8230;&#8203;]</code></p>
+</li>
+<li>
+<p>Shortcut: <code>ls [n/NAME_1 NAME_2 &#8230;&#8203;] [a/APPOINTMENT_1 APPOINTMENT_2 &#8230;&#8203;]</code></p>
+</li>
+<li>
+<p>e.g. <code>listStaff n/alice bob charlie a/cook</code></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>deleteStaff</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Format: <code>deleteStaff INDEX</code></p>
+</li>
+<li>
+<p>Shortcut: <code>ds INDEX</code>
 e.g. <code>deleteStaff 3</code></p>
 </li>
-<li>
-<p><strong>editStaff</strong> <code>editStaff INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/APPOINTMENT]</code><br>
-e.g. <code>addshift 1 sd/MONDAY ts/12:00 ed/MONDAY te/14:00</code></p>
+</ul>
+</div>
 </li>
 <li>
-<p><strong>addShift</strong> <code>addShift INDEX sd/START_DAY_OF_WEEK ts/START_TIME ed/END_DAY_OF_WEEK te/END_TIME</code><br>
-e.g. <code>setShift 1 1200 1530</code></p>
+<p><strong>editStaff</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Format: <code>editStaff INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/APPOINTMENT]</code></p>
 </li>
 <li>
-<p><strong>deleteShift</strong> <code>deleteshift INDEX sd/START_DAY_OF_WEEK ts/START_TIME ed/END_DAY_OF_WEEK te/END_TIME</code><br>
-e.g. <code>deleteshift 1 sd/TUESDAY ts/08:00 ed/TUESDAY te/10:30</code></p>
+<p>Shortcut: <code>es INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/APPOINTMENT]</code></p>
+</li>
+<li>
+<p>e.g. <code>editStaff 1 p/98765432 a/Manager</code></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>addShift</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Format: <code>addShift INDEX sd/START_DAY_OF_WEEK ts/START_TIME ed/END_DAY_OF_WEEK te/END_TIME</code></p>
+</li>
+<li>
+<p>Shortcut: <code>ash INDEX sd/START_DAY_OF_WEEK ts/START_TIME ed/END_DAY_OF_WEEK te/END_TIME</code></p>
+</li>
+<li>
+<p>e.g. <code>addshift 1 sd/MONDAY ts/12:00 ed/MONDAY te/14:00</code></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>deleteShift</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Format: <code>deleteshift INDEX sd/START_DAY_OF_WEEK ts/START_TIME ed/END_DAY_OF_WEEK te/END_TIME</code></p>
+</li>
+<li>
+<p>Shortcut: <code>dsh INDEX sd/START_DAY_OF_WEEK ts/START_TIME ed/END_DAY_OF_WEEK te/END_TIME</code></p>
+</li>
+<li>
+<p>e.g. <code>deleteshift 1 sd/TUESDAY ts/08:00 ed/TUESDAY te/10:30</code></p>
+</li>
+</ul>
+</div>
 </li>
 </ul>
 </div>
@@ -1708,15 +2058,39 @@ e.g. <code>deleteshift 1 sd/TUESDAY ts/08:00 ed/TUESDAY te/10:30</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>statsdays</strong> <code>statsdays DAYS</code><br>
-e.g. <code>statsdays 30</code></p>
+<p><strong>statsdays</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Format: <code>statsdays DAYS</code></p>
 </li>
 <li>
-<p><strong>statstime</strong> <code>statstime DAYS</code><br>
-e.g. <code>statstime 30</code></p>
+<p>Shortcut: <code>sd DAYS</code></p>
+</li>
+<li>
+<p>e.g. <code>statsdays 30</code></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>statstime</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Format: <code>statstime DAYS</code></p>
+</li>
+<li>
+<p>Shortcut: <code>st DAYS</code></p>
+</li>
+<li>
+<p>e.g. <code>statstime 30</code></p>
+</li>
+</ul>
+</div>
 </li>
 </ul>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-14 15:19:52 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-14 18:01:52 UTC</div></div></div></body></html>
