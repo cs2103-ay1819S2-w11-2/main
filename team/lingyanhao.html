@@ -36,7 +36,7 @@
 <div class="ulist">
 <ul>
 <li>
-<p>Code contributed: [<a href="https://nus-cs2103-ay1819s2.github.io/cs2103-dashboard/#search=lingyanhao&amp;sort=displayName&amp;since=2019-02-10&amp;until=2019-03-25&amp;timeframe=day&amp;reverse=false&amp;repoSort=true">Code</a>]</p>
+<p>Code contributed: <a href="https://nus-cs2103-ay1819s2.github.io/cs2103-dashboard/#search=lingyanhao&amp;sort=displayName&amp;since=2019-02-10&amp;until=2019-03-25&amp;timeframe=day&amp;reverse=false&amp;repoSort=true">Code</a></p>
 </li>
 <li>
 <p><strong>Major enhancement</strong>: added <strong>booking feature</strong></p>
@@ -46,7 +46,7 @@
 <p>What it does: allows the user to manage bookings. The system will reject new bookings and suggest better alternative timeslots if the restaurant is full.</p>
 </li>
 <li>
-<p>Justification: When a restaurant needs to manage a large number of bookings, it can be difficult for owners to keep track of how many people are in the restaurant at each point in time. Having a system that rejects new bookings when the restaurant is full can help prevent overbooking. If the user tries to enter a booking when the restaurant is full, not only is the booking rejected, an alternative booking timeslot is also suggested.</p>
+<p>Justification: When a restaurant needs to manage a large number of bookings, it can be difficult for owners to keep track of how many people are in the restaurant at each point in time. Having a system that rejects new bookings when the restaurant is full can help prevent overbooking. If the user tries to enter a booking when the restaurant is full, not only is the booking rejected, an alternative booking timeslot is also suggested. Suggesting alternative timeslots encourages customers to return to the restaurant instead of being chased away.</p>
 </li>
 <li>
 <p>Highlights: This feature affects the existing delete and edit commands for members as changing a member&#8217;s personal details requires a corresponding update in the booking panel. It required a significant restructuring of the <code>Model</code> component from AB4.</p>
@@ -62,10 +62,10 @@
 <div class="ulist">
 <ul>
 <li>
-<p>PRs reviewed (with non-trivial review comments): [<a href="https://github.com/cs2103-ay1819S2-w11-2/main/pull/110" class="bare">https://github.com/cs2103-ay1819S2-w11-2/main/pull/110</a>], [<a href="https://github.com/cs2103-ay1819S2-w11-2/main/pull/138" class="bare">https://github.com/cs2103-ay1819S2-w11-2/main/pull/138</a>]</p>
+<p>PRs reviewed (with non-trivial review comments): [<a href="https://github.com/cs2103-ay1819S2-w11-2/main/pull/110">#110</a>], [<a href="https://github.com/cs2103-ay1819S2-w11-2/main/pull/138">#138</a>]</p>
 </li>
 <li>
-<p>Reported bugs for other teams: [<a href="https://github.com/CS2103-AY1819S2-W14-3/main/issues/309" class="bare">https://github.com/CS2103-AY1819S2-W14-3/main/issues/309</a>], [<a href="https://github.com/CS2103-AY1819S2-W14-3/main/issues/308" class="bare">https://github.com/CS2103-AY1819S2-W14-3/main/issues/308</a>]</p>
+<p>Reported bugs for other teams: [<a href="https://github.com/CS2103-AY1819S2-W14-3/main/issues/308">#308</a>], [<a href="https://github.com/CS2103-AY1819S2-W14-3/main/issues/309">#309</a>]</p>
 </li>
 </ul>
 </div>
@@ -242,7 +242,7 @@
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../images/capacityexplanation.png" alt="capacityexplanation" width="800">
+<img src="../images/capacityexplanation.png" alt="capacityexplanation" width="600">
 </div>
 <div class="title">Figure 1. A pictorial representation showing why the capacity will be exceeded</div>
 </div>
@@ -280,14 +280,22 @@
 <div class="paragraph">
 <p>Example:</p>
 </div>
-<div class="paragraph">
-<p>*<code>editBooking 3 ts/12:00 n/6</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>editBooking 3 ts/12:00 n/6</code></p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
 <p>Edits the booking at index 3, changing the booking time to 12:00 for 6 persons. Since the date was unspecified, the current date (at the point of entering the command) will be used.</p>
 </div>
-<div class="paragraph">
-<p>*<code>editBooking 4 ts/2019-03-30T17:00</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>editBooking 4 ts/2019-03-30T17:00</code></p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
 <p>Edits the booking at index 4, changing the booking time to 30 March 2019, 12:00. The number of persons remains unchanged as it was previously unspecified.</p>
@@ -524,7 +532,7 @@
 <div class="sect2">
 <h3 id="suggesting-alternative-booking-timeslots"><a class="link" href="#suggesting-alternative-booking-timeslots">Suggesting alternative booking timeslots</a></h3>
 <div class="paragraph">
-<p>REM does not allow additional bookings to be added into the system if this causes the capacity to be exceeded. Instead of displaying a message saying that the restaurant is full, we want to suggest an alternative timing to the user instead. In order to achieve this, REM calculates the earliest timeslot after the input date and time that can be accepted.</p>
+<p>REM does not allow additional bookings to be added into the system if this causes the capacity to be exceeded. We want to suggest an alternative timing to the user instead of simply displaying a message saying that the restaurant is full. In order to achieve this, REM calculates the earliest timeslot after the input date and time that can be accepted.</p>
 </div>
 <div class="sect3">
 <h4 id="current-implementation-3"><a class="link" href="#current-implementation-3">Current implementation</a></h4>
@@ -550,7 +558,7 @@
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>The program first check that the input satisfies the preconditions of the method which are required for the method to return a meaningful answer. These are pre-conditions:</p>
+<p>The program first checks that the input satisfies the preconditions of the method which are required for the method to return a meaningful answer. These are pre-conditions:</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
@@ -582,17 +590,20 @@
 </div>
 </li>
 <li>
-<p>If both conditions pass, the end time of the booking is successfully returned. The pre-conditions in Step 1 ensures that at least one of the end times is valid. Since the list is sorted, only the earliest one will be returned (i.e. it is impossible to run through the loop without returning an answer).
-The current implementation can be described by the following activity diagram:</p>
+<p>If both conditions pass, the end time of the booking is successfully returned. The pre-conditions in Step 1 ensures that at least one of the end times is valid. Since the list is sorted, only the earliest one will be returned (i.e. it is impossible to run through the loop without returning an answer).</p>
 </li>
 </ol>
+</div>
+<div class="paragraph">
+<p>The current implementation can be described by the following activity diagram:</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="../images/suggesttimeslot.png" alt="suggesttimeslot" width="800">
 </div>
+<div class="title">Figure 4. An activity diagram that shows the implementation of the <code>suggestNextAvailableTime</code> method.</div>
 </div>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-14 14:08:04 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-14 15:19:53 UTC</div></div></div></body></html>

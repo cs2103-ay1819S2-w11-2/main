@@ -1048,7 +1048,7 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 <div class="sect2">
 <h3 id="suggesting-alternative-booking-timeslots"><a class="link" href="#suggesting-alternative-booking-timeslots">3.5. Suggesting alternative booking timeslots</a></h3>
 <div class="paragraph">
-<p>REM does not allow additional bookings to be added into the system if this causes the capacity to be exceeded. Instead of displaying a message saying that the restaurant is full, we want to suggest an alternative timing to the user instead. In order to achieve this, REM calculates the earliest timeslot after the input date and time that can be accepted.</p>
+<p>REM does not allow additional bookings to be added into the system if this causes the capacity to be exceeded. We want to suggest an alternative timing to the user instead of simply displaying a message saying that the restaurant is full. In order to achieve this, REM calculates the earliest timeslot after the input date and time that can be accepted.</p>
 </div>
 <div class="sect3">
 <h4 id="current-implementation-5"><a class="link" href="#current-implementation-5">3.5.1. Current implementation</a></h4>
@@ -1074,7 +1074,7 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>The program first check that the input satisfies the preconditions of the method which are required for the method to return a meaningful answer. These are pre-conditions:</p>
+<p>The program first checks that the input satisfies the preconditions of the method which are required for the method to return a meaningful answer. These are pre-conditions:</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
@@ -1106,15 +1106,18 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </div>
 </li>
 <li>
-<p>If both conditions pass, the end time of the booking is successfully returned. The pre-conditions in Step 1 ensures that at least one of the end times is valid. Since the list is sorted, only the earliest one will be returned (i.e. it is impossible to run through the loop without returning an answer).
-The current implementation can be described by the following activity diagram:</p>
+<p>If both conditions pass, the end time of the booking is successfully returned. The pre-conditions in Step 1 ensures that at least one of the end times is valid. Since the list is sorted, only the earliest one will be returned (i.e. it is impossible to run through the loop without returning an answer).</p>
 </li>
 </ol>
+</div>
+<div class="paragraph">
+<p>The current implementation can be described by the following activity diagram:</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/suggesttimeslot.png" alt="suggesttimeslot" width="800">
 </div>
+<div class="title">Figure 12. An activity diagram that shows the implementation of the <code>suggestNextAvailableTime</code> method.</div>
 </div>
 </div>
 </div>
@@ -1152,7 +1155,7 @@ The current implementation can be described by the following activity diagram:</
 <div class="content">
 <img src="images/DeleteIngredientSequenceDiagram.png" alt="DeleteIngredientSequenceDiagram" width="800">
 </div>
-<div class="title">Figure 12. Sequence Diagram for DeleteIngredient</div>
+<div class="title">Figure 13. Sequence Diagram for DeleteIngredient</div>
 </div>
 <div class="ulist">
 <ul>
@@ -1575,7 +1578,7 @@ The following seqeuence diagram shows how the <code>addshift</code> command work
 <div class="content">
 <img src="images/StatsTimeSequenceDiagram.png" alt="StatsTimeSequenceDiagram" width="1000">
 </div>
-<div class="title">Figure 13. StatsTime Sequence Diagram</div>
+<div class="title">Figure 14. StatsTime Sequence Diagram</div>
 </div>
 <div class="paragraph">
 <p>The <em>Sequence Diagram</em> given above shows how the components interact with each other for the scenario where the user issues the command <code>statstime 100</code>.</p>
@@ -1863,7 +1866,7 @@ Alternatively, you can download the AsciiDoc plugin for IntelliJ, which allows y
 <div class="content">
 <img src="images/chrome_save_as_pdf.png" alt="chrome save as pdf" width="300">
 </div>
-<div class="title">Figure 14. Saving documentation as PDF files in Chrome</div>
+<div class="title">Figure 15. Saving documentation as PDF files in Chrome</div>
 </div>
 </div>
 <div class="sect2">
@@ -2874,4 +2877,4 @@ Expected: The booking is successfully added into the system. (Explanation: REM a
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-14 14:08:04 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-14 15:19:52 UTC</div></div></div></body></html>
