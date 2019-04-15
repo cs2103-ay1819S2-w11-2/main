@@ -1241,7 +1241,7 @@ image::listIngredients_tomato.png[width=1000]
 Expected: 1 ingredient, tomato soup, containing the word "tomato", and ingredient quantity falling below ingredient warning amount is listed on the ingredient panel. Upon success, ingredient panel should look like this:
 +
 .Successfully listing 1 ingredient in ingredient panel
-image::listIngredients_tomato_warningamt.png[width=1000]
+image::listingredients_tomato_warningamt.png[width=1000]
 
 .. Test case: `consumeIngredient i/1 q/15`  +
 Expected: 1 ingredient, tomato, is consumed by 15 whole tomatoes, ingredient quantity of tomato in ingredient panel changes to 5 whole tomatoes. Upon success, ingredient panel should look like this:
