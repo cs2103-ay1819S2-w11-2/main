@@ -338,14 +338,6 @@ Calling `listIngredients w/` will display all ingredients that fall below their 
 
 Example:
 
-* `addIngredient in/chicken wings u/packets`
-
-Adds new ingredient, chicken wings (with default ingredient quantity as 0), counted in terms of packets, into inventory.
-
-* `addIngredient in/chicken wings q/10 u/packets`
-
-Adds 10 packets of chicken wings into inventory.
-
 * `addIngredient in/chicken wings q/10 u/packets w/2`
 
 Adds 10 packets of chicken wing into inventory and when quantity in inventory falls below 2 packets, `listIngredients w/` will display chicken.
@@ -412,8 +404,8 @@ Example:
 +
 `consumeIngredient i/3 q/10`
 
-Decreases the quantity of chickens by 10 in the inventory. Assuming that the previous quantity for chicken was 20, the new quantity
-                                                          after `consumeIngredient i/3 q/10` was called, will be 10.
+Decreases the quantity of chickens by 10 in the inventory.
+Assuming that the previous quantity for chicken was 20, the new quantity after `consumeIngredient i/3 q/10` was called, will be 10.
 
 
 ==== Add Recipe: `addRecipe`
