@@ -30,17 +30,16 @@
 <li><a href="#implementation">3. Implementation</a>
 <ul class="sectlevel2">
 <li><a href="#add-feature">3.1. Add Feature</a></li>
-<li><a href="#undo-redo-feature">3.2. Undo/Redo feature</a></li>
-<li><a href="#data-structure-for-holding-records">3.3. Data structure for holding records</a></li>
-<li><a href="#the-code-editmember-code-command">3.4. The <code>editMember</code> command</a></li>
-<li><a href="#suggesting-alternative-booking-timeslots">3.5. Suggesting alternative booking timeslots</a></li>
-<li><a href="#delete-feature">3.6. Delete Feature</a></li>
-<li><a href="#shifts-feature">3.7. Shifts feature</a></li>
-<li><a href="#the-code-statstime-code-command">3.8. The <code>statstime</code> command</a></li>
-<li><a href="#the-code-statsdays-code-command">3.9. The <code>statsdays</code> command</a></li>
-<li><a href="#the-panel-ui-for-code-member-code-code-staff-code-code-booking-code-and-code-ingredient-code">3.10. The panel UI for <code>Member</code>, <code>Staff</code>, <code>Booking</code>, and <code>Ingredient</code></a></li>
-<li><a href="#logging">3.11. Logging</a></li>
-<li><a href="#Implementation-Configuration">3.12. Configuration</a></li>
+<li><a href="#data-structure-for-holding-records">3.2. Data structure for holding records</a></li>
+<li><a href="#the-code-editmember-code-command">3.3. The <code>editMember</code> command</a></li>
+<li><a href="#suggesting-alternative-booking-timeslots">3.4. Suggesting alternative booking timeslots</a></li>
+<li><a href="#delete-feature">3.5. Delete Feature</a></li>
+<li><a href="#shifts-feature">3.6. Shifts feature</a></li>
+<li><a href="#the-code-statstime-code-command">3.7. The <code>statstime</code> command</a></li>
+<li><a href="#the-code-statsdays-code-command">3.8. The <code>statsdays</code> command</a></li>
+<li><a href="#the-panel-ui-for-code-member-code-code-staff-code-code-booking-code-and-code-ingredient-code">3.9. The panel UI for <code>Member</code>, <code>Staff</code>, <code>Booking</code>, and <code>Ingredient</code></a></li>
+<li><a href="#logging">3.10. Logging</a></li>
+<li><a href="#Implementation-Configuration">3.11. Configuration</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a>
@@ -411,13 +410,13 @@ The following class plays an important role at the architecture level:</p>
 </div>
 <h4 id="how-the-architecture-components-interact-with-each-other" class="discrete">How the architecture components interact with each other</h4>
 <div class="paragraph">
-<p>The <em>Sequence Diagram</em> below shows how the components interact with each other for the scenario where the user issues the command <code>delete 1</code>.</p>
+<p>The <em>Sequence Diagram</em> below shows how the components interact with each other for the scenario where the user issues the command <code>deleteMember 1</code>.</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/SDforDeletePerson.png" alt="SDforDeletePerson" width="800">
 </div>
-<div class="title">Figure 3. Component interactions for <code>delete 1</code> command</div>
+<div class="title">Figure 3. Component interactions for <code>deleteMember 1</code> command</div>
 </div>
 <div class="paragraph">
 <p>The sections below give more details of each component.</p>
@@ -469,7 +468,7 @@ The following class plays an important role at the architecture level:</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p><code>Logic</code> uses the <code>AddressBookParser</code> class to parse the user command.</p>
+<p><code>Logic</code> uses the <code>RestaurantBookParser</code> class to parse the user command.</p>
 </li>
 <li>
 <p>This results in a <code>Command</code> object which is executed by the <code>LogicManager</code>.</p>
@@ -486,13 +485,13 @@ The following class plays an important role at the architecture level:</p>
 </ol>
 </div>
 <div class="paragraph">
-<p>Given below is the Sequence Diagram for interactions within the <code>Logic</code> component for the <code>execute("delete 1")</code> API call.</p>
+<p>Given below is the Sequence Diagram for interactions within the <code>Logic</code> component for the <code>execute("deleteMember 1")</code> API call.</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/DeletePersonSdForLogic.png" alt="DeletePersonSdForLogic" width="800">
 </div>
-<div class="title">Figure 6. Interactions Inside the Logic Component for the <code>delete 1</code> Command</div>
+<div class="title">Figure 6. Interactions Inside the Logic Component for the <code>deleteMember 1</code> Command</div>
 </div>
 </div>
 <div class="sect2">
@@ -552,7 +551,7 @@ The following class plays an important role at the architecture level:</p>
 <p>can save <code>UserPref</code> objects in json format and read it back.</p>
 </li>
 <li>
-<p>can save the Address Book data in json format and read it back.</p>
+<p>can save the Restaurant Book data in json format and read it back.</p>
 </li>
 </ul>
 </div>
@@ -676,209 +675,7 @@ The state of the <code>RestaurantBook</code> is then saved via the <code>Model#c
 </div>
 </div>
 <div class="sect2">
-<h3 id="undo-redo-feature"><a class="link" href="#undo-redo-feature">3.2. Undo/Redo feature</a></h3>
-<div class="sect3">
-<h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">3.2.1. Current Implementation</a></h4>
-<div class="paragraph">
-<p>The undo/redo mechanism is facilitated by <code>VersionedAddressBook</code>.
-It extends <code>AddressBook</code> with an undo/redo history, stored internally as an <code>addressBookStateList</code> and <code>currentStatePointer</code>.
-Additionally, it implements the following operations:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>VersionedAddressBook#commit()</code>&#8201;&#8212;&#8201;Saves the current address book state in its history.</p>
-</li>
-<li>
-<p><code>VersionedAddressBook#undo()</code>&#8201;&#8212;&#8201;Restores the previous address book state from its history.</p>
-</li>
-<li>
-<p><code>VersionedAddressBook#redo()</code>&#8201;&#8212;&#8201;Restores a previously undone address book state from its history.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>These operations are exposed in the <code>Model</code> interface as <code>Model#commitAddressBook()</code>, <code>Model#undoAddressBook()</code> and <code>Model#redoAddressBook()</code> respectively.</p>
-</div>
-<div class="paragraph">
-<p>Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.</p>
-</div>
-<div class="paragraph">
-<p>Step 1. The user launches the application for the first time. The <code>VersionedAddressBook</code> will be initialized with the initial address book state, and the <code>currentStatePointer</code> pointing to that single address book state.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/UndoRedoStartingStateListDiagram.png" alt="UndoRedoStartingStateListDiagram" width="800">
-</div>
-</div>
-<div class="paragraph">
-<p>Step 2. The user executes <code>delete 5</code> command to delete the 5th person in the address book. The <code>delete</code> command calls <code>Model#commitAddressBook()</code>, causing the modified state of the address book after the <code>delete 5</code> command executes to be saved in the <code>addressBookStateList</code>, and the <code>currentStatePointer</code> is shifted to the newly inserted address book state.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/UndoRedoNewCommand1StateListDiagram.png" alt="UndoRedoNewCommand1StateListDiagram" width="800">
-</div>
-</div>
-<div class="paragraph">
-<p>Step 3. The user executes <code>add n/David &#8230;&#8203;</code> to add a new person. The <code>add</code> command also calls <code>Model#commitAddressBook()</code>, causing another modified address book state to be saved into the <code>addressBookStateList</code>.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/UndoRedoNewCommand2StateListDiagram.png" alt="UndoRedoNewCommand2StateListDiagram" width="800">
-</div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-If a command fails its execution, it will not call <code>Model#commitAddressBook()</code>, so the address book state will not be saved into the <code>addressBookStateList</code>.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the <code>undo</code> command. The <code>undo</code> command will call <code>Model#undoAddressBook()</code>, which will shift the <code>currentStatePointer</code> once to the left, pointing it to the previous address book state, and restores the address book to that state.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/UndoRedoExecuteUndoStateListDiagram.png" alt="UndoRedoExecuteUndoStateListDiagram" width="800">
-</div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-If the <code>currentStatePointer</code> is at index 0, pointing to the initial address book state, then there are no previous address book states to restore. The <code>undo</code> command uses <code>Model#canUndoAddressBook()</code> to check if this is the case. If so, it will return an error to the user rather than attempting to perform the undo.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>The following sequence diagram shows how the undo operation works:</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/UndoRedoSequenceDiagram.png" alt="UndoRedoSequenceDiagram" width="800">
-</div>
-</div>
-<div class="paragraph">
-<p>The <code>redo</code> command does the opposite&#8201;&#8212;&#8201;it calls <code>Model#redoAddressBook()</code>, which shifts the <code>currentStatePointer</code> once to the right, pointing to the previously undone state, and restores the address book to that state.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-If the <code>currentStatePointer</code> is at index <code>addressBookStateList.size() - 1</code>, pointing to the latest address book state, then there are no undone address book states to restore. The <code>redo</code> command uses <code>Model#canRedoAddressBook()</code> to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Step 5. The user then decides to execute the command <code>list</code>. Commands that do not modify the address book, such as <code>list</code>, will usually not call <code>Model#commitAddressBook()</code>, <code>Model#undoAddressBook()</code> or <code>Model#redoAddressBook()</code>. Thus, the <code>addressBookStateList</code> remains unchanged.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/UndoRedoNewCommand3StateListDiagram.png" alt="UndoRedoNewCommand3StateListDiagram" width="800">
-</div>
-</div>
-<div class="paragraph">
-<p>Step 6. The user executes <code>clear</code>, which calls <code>Model#commitAddressBook()</code>. Since the <code>currentStatePointer</code> is not pointing at the end of the <code>addressBookStateList</code>, all address book states after the <code>currentStatePointer</code> will be purged. We designed it this way because it no longer makes sense to redo the <code>add n/David &#8230;&#8203;</code> command. This is the behavior that most modern desktop applications follow.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/UndoRedoNewCommand4StateListDiagram.png" alt="UndoRedoNewCommand4StateListDiagram" width="800">
-</div>
-</div>
-<div class="paragraph">
-<p>The following activity diagram summarizes what happens when a user executes a new command:</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/UndoRedoActivityDiagram.png" alt="UndoRedoActivityDiagram" width="650">
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">3.2.2. Design Considerations</a></h4>
-<div class="sect4">
-<h5 id="aspect-how-undo-redo-executes"><a class="link" href="#aspect-how-undo-redo-executes">Aspect: How undo &amp; redo executes</a></h5>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Alternative 1 (current choice):</strong> Saves the entire address book.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: Easy to implement.</p>
-</li>
-<li>
-<p>Cons: May have performance issues in terms of memory usage.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>Alternative 2:</strong> Individual command knows how to undo/redo by itself.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: Will use less memory (e.g. for <code>delete</code>, just save the person being deleted).</p>
-</li>
-<li>
-<p>Cons: We must ensure that the implementation of each individual command are correct.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect4">
-<h5 id="aspect-data-structure-to-support-the-undo-redo-commands"><a class="link" href="#aspect-data-structure-to-support-the-undo-redo-commands">Aspect: Data structure to support the undo/redo commands</a></h5>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Alternative 1 (current choice):</strong> Use a list to store the history of address book states.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: Easy for new Computer Science student undergraduates to understand, who are likely to be the new incoming developers of our project.</p>
-</li>
-<li>
-<p>Cons: Logic is duplicated twice. For example, when a new command is executed, we must remember to update both <code>HistoryManager</code> and <code>VersionedAddressBook</code>.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>Alternative 2:</strong> Use <code>HistoryManager</code> for undo/redo</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: We do not need to maintain a separate list, and just reuse what is already in the codebase.</p>
-</li>
-<li>
-<p>Cons: Requires dealing with commands that have already been undone: We must remember to skip these commands. Violates Single Responsibility Principle and Separation of Concerns as <code>HistoryManager</code> now needs to do two different things.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="data-structure-for-holding-records"><a class="link" href="#data-structure-for-holding-records">3.3. Data structure for holding records</a></h3>
+<h3 id="data-structure-for-holding-records"><a class="link" href="#data-structure-for-holding-records">3.2. Data structure for holding records</a></h3>
 <div class="paragraph">
 <p>Following the AB4 structure, the <code>RestaurantBook</code> (originally <code>AddressBook</code>) class serves as the main database, holding information of all records in the system. However, the database system required is more complicated than the one in AB4- there are four different kinds of records that need to be stored. The main operations are still largely CRUD (create, read, update, delete) in nature which are very similarly done. However, there are some differences between the types of records:</p>
 </div>
@@ -893,13 +690,13 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </ul>
 </div>
 <div class="sect3">
-<h4 id="current-implementation-3"><a class="link" href="#current-implementation-3">3.3.1. Current implementation</a></h4>
+<h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">3.2.1. Current implementation</a></h4>
 <div class="paragraph">
 <p>We created the interface <code>Item</code> to represent a record. A <code>UniqueItemList</code> was used to handle the bulk of the CRUD logic, much like the way the <code>UniquePersonList</code> in the original AB4 was used to handle the CRUD logic. As the <code>Staff</code> and <code>Member</code> class store common attributes (<code>Name</code>, <code>Phone</code>, <code>Email</code>), an abstract class <code>Person</code> was used to capture this. However, in the <code>Model</code> interface, the methods are kept separate (using methods like <code>addMember</code>, <code>addBooking</code> instead of having a more generic <code>addItem</code> method).</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">3.3.2. Design Considerations</a></h4>
+<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">3.2.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-implementation-of-data-structure"><a class="link" href="#aspect-implementation-of-data-structure">Aspect: Implementation of data structure</a></h5>
 <div class="ulist">
@@ -975,18 +772,18 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </div>
 </div>
 <div class="sect2">
-<h3 id="the-code-editmember-code-command"><a class="link" href="#the-code-editmember-code-command">3.4. The <code>editMember</code> command</a></h3>
+<h3 id="the-code-editmember-code-command"><a class="link" href="#the-code-editmember-code-command">3.3. The <code>editMember</code> command</a></h3>
 <div class="paragraph">
 <p>When a <code>Member</code> details (<code>Name</code>, <code>Phone</code>, or <code>Email</code>) is changed, the <code>Booking</code> object must reflect the change. This requires an internal modification to the <code>Booking</code> objects in some way.</p>
 </div>
 <div class="sect3">
-<h4 id="current-implementation-4"><a class="link" href="#current-implementation-4">3.4.1. Current implementation</a></h4>
+<h4 id="current-implementation-3"><a class="link" href="#current-implementation-3">3.3.1. Current implementation</a></h4>
 <div class="paragraph">
 <p>When <code>RestaurantBook#setMember()</code> is called, the bookings are replaced with a new set of bookings. If an existing booking contains the modified member, the member will be replaced with a new <code>Booking</code> object that containing the updated member.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="proposed-implementation"><a class="link" href="#proposed-implementation">3.4.2. Proposed implementation</a></h4>
+<h4 id="proposed-implementation"><a class="link" href="#proposed-implementation">3.3.2. Proposed implementation</a></h4>
 <div class="paragraph">
 <p>Each member is assigned an ID. Along with this, maintain a master list of ID to <code>Member</code> mappings. The <code>Booking</code> class only keep tracks of the <code>Member</code> s id, calling the <code>MasterMemberList</code> to obtain the <code>Member</code> object when necessary. The following (simplified) class diagram demonstrates the associations between <code>Booking</code>, <code>MasterMemberList</code> and <code>Member</code>:</p>
 </div>
@@ -1007,7 +804,7 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">3.4.3. Design Considerations</a></h4>
+<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">3.3.3. Design Considerations</a></h4>
 <div class="ulist">
 <ul>
 <li>
@@ -1057,12 +854,12 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </div>
 </div>
 <div class="sect2">
-<h3 id="suggesting-alternative-booking-timeslots"><a class="link" href="#suggesting-alternative-booking-timeslots">3.5. Suggesting alternative booking timeslots</a></h3>
+<h3 id="suggesting-alternative-booking-timeslots"><a class="link" href="#suggesting-alternative-booking-timeslots">3.4. Suggesting alternative booking timeslots</a></h3>
 <div class="paragraph">
 <p>REM does not allow additional bookings to be added into the system if this causes the capacity to be exceeded. We want to suggest an alternative timing to the user instead of simply displaying a message saying that the restaurant is full. In order to achieve this, REM calculates the earliest timeslot after the input date and time that can be accepted.</p>
 </div>
 <div class="sect3">
-<h4 id="current-implementation-5"><a class="link" href="#current-implementation-5">3.5.1. Current implementation</a></h4>
+<h4 id="current-implementation-4"><a class="link" href="#current-implementation-4">3.4.1. Current implementation</a></h4>
 <div class="paragraph">
 <p>All calculations involving the restaurant capacity is done in the <code>Capacity</code> class. In particular, the following related methods are implemented:</p>
 </div>
@@ -1133,12 +930,10 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </div>
 </div>
 <div class="sect2">
-<h3 id="delete-feature"><a class="link" href="#delete-feature">3.6. Delete Feature</a></h3>
+<h3 id="delete-feature"><a class="link" href="#delete-feature">3.5. Delete Feature</a></h3>
 <div class="paragraph">
-<p>The delete feature is used to delete a specific record in the restaurant book, i.e. deleting a member, staff, booking, ingredient or recipe.</p>
-</div>
-<div class="paragraph">
-<p>In comparison to the original AB4 codebase, REstaurant Manager has more than 1 type of record in the restaurant book, and has a high level of dependency/ coupling between certain components:</p>
+<p>The delete feature is used to delete a specific record in the restaurant book, i.e. deleting a member, staff, booking, ingredient or recipe.
+In comparison to the original AB4 codebase, REstaurant Manager has more than 1 type of record in the restaurant book, and has a high level of dependency/ coupling between certain components:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -1154,7 +949,7 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 <p>Therefore, there are some design considerations that we have to make when it comes to deleting a record.</p>
 </div>
 <div class="sect3">
-<h4 id="current-implementation-6"><a class="link" href="#current-implementation-6">3.6.1. Current implementation</a></h4>
+<h4 id="current-implementation-5"><a class="link" href="#current-implementation-5">3.5.1. Current implementation</a></h4>
 <div class="ulist">
 <ul>
 <li>
@@ -1166,7 +961,7 @@ The sequence diagram for <code>deleteIngredient</code> command is as follows:<br
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/DeleteIngredientSequenceDiagram.png" alt="DeleteIngredientSequenceDiagram" width="800">
+<img src="images/DeleteIngredientSequenceDiagram.png" alt="DeleteIngredientSequenceDiagram" width="630">
 </div>
 <div class="title">Figure 13. Sequence Diagram for DeleteIngredient</div>
 </div>
@@ -1183,7 +978,7 @@ In other words, when RestaurantBook#deleteMember() or RestaurantBook#deleteIngre
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-5"><a class="link" href="#design-considerations-5">3.6.2. Design Considerations</a></h4>
+<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">3.5.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-separate-delete-commands-generic-delete-command"><a class="link" href="#aspect-separate-delete-commands-generic-delete-command">Aspect: Separate delete commands/ Generic delete command</a></h5>
 <div class="ulist">
@@ -1225,17 +1020,8 @@ In other words, when RestaurantBook#deleteMember() or RestaurantBook#deleteIngre
 </div>
 </li>
 <li>
-<p>Decision: Alternative 1 was selected for the following reasons:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Aliases are implemented as a shortcut to the long commands (e.g. <code>db</code> for <code>deleteBooking</code>, <code>dm</code> for <code>deleteMember</code>). It is no longer inconvenient for users as they can type the shorter command.</p>
-</li>
-<li>
-<p>4 panels are implemented in U/I (link to u/i segment), 1 panel for each component provides easy cross-reference across linked records, and this supports Alternative 1&#8217;s implementation. All lists are active at the same time, and they display all unfiltered records by default. Firstly, it is hard for the user to detect an active list at first glance, since all lists are already displayed. Secondly, a specific delete command can be called without a prior command to mark the list as active (e.g.  <code>deleteIngredient</code> can be called directly to make changes to Ingredient list) which makes it more convenient for the user</p>
-</li>
-</ul>
-</div>
+<p>Decision: Alternative 1 was selected since aliases are implemented as a shortcut to the long commands (e.g. <code>db</code> for <code>deleteBooking</code>, <code>dm</code> for <code>deleteMember</code>) and no longer inconvenient for users.
+Since 4 panels are implemented in U/I, this provides easy cross-reference across linked records. It is hard for the user to detect an active list at first glance, since all lists are already displayed. With chosen implementation, specific delete command can be called without a prior command to mark the list as active (e.g.  <code>deleteIngredient</code> can be called directly to make changes to Ingredient list), providing convenience to user.</p>
 </li>
 </ul>
 </div>
@@ -1346,24 +1132,33 @@ To deal with the possibility that the member or ingredient is accidentally delet
 </ul>
 </div>
 <div class="paragraph">
-<p>The current implementation of deleteIngredient can be represented by the activity diagram below:<br></p>
+<p>The current implementation of <code>deleteIngredient</code> can be represented by the activity diagram below:<br></p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/activity_diagram_deleteingredient.png" alt="activity diagram deleteingredient" width="800">
+<img src="images/activity_diagram_deleteingredient.png" alt="activity diagram deleteingredient" width="400">
 </div>
-<div class="title">Figure 14. Activity diagram for DeleteIngredient</div>
+<div class="title">Figure 14. Activity diagram for <code>deleteIngredient</code></div>
+</div>
+<div class="paragraph">
+<p>The indication of the deletion of associated recipes when a particular ingredient is deleted is shown below:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/deleteingredientss.png" alt="deleteingredientss" width="300">
+</div>
+<div class="title">Figure 15. Printed message for deleted recipes after an ingredient is deleted</div>
 </div>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="shifts-feature"><a class="link" href="#shifts-feature">3.7. Shifts feature</a></h3>
+<h3 id="shifts-feature"><a class="link" href="#shifts-feature">3.6. Shifts feature</a></h3>
 <div class="paragraph">
 <p>The shifts feature allows users to maintain shift rosters for staff members.</p>
 </div>
 <div class="sect3">
-<h4 id="current-implementation-7"><a class="link" href="#current-implementation-7">3.7.1. Current Implementation</a></h4>
+<h4 id="current-implementation-6"><a class="link" href="#current-implementation-6">3.6.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>The shifts feature comprises of two main commands: the <code>addshift</code> command and the <code>deleteshift</code> command.
 The <code>addshift</code> command allows shifts to be added to the shift roster of a staff member, and the <code>deleteshift</code> command allows shifts to be deleted from the shift roster of a staff member.
@@ -1384,7 +1179,7 @@ The shifts feature is supported by two models, the <code>Shift</code> model and 
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-6"><a class="link" href="#design-considerations-6">3.7.2. Design Considerations</a></h4>
+<h4 id="design-considerations-5"><a class="link" href="#design-considerations-5">3.6.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-implementation-of-the-shift-roster"><a class="link" href="#aspect-implementation-of-the-shift-roster">Aspect: Implementation of the shift roster</a></h5>
 <div class="ulist">
@@ -1595,12 +1390,12 @@ The shifts feature is supported by two models, the <code>Shift</code> model and 
 </div>
 </div>
 <div class="sect2">
-<h3 id="the-code-statstime-code-command"><a class="link" href="#the-code-statstime-code-command">3.8. The <code>statstime</code> command</a></h3>
+<h3 id="the-code-statstime-code-command"><a class="link" href="#the-code-statstime-code-command">3.7. The <code>statstime</code> command</a></h3>
 <div class="paragraph">
 <p>When the <code>statstime</code> command is entered, the current statistics of the amount of bookings is to be displayed to the user in the form of a bar chart, where each bar corresponds to the number of customers in a particular time of the day.</p>
 </div>
 <div class="sect3">
-<h4 id="current-implementation-8"><a class="link" href="#current-implementation-8">3.8.1. Current implementation</a></h4>
+<h4 id="current-implementation-7"><a class="link" href="#current-implementation-7">3.7.1. Current implementation</a></h4>
 <div class="paragraph">
 <p>When the user enters the <code>statstime</code> command, the command will be parsed, and the <code>Statistics</code> class would be called. The Statistics class fetches the relevant data for user display (ie what are the axes, values, and legends of the bar chart). It would then call the <code>StatsWindow</code> class which handles the UI. The bar chart will appear in a new window and does not affect the current window.</p>
 </div>
@@ -1608,14 +1403,14 @@ The shifts feature is supported by two models, the <code>Shift</code> model and 
 <div class="content">
 <img src="images/StatsTimeSequenceDiagram.png" alt="StatsTimeSequenceDiagram" width="1000">
 </div>
-<div class="title">Figure 15. StatsTime Sequence Diagram</div>
+<div class="title">Figure 16. StatsTime Sequence Diagram</div>
 </div>
 <div class="paragraph">
 <p>The <em>Sequence Diagram</em> given above shows how the components interact with each other for the scenario where the user issues the command <code>statstime 100</code>.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-7"><a class="link" href="#design-considerations-7">3.8.2. Design Considerations</a></h4>
+<h4 id="design-considerations-6"><a class="link" href="#design-considerations-6">3.7.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-implementation-of-data-structure-2"><a class="link" href="#aspect-implementation-of-data-structure-2">Aspect: Implementation of data structure</a></h5>
 <div class="ulist">
@@ -1691,21 +1486,21 @@ The shifts feature is supported by two models, the <code>Shift</code> model and 
 </div>
 </div>
 <div class="sect2">
-<h3 id="the-code-statsdays-code-command"><a class="link" href="#the-code-statsdays-code-command">3.9. The <code>statsdays</code> command</a></h3>
+<h3 id="the-code-statsdays-code-command"><a class="link" href="#the-code-statsdays-code-command">3.8. The <code>statsdays</code> command</a></h3>
 <div class="paragraph">
 <p>When the <code>statsdays</code> command is entered, the current statistics of the amount of bookings is to be displayed to the user in the form of a bar chart, where each bar corresponds to the number of customers between certain dates.</p>
 </div>
 <div class="paragraph">
-<p>As the implementation of this command is very similar to <a href="#the-code-statstime-code-command">Section 3.8, &#8220;The <code>statstime</code> command&#8221;</a>, it will not be covered.</p>
+<p>As the implementation of this command is very similar to <a href="#the-code-statstime-code-command">Section 3.7, &#8220;The <code>statstime</code> command&#8221;</a>, it will not be covered.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="the-panel-ui-for-code-member-code-code-staff-code-code-booking-code-and-code-ingredient-code"><a class="link" href="#the-panel-ui-for-code-member-code-code-staff-code-code-booking-code-and-code-ingredient-code">3.10. The panel UI for <code>Member</code>, <code>Staff</code>, <code>Booking</code>, and <code>Ingredient</code></a></h3>
+<h3 id="the-panel-ui-for-code-member-code-code-staff-code-code-booking-code-and-code-ingredient-code"><a class="link" href="#the-panel-ui-for-code-member-code-code-staff-code-code-booking-code-and-code-ingredient-code">3.9. The panel UI for <code>Member</code>, <code>Staff</code>, <code>Booking</code>, and <code>Ingredient</code></a></h3>
 <div class="paragraph">
 <p>The restaurant book displays the entire database in the form of "cards", which is the same as AB4. Each item has its own panel.</p>
 </div>
 <div class="sect3">
-<h4 id="current-implementation-9"><a class="link" href="#current-implementation-9">3.10.1. Current implementation</a></h4>
+<h4 id="current-implementation-8"><a class="link" href="#current-implementation-8">3.9.1. Current implementation</a></h4>
 <div class="paragraph">
 <p>The panel is formatted in the <code>ItemListPanel.fxml</code> file, and each item has its own controller (<code>MemberListPanel</code>, <code>StaffListPanel</code>, <code>BookingListPanel</code>, and <code>IngredientListPanel</code>) that extends from <code>ItemListPanel</code>. The panel displays the database via cards. Each item has its own card (<code>MemberCard</code>, <code>StaffCard</code>, <code>BookingCard</code>, and <code>IngredientCard</code>).</p>
 </div>
@@ -1716,7 +1511,7 @@ The shifts feature is supported by two models, the <code>Shift</code> model and 
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-8"><a class="link" href="#design-considerations-8">3.10.2. Design Considerations</a></h4>
+<h4 id="design-considerations-7"><a class="link" href="#design-considerations-7">3.9.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-design-of-card-display"><a class="link" href="#aspect-design-of-card-display">Aspect: Design of card display</a></h5>
 <div class="ulist">
@@ -1792,14 +1587,14 @@ The shifts feature is supported by two models, the <code>Shift</code> model and 
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">3.11. Logging</a></h3>
+<h3 id="logging"><a class="link" href="#logging">3.10. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.12, &#8220;Configuration&#8221;</a>)</p>
+<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.11, &#8220;Configuration&#8221;</a>)</p>
 </li>
 <li>
 <p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level</p>
@@ -1830,7 +1625,7 @@ The shifts feature is supported by two models, the <code>Shift</code> model and 
 </div>
 </div>
 <div class="sect2">
-<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.12. Configuration</a></h3>
+<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.11. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g user prefs file location, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
@@ -1896,7 +1691,7 @@ Alternatively, you can download the AsciiDoc plugin for IntelliJ, which allows y
 <div class="content">
 <img src="images/chrome_save_as_pdf.png" alt="chrome save as pdf" width="300">
 </div>
-<div class="title">Figure 16. Saving documentation as PDF files in Chrome</div>
+<div class="title">Figure 17. Saving documentation as PDF files in Chrome</div>
 </div>
 </div>
 <div class="sect2">
@@ -3052,7 +2847,7 @@ Expected: The capacity is successfully updated to 10 with a suitable message sho
 <div class="content">
 <img src="images/capacitypanel.png" alt="capacitypanel" width="400">
 </div>
-<div class="title">Figure 17. If the booking panel looks like the left, the height of the app is too small. Increase the height to make it look like the one on the right.</div>
+<div class="title">Figure 18. If the booking panel looks like the left, the height of the app is too small. Increase the height to make it look like the one on the right.</div>
 </div>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a" start="3">
@@ -3093,7 +2888,7 @@ Expected: 4 ingredients, tomato, tomato ketchup, tomato soup and potato are adde
 <div class="content">
 <img src="images/addIngredients.png" alt="addIngredients" width="1000">
 </div>
-<div class="title">Figure 18. Successfully adding 4 ingredients into restaurant book</div>
+<div class="title">Figure 19. Successfully adding 4 ingredients into restaurant book</div>
 </div>
 </li>
 <li>
@@ -3103,7 +2898,7 @@ Expected: 3 ingredients, tomato, tomato ketchup and tomato soup containing the w
 <div class="content">
 <img src="images/listIngredients_tomato.png" alt="listIngredients tomato" width="1000">
 </div>
-<div class="title">Figure 19. Successfully listing 3 ingredients in ingredient panel</div>
+<div class="title">Figure 20. Successfully listing 3 ingredients in ingredient panel</div>
 </div>
 </li>
 <li>
@@ -3113,7 +2908,7 @@ Expected: 1 ingredient, tomato soup, containing the word "tomato", and ingredien
 <div class="content">
 <img src="images/listingredients_tomato_warningamt.png" alt="listingredients tomato warningamt" width="1000">
 </div>
-<div class="title">Figure 20. Successfully listing 1 ingredient in ingredient panel</div>
+<div class="title">Figure 21. Successfully listing 1 ingredient in ingredient panel</div>
 </div>
 </li>
 <li>
@@ -3125,7 +2920,7 @@ Expected: 15 units of tomatoes are consumed, ingredient quantity of tomato in in
 <div class="content">
 <img src="images/consumeIngredient.png" alt="consumeIngredient" width="1000">
 </div>
-<div class="title">Figure 21. Successfully consuming 1 ingredient in ingredient panel</div>
+<div class="title">Figure 22. Successfully consuming 1 ingredient in ingredient panel</div>
 </div>
 </li>
 <li>
@@ -3135,7 +2930,7 @@ Expected: 2 ingredients, tomato soup and tomato, containing the word "tomato", a
 <div class="content">
 <img src="images/listIngredient_tomato_warningamt2.png" alt="listIngredient tomato warningamt2" width="1000">
 </div>
-<div class="title">Figure 22. Successfully listing 2 ingredients in ingredient panel</div>
+<div class="title">Figure 23. Successfully listing 2 ingredients in ingredient panel</div>
 </div>
 </li>
 </ol>
@@ -3164,7 +2959,7 @@ Expected: 2 ingredients, tomato soup and tomato, containing the word "tomato", a
 <div class="content">
 <img src="images/addRecipe-addIngredientCommand.png" alt="addRecipe addIngredientCommand" width="1000">
 </div>
-<div class="title">Figure 23. Successfully adding 2 ingredients into restaurant book</div>
+<div class="title">Figure 24. Successfully adding 2 ingredients into restaurant book</div>
 </div>
 </li>
 <li>
@@ -3175,7 +2970,7 @@ Upon success, recipe panel should look like this:</p>
 <div class="content">
 <img src="images/addRecipe-successful.png" alt="addRecipe successful" width="1000">
 </div>
-<div class="title">Figure 24. Successfully adding 1 recipe, displaying the number of servings possible.</div>
+<div class="title">Figure 25. Successfully adding 1 recipe, displaying the number of servings possible.</div>
 </div>
 </li>
 <li>
@@ -3186,7 +2981,7 @@ Number of servings possible for cheese fries changes to 20. (For more details, r
 <div class="content">
 <img src="images/addRecipe-restockIngredient.png" alt="addRecipe restockIngredient" width="1000">
 </div>
-<div class="title">Figure 25. Successfully restocking 1 ingredient, displays the new number of servings possible.</div>
+<div class="title">Figure 26. Successfully restocking 1 ingredient, displays the new number of servings possible.</div>
 </div>
 </li>
 </ol>
@@ -3254,7 +3049,7 @@ Expected: The staff corresponding to the first index is deleted.</p>
 <div class="content">
 <img src="images/liststaff_prereq.png" alt="liststaff prereq" width="1000">
 </div>
-<div class="title">Figure 26. The staff panel after the four commands above have been executed</div>
+<div class="title">Figure 27. The staff panel after the four commands above have been executed</div>
 </div>
 </li>
 <li>
@@ -3268,7 +3063,7 @@ Expected: The two staff members whose names contain the word 'smith' are listed,
 <div class="content">
 <img src="images/liststaff_smith.png" alt="liststaff smith" width="1000">
 </div>
-<div class="title">Figure 27. The staff panel after the <code>liststaff n/smith</code> command has been executed</div>
+<div class="title">Figure 28. The staff panel after the <code>liststaff n/smith</code> command has been executed</div>
 </div>
 </li>
 <li>
@@ -3278,7 +3073,7 @@ Expected: The two staff members whose appointments contain the word 'cook' are l
 <div class="content">
 <img src="images/liststaff_cook.png" alt="liststaff cook" width="1000">
 </div>
-<div class="title">Figure 28. The staff panel after the <code>liststaff a/cook</code> command has been executed</div>
+<div class="title">Figure 29. The staff panel after the <code>liststaff a/cook</code> command has been executed</div>
 </div>
 </li>
 <li>
@@ -3288,7 +3083,7 @@ Expected: The staff member whose name contains the word 'jack' and whose appoint
 <div class="content">
 <img src="images/liststaff_jack_server.png" alt="liststaff jack server" width="1000">
 </div>
-<div class="title">Figure 29. The staff panel after the <code>liststaff n/jack a/server</code> command has been executed</div>
+<div class="title">Figure 30. The staff panel after the <code>liststaff n/jack a/server</code> command has been executed</div>
 </div>
 </li>
 <li>
@@ -3298,7 +3093,7 @@ Expected: No staff members should be listed, as shown in figure 29 below.</p>
 <div class="content">
 <img src="images/liststaff_simon_server.png" alt="liststaff simon server" width="1000">
 </div>
-<div class="title">Figure 30. The staff panel after the <code>liststaff n/simon a/server</code> command has been executed</div>
+<div class="title">Figure 31. The staff panel after the <code>liststaff n/simon a/server</code> command has been executed</div>
 </div>
 </li>
 </ol>
@@ -3394,7 +3189,7 @@ Expected: A new window appears displaying a bar graph spanning 10 days, but only
 <div class="content">
 <img src="images/statsdays_example.png" alt="statsdays example" width="700">
 </div>
-<div class="title">Figure 31. Bar graph displayed by <code>statsdays 10</code> command</div>
+<div class="title">Figure 32. Bar graph displayed by <code>statsdays 10</code> command</div>
 </div>
 <div class="paragraph">
 <p>The image above shows the new window, and the current bookings. The screenshot is taken on 15 April 2019.</p>
@@ -3411,11 +3206,11 @@ Expected: A new window appears displaying a bar graph. The height of the bar is 
 <div class="content">
 <img src="images/statstime_example.png" alt="statstime example" width="700">
 </div>
-<div class="title">Figure 32. Bar graph displayed by <code>statstime 3</code> command</div>
+<div class="title">Figure 33. Bar graph displayed by <code>statstime 3</code> command</div>
 </div>
 <div class="paragraph">
 <p>The image above shows the new window, and the current bookings. The screenshot is taken on 15 April 2019.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 08:16:45 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 14:20:11 UTC</div></div></div></body></html>
