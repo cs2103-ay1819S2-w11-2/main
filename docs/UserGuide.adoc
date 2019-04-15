@@ -305,15 +305,6 @@ Shortcut: `li [in/INGREDIENT_NAME] [w/]`
 
 Example:
 
-* `listIngredients in/tomato`
-
-All ingredients with name containing the word 'tomato' will be listed,
-e.g. 'tomato sauce', 'tomato ketchup' will be listed.
-
-* `listIngredients w/`
-
-All ingredients with ingredient quantity falling below ingredient warning amount will be listed.
-
 * `listIngredients in/tomato w/`
 
 All ingredients with name containing the word 'tomato', and having ingredient quantity that falls below
@@ -340,7 +331,7 @@ Example:
 
 * `addIngredient in/chicken wings q/10 u/packets w/2`
 
-Adds 10 packets of chicken wing into inventory and when quantity in inventory falls below 2 packets, `listIngredients w/` will display chicken.
+Adds 10 packets of chicken wing into inventory and when quantity falls below 2, it will be listed via `listIngredients w/` command.
 
 
 ==== Delete Ingredient: `deleteIngredient`
