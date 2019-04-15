@@ -894,6 +894,9 @@ ingredient required in 1 serving of the recipe.</p>
 <p>There should be at least 1 ingredient <code>iq/INDEX&amp;INGREDIENT_QUANTITY_IN_RECIPE</code> input.</p>
 </li>
 <li>
+<p>There cannot be duplicate ingredients in the recipe, i.e. there cannot be duplicate ingredient indexes inputted. (<code>addRecipe r/cheese fries iq/1&amp;1 iq/2&amp;1 iq/1&amp;10</code> is rejected).</p>
+</li>
+<li>
 <p>Each ingredient input should have the format <code>iq/INDEX&amp;NGREDIENT_QUANTITY_IN_RECIPE</code>
 where ingredient index and quantity of ingredient in recipe is separated by &amp;.
 Both the ingredient index and quantity must be an whole number.</p>
@@ -1052,8 +1055,7 @@ and the quantity required in each recipe.</p>
 <p>View the current lists of bookings within a certain time frame</p>
 </div>
 <div class="paragraph">
-<p>Format: <code>listBookings [ts/TIME_START] [te/TIME_END]</code><br>
-Shortcut: <code>em INDEX [n/NAME] [p/PHONE] [e/EMAIL] [l/LOYALTY_POINTS]</code></p>
+<p>Format: <code>listBookings [ts/TIME_START] [te/TIME_END]</code><br></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -1072,7 +1074,7 @@ Shortcut: <code>em INDEX [n/NAME] [p/PHONE] [e/EMAIL] [l/LOYALTY_POINTS]</code><
 <div class="ulist">
 <ul>
 <li>
-<p><code>listBookings ts/2019-03-01 12:00 te/2019-03-04 15:00</code></p>
+<p><code>listBookings ts/2019-03-01T12:00 te/2019-03-04T15:00</code></p>
 </li>
 </ul>
 </div>
@@ -2092,4 +2094,4 @@ e.g. <code>deleteStaff 3</code></p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 05:01:58 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 05:20:48 UTC</div></div></div></body></html>

@@ -82,10 +82,12 @@
 <li><a href="#list-members">F.3. List members</a></li>
 <li><a href="#add-and-delete-bookings">F.4. Add and delete bookings</a></li>
 <li><a href="#capacity-tests-for-booking-feature">F.5. Capacity tests for booking feature</a></li>
-<li><a href="#add-edit-and-delete-staff">F.6. Add, edit and delete staff</a></li>
-<li><a href="#add-and-delete-shifts">F.7. Add and delete shifts</a></li>
-<li><a href="#statistics">F.8. Statistics</a></li>
-<li><a href="#saving-data">F.9. Saving data</a></li>
+<li><a href="#list-ingredients-test-for-ingredient-feature">F.6. List ingredients test for ingredient feature</a></li>
+<li><a href="#number-of-servings-test-for-recipe-feature">F.7. Number of servings test for recipe feature</a></li>
+<li><a href="#add-edit-and-delete-staff">F.8. Add, edit and delete staff</a></li>
+<li><a href="#add-and-delete-shifts">F.9. Add and delete shifts</a></li>
+<li><a href="#statistics">F.10. Statistics</a></li>
+<li><a href="#saving-data">F.11. Saving data</a></li>
 </ul>
 </li>
 </ul>
@@ -2946,7 +2948,131 @@ Expected: The booking is successfully added into the system. (Explanation: REM a
 </div>
 </div>
 <div class="sect2">
-<h3 id="add-edit-and-delete-staff"><a class="link" href="#add-edit-and-delete-staff">F.6. Add, edit and delete staff</a></h3>
+<h3 id="list-ingredients-test-for-ingredient-feature"><a class="link" href="#list-ingredients-test-for-ingredient-feature">F.6. List ingredients test for ingredient feature</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Test that the <code>listIngredients</code> command lists ingredients with key word and/or ingredient quantity falling below ingredient warning amount.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: Ingredient panel should be empty, if not, execute <code>deleteIngredient</code> command (Refer to User Guide). The commands below are to be executed in sequence.</p>
+</li>
+<li>
+<p>Test case:<br>
+<code>addIngredient in/tomato q/20 w/10 u/whole</code> <br>
+<code>addIngredient in/tomato ketchup q/20 w/10 u/bottles</code><br>
+<code>addIngredient in/tomato soup q/10 w/20 u/cans</code><br>
+<code>addIngredient in/potato q/10 w/20 u/sacks</code><br>
+Expected: 4 ingredients, tomato, tomato ketchup, tomato soup and potato are added into ingredient panel. Upon success, ingredient panel should look like this:</p>
+<div class="imageblock">
+<div class="content">
+<img src="images/addIngredients.png" alt="addIngredients" width="1000">
+</div>
+<div class="title">Figure 17. Successfully adding 4 ingredients into restaurant book</div>
+</div>
+</li>
+<li>
+<p>Test case: <code>listIngredients in/tomato</code> <br>
+Expected: 3 ingredients, tomato, tomato ketchup and tomato soup containing the word "tomato" are listed on the ingredient panel. Upon success, ingredient panel should look like this:</p>
+<div class="imageblock">
+<div class="content">
+<img src="images/listIngredients_tomato.png" alt="listIngredients tomato" width="1000">
+</div>
+<div class="title">Figure 18. Successfully listing 3 ingredients in ingredient panel</div>
+</div>
+</li>
+<li>
+<p>Test case: <code>listIngredients in/tomato w/</code> <br>
+Expected: 1 ingredient, tomato soup, containing the word "tomato", and ingredient quantity falling below ingredient warning amount is listed on the ingredient panel. Upon success, ingredient panel should look like this:</p>
+<div class="imageblock">
+<div class="content">
+<img src="images/listingredients_tomato_warningamt.png" alt="listingredients tomato warningamt" width="1000">
+</div>
+<div class="title">Figure 19. Successfully listing 1 ingredient in ingredient panel</div>
+</div>
+</li>
+<li>
+<p>Test case:<br>
+<code>listIngredients</code><br>
+<code>consumeIngredient i/1 q/15</code> <br>
+Expected: 15 units of tomatoes are consumed, ingredient quantity of tomato in ingredient panel changes to 5 whole tomatoes. Upon success, ingredient panel should look like this:</p>
+<div class="imageblock">
+<div class="content">
+<img src="images/consumeIngredient.png" alt="consumeIngredient" width="1000">
+</div>
+<div class="title">Figure 20. Successfully consuming 1 ingredient in ingredient panel</div>
+</div>
+</li>
+<li>
+<p>Test case: <code>listIngredients in/tomato w/</code> <br>
+Expected: 2 ingredients, tomato soup and tomato, containing the word "tomato", and ingredient quantity falling below ingredient warning amount is listed on the ingredient panel. Upon success, ingredient panel should look like this:</p>
+<div class="imageblock">
+<div class="content">
+<img src="images/listIngredient_tomato_warningamt2.png" alt="listIngredient tomato warningamt2" width="1000">
+</div>
+<div class="title">Figure 21. Successfully listing 2 ingredients in ingredient panel</div>
+</div>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="number-of-servings-test-for-recipe-feature"><a class="link" href="#number-of-servings-test-for-recipe-feature">F.7. Number of servings test for recipe feature</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Test that the number of servings in recipe is correctly calculated based on ingredient quantity in inventory (ingredient panel) and ingredient quantity per serving (recipe panel).</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: Recipe and ingredient panels should be empty, if not, execute <code>deleteIngredient</code> and <code>deleteRecipe</code> commands (Refer to User Guide). The commands below are to be executed in sequence.</p>
+</li>
+<li>
+<p>Test case:<br>
+<code>addIngredient in/cheese u/slices q/20</code><br>
+<code>addIngredient in/fries u/packets q/10</code><br>
+   Expected: 2 ingredients, cheese and fries are added into ingredient panel. Upon success, ingredient panel should look like this:</p>
+<div class="imageblock">
+<div class="content">
+<img src="images/addRecipe-addIngredientCommand.png" alt="addRecipe addIngredientCommand" width="1000">
+</div>
+<div class="title">Figure 22. Successfully adding 2 ingredients into restaurant book</div>
+</div>
+</li>
+<li>
+<p>Test case: <code>addRecipe r/cheese fries iq/1&amp;1 iq/2&amp;1</code><br>
+Expected: 1 recipe, cheese fries is added into recipe panel. Each serving of cheese fries requires 1 slice of cheese and 1 packet of fries with 10 number of servings possible.
+Upon success, recipe panel should look like this:</p>
+<div class="imageblock">
+<div class="content">
+<img src="images/addRecipe-successful.png" alt="addRecipe successful" width="1000">
+</div>
+<div class="title">Figure 23. Successfully adding 1 recipe, displaying the number of servings possible.</div>
+</div>
+</li>
+<li>
+<p>Test case: <code>restockIngredient i/2 q/10</code><br>
+Expected: 1 ingredient, fries is restocked by 10 packets, ingredient quantity of fries in ingredient panel changes to 20 packets.
+Number of servings possible for cheese fries changes to 20. (For more details, refer to <code>addRecipe</code> command in the User Guide.)</p>
+<div class="imageblock">
+<div class="content">
+<img src="images/addRecipe-restockIngredient.png" alt="addRecipe restockIngredient" width="1000">
+</div>
+<div class="title">Figure 24. Successfully restocking 1 ingredient, displays the new number of servings possible.</div>
+</div>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="add-edit-and-delete-staff"><a class="link" href="#add-edit-and-delete-staff">F.8. Add, edit and delete staff</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -2972,7 +3098,7 @@ Expected: The staff corresponding to the first index is deleted.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="add-and-delete-shifts"><a class="link" href="#add-and-delete-shifts">F.7. Add and delete shifts</a></h3>
+<h3 id="add-and-delete-shifts"><a class="link" href="#add-and-delete-shifts">F.9. Add and delete shifts</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -3031,7 +3157,7 @@ Expected: The system rejects the attempt to delete the shift. (Explanation: The 
 </div>
 </div>
 <div class="sect2">
-<h3 id="statistics"><a class="link" href="#statistics">F.8. Statistics</a></h3>
+<h3 id="statistics"><a class="link" href="#statistics">F.10. Statistics</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -3080,7 +3206,7 @@ Expected: A new window appears displaying a bar graph. The height of the bar is 
 </div>
 </div>
 <div class="sect2">
-<h3 id="saving-data"><a class="link" href="#saving-data">F.9. Saving data</a></h3>
+<h3 id="saving-data"><a class="link" href="#saving-data">F.11. Saving data</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -3100,4 +3226,4 @@ Expected: A new window appears displaying a bar graph. The height of the bar is 
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 05:01:58 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 05:20:48 UTC</div></div></div></body></html>
