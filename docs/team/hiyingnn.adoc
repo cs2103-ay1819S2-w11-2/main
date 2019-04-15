@@ -9,9 +9,7 @@
 
 == Overview
 This portfolio serves the purpose of documenting my contributions to REstaurant Manager (REM),
-an application developed by 4 undergraduate students, in the course of Software Engineering Module, CS2103T, in NUS.
-
-REstaurant Manager (REM) is a desktop application tailored to restaurant owners of small/medium size restaurants.
+an application developed by 4 undergraduate students, in the course of Software Engineering Module, CS2103T, in NUS. REstaurant Manager (REM) is a desktop application tailored to restaurant owners of small/medium size restaurants.
 This application provides a single platform for them to manage many areas of the restaurant:
 customers with membership, staff, bookings, ingredient and recipe inventory.
 
@@ -46,7 +44,6 @@ Since recipes can contain more than 1 ingredient, this also increases the comple
 * *Code contributed*: [https://nus-cs2103-ay1819s2.github.io/cs2103-dashboard/#search=hiyingnn&sort=displayName&since=2019-02-10&until=2019-04-08&timeframe=day&reverse=false&repoSort=true[Code]]
 
 * *Other contributions*:
-
 ** Project management:
 *** Wrote tests to increase coverage (Pull requests https://github.com/cs2103-ay1819S2-w11-2/main/pull/28[#28], https://github.com/cs2103-ay1819S2-w11-2/main/pull/71[#71], https://github.com/cs2103-ay1819S2-w11-2/main/pull/118[#118], https://github.com/cs2103-ay1819S2-w11-2/main/pull/202[#202])
 *** Implemented storage component for ingredient (Pull requests https://github.com/cs2103-ay1819S2-w11-2/main/pull/35[#35])
@@ -61,8 +58,6 @@ Since recipes can contain more than 1 ingredient, this also increases the comple
 
 
 == Contributions to the User Guide
-
-
 |===
 |_Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users._
 |===
@@ -71,7 +66,6 @@ include::../UserGuide.adoc[tag=inventory]
 
 
 == Contributions to the Developer Guide
-
 |===
 |_Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project._
 |===

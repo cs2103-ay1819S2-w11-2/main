@@ -461,7 +461,7 @@ Example:
    * These commands add cheese and fries into the ingredient panel. Upon success, the ingredient panel should look like this:
 +
 .Successfully adding 2 ingredients into restaurant book
-image::addRecipe-addIngredientCommand.png[width=1000]
+image::addRecipe-addIngredientCommand.png[width=800]
 
 .  `addRecipe r/cheese fries iq/1&1 iq/2&1`
     • This command adds cheese fries into the recipe panel. For each serving of cheese fries, 1 slice of cheese and 1
@@ -470,7 +470,7 @@ image::addRecipe-addIngredientCommand.png[width=1000]
     Overall, there can only be 10 servings of cheese fries prepared. Upon success, the recipe panel should look like this:
 +
 .Successfully adding 1 recipe, displaying the number of servings possible.
-image::addRecipe-successful.png[width=1000]
+image::addRecipe-successful.png[width=800]
 
 .  `restockIngredient i/2 q/10`
     • Restocks fries by 10 packets, and change in ingredient quantity of fries is reflected in ingredient's panel.
@@ -479,7 +479,7 @@ image::addRecipe-successful.png[width=1000]
     change in number of servings of cheese fries:
 +
 .Successfully restocking 1 ingredient, displays the new number of servings possible.
-image::addRecipe-restockIngredient.png[width=1000]
+image::addRecipe-restockIngredient.png[width=800]
 
 
 

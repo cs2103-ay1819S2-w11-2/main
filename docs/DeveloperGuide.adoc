@@ -471,7 +471,7 @@ image::activity_diagram_deleteingredient.png[width="800"]
 The indication of the deletion of associated recipes when a particular ingredient is deleted is shown below:
 
 .Printed message for deleted recipes after an ingredient is deleted
-image::deleteingredientss.png[width="800"]
+image::deleteingredientss.png[width="500"]
 
 // end::delete[]
 
