@@ -547,13 +547,16 @@ In other words, when RestaurantBook#deleteMember() or RestaurantBook#deleteIngre
 
 === Shifts feature
 
-The shifts feature allows users to maintain shift rosters for staff members, as well as
+The shifts feature allows users to maintain shift rosters for staff members.
 
 ==== Current Implementation
 
 The shifts feature comprises of two main commands: the `addshift` command and the `deleteshift` command.
 The `addshift` command allows shifts to be added to the shift roster of a staff member, and the `deleteshift` command allows shifts to be deleted from the shift roster of a staff member.
-The shifts feature is supported by two models, the `Shift` model and the `ShiftRoster` model. The `Shift` model represents a single shift that takes place during a single interval of time, while the `ShiftRoster` model stores an immutable, sorted list of shifts for a single staff member.
+The shifts feature is supported by two models, the `Shift` model and the `ShiftRoster` model. The `Shift` model represents a single shift that takes place during a single interval of time, while the `ShiftRoster` model stores an immutable, sorted list of shifts for a single staff member. The following (simplified) class diagram shows the relationship between the `Staff`, `ShiftRoster` and `Shift` classes.
+
+image::ShiftClassDiagram.png[width="1000"]
+
 The following seqeuence diagram shows how the `addshift` command works, with some details in the model component omitted.
 
 image::AddShiftSequenceDiagram.png[width="1000"]
