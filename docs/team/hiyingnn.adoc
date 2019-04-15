@@ -17,19 +17,18 @@ customers with membership, staff, bookings, ingredient and recipe inventory.
 
 What separates REM from existing applications utilised by restaurant managers, is that REM, as a single platform can ensure
 the smooth running of the restaurant, whereas existing applications typically target only 1 niche area of the restaurant.
-With all records centralised in 1 system, restaurant managers can have greater knowledge on how to ensure that there is sufficient
-resources, i.e. by knowing the number of bookings made and number of servings of each dish available, based on current ingredient stock,
+With all records centralised in 1 system, restaurant managers can have greater knowledge on how to ensure that there are sufficient
+resources, i.e. by knowing the number of bookings made and number of servings of each dish available based on current ingredient stock,
 the manager can then decide to restock ingredients and allocate sufficient staff.
 
-My role was to implement the ingredient and recipe management feature. Other than that, I was in charge of
-documentations in the team, to ensure that the features were well documented, corresponded to the actual implementation of the application,
-and was standardised, with a good flow throughout the User Guide and Developer Guide.
+My role was to implement the ingredient and recipe management features. Other than that, I was in charge of
+documentations in the team, to ensure that the features were well documented and corresponded to the actual implementation of the application.
 I was also in charge of the Storage component of REM, requiring a thorough concept of the component.
 
 == Summary of Contributions
 
 * *Major enhancement*: added *ingredient feature*
-** What it does: allows the user to add, delete, restock and consume ingredients, keeping track of the quantity of ingredient present in the inventory.
+** What it does: allows the user to add, delete, restock and consume ingredients, keeping track of the quantity of ingredients present in the inventory.
 Ingredients with quantity in inventory falling below ingredient warning amount can also be listed.
 ** Justification:
 This feature improves the product significantly, as the ingredient feature helps to keep track of the inventory status for the ingredients. This can enable the users to make decisions, such as to restock ingredients, especially if it falls below the user-specified warning amount.
@@ -58,7 +57,7 @@ Since recipes can contain more than 1 ingredient, this also increases the comple
 
 ** Community:
 *** PRs reviewed (with non-trivial review comments):  (Pull requests https://github.com/cs2103-ay1819S2-w11-2/main/pull/106[#106], https://github.com/cs2103-ay1819S2-w11-2/main/pull/104[#104])
-** Reported bugs for other teams: (Pull requests https://github.com/CS2103-AY1819S2-W17-2/main/issues/164 [#164], https://github.com/CS2103-AY1819S2-W17-2/main/issues/156 [#156])
+** Reported bugs for other teams: (Pull requests https://github.com/CS2103-AY1819S2-W17-2/main/issues/164[#164], https://github.com/CS2103-AY1819S2-W17-2/main/issues/156[#156])
 
 
 == Contributions to the User Guide
