@@ -431,12 +431,12 @@ Example: (Assuming that the restaurant book is empty.)
     Overall, there can only be 10 servings of cheese fries prepared. Refer to figure below:
 +
 .Successfully adding 1 recipe containing 2 ingredients, displaying the number of servings possible.
-image::addRecipe-successful.png[width=200]
+image::addRecipe-successful.png[width=170]
 . `restockIngredient i/2 q/10`
    * Restocks fries by 10 packets, now there are 20 packets of fries sufficient for 20 servings of cheese fries. Overall, there can be 20 servings of cheese fries prepared. Refer to figure below:
 +
 .Successfully restocking 1 ingredient, displays the new number of servings possible.
-image::addRecipe-restockIngredient.png[width=200]
+image::addRecipe-restockIngredient.png[width=170]
 
 ==== Delete Recipe: `deleteRecipe`
 
