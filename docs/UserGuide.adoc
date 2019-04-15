@@ -416,7 +416,7 @@ ingredient required in 1 serving of the recipe.
 
 • There should be at least 1 ingredient `iq/INDEX&INGREDIENT_QUANTITY_IN_RECIPE` input but there cannot be duplicate ingredients in the recipe, i.e. there cannot be duplicate ingredient indexes inputted. (`addRecipe r/cheese fries iq/1&1 iq/1&2` is rejected).
 
-• Each ingredient input should have the format `iq/INDEX&NGREDIENT_QUANTITY_IN_RECIPE` where ingredient index and quantity of ingredient in recipe is separated by &.
+• Each ingredient input should have the format `iq/INDEX&INGREDIENT_QUANTITY_IN_RECIPE` where ingredient index and quantity of ingredient in 1 serving of the recipe is separated by &.
 
 • Upon adding a new recipe, the number of servings of this recipe, according to the current ingredient quantity in inventory, is calculated
 and displayed on the recipe panel. Upon  executing `restockIngredient` or `consumeIngredient`, the number of servings will be
@@ -430,12 +430,12 @@ Example:
 .  `addIngredient in/cheese u/slices q/20`, `addIngredient in/fries u/packets q/10`, `addRecipe r/cheese fries iq/1&1 iq/2&1` +
    * These commands add cheese and fries into the ingredient panel, and cheese fries into recipe panel. For each serving of cheese fries, 1 slice of cheese and 1
     packet of fries is needed. There are 20 slices of cheese sufficient for 20 servings of cheese fries, but only 10 packets of fries sufficient for 10 servings of cheese fries.
-    Overall, there can only be 10 servings of cheese fries prepared (Refer to figure 2)
+    Overall, there can only be 10 servings of cheese fries prepared. Refer to figure below:
 +
 .Successfully adding 1 recipe containing 2 ingredients, displaying the number of servings possible.
 image::addRecipe-successful.png[width=200]
 . `restockIngredient i/2 q/10`
-   * Restocks fries by 10 packets, now there are 20 packets of fries sufficient for 20 servings of cheese fries. Overall, there can be 20 servings of cheese fries prepared. (Refer to figure 3)
+   * Restocks fries by 10 packets, now there are 20 packets of fries sufficient for 20 servings of cheese fries. Overall, there can be 20 servings of cheese fries prepared. Refer to figure below:
 +
 .Successfully restocking 1 ingredient, displays the new number of servings possible.
 image::addRecipe-restockIngredient.png[width=200]
