@@ -82,8 +82,10 @@
 <li><a href="#list-members">F.3. List members</a></li>
 <li><a href="#add-and-delete-bookings">F.4. Add and delete bookings</a></li>
 <li><a href="#capacity-tests-for-booking-feature">F.5. Capacity tests for booking feature</a></li>
-<li><a href="#statistics">F.6. Statistics</a></li>
-<li><a href="#saving-data">F.7. Saving data</a></li>
+<li><a href="#add-edit-and-delete-staff">F.6. Add, edit and delete staff</a></li>
+<li><a href="#add-and-delete-shifts">F.7. Add and delete shifts</a></li>
+<li><a href="#statistics">F.8. Statistics</a></li>
+<li><a href="#saving-data">F.9. Saving data</a></li>
 </ul>
 </li>
 </ul>
@@ -2934,7 +2936,92 @@ Expected: The booking is successfully added into the system. (Explanation: REM a
 </div>
 </div>
 <div class="sect2">
-<h3 id="statistics"><a class="link" href="#statistics">F.6. Statistics</a></h3>
+<h3 id="add-edit-and-delete-staff"><a class="link" href="#add-edit-and-delete-staff">F.6. Add, edit and delete staff</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Add, edit and delete staff</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Test case: <code>addstaff n/Jane Smith p/91234567 e/jsmith@example.com a/Server</code>
+Expected: A new staff is added. The name, phone number, email and appointment is shown in the Staff column.</p>
+</li>
+<li>
+<p>Test case <code>editstaff 1 p/97654321 a/Head Chef</code>
+Expected: The phone number and appointment of the staff corresponding to the first index is updated.</p>
+</li>
+<li>
+<p>Test case: <code>deletestaff 1</code>
+Expected: The staff corresponding to the first index is deleted.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="add-and-delete-shifts"><a class="link" href="#add-and-delete-shifts">F.7. Add and delete shifts</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Add shifts</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: List all staff using the <code>listStaff</code> command. List of staff has size of at least 2. The staff corresponding to the first and second index have no shifts.</p>
+</li>
+<li>
+<p>Test case: <code>addshift 1 sd/MONDAY ts/12:00 ed/MONDAY te/14:00</code>
+Expected: The shift is successfully added to the staff corresponding to the first index.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Test that the constraints for shifts is enforced</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Test case: <code>addshift 1 sd/MONDAY ts/13:00 ed/MONDAY te/15:00</code>
+Expected: The system rejects the shift. (Explanation: It clashes with the shift on MONDAY, 12:00 to MONDAY, 14:00.)</p>
+</li>
+<li>
+<p>Test case: <code>addshift 1 sd/MONDAY ts/16:00 ed/MONDAY te/10:00</code>
+Expected: The system rejects the shift. (Explanation: Shifts must not end on the same start day of week but at an earlier time.)</p>
+</li>
+<li>
+<p>Test case: <code>addshift 2 sd/SUNDAY ts/00:00 ed/SATURDAY te/23:59</code>
+Expected: The shift is successfully added to the staff corresponding to the second index.</p>
+</li>
+<li>
+<p>Test case: <code>addshift 2 sd/SATURDAY ts/23:59 ed/SUNDAY te/00:00</code>
+Expected: The system rejects the shift. (Explanation: The total durations of all shifts for a single staff must not last longer than one week.)</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Delete shifts</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Test case: `deleteshift 1 sd/MONDAY ts/12:00 ed/MONDAY te/14:00 `
+Expected: The shift on MONDAY, 12:00 to MONDAY, 14:00 corresponding to the first staff is deleted.</p>
+</li>
+<li>
+<p>Test case: `deleteshift 1 sd/MONDAY ts/16:00 ed/MONDAY te/18:00 `
+Expected: The system rejects the attempt to delete the shift. (Explanation: The first staff does not have a shift from MONDAY, 16:00 to MONDAY, 18:00.)</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="statistics"><a class="link" href="#statistics">F.8. Statistics</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -2983,7 +3070,7 @@ Expected: A new window appears displaying a bar graph. The height of the bar is 
 </div>
 </div>
 <div class="sect2">
-<h3 id="saving-data"><a class="link" href="#saving-data">F.7. Saving data</a></h3>
+<h3 id="saving-data"><a class="link" href="#saving-data">F.9. Saving data</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -3003,4 +3090,4 @@ Expected: A new window appears displaying a bar graph. The height of the bar is 
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 03:14:21 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 04:47:34 UTC</div></div></div></body></html>
