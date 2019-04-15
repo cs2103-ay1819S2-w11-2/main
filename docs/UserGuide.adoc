@@ -702,7 +702,7 @@ Example
 
 * `editStaff 1 p/98765432 a/Manager`
 
-Edits the staff at index 1 shown in the most recent listing, by changing the phone number to 97654321 and appointment to Manager.
+Edits the staff at index 1 shown in the most recent listing, by changing the phone number to 98765432 and appointment to Manager.
 
 ==== Add Shift to Staff: `addShift`
 
