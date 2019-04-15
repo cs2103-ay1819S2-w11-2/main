@@ -457,19 +457,13 @@ Example:
 (Assuming that the restaurant book is empty.)
 
 .  `addIngredient in/cheese u/slices q/20` +
-   `addIngredient in/fries u/packets q/10`
-   * These commands add cheese and fries into the ingredient panel. Upon success, the ingredient panel should look like this:
+   `addIngredient in/fries u/packets q/10` +
+   `addRecipe r/cheese fries iq/1&1 iq/2&1` +
+   * These commands add cheese and fries into the ingredient panel, and cheese fries into recipe panel. For each serving of cheese fries, 1 slice of cheese and 1
+    packet of fries is needed. There are 20 slices of cheese sufficient for 20 servings of cheese fries, but only 10 packets of fries sufficient for 10 servings of cheese fries.
+    Overall, there can only be 10 servings of cheese fries prepared. Upon success, panels should look like this:
 +
-.Successfully adding 2 ingredients into restaurant book
-image::addRecipe-addIngredientCommand.png[width=700]
-
-.  `addRecipe r/cheese fries iq/1&1 iq/2&1`
-    • This command adds cheese fries into the recipe panel. For each serving of cheese fries, 1 slice of cheese and 1
-    packet of fries is needed.
-    • There are 20 slices of cheese sufficient for 20 servings of cheese fries, but only 10 packets of fries sufficient for 10 servings of cheese fries.
-    Overall, there can only be 10 servings of cheese fries prepared. Upon success, the recipe panel should look like this:
-+
-.Successfully adding 1 recipe, displaying the number of servings possible.
+.Successfully adding 1 recipe containing 2 ingredients, displaying the number of servings possible.
 image::addRecipe-successful.png[width=700]
 
 .  `restockIngredient i/2 q/10`
@@ -480,9 +474,6 @@ image::addRecipe-successful.png[width=700]
 +
 .Successfully restocking 1 ingredient, displays the new number of servings possible.
 image::addRecipe-restockIngredient.png[width=700]
-
-
-
 
 ==== Delete Recipe: `deleteRecipe`
 
