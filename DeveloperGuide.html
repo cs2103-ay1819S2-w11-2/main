@@ -2911,26 +2911,36 @@ Expected: The booking corresponding to the first index is deleted.</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>Prerequeisites: At least 2 members listed using the <code>listMembers</code> command. Booking column should be empty (if not, delete the bookings as per previous section). The commands below are to be executed in sequence.</p>
+<p>Prerequisites: At least 2 members listed using the <code>listMembers</code> command. Booking column should be empty (if not, delete the bookings as per previous section). The commands below are to be executed in sequence with no other commands in between.</p>
 </li>
 <li>
-<p>Test case: <code>updateCapacity 10</code>
-Expected: The capacity is successfully updated to 10 with a suitable message shown.</p>
-</li>
-<li>
-<p>Test case: <code>addbooking c/1 n/7 ts/2019-04-07T12:00</code>
-Expected: The booking is successfully added into the system.</p>
-</li>
-<li>
-<p>Test case: <code>addbooking c/2 n/7 ts/2019-04-07T11:30</code>
-Expected: The system rejects the booking and instead suggests an alternative timeslot of 2019-04-07T13:00. (Explanation: if this booking is accepted, there will be 7+7=14 customers in the restaurant at 2019-04-07T12:00. This exceeds the capacity of 10 and thus REM rejects the booking. For more details, refer to <code>addbooking</code> command in the User Guide.)</p>
-</li>
-<li>
-<p>Test case: <code>addbooking c/2 n/7 ts/2019-04-07T10:30</code>
-Expected: The booking is successfully added into the system. (Explanation: REM assumes that bookings last for 1 hour. Since this member is expected to leave by 2019-04-07T11:30, the restaurant will be empty at 2019-04-07T12:00. This set of bookings does not cause the capacity of 10 to be exceeded. For more details, refer to <code>addbooking</code> command in the User Guide.)</p>
+<p>Test case: <code>updateCapacity 10</code><br>
+Expected: The capacity is successfully updated to 10 with a suitable message shown. The booking panel should show an updated capacity value. If this value is not shown, increase the height of the app.</p>
 </li>
 </ol>
 </div>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/capacitypanel.png" alt="capacitypanel" width="400">
+</div>
+<div class="title">Figure 16. If the booking panel looks like the left, the height of the app is too small. Increase the height to make it look like the one on the right.</div>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a" start="3">
+<li>
+<p>Test case: <code>addbooking c/1 n/7 ts/2019-04-07T12:00</code><br>
+Expected: The booking is successfully added into the system.</p>
+</li>
+<li>
+<p>Test case: <code>addbooking c/2 n/7 ts/2019-04-07T11:30</code><br>
+Expected: The system rejects the booking and instead suggests an alternative timeslot of 2019-04-07T13:00. (Explanation: if this booking is accepted, there will be 7+7=14 customers in the restaurant at 2019-04-07T12:00. This exceeds the capacity of 10 and thus REM rejects the booking. For more details, refer to <code>addbooking</code> command in the User Guide.)</p>
+</li>
+<li>
+<p>Test case: <code>addbooking c/2 n/7 ts/2019-04-07T10:30</code><br>
+Expected: The booking is successfully added into the system. (Explanation: REM assumes that bookings last for 1 hour. Since this member is expected to leave by 2019-04-07T11:30, the restaurant will be empty at 2019-04-07T12:00. This set of bookings does not cause the capacity of 10 to be exceeded. For more details, refer to <code>addbooking</code> command in the User Guide.)</p>
 </li>
 </ol>
 </div>
@@ -3090,4 +3100,4 @@ Expected: A new window appears displaying a bar graph. The height of the bar is 
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 04:47:34 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 05:01:58 UTC</div></div></div></body></html>
