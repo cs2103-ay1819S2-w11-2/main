@@ -427,24 +427,18 @@ Example:
 
 (Assuming that the restaurant book is empty.)
 
-.  `addIngredient in/cheese u/slices q/20` +
-   `addIngredient in/fries u/packets q/10` +
-   `addRecipe r/cheese fries iq/1&1 iq/2&1` +
+.  `addIngredient in/cheese u/slices q/20`, `addIngredient in/fries u/packets q/10`, `addRecipe r/cheese fries iq/1&1 iq/2&1` +
    * These commands add cheese and fries into the ingredient panel, and cheese fries into recipe panel. For each serving of cheese fries, 1 slice of cheese and 1
     packet of fries is needed. There are 20 slices of cheese sufficient for 20 servings of cheese fries, but only 10 packets of fries sufficient for 10 servings of cheese fries.
-    Overall, there can only be 10 servings of cheese fries prepared. Upon success, panels should look like this:
+    Overall, there can only be 10 servings of cheese fries prepared (Refer to figure 2)
 +
 .Successfully adding 1 recipe containing 2 ingredients, displaying the number of servings possible.
-image::addRecipe-successful.png[width=700]
-
-.  `restockIngredient i/2 q/10`
-    • Restocks fries by 10 packets, and change in ingredient quantity of fries is reflected in ingredient's panel.
-    • Now, there are 20 slices of cheese sufficient for 20 servings of cheese fries, and 20 packets of fries sufficient for 20 servings of cheese fries.
-    Overall, there can be 20 servings of cheese fries prepared. Upon success, the recipe panel should look like this, with the reflected
-    change in number of servings of cheese fries:
+image::addRecipe-successful.png[width=200]
+. `restockIngredient i/2 q/10`
+   * Restocks fries by 10 packets, now there are 20 packets of fries sufficient for 20 servings of cheese fries. Overall, there can be 20 servings of cheese fries prepared. (Refer to figure 3)
 +
 .Successfully restocking 1 ingredient, displays the new number of servings possible.
-image::addRecipe-restockIngredient.png[width=700]
+image::addRecipe-restockIngredient.png[width=200]
 
 ==== Delete Recipe: `deleteRecipe`
 
