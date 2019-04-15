@@ -402,7 +402,7 @@ Therefore, there are some design considerations that we have to make when it com
 The sequence diagram for `deleteIngredient` command is as follows: +
 
 .Sequence Diagram for DeleteIngredient
-image::DeleteIngredientSequenceDiagram.png[width="670"]
+image::DeleteIngredientSequenceDiagram.png[width="650"]
 
 * The delete commands are called by typing the component-specific command, followed by an index, which refers to the index number shown in the most recent listing (e.g. `deleteIngredient 3`).
 
