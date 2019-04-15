@@ -480,11 +480,11 @@ Therefore, there are some design considerations that we have to make when it com
 
 
 ==== Current implementation
-* There are separate delete commands for each of the 4 components, namely `deleteMember`, `deleteBooking`, `deleteStaff`, `deleteIngredient` and `deleteRecipe`, and the command explicitly specifies the object being deleted. Each specific delete command has a `DeleteCommand` class that extends abstract class `Command` and is supported by a `CommandParser` class (e.g. `deleteIngredient` command has `deleteIngredientCommand` class and `deleteIngredientCommandParser` class).
-
+* There are separate delete commands for each of the 4 components, namely `deleteMember`, `deleteBooking`, `deleteStaff`, `deleteIngredient` and `deleteRecipe`, and the command explicitly specifies the object being deleted.
+ Each specific delete command has a `DeleteCommand` class that extends abstract class `Command` and is supported by a `CommandParser` class (e.g. `deleteIngredient` command has `deleteIngredientCommand` class and `deleteIngredientCommandParser` class).
+The sequence diagram for `deleteIngredient` command is as follows:
 .Sequence Diagram for DeleteIngredient
 image::DeleteIngredientSequenceDiagram.png[width="800"]
-
 
 * The delete commands are called by typing the component-specific command, followed by an index, which refers to the index number shown in the most recent listing (e.g. `deleteIngredient 3`).
 
@@ -531,7 +531,7 @@ In other words, when RestaurantBook#deleteMember() or RestaurantBook#deleteIngre
 
 ===== Aspect: Highly coupled records
 * ** Alternative 1 (current choice):** Deleting a member will result in the deletion of all bookings done by this member. Similarly, deleting an ingredient will result in the deletion of all recipes using this ingredient.
-*** Pros: Easier to implement
+*** Pros: Automates the deletion process of bookings or recipes, when member or ingredients are deleted.
 
 *** Cons: There is a possibility that the user accidentally deletes a record (e.g. member), and all other records (e.g. bookings made by this member) referencing this record is also accidentally deleted.
 
@@ -539,7 +539,12 @@ In other words, when RestaurantBook#deleteMember() or RestaurantBook#deleteIngre
 *** Pros: Reduces the possibility that the user accidentally deletes a record (e.g. member), and all other records (e.g. bookings made by this member) referencing this record is also accidentally deleted.
 *** Cons: Inconvenient for the user to manually remove all referencing records before he can delete the referenced record.
 
-* Decision: Alternative 1 was adopted as it is an easier implementation and it makes it more convenient for the user to delete a record. It is intuitive that if a deleteMember or deleteIngredient command is called and these objects cease to exist in the restaurant book, the corresponding Booking or Recipe containing these objects should also cease to exist. To deal with the possibility that the member or ingredient is accidentally deleted, and all referenced bookings and recipes is unintentionally deleted, an additional field in the delete command can be added as a confirmation that these records should be deleted.
+* Decision: Alternative 1 was adopted as it is an easier implementation and it makes it more convenient for the user to delete a record. It is intuitive that if a deleteMember or deleteIngredient command is called and these objects cease to exist in the restaurant book, the corresponding Booking or Recipe containing these objects should also cease to exist.
+ To deal with the possibility that the member or ingredient is accidentally deleted, and all referenced bookings and recipes is unintentionally deleted, the number of bookings deleted, and all recipe names of recipes deleted will be shown. If the user had accidentally deleted the member or ingredient, he can execute the `undo` command.
+
+The current implementation of deleteIngredients can be represented by the activity diagram below:
+.Activity diagram for DeleteIngredient
+image::activity_diagram_deleteingredient.png[width="800"]
 
 // end::delete[]
 

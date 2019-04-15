@@ -57,7 +57,7 @@ Since recipes can contain more than 1 ingredient, this also increases the comple
 
 ** Community:
 *** PRs reviewed (with non-trivial review comments):  (Pull requests https://github.com/cs2103-ay1819S2-w11-2/main/pull/106[#106], https://github.com/cs2103-ay1819S2-w11-2/main/pull/104[#104])
-** Reported bugs for other teams: (Pull requests https://github.com/CS2103-AY1819S2-W17-2/main/issues/164[#164], https://github.com/CS2103-AY1819S2-W17-2/main/issues/156[#156])
+*** Reported bugs for other teams: (Pull requests https://github.com/CS2103-AY1819S2-W17-2/main/issues/164[#164], https://github.com/CS2103-AY1819S2-W17-2/main/issues/156[#156])
 
 
 == Contributions to the User Guide
