@@ -7,7 +7,9 @@ import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
@@ -220,13 +222,19 @@ public class ParserUtil {
 
         requireNonNull(ingredsToSplit);
         final Map<Index, IngredientQuantity> ingredientSet = new HashMap<>();
+        Set<Index> indexSet = new HashSet<>();
         for (String ingred : ingredsToSplit) {
             try {
                 String[] ingredValues = ingred.split("&");
                 if (ingredValues.length != 2) {
-                    throw new ParseException(RecipeIngredientSet.MESSAGE_CONSTRAINTS);
+                    throw new ParseException(RecipeIngredientSet.MESSAGE_CONSTRAINTS_GENERAL);
                 }
                 Index index = parseIndex(ingredValues[0]);
+                if (indexSet.contains(index)) {
+                    throw new ParseException(RecipeIngredientSet.MESSAGE_CONSTRAINTS_NO_DUPLICATE_INGREDIENT);
+                } else {
+                    indexSet.add(index);
+                }
                 IngredientQuantity qty = parseIngredientQuantityInRecipe(ingredValues[1]);
                 ingredientSet.put(index, qty);
             } catch (ParseException e) {

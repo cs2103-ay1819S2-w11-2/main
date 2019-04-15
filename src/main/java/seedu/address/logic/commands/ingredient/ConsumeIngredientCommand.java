@@ -27,11 +27,11 @@ public class ConsumeIngredientCommand extends Command {
     public static final String COMMAND_ALIAS = "ci";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Consumes the quantity of the ingredient identified "
-            + "by the index number used in the displayed ingredient list. "
+            + "by the index number used in the displayed ingredient list.\n"
             + "Input consumption value will be removed from existing ingredient quantity.\n"
             + "Parameters: "
             + PREFIX_INDEX + "INDEX "
-            + PREFIX_INGREDIENT_QUANTITY + "QUANTITY "
+            + PREFIX_INGREDIENT_QUANTITY + "QUANTITY\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_INDEX + "1 "
             + PREFIX_INGREDIENT_QUANTITY + "10 ";

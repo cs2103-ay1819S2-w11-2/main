@@ -441,6 +441,8 @@ ingredient required in 1 serving of the recipe.
 
 • There should be at least 1 ingredient `iq/INDEX&INGREDIENT_QUANTITY_IN_RECIPE` input.
 
+• There cannot be duplicate ingredients in the recipe, i.e. there cannot be duplicate ingredient indexes inputted. (`addRecipe r/cheese fries iq/1&1 iq/2&1 iq/1&10` is rejected).
+
 • Each ingredient input should have the format `iq/INDEX&NGREDIENT_QUANTITY_IN_RECIPE`
 where ingredient index and quantity of ingredient in recipe is separated by &.
 Both the ingredient index and quantity must be an whole number.
