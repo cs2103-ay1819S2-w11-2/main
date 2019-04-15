@@ -23,7 +23,7 @@ Visit our https://github.com/cs2103-ay1819S2-w11-2/main[project] on github to tr
 ** Justification: Restaurant managers need to be able to manage the staff that are working in the restaurant. It is also important for restaurant managers to know when each staff is on shift in the restaurant. With this feature, restaurant managers will be able to easily manage their staff, so that appropriate manpower and hiring decision can be made to keep the restaurant running smoothly.
 ** Highlights: To provide flexibility in managing the shift rosters of the staff, the ability to add both weekly shifts that span across multiple days, weekly shifts that span across a short, well-defined period of time as well as weekly overnight shifts was implemented. Shifts that clash must also be prevented. As a result, careful handling of time ranges and intensive testing of the logic was required to ensure that the feature works correctly.
 
-* *Code contributed*: https://nus-cs2103-ay1819s2.github.io/cs2103-dashboard/#search=zj-cs2103&sort=displayName&since=2019-02-10&until=2019-04-02&timeframe=day&reverse=false&repoSort=true[Project Dashboard]
+* *Code contributed*: https://nus-cs2103-ay1819s2.github.io/cs2103-dashboard/#search=zj-cs2103&sort=displayName&since=2019-02-10&until=2019-04-15&timeframe=day&reverse=false&repoSort=true[Project Dashboard]
 
 * *Other contributions*:
 

@@ -22,7 +22,7 @@ REstaurant Manager (REM) is a desktop application that turns your restaurant int
 ** Implemented the UI for the staffs, bookings, ingredients, and recipes.
 ** Implemented loyalty points for members
 
-* *Code contributed*: https://nus-cs2103-ay1819s2.github.io/cs2103-dashboard/#search=limli&sort=displayName&since=2019-02-10&until=2019-03-26&timeframe=day&reverse=false&repoSort=true[Link to Code Contributions]
+* *Code contributed*: https://nus-cs2103-ay1819s2.github.io/cs2103-dashboard/#search=limli&sort=displayName&since=2019-02-10&until=2019-04-15&timeframe=day&reverse=false&repoSort=true[Link to Code Contributions]
 
 * Community:
 ** PRs reviewed: https://github.com/cs2103-ay1819S2-w11-2/main/pull/118[#118] https://github.com/cs2103-ay1819S2-w11-2/main/pull/136[#136]

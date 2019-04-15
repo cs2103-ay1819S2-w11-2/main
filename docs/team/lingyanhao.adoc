@@ -20,7 +20,7 @@ As the overall team leader, I was responsible for setting clear goals and direct
 
 == Summary of Contributions
 
-* Code contributed: https://nus-cs2103-ay1819s2.github.io/cs2103-dashboard/#search=lingyanhao&sort=displayName&since=2019-02-10&until=2019-03-25&timeframe=day&reverse=false&repoSort=true[Code]
+* Code contributed: https://nus-cs2103-ay1819s2.github.io/cs2103-dashboard/#search=lingyanhao&sort=displayName&since=2019-02-10&until=2019-04-15&timeframe=day&reverse=false&repoSort=true[Code]
 
 * *Major enhancement*: added *booking feature*
 ** What it does: allows the user to manage bookings. The system will reject new bookings and suggest better alternative timeslots if the restaurant is full.

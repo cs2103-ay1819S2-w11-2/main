@@ -33,7 +33,7 @@ of the restaurant, according to the estimation of busyness of the restaurant via
 in any of the ingredient quantities of a recipe should cause a change in the recipe and number of servings possible.
 Since recipes can contain more than 1 ingredient, this also increases the complexity of the data structure required to store the ingredients.
 
-* *Code contributed*: [https://nus-cs2103-ay1819s2.github.io/cs2103-dashboard/#search=hiyingnn&sort=displayName&since=2019-02-10&until=2019-04-08&timeframe=day&reverse=false&repoSort=true[Code]]
+* *Code contributed*: https://nus-cs2103-ay1819s2.github.io/cs2103-dashboard/#search=hiyingnn&sort=displayName&since=2019-02-10&until=2019-04-15&timeframe=day&reverse=false&repoSort=true[Code]
 
 * *Other contributions*:
 ** Project management:
