@@ -556,7 +556,7 @@ The `addshift` command allows shifts to be added to the shift roster of a staff 
 The shifts feature is supported by two models, the `Shift` model and the `ShiftRoster` model. The `Shift` model represents a single shift that takes place during a single interval of time, while the `ShiftRoster` model stores an immutable, sorted list of shifts for a single staff member.
 The following seqeuence diagram shows how the `addshift` command works, with some details in the model component omitted.
 
-image::AddShiftSequenceDiagram.png[width="700"]
+image::AddShiftSequenceDiagram.png[width="1000"]
 
 ==== Design Considerations
 
