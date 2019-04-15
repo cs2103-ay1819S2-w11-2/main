@@ -1211,7 +1211,7 @@ These instructions only provide a starting point for testers to work on; testers
 .. Prerequisites: At least 2 members listed using the `listMembers` command. Booking column should be empty (if not, delete the bookings as per previous section). The commands below are to be executed in sequence with no other commands in between.
 .. Test case: `updateCapacity 10` +
    Expected: The capacity is successfully updated to 10 with a suitable message shown. The booking panel should show an updated capacity value. If this value is not shown, increase the height of the app.
-   
+
 .If the booking panel looks like the left, the height of the app is too small. Increase the height to make it look like the one on the right.
 image::capacitypanel.png[width="400"]
 
