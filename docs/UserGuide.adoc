@@ -492,11 +492,6 @@ Example:
 
 Delete recipe at index 3.
 
-==== Recipe Summary `recipeSummary` `[coming in v2.0]`
-Displays the number of servings that can be made for each recipe, calculated based on the current inventory
-and the quantity required in each recipe.
-
-Format: `recipeSummary`
 // end::inventory[]
 
 // tag::booking[]
