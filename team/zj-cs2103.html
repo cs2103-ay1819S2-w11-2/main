@@ -3,6 +3,9 @@
 <link rel="stylesheet" href="../stylesheets/coderay-asciidoctor.css"></head><body class="article"><div id="site-header"><nav class="navbar navbar-light bg-light"><div class="container"><a class="navbar-brand" href="../index.html">REstaurant Manager</a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="../UserGuide.html">User Guide</a></li><li class="nav-item"><a class="nav-link" href="../DeveloperGuide.html">Developer Guide</a></li><li class="nav-item"><a class="nav-link active" href="../AboutUs.html">About Us</a></li><li class="nav-item"><a class="nav-link" href="../ContactUs.html">Contact Us</a></li><li class="navitem"><a class="nav-link" href="https://github.com/cs2103-ay1819S2-w11-2/main"><span class="fa fa-github fa-lg" aria-hidden="true"></span>&nbsp;View on GitHub</a></li></ul></div></nav></div><div id="header"><h1>Wang Zhi Jian - Project Portfolio</h1></div><div id="content"><div class="sect1">
 <h2 id="project-restaurant-manager"><a class="link" href="#project-restaurant-manager">PROJECT: REstaurant Manager</a></h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>This portfolio serves to document my contribution to <em>REstaurant Manager</em>, an undergraduate level software engineering project for the module CS2103T - Software Engineering. <em>REstaurant Manager</em> was developed over a course of 6 weeks by a team of 4 members. It is written in Java and is based on an existing code base, <a href="https://github.com/nus-cs2103-AY1819S2/addressbook-level4">Address Book (Level 4)</a>.</p>
+</div>
 <hr>
 </div>
 </div>
@@ -10,7 +13,11 @@
 <h2 id="overview"><a class="link" href="#overview">Overview</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>REstaurant Manager (REM) is a desktop application that turns your restaurant into a smart restaurant. It is meant for restaurant owners to manage their member base, staff, bookings and food inventory.</p>
+<p><em>REstaurant Manager</em> (REM) is an application that provides a four-in-one package for restaurant owners to easily manage various aspects of their restaurant.
+It allows restaurant managers to manage their member base, reservations, menu, inventory as well as manpower.</p>
+</div>
+<div class="paragraph">
+<p>Visit our <a href="https://github.com/cs2103-ay1819S2-w11-2/main">project</a> on github to try out our application.</p>
 </div>
 </div>
 </div>
@@ -20,29 +27,23 @@
 <div class="ulist">
 <ul>
 <li>
-<p>Code contributed: (insert link)</p>
-</li>
-<li>
 <p><strong>Major enhancement</strong>: added <strong>staff feature</strong></p>
 <div class="ulist">
 <ul>
 <li>
-<p>What it does: allows the user to manage the staff working in a restaurant. Users can also manage the shift roster of the staff working in a restaurant, and to know which staff members are active in the restaurant at the current time.</p>
+<p>What it does: It acts as a simple manpower management system for restaurant managers. It allows users to add, remove, edit and list staff working in a restaurant. Users can also manage the shift rosters of the staff members.</p>
 </li>
 <li>
-<p>Justification: A restaurant needs to know the number and type of staff working in the restaurant, as well as when each staff member is active, so that it knows if there is sufficient staff to serve customers at any time, and also make manpower and hiring decisions.</p>
+<p>Justification: Restaurant managers need to be able to manage the staff that are working in the restaurant. It is also important for restaurant managers to know when each staff is on shift in the restaurant. With this feature, restaurant managers will be able to easily manage their staff, so that appropriate manpower and hiring decision can be made to keep the restaurant running smoothly.</p>
 </li>
 <li>
-<p>Highlights: This feature required handling of time ranges for the implementation of the weekly staff shift rosters, which was tricky to implement as care must be taken to handle overnight shifts and shifts across days. It also required an immutable shift roster, which required significant changes to the code.</p>
-</li>
-<li>
-<p>Credits: <em>{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}</em></p>
+<p>Highlights: To provide flexibility in managing the shift rosters of the staff, the ability to add both weekly shifts that span across multiple days, weekly shifts that span across a short, well-defined period of time as well as weekly overnight shifts was implemented. Shifts that clash must also be prevented. As a result, careful handling of time ranges and intensive testing of the logic was required to ensure that the feature works correctly.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><strong>Code contributed</strong>: <a href="https://nus-cs2103-ay1819s2.github.io/cs2103-dashboard/#search=zj-cs2103&amp;sort=displayName&amp;since=2019-02-10&amp;until=2019-04-02&amp;timeframe=day&amp;reverse=false&amp;repoSort=true">Link</a></p>
+<p><strong>Code contributed</strong>: <a href="https://nus-cs2103-ay1819s2.github.io/cs2103-dashboard/#search=zj-cs2103&amp;sort=displayName&amp;since=2019-02-10&amp;until=2019-04-02&amp;timeframe=day&amp;reverse=false&amp;repoSort=true">Project Dashboard</a></p>
 </li>
 <li>
 <p><strong>Other contributions</strong>:</p>
@@ -53,10 +54,19 @@
 <div class="ulist">
 <ul>
 <li>
-<p>Managed the release for <a href="https://github.com/cs2103-ay1819S2-w11-2/main/releases/tag/v1.2">v1.2</a>.</p>
+<p>Managed the release for <a href="https://github.com/cs2103-ay1819S2-w11-2/main/releases/tag/v1.2">v1.2</a>, <a href="https://github.com/cs2103-ay1819S2-w11-2/main/releases/tag/v1.3">v1.3</a> and <a href="https://github.com/cs2103-ay1819S2-w11-2/main/releases/tag/v1.3.1">v1.3.1</a> on Github.</p>
 </li>
 <li>
-<p>Wrote tests to improve coverage (Pull requests <a href="https://github.com/cs2103-ay1819S2-w11-2/main/pull/52">#52</a>, <a href="https://github.com/cs2103-ay1819S2-w11-2/main/pull/58">#58</a>, <a href="https://github.com/cs2103-ay1819S2-w11-2/main/pull/88">#88</a>, <a href="https://github.com/cs2103-ay1819S2-w11-2/main/pull/99">#99</a>, <a href="https://github.com/cs2103-ay1819S2-w11-2/main/pull/131">#131</a>, <a href="https://github.com/cs2103-ay1819S2-w11-2/main/pull/135">#135</a></p>
+<p>Contributed to user stories on GitHub Issue Tracker: <a href="https://github.com/cs2103-ay1819S2-w11-2/main/issues/79">#79</a>, <a href="https://github.com/cs2103-ay1819S2-w11-2/main/issues/80">#80</a>.</p>
+</li>
+<li>
+<p>Wrote tests to improve coverage: <a href="https://github.com/cs2103-ay1819S2-w11-2/main/pull/52">#52</a>, <a href="https://github.com/cs2103-ay1819S2-w11-2/main/pull/58">#58</a>, <a href="https://github.com/cs2103-ay1819S2-w11-2/main/pull/88">#88</a>, <a href="https://github.com/cs2103-ay1819S2-w11-2/main/pull/99">#99</a>, <a href="https://github.com/cs2103-ay1819S2-w11-2/main/pull/131">#131</a>, <a href="https://github.com/cs2103-ay1819S2-w11-2/main/pull/135">#135</a>, <a href="https://github.com/cs2103-ay1819S2-w11-2/main/pull/185">#185</a>, <a href="https://github.com/cs2103-ay1819S2-w11-2/main/pull/193">#193</a>, <a href="https://github.com/cs2103-ay1819S2-w11-2/main/pull/195">#195</a>.</p>
+</li>
+<li>
+<p>Reviewed pull requests: <a href="https://github.com/cs2103-ay1819S2-w11-2/main/pull/101">#101</a>, <a href="https://github.com/cs2103-ay1819S2-w11-2/main/pull/184">#184</a>.</p>
+</li>
+<li>
+<p>Refactored code: <a href="https://github.com/cs2103-ay1819S2-w11-2/main/pull/29">#29</a>, <a href="https://github.com/cs2103-ay1819S2-w11-2/main/pull/97">#97</a>.</p>
 </li>
 </ul>
 </div>
@@ -671,4 +681,4 @@ The following seqeuence diagram shows how the <code>addshift</code> command work
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-14 18:01:52 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 01:36:09 UTC</div></div></div></body></html>
