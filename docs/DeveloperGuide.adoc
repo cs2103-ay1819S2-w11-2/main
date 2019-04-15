@@ -1246,6 +1246,35 @@ These instructions only provide a starting point for testers to work on; testers
 .. Test case: `addbooking c/2 n/7 ts/2019-04-07T10:30`
    Expected: The booking is successfully added into the system. (Explanation: REM assumes that bookings last for 1 hour. Since this member is expected to leave by 2019-04-07T11:30, the restaurant will be empty at 2019-04-07T12:00. This set of bookings does not cause the capacity of 10 to be exceeded. For more details, refer to `addbooking` command in the User Guide.)
 
+=== Add, edit and delete staff
+. Add, edit and delete staff
+.. Test case: `addstaff n/Jane Smith p/91234567 e/jsmith@example.com a/Server`
+   Expected: A new staff is added. The name, phone number, email and appointment is shown in the Staff column.
+.. Test case `editstaff 1 p/97654321 a/Head Chef`
+   Expected: The phone number and appointment of the staff corresponding to the first index is updated.
+.. Test case: `deletestaff 1`
+   Expected: The staff corresponding to the first index is deleted.
+
+=== Add and delete shifts
+. Add shifts
+.. Prerequisites: List all staff using the `listStaff` command. List of staff has size of at least 2. The staff corresponding to the first and second index have no shifts.
+.. Test case: `addshift 1 sd/MONDAY ts/12:00 ed/MONDAY te/14:00`
+   Expected: The shift is successfully added to the staff corresponding to the first index.
+. Test that the constraints for shifts is enforced
+.. Test case: `addshift 1 sd/MONDAY ts/13:00 ed/MONDAY te/15:00`
+   Expected: The system rejects the shift. (Explanation: It clashes with the shift on MONDAY, 12:00 to MONDAY, 14:00.)
+.. Test case: `addshift 1 sd/MONDAY ts/16:00 ed/MONDAY te/10:00`
+   Expected: The system rejects the shift. (Explanation: Shifts must not end on the same start day of week but at an earlier time.)
+.. Test case: `addshift 2 sd/SUNDAY ts/00:00 ed/SATURDAY te/23:59`
+   Expected: The shift is successfully added to the staff corresponding to the second index.
+.. Test case: `addshift 2 sd/SATURDAY ts/23:59 ed/SUNDAY te/00:00`
+   Expected: The system rejects the shift. (Explanation: The total durations of all shifts for a single staff must not last longer than one week.)
+. Delete shifts
+.. Test case: `deleteshift 1 sd/MONDAY ts/12:00 ed/MONDAY te/14:00 `
+   Expected: The shift on MONDAY, 12:00 to MONDAY, 14:00 corresponding to the first staff is deleted.
+.. Test case: `deleteshift 1 sd/MONDAY ts/16:00 ed/MONDAY te/18:00 `
+   Expected: The system rejects the attempt to delete the shift. (Explanation: The first staff does not have a shift from MONDAY, 16:00 to MONDAY, 18:00.)
+
 === Statistics
 . Test that the statistics feature displays the bar graph correctly.
 .. Prerequisites: There are exactly 3 bookings with date being: today's date, yesterday's date, and the day before's date
