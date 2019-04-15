@@ -1208,7 +1208,7 @@ These instructions only provide a starting point for testers to work on; testers
 
 === Capacity tests for booking feature
 . Test that the capacity constraint is enforced
-.. Prerequeisites: At least 2 members listed using the `listMembers` command. Booking column should be empty (if not, delete the bookings as per previous section). The commands below are to be executed in sequence.
+.. Prerequisites: At least 2 members listed using the `listMembers` command. Booking column should be empty (if not, delete the bookings as per previous section). The commands below are to be executed in sequence.
 .. Test case: `updateCapacity 10`
    Expected: The capacity is successfully updated to 10 with a suitable message shown.
 .. Test case: `addbooking c/1 n/7 ts/2019-04-07T12:00`
@@ -1217,6 +1217,66 @@ These instructions only provide a starting point for testers to work on; testers
    Expected: The system rejects the booking and instead suggests an alternative timeslot of 2019-04-07T13:00. (Explanation: if this booking is accepted, there will be 7+7=14 customers in the restaurant at 2019-04-07T12:00. This exceeds the capacity of 10 and thus REM rejects the booking. For more details, refer to `addbooking` command in the User Guide.)
 .. Test case: `addbooking c/2 n/7 ts/2019-04-07T10:30`
    Expected: The booking is successfully added into the system. (Explanation: REM assumes that bookings last for 1 hour. Since this member is expected to leave by 2019-04-07T11:30, the restaurant will be empty at 2019-04-07T12:00. This set of bookings does not cause the capacity of 10 to be exceeded. For more details, refer to `addbooking` command in the User Guide.)
+
+=== List ingredients test for ingredient feature
+. Test that the `listIngredients` command lists ingredients with key word and/or ingredient quantity falling below ingredient warning amount (ingredient panel)
+.. Prerequisites: Ingredient panel should be empty, if not, execute `deleteIngredient` command (Refer to User Guide). The commands below are to be executed in sequence.
+.. Test case: `addIngredient in/tomato q/20 w/ 10 u/whole`  +
+`addIngredient in/tomato ketchup q/20 w/10 u/bottles` +
+`addIngredient in/tomato soup q/10 w/20 u/cans` +
+`addIngredient in/potato q/10 w/20 u/sacks` +
+Expected: 4 ingredients, tomato, tomato ketchup, tomato soup and potato is added into ingredient panel. Upon success, ingredient panel should look like this:
++
+.Successfully adding 4 ingredients into restaurant book
+image::addIngredients.png[width=1000]
+
+.. Test case: `listIngredients in/tomato`  +
+Expected: 3 ingredients, tomato, tomato ketchup and tomato soup containing the word "tomato" is listed on the ingredient panel. Upon success, ingredient panel should look like this:
++
+.Successfully listing 3 ingredients in ingredient panel
+image::listIngredients_tomato.png[width=1000]
+
+.. Test case: `listIngredients in/tomato w/`  +
+Expected: 1 ingredient, tomato soup, containing the word "tomato", and ingredient quantity falling below ingredient warning amount is listed on the ingredient panel. Upon success, ingredient panel should look like this:
++
+.Successfully listing 1 ingredient in ingredient panel
+image::listIngredients_tomato_warningamt.png[width=1000]
+
+.. Test case: `consumeIngredient i/1 q/15`  +
+Expected: 1 ingredient, tomato, is consumed by 15 whole tomatoes, ingredient quantity of tomato in ingredient panel changes to 5 whole tomatoes. Upon success, ingredient panel should look like this:
++
+.Successfully consuming 1 ingredient in ingredient panel
+image::consumeIngredient.png[width=1000]
+
+.. Test case: `listIngredients in/tomato w/`  +
+Expected: 2 ingredients, tomato soup and tomato, containing the word "tomato", and ingredient quantity falling below ingredient warning amount is listed on the ingredient panel. Upon success, ingredient panel should look like this:
++
+.Successfully listing 2 ingredients in ingredient panel
+image::listIngredients_tomato_warningamt2.png[width=1000]
+
+=== Number of servings test for recipe feature
+. Test that the number of servings in recipe is correctly calculated based on ingredient quantity in inventory (ingredient panel) and ingredient quantity per serving (recipe panel).
+.. Prerequisites: Recipe and ingredient panels should be empty, if not, execute `deleteIngredient` and `deleteRecipe` commands (Refer to User Guide). The commands below are to be executed in sequence.
+.. Test case: `addIngredient in/cheese u/slices q/20` +
+               `addIngredient in/fries u/packets q/10`
+   Expected: 2 ingredients, cheese and fries are added into ingredient panel. Upon success, ingredient panel should look like this:
++
+.Successfully adding 2 ingredients into restaurant book
+image::addRecipe-addIngredientCommand.png[width=1000]
+
+.. Test case: `addRecipe r/cheese fries iq/1&1 iq/2&1` +
+   Expected: 1 recipe, cheese fries is added into recipe panel. Each serving of cheese fries requires 1 slice of cheese and 1 packet of fries with 10 number of servings possible.
+   Upon success, recipe panel should look like this:
++
+.Successfully adding 1 recipe, displaying the number of servings possible.
+image::addRecipe-successful.png[width=1000]
+
+.. Test case: `restockIngredient i/2 q/10` +
+   Expected: 1 ingredient, fries is restocked by 10 packets, ingredient quantity of fries in ingredient panel changes to 20 packets.
+   Number of servings possible for cheese fries changes to 20. (For more details, refer to `addRecipe` command in the User Guide.)
++
+.Successfully restocking 1 ingredient, displays the new number of servings possible.
+image::addRecipe-restockIngredient.png[width=1000]
 
 === Saving data
 

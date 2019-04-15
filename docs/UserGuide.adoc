@@ -522,7 +522,6 @@ The booking section models booking made by members.
 View the current lists of bookings within a certain time frame
 
 Format: `listBookings [ts/TIME_START] [te/TIME_END]` +
-Shortcut: `em INDEX [n/NAME] [p/PHONE] [e/EMAIL] [l/LOYALTY_POINTS]`
 
 ****
 • The start and end times are optional arguments. If not specified, the list of all bookings (i.e. including future and past bookings) made so far will be displayed.
@@ -530,7 +529,7 @@ Shortcut: `em INDEX [n/NAME] [p/PHONE] [e/EMAIL] [l/LOYALTY_POINTS]`
 
 Example:
 
-* `listBookings ts/2019-03-01 12:00 te/2019-03-04 15:00`
+* `listBookings ts/2019-03-01T12:00 te/2019-03-04T15:00`
 
 ==== Update Restaurant Capacity: `updateCapacity`
 
