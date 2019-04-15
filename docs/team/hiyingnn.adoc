@@ -13,12 +13,6 @@ an application developed by 4 undergraduate students, in the course of Software 
 This application provides a single platform for them to manage many areas of the restaurant:
 customers with membership, staff, bookings, ingredient and recipe inventory.
 
-What separates REM from existing applications utilised by restaurant managers, is that REM, as a single platform can ensure
-the smooth running of the restaurant, whereas existing applications typically target only 1 niche area of the restaurant.
-With all records centralised in 1 system, restaurant managers can have greater knowledge on how to ensure that there are sufficient
-resources, i.e. by knowing the number of bookings made and number of servings of each dish available based on current ingredient stock,
-the manager can then decide to restock ingredients and allocate sufficient staff.
-
 My role was to implement the ingredient and recipe management features. Other than that, I was in charge of
 documentations in the team, to ensure that the features were well documented and corresponded to the actual implementation of the application.
 I was also in charge of the Storage component of REM, requiring a thorough concept of the component.
