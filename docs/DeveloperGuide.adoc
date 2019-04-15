@@ -479,16 +479,19 @@ image::deleteingredientss.png[width="300"]
 
 === Shifts feature
 
-The shifts feature allows users to maintain shift rosters for staff members, as well as
+The shifts feature allows users to maintain shift rosters for staff members.
 
 ==== Current Implementation
 
 The shifts feature comprises of two main commands: the `addshift` command and the `deleteshift` command.
 The `addshift` command allows shifts to be added to the shift roster of a staff member, and the `deleteshift` command allows shifts to be deleted from the shift roster of a staff member.
-The shifts feature is supported by two models, the `Shift` model and the `ShiftRoster` model. The `Shift` model represents a single shift that takes place during a single interval of time, while the `ShiftRoster` model stores an immutable, sorted list of shifts for a single staff member.
-The following seqeuence diagram shows how the `addshift` command works.
+The shifts feature is supported by two models, the `Shift` model and the `ShiftRoster` model. The `Shift` model represents a single shift that takes place during a single interval of time, while the `ShiftRoster` model stores an immutable, sorted list of shifts for a single staff member. The following (simplified) class diagram shows the relationship between the `Staff`, `ShiftRoster` and `Shift` classes.
 
-image::AddShiftSequenceDiagram.png[width="700"]
+image::ShiftClassDiagram.png[width="1000"]
+
+The following seqeuence diagram shows how the `addshift` command works, with some details in the model component omitted.
+
+image::AddShiftSequenceDiagram.png[width="1000"]
 
 ==== Design Considerations
 
@@ -512,7 +515,7 @@ image::AddShiftSequenceDiagram.png[width="700"]
 
 * **Alternative 1 (current choice):** Represent weekly shifts by storing the start day and time as well as the end day and time in a date range, where the start day and end day are different.
 ** Pros:
-*** Enables to possibility of storing shifts across multiple days.
+*** Enables to possibility of storing shifts across multiple days, thereby providing restaurant owners with the flexibility to define shifts in terms of day ranges instead of time ranges.
 *** Greater certainty as to exactly when a shift starts and ends.
 *** Allows validation checks by ensuring that shifts are of positive duration.
 ** Cons:
@@ -1082,7 +1085,58 @@ Use case ends.
 +
 Use case resumes at step 2.
 
-_{More to be added}_
+=== Use case: Add staff
+
+*MSS*
+
+1.  User requests to add staff
+2.  RestaurantBook adds the staff
+3.  RestaurantBook shows a list of staff
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. The staff to be added already exists.
++
+[none]
+** 3a1. RestaurantBook shows an error message.
++
+Use case resumes at step 1.
+
+* 3a. The staff data is given in the wrong format.
++
+[none]
+** 3a1. RestaurantBook shows an error message.
++
+Use case resumes at step 1.
+
+[discrete]
+=== Use case: Delete staff
+
+*MSS*
+
+1.  User requests to list staff
+2.  RestaurantBook shows a list of staff
+3.  User requests to delete a specific staff in the list
+4.  RestaurantBook deletes the staff
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 2a. The list is empty.
++
+Use case ends.
+
+* 3a. The given index is invalid.
++
+[none]
+** 3a1. RestaurantBook shows an error message.
++
+Use case resumes at step 2.
 // end::usecases[]
 
 [appendix]
@@ -1257,6 +1311,45 @@ image::addRecipe-restockIngredient.png[width=1000]
 .. Test case: `deletestaff 1`
    Expected: The staff corresponding to the first index is deleted.
 
+=== List staff
+. List staff
+.. Prerequisites: Staff panel should be empty. Then, the commands below must be executed in sequence.
+... `addstaff n/Jane Smith p/91234567 e/jsmith@example.com a/Server`
+... `addstaff n/Jack Smith p/92345678 e/jasmith@example.com a/Server`
+... `addstaff n/Jack Tan p/91234567 e/jtan@example.com a/Cook`
+... `addstaff n/Simon Loh p/91234567 e/sloh@example.com a/Cook`
+.. After executing the four commands above, the staff panel should look like that in figure 25 below.
++
+.The staff panel after the four commands above have been executed
+image::liststaff_prereq.png[width=1000]
++
+.. Test case: `liststaff`
+   Expected: All four staff added by the command above are listed.
+.. Test case: `liststaff n/smith`
+   Expected: The two staff members whose names contain the word 'smith' are listed, as shown in figure 26 below.
++
+.The staff panel after the `liststaff n/smith` command has been executed
+image::liststaff_smith.png[width=1000]
++
+.. Test case: `liststaff a/cook`
+   Expected: The two staff members whose appointments contain the word 'cook' are listed, as shown in figure 27 below.
++
+.The staff panel after the `liststaff a/cook` command has been executed
+image::liststaff_cook.png[width=1000]
++
+.. Test case: `liststaff n/jack a/server`
+   Expected: The staff member whose name contains the word 'jack' and whose appointment contains the word `server` are listed, as shown in figure 28 below.
++
+.The staff panel after the `liststaff n/jack a/server` command has been executed
+image::liststaff_jack_server.png[width=1000]
++
+.. Test case: `liststaff n/simon a/server`
+   Expected: No staff members should be listed, as shown in figure 29 below.
++
+.The staff panel after the `liststaff n/simon a/server` command has been executed
+image::liststaff_simon_server.png[width=1000]
+
+
 === Add and delete shifts
 . Add shifts
 .. Prerequisites: List all staff using the `listStaff` command. List of staff has size of at least 2. The staff corresponding to the first and second index have no shifts.
@@ -1285,6 +1378,7 @@ image::addRecipe-restockIngredient.png[width=1000]
 .. Test case: `statsdays 10` +
    Expected: A new window appears displaying a bar graph spanning 10 days, but only 3 of them have a bar. The height of the bar is the number of customers in each booking. +
 
+.Bar graph displayed by `statsdays 10` command
 image::statsdays_example.png[width="700"]
 
 The image above shows the new window, and the current bookings. The screenshot is taken on 15 April 2019.
@@ -1293,7 +1387,7 @@ The image above shows the new window, and the current bookings. The screenshot i
 .. Test case: `statstime 3` +
    Expected: A new window appears displaying a bar graph. The height of the bar is the number of customers in that specific time slot.
 
+.Bar graph displayed by `statstime 3` command
 image::statstime_example.png[width="700"]
 
 The image above shows the new window, and the current bookings. The screenshot is taken on 15 April 2019.
-
