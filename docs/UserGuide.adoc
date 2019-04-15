@@ -423,9 +423,7 @@ and displayed on the recipe panel. Upon  executing `restockIngredient` or `consu
 automatically adjusted and displayed.
 ****
 
-Example:
-
-(Assuming that the restaurant book is empty.)
+Example: (Assuming that the restaurant book is empty.)
 
 .  `addIngredient in/cheese u/slices q/20`, `addIngredient in/fries u/packets q/10`, `addRecipe r/cheese fries iq/1&1 iq/2&1` +
    * These commands add cheese and fries into the ingredient panel, and cheese fries into recipe panel. For each serving of cheese fries, 1 slice of cheese and 1
