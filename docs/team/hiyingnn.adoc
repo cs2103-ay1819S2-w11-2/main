@@ -42,7 +42,7 @@ Since recipes can contain more than 1 ingredient, this also increases the comple
 *** Refactored project (Pull requests https://github.com/cs2103-ay1819S2-w11-2/main/pull/28[#28])
 
 ** Documentation:
-*** Did cosmetic tweaks to existing contents of the User Guide/ Developer Guide: (Pull requests https://github.com/cs2103-ay1819S2-w11-2/main/pull/202[#202], https://github.com/cs2103-ay1819S2-w11-2/main/pull/142[#142])
+*** Did cosmetic tweaks to existing contents of the User Guide/ Developer Guide: (Pull requests https://github.com/cs2103-ay1819S2-w11-2/main/pull/202[#202])
 
 ** Community:
 *** PRs reviewed (with non-trivial review comments):  (Pull requests https://github.com/cs2103-ay1819S2-w11-2/main/pull/106[#106])

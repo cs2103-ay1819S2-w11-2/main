@@ -389,15 +389,12 @@ image::suggesttimeslot.png[width='800']
 === Delete Feature
 
 The delete feature is used to delete a specific record in the restaurant book, i.e. deleting a member, staff, booking, ingredient or recipe.
-
 In comparison to the original AB4 codebase, REstaurant Manager has more than 1 type of record in the restaurant book, and has a high level of dependency/ coupling between certain components:
 
 * Between Member and Booking: a booking contains a specific member -  Booking is highly coupled to Member
 * Between Ingredient and Recipe: a recipe contains ingredients – Recipe is highly coupled to Ingredient
 
-
 Therefore, there are some design considerations that we have to make when it comes to deleting a record.
-
 
 ==== Current implementation
 * There are separate delete commands for each of the 4 components, namely `deleteMember`, `deleteBooking`, `deleteStaff`, `deleteIngredient` and `deleteRecipe`, and the command explicitly specifies the object being deleted.
@@ -425,9 +422,8 @@ In other words, when RestaurantBook#deleteMember() or RestaurantBook#deleteIngre
 *** Pros: Shorter commands required from user, (e.g. `delete` vs `deleteIngredient`).
 *** Cons: Requires user to type in additional command prior to the `delete` command (e.g. list or filter command), to change the state of the intended list to active.
 
-* Decision: Alternative 1 was selected for the following reasons:
-*** Aliases are implemented as a shortcut to the long commands (e.g. `db` for `deleteBooking`, `dm` for `deleteMember`). It is no longer inconvenient for users as they can type the shorter command.
-*** 4 panels are implemented in U/I (link to u/i segment), 1 panel for each component provides easy cross-reference across linked records, and this supports Alternative 1's implementation. All lists are active at the same time, and they display all unfiltered records by default. Firstly, it is hard for the user to detect an active list at first glance, since all lists are already displayed. Secondly, a specific delete command can be called without a prior command to mark the list as active (e.g.  `deleteIngredient` can be called directly to make changes to Ingredient list) which makes it more convenient for the user
+* Decision: Alternative 1 was selected since aliases are implemented as a shortcut to the long commands (e.g. `db` for `deleteBooking`, `dm` for `deleteMember`) and no longer inconvenient for users.
+Since 4 panels are implemented in U/I, this provides easy cross-reference across linked records. It is hard for the user to detect an active list at first glance, since all lists are already displayed. With chosen implementation, specific delete command can be called without a prior command to mark the list as active (e.g.  `deleteIngredient` can be called directly to make changes to Ingredient list), providing convenience to user.
 
 
 ===== Aspect: Deletion by index/ Deletion by field
