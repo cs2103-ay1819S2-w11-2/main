@@ -16,7 +16,7 @@ public class UpdateCapacityCommandParser implements Parser<UpdateCapacityCommand
     @Override
     public UpdateCapacityCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        // TODO: use parserutil
+
         try {
             Capacity capacity = new Capacity(args.trim());
             return new UpdateCapacityCommand(capacity);
