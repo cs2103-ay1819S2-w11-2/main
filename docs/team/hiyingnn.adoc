@@ -20,9 +20,9 @@ I was also in charge of the Storage component of REM, requiring a thorough conce
 == Summary of Contributions
 
 * *Major enhancement*: added *ingredient and recipe features*
-** What it does: allows the user to add, delete, restock and consume ingredients, keeping track of the quantity of ingredients present in the inventory.
-Ingredients with quantity in inventory falling below ingredient warning amount can also be listed.
-Users can also add and delete recipes consisting of ingredients already present in the inventory, and their respective ingredient quantity per serving for the recipe.
+** What it does: allows user to add, delete, restock, consume ingredients and keep track of the quantity of ingredients present in the inventory.
+Ingredients with quantity in inventory falling below ingredient warning amount can be listed.
+Users can add and delete recipes consisting of ingredients present in the inventory, and their respective ingredient quantity per serving for the recipe.
 ** Justification:
 These features improve the product significantly, as the ingredient feature helps to keep track of the inventory status for the ingredients.
 The users can choose to restock ingredients if it falls below the user-specified warning amount.
