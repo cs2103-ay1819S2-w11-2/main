@@ -1150,7 +1150,58 @@ Use case ends.
 +
 Use case resumes at step 2.
 
-_{More to be added}_
+=== Use case: Add staff
+
+*MSS*
+
+1.  User requests to add staff
+2.  RestaurantBook adds the staff
+3.  RestaurantBook shows a list of staff
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. The staff to be added already exists.
++
+[none]
+** 3a1. RestaurantBook shows an error message.
++
+Use case resumes at step 1.
+
+* 3a. The staff data is given in the wrong format.
++
+[none]
+** 3a1. RestaurantBook shows an error message.
++
+Use case resumes at step 1.
+
+[discrete]
+=== Use case: Delete staff
+
+*MSS*
+
+1.  User requests to list staff
+2.  RestaurantBook shows a list of staff
+3.  User requests to delete a specific staff in the list
+4.  RestaurantBook deletes the staff
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 2a. The list is empty.
++
+Use case ends.
+
+* 3a. The given index is invalid.
++
+[none]
+** 3a1. RestaurantBook shows an error message.
++
+Use case resumes at step 2.
 // end::usecases[]
 
 [appendix]
