@@ -329,6 +329,40 @@ Shortcut: <code>dsh INDEX sd/START_DAY_OF_WEEK ts/START_TIME ed/END_DAY_OF_WEEK 
 <p>Deletes the shift from 8am to 10.30am every Tuesday from the roster of the staff member with index 1 shown in the most recent listing.</p>
 </div>
 </div>
+<div class="sect3">
+<h4 id="list-active-staff-in-time-range-code-activestaff-code-coming-in-v2-0"><a class="link" href="#list-active-staff-in-time-range-code-activestaff-code-coming-in-v2-0">List Active Staff in Time Range: <code>activestaff</code> [Coming in v2.0]</a></h4>
+<div class="paragraph">
+<p>List all staff working in the restaurant in a certain time range.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>activestaff sd/START_DAY_OF_WEEK ts/START_TIME ed/END_DAY_OF_WEEK te/END_TIME</code>
+Shortcut: <code>ats sd/START_DAY_OF_WEEK ts/START_TIME ed/END_DAY_OF_WEEK te/END_TIME</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>The requirements for the fields <code>START_DAY_OF_WEEK</code>, <code>START_TIME</code>, <code>END_DAY_OF_WEEK</code>, <code>END_TIME</code> are identical to that of the addShift command.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Example</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>activestaff sd/MONDAY ts/12:00 ed/TUESDAY te/12:00</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Lists all staff who work a shift between 12pm every Monday to 12pm every Tuesday.</p>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -452,19 +486,26 @@ The state of the <code>RestaurantBook</code> is then saved via the <code>Model#c
 <div class="sect2">
 <h3 id="shifts-feature"><a class="link" href="#shifts-feature">Shifts feature</a></h3>
 <div class="paragraph">
-<p>The shifts feature allows users to maintain shift rosters for staff members, as well as</p>
+<p>The shifts feature allows users to maintain shift rosters for staff members.</p>
 </div>
 <div class="sect3">
 <h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">Current Implementation</a></h4>
 <div class="paragraph">
 <p>The shifts feature comprises of two main commands: the <code>addshift</code> command and the <code>deleteshift</code> command.
 The <code>addshift</code> command allows shifts to be added to the shift roster of a staff member, and the <code>deleteshift</code> command allows shifts to be deleted from the shift roster of a staff member.
-The shifts feature is supported by two models, the <code>Shift</code> model and the <code>ShiftRoster</code> model. The <code>Shift</code> model represents a single shift that takes place during a single interval of time, while the <code>ShiftRoster</code> model stores an immutable, sorted list of shifts for a single staff member.
-The following seqeuence diagram shows how the <code>addshift</code> command works.</p>
+The shifts feature is supported by two models, the <code>Shift</code> model and the <code>ShiftRoster</code> model. The <code>Shift</code> model represents a single shift that takes place during a single interval of time, while the <code>ShiftRoster</code> model stores an immutable, sorted list of shifts for a single staff member. The following (simplified) class diagram shows the relationship between the <code>Staff</code>, <code>ShiftRoster</code> and <code>Shift</code> classes.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../images/AddShiftSequenceDiagram.png" alt="AddShiftSequenceDiagram" width="700">
+<img src="../images/ShiftClassDiagram.png" alt="ShiftClassDiagram" width="1000">
+</div>
+</div>
+<div class="paragraph">
+<p>The following seqeuence diagram shows how the <code>addshift</code> command works, with some details in the model component omitted.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/AddShiftSequenceDiagram.png" alt="AddShiftSequenceDiagram" width="1000">
 </div>
 </div>
 </div>
@@ -547,7 +588,7 @@ The following seqeuence diagram shows how the <code>addshift</code> command work
 <div class="ulist">
 <ul>
 <li>
-<p>Enables to possibility of storing shifts across multiple days.</p>
+<p>Enables to possibility of storing shifts across multiple days, thereby providing restaurant owners with the flexibility to define shifts in terms of day ranges instead of time ranges.</p>
 </li>
 <li>
 <p>Greater certainty as to exactly when a shift starts and ends.</p>
@@ -680,4 +721,4 @@ The following seqeuence diagram shows how the <code>addshift</code> command work
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 07:56:55 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 08:16:45 UTC</div></div></div></body></html>
