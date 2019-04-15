@@ -25,7 +25,7 @@ public class AddIngredientCommand extends Command {
             + PREFIX_INGREDIENT_NAME + "INGREDIENT "
             + PREFIX_INGREDIENT_UNIT + "STANDARD_UNIT "
             + "[" + PREFIX_INGREDIENT_QUANTITY + "QUANTITY] "
-            + "[" + PREFIX_INGREDIENT_WARNINGAMOUNT + "WARNINGAMOUNT] + \n "
+            + "[" + PREFIX_INGREDIENT_WARNINGAMOUNT + "WARNINGAMOUNT] \n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_INGREDIENT_NAME + "cheese "
             + PREFIX_INGREDIENT_UNIT + "pounds "

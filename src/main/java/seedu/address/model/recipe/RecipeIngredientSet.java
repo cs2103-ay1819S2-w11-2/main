@@ -9,21 +9,24 @@ import seedu.address.model.ingredient.Ingredient;
 import seedu.address.model.ingredient.IngredientQuantity;
 
 /**
- *  A class to represent the ingredients used in a recipe.
- *  The Ingredient is stored along with the respective ingredientQuantity required in the recipe,
- *  as a Map containing Ingredient as key and IngredientQuantity as value.
- *
+ * A class to represent the ingredients used in a recipe.
+ * The Ingredient is stored along with the respective ingredientQuantity required in the recipe,
+ * as a Map containing Ingredient as key and IngredientQuantity as value.
  */
 
 public class RecipeIngredientSet {
 
-    public static final String MESSAGE_CONSTRAINTS =
+    public static final String MESSAGE_CONSTRAINTS_GENERAL =
             "Each ingredient and its respective quantity in a recipe should be in the form: "
-            + "INGREDIENT_INDEX&INGREDIENT_QUANTITY\n"
-            + "Ingredient index should be a non-zero unsigned integer, "
-            + "representing the corresponding ingredient in the ingredient list.\n"
-            + "Ingredient quantity should be a non-zero unsigned integer. \n"
-            + "INGREDIENT_INDEX and INGREDIENT_QUANTITY should be separated by the symbol '&'.";
+                    + "INGREDIENT_INDEX&INGREDIENT_QUANTITY\n"
+                    + "Ingredient index should be a non-zero unsigned integer, "
+                    + "representing the corresponding ingredient in the ingredient list.\n"
+                    + "Ingredient quantity should be a non-zero unsigned integer. \n"
+                    + "INGREDIENT_INDEX and INGREDIENT_QUANTITY should be separated by the symbol '&'.";
+
+    public static final String MESSAGE_CONSTRAINTS_NO_DUPLICATE_INGREDIENT =
+            "There cannot be duplicate ingredients in the recipe,"
+                    + " i.e., there cannot be duplicate ingredient indexes provided. \n";
 
     private Map<Ingredient, IngredientQuantity> ingredientMap;
     private int numberOfServings;
@@ -33,8 +36,8 @@ public class RecipeIngredientSet {
      * Constructs a {@code RecipeIngredientSet}.
      * Calls the method to calculate the number of servings possible with the
      * current ingredient inventory at instantiation.
-     * @param map A valid map containing ingredient as key and ingredientQuantity as value.
      *
+     * @param map A valid map containing ingredient as key and ingredientQuantity as value.
      */
     public RecipeIngredientSet(Map<Ingredient, IngredientQuantity> map) {
         requireNonNull(map);
@@ -44,6 +47,7 @@ public class RecipeIngredientSet {
 
     /**
      * Calculates the number of servings possible with current ingredient inventory.
+     *
      * @param ingredQuantitymap A map containing ingredient as key and ingredientQuantity as value.
      * @return minimumNumberOfServings The number of servings possible for the recipe.
      */
@@ -55,7 +59,7 @@ public class RecipeIngredientSet {
             IngredientQuantity ingredQuantityInInventory = ingred.getIngredientQuantity();
             IngredientQuantity ingredQuantityForRecipe = (IngredientQuantity) ingredQuantitymap.get(ingred);
             assert ingredQuantityForRecipe.getQuantity() != 0
-                : "Ingredient Quantity for each serving in recipe should not be 0";
+                    : "Ingredient Quantity for each serving in recipe should not be 0";
             int numberOfServings = ingredQuantityInInventory.getQuantity() / ingredQuantityForRecipe.getQuantity();
             if (numberOfServings < minimumNumberOfServings) {
                 minimumNumberOfServings = numberOfServings;
