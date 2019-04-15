@@ -1154,7 +1154,9 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 <div class="ulist">
 <ul>
 <li>
-<p>There are separate delete commands for each of the 4 components, namely <code>deleteMember</code>, <code>deleteBooking</code>, <code>deleteStaff</code>, <code>deleteIngredient</code> and <code>deleteRecipe</code>, and the command explicitly specifies the object being deleted. Each specific delete command has a <code>DeleteCommand</code> class that extends abstract class <code>Command</code> and is supported by a <code>CommandParser</code> class (e.g. <code>deleteIngredient</code> command has <code>deleteIngredientCommand</code> class and <code>deleteIngredientCommandParser</code> class).</p>
+<p>There are separate delete commands for each of the 4 components, namely <code>deleteMember</code>, <code>deleteBooking</code>, <code>deleteStaff</code>, <code>deleteIngredient</code> and <code>deleteRecipe</code>, and the command explicitly specifies the object being deleted.
+ Each specific delete command has a <code>DeleteCommand</code> class that extends abstract class <code>Command</code> and is supported by a <code>CommandParser</code> class (e.g. <code>deleteIngredient</code> command has <code>deleteIngredientCommand</code> class and <code>deleteIngredientCommandParser</code> class).
+The sequence diagram for <code>deleteIngredient</code> command is as follows:<br></p>
 </li>
 </ul>
 </div>
@@ -1312,7 +1314,7 @@ In other words, when RestaurantBook#deleteMember() or RestaurantBook#deleteIngre
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Easier to implement</p>
+<p>Pros: Automates the deletion process of bookings or recipes, when member or ingredients are deleted.</p>
 </li>
 <li>
 <p>Cons: There is a possibility that the user accidentally deletes a record (e.g. member), and all other records (e.g. bookings made by this member) referencing this record is also accidentally deleted.</p>
@@ -1334,9 +1336,19 @@ In other words, when RestaurantBook#deleteMember() or RestaurantBook#deleteIngre
 </div>
 </li>
 <li>
-<p>Decision: Alternative 1 was adopted as it is an easier implementation and it makes it more convenient for the user to delete a record. It is intuitive that if a deleteMember or deleteIngredient command is called and these objects cease to exist in the restaurant book, the corresponding Booking or Recipe containing these objects should also cease to exist. To deal with the possibility that the member or ingredient is accidentally deleted, and all referenced bookings and recipes is unintentionally deleted, an additional field in the delete command can be added as a confirmation that these records should be deleted.</p>
+<p>Decision: Alternative 1 was adopted as it is an easier implementation and it makes it more convenient for the user to delete a record. It is intuitive that if a deleteMember or deleteIngredient command is called and these objects cease to exist in the restaurant book, the corresponding Booking or Recipe containing these objects should also cease to exist.
+To deal with the possibility that the member or ingredient is accidentally deleted, and all referenced bookings and recipes is unintentionally deleted, the number of bookings deleted, and all recipe names of recipes deleted will be shown. If the user had accidentally deleted the member or ingredient, he can execute the <code>undo</code> command.</p>
 </li>
 </ul>
+</div>
+<div class="paragraph">
+<p>The current implementation of deleteIngredient can be represented by the activity diagram below:<br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/activity_diagram_deleteingredient.png" alt="activity diagram deleteingredient" width="800">
+</div>
+<div class="title">Figure 14. Activity diagram for DeleteIngredient</div>
 </div>
 </div>
 </div>
@@ -1585,7 +1597,7 @@ The following seqeuence diagram shows how the <code>addshift</code> command work
 <div class="content">
 <img src="images/StatsTimeSequenceDiagram.png" alt="StatsTimeSequenceDiagram" width="1000">
 </div>
-<div class="title">Figure 14. StatsTime Sequence Diagram</div>
+<div class="title">Figure 15. StatsTime Sequence Diagram</div>
 </div>
 <div class="paragraph">
 <p>The <em>Sequence Diagram</em> given above shows how the components interact with each other for the scenario where the user issues the command <code>statstime 100</code>.</p>
@@ -1873,7 +1885,7 @@ Alternatively, you can download the AsciiDoc plugin for IntelliJ, which allows y
 <div class="content">
 <img src="images/chrome_save_as_pdf.png" alt="chrome save as pdf" width="300">
 </div>
-<div class="title">Figure 15. Saving documentation as PDF files in Chrome</div>
+<div class="title">Figure 16. Saving documentation as PDF files in Chrome</div>
 </div>
 </div>
 <div class="sect2">
@@ -2928,7 +2940,7 @@ Expected: The capacity is successfully updated to 10 with a suitable message sho
 <div class="content">
 <img src="images/capacitypanel.png" alt="capacitypanel" width="400">
 </div>
-<div class="title">Figure 16. If the booking panel looks like the left, the height of the app is too small. Increase the height to make it look like the one on the right.</div>
+<div class="title">Figure 17. If the booking panel looks like the left, the height of the app is too small. Increase the height to make it look like the one on the right.</div>
 </div>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a" start="3">
@@ -2969,7 +2981,7 @@ Expected: 4 ingredients, tomato, tomato ketchup, tomato soup and potato are adde
 <div class="content">
 <img src="images/addIngredients.png" alt="addIngredients" width="1000">
 </div>
-<div class="title">Figure 17. Successfully adding 4 ingredients into restaurant book</div>
+<div class="title">Figure 18. Successfully adding 4 ingredients into restaurant book</div>
 </div>
 </li>
 <li>
@@ -2979,7 +2991,7 @@ Expected: 3 ingredients, tomato, tomato ketchup and tomato soup containing the w
 <div class="content">
 <img src="images/listIngredients_tomato.png" alt="listIngredients tomato" width="1000">
 </div>
-<div class="title">Figure 18. Successfully listing 3 ingredients in ingredient panel</div>
+<div class="title">Figure 19. Successfully listing 3 ingredients in ingredient panel</div>
 </div>
 </li>
 <li>
@@ -2989,7 +3001,7 @@ Expected: 1 ingredient, tomato soup, containing the word "tomato", and ingredien
 <div class="content">
 <img src="images/listingredients_tomato_warningamt.png" alt="listingredients tomato warningamt" width="1000">
 </div>
-<div class="title">Figure 19. Successfully listing 1 ingredient in ingredient panel</div>
+<div class="title">Figure 20. Successfully listing 1 ingredient in ingredient panel</div>
 </div>
 </li>
 <li>
@@ -3001,7 +3013,7 @@ Expected: 15 units of tomatoes are consumed, ingredient quantity of tomato in in
 <div class="content">
 <img src="images/consumeIngredient.png" alt="consumeIngredient" width="1000">
 </div>
-<div class="title">Figure 20. Successfully consuming 1 ingredient in ingredient panel</div>
+<div class="title">Figure 21. Successfully consuming 1 ingredient in ingredient panel</div>
 </div>
 </li>
 <li>
@@ -3011,7 +3023,7 @@ Expected: 2 ingredients, tomato soup and tomato, containing the word "tomato", a
 <div class="content">
 <img src="images/listIngredient_tomato_warningamt2.png" alt="listIngredient tomato warningamt2" width="1000">
 </div>
-<div class="title">Figure 21. Successfully listing 2 ingredients in ingredient panel</div>
+<div class="title">Figure 22. Successfully listing 2 ingredients in ingredient panel</div>
 </div>
 </li>
 </ol>
@@ -3040,7 +3052,7 @@ Expected: 2 ingredients, tomato soup and tomato, containing the word "tomato", a
 <div class="content">
 <img src="images/addRecipe-addIngredientCommand.png" alt="addRecipe addIngredientCommand" width="1000">
 </div>
-<div class="title">Figure 22. Successfully adding 2 ingredients into restaurant book</div>
+<div class="title">Figure 23. Successfully adding 2 ingredients into restaurant book</div>
 </div>
 </li>
 <li>
@@ -3051,7 +3063,7 @@ Upon success, recipe panel should look like this:</p>
 <div class="content">
 <img src="images/addRecipe-successful.png" alt="addRecipe successful" width="1000">
 </div>
-<div class="title">Figure 23. Successfully adding 1 recipe, displaying the number of servings possible.</div>
+<div class="title">Figure 24. Successfully adding 1 recipe, displaying the number of servings possible.</div>
 </div>
 </li>
 <li>
@@ -3062,7 +3074,7 @@ Number of servings possible for cheese fries changes to 20. (For more details, r
 <div class="content">
 <img src="images/addRecipe-restockIngredient.png" alt="addRecipe restockIngredient" width="1000">
 </div>
-<div class="title">Figure 24. Successfully restocking 1 ingredient, displays the new number of servings possible.</div>
+<div class="title">Figure 25. Successfully restocking 1 ingredient, displays the new number of servings possible.</div>
 </div>
 </li>
 </ol>
@@ -3226,4 +3238,4 @@ Expected: A new window appears displaying a bar graph. The height of the bar is 
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 05:52:24 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 07:56:55 UTC</div></div></div></body></html>

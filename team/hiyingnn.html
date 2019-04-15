@@ -10,34 +10,64 @@
 <h2 id="overview"><a class="link" href="#overview">Overview</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This portfolio summarises my contributions made throughout the project.</p>
+<p>This portfolio serves the purpose of documenting my contributions to REstaurant Manager (REM),
+an application developed by 4 undergraduate students, in the course of Software Engineering Module, CS2103T, in NUS.</p>
 </div>
 <div class="paragraph">
 <p>REstaurant Manager (REM) is a desktop application tailored to restaurant owners of small/medium size restaurants.
 This application provides a single platform for them to manage many areas of the restaurant:
 customers with membership, staff, bookings, ingredient and recipe inventory.</p>
 </div>
+<div class="paragraph">
+<p>What separates REM from existing applications utilised by restaurant managers, is that REM, as a single platform can ensure
+the smooth running of the restaurant, whereas existing applications typically target only 1 niche area of the restaurant.
+With all records centralised in 1 system, restaurant managers can have greater knowledge on how to ensure that there are sufficient
+resources, i.e. by knowing the number of bookings made and number of servings of each dish available based on current ingredient stock,
+the manager can then decide to restock ingredients and allocate sufficient staff.</p>
+</div>
+<div class="paragraph">
+<p>My role was to implement the ingredient and recipe management features. Other than that, I was in charge of
+documentations in the team, to ensure that the features were well documented and corresponded to the actual implementation of the application.
+I was also in charge of the Storage component of REM, requiring a thorough concept of the component.</p>
+</div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="summary-of-contributions"><a class="link" href="#summary-of-contributions">Summary of contributions</a></h2>
+<h2 id="summary-of-contributions"><a class="link" href="#summary-of-contributions">Summary of Contributions</a></h2>
 <div class="sectionbody">
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Major enhancement</strong>: added <strong>ingredient and recipe feature</strong></p>
+<p><strong>Major enhancement</strong>: added <strong>ingredient feature</strong></p>
 <div class="ulist">
 <ul>
 <li>
-<p>What it does: allows the user to add, restock and consume ingredients, keeping track of the quantity of ingredient remaining in the inventory. Ingredients with quantity in inventory falling below the user-inputted warning amount can also be listed.
-User can also add recipes, keeping track of the ingredients, and its required quantity in each recipe.</p>
+<p>What it does: allows the user to add, delete, restock and consume ingredients, keeping track of the quantity of ingredients present in the inventory.
+Ingredients with quantity in inventory falling below ingredient warning amount can also be listed.</p>
 </li>
 <li>
 <p>Justification:
-This feature improves the product significantly, as the recipe and ingredient features help to keep track of dishes served in the restaurant and inventory status for the ingredients. This can enable the users to make decisions, such as to restock ingredients, or limit number of bookings, to ensure smooth running of restaurant.</p>
+This feature improves the product significantly, as the ingredient feature helps to keep track of the inventory status for the ingredients. This can enable the users to make decisions, such as to restock ingredients, especially if it falls below the user-specified warning amount.</p>
+</li>
+</ul>
+</div>
 </li>
 <li>
-<p>Highlights: (insert highlights)</p>
+<p><strong>Major enhancement</strong>: added <strong>recipe feature</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>What it does: allows the user to add and delete recipes consisting of ingredients already present in the inventory, and their respective ingredient quantity per serving for the recipe.</p>
+</li>
+<li>
+<p>Justification: This feature improves the product significantly, along with the ingredient feature, it helps in the restaurant manager&#8217;s menu management, as he/she is able to ensure sufficient ingredients for the dishes, as well as estimate
+how many servings are possible with current ingredient inventory. The restaurant manger can then ensure sufficient resources for the smooth running
+of the restaurant, according to the estimation of busyness of the restaurant via the booking and statistics feature.</p>
+</li>
+<li>
+<p>Highlights: The challenge in implementing the recipe feature, is that recipe is highly tied to ingredients, and change
+in any of the ingredient quantities of a recipe should cause a change in the recipe and number of servings possible.
+Since recipes can contain more than 1 ingredient, this also increases the complexity of the data structure required to store the ingredients.</p>
 </li>
 </ul>
 </div>
@@ -50,14 +80,17 @@ This feature improves the product significantly, as the recipe and ingredient fe
 <div class="ulist">
 <ul>
 <li>
-<p>Project management: (insert contributions)</p>
+<p>Project management:</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Managed releases <code>v1.3</code> - <code>v1.5rc</code> (3 releases) on GitHub</p>
+<p>Wrote tests to increase coverage (Pull requests <a href="https://github.com/cs2103-ay1819S2-w11-2/main/pull/28">#28</a>, <a href="https://github.com/cs2103-ay1819S2-w11-2/main/pull/71">#71</a>, <a href="https://github.com/cs2103-ay1819S2-w11-2/main/pull/118">#118</a>, <a href="https://github.com/cs2103-ay1819S2-w11-2/main/pull/202">#202</a>)</p>
 </li>
 <li>
-<p>Wrote tests to increase coverage (Pull requests <a href="https://github.com">#28</a>, <a href="https://github.com">#35</a>, <a href="https://github.com">#78</a>, <a href="https://github.com">#110</a>, <a href="https://github.com">#118</a>)</p>
+<p>Implemented storage component for ingredient (Pull requests <a href="https://github.com/cs2103-ay1819S2-w11-2/main/pull/35">#35</a>)</p>
+</li>
+<li>
+<p>Refactored project (Pull requests <a href="https://github.com/cs2103-ay1819S2-w11-2/main/pull/28">#28</a>)</p>
 </li>
 </ul>
 </div>
@@ -67,7 +100,7 @@ This feature improves the product significantly, as the recipe and ingredient fe
 <div class="ulist">
 <ul>
 <li>
-<p>Did cosmetic tweaks to existing contents of the User Guide: (Pull requests <a href="https://github.com">#28</a>, <a href="https://github.com">#127</a>)</p>
+<p>Did cosmetic tweaks to existing contents of the User Guide/ Developer Guide: (Pull requests <a href="https://github.com/cs2103-ay1819S2-w11-2/main/pull/202">#202</a>, <a href="https://github.com/cs2103-ay1819S2-w11-2/main/pull/142">#142</a>)</p>
 </li>
 </ul>
 </div>
@@ -77,7 +110,10 @@ This feature improves the product significantly, as the recipe and ingredient fe
 <div class="ulist">
 <ul>
 <li>
-<p>PRs reviewed (with non-trivial review comments):  (Pull requests <a href="https://github.com">#106</a>, <a href="https://github.com">#104</a>)</p>
+<p>PRs reviewed (with non-trivial review comments):  (Pull requests <a href="https://github.com/cs2103-ay1819S2-w11-2/main/pull/106">#106</a>, <a href="https://github.com/cs2103-ay1819S2-w11-2/main/pull/104">#104</a>)</p>
+</li>
+<li>
+<p>Reported bugs for other teams: (Pull requests <a href="https://github.com/CS2103-AY1819S2-W17-2/main/issues/164">#164</a>, <a href="https://github.com/CS2103-AY1819S2-W17-2/main/issues/156">#156</a>)</p>
 </li>
 </ul>
 </div>
@@ -552,7 +588,9 @@ and the quantity required in each recipe.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>There are separate delete commands for each of the 4 components, namely <code>deleteMember</code>, <code>deleteBooking</code>, <code>deleteStaff</code>, <code>deleteIngredient</code> and <code>deleteRecipe</code>, and the command explicitly specifies the object being deleted. Each specific delete command has a <code>DeleteCommand</code> class that extends abstract class <code>Command</code> and is supported by a <code>CommandParser</code> class (e.g. <code>deleteIngredient</code> command has <code>deleteIngredientCommand</code> class and <code>deleteIngredientCommandParser</code> class).</p>
+<p>There are separate delete commands for each of the 4 components, namely <code>deleteMember</code>, <code>deleteBooking</code>, <code>deleteStaff</code>, <code>deleteIngredient</code> and <code>deleteRecipe</code>, and the command explicitly specifies the object being deleted.
+ Each specific delete command has a <code>DeleteCommand</code> class that extends abstract class <code>Command</code> and is supported by a <code>CommandParser</code> class (e.g. <code>deleteIngredient</code> command has <code>deleteIngredientCommand</code> class and <code>deleteIngredientCommandParser</code> class).
+The sequence diagram for <code>deleteIngredient</code> command is as follows:<br></p>
 </li>
 </ul>
 </div>
@@ -710,7 +748,7 @@ In other words, when RestaurantBook#deleteMember() or RestaurantBook#deleteIngre
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Easier to implement</p>
+<p>Pros: Automates the deletion process of bookings or recipes, when member or ingredients are deleted.</p>
 </li>
 <li>
 <p>Cons: There is a possibility that the user accidentally deletes a record (e.g. member), and all other records (e.g. bookings made by this member) referencing this record is also accidentally deleted.</p>
@@ -732,12 +770,22 @@ In other words, when RestaurantBook#deleteMember() or RestaurantBook#deleteIngre
 </div>
 </li>
 <li>
-<p>Decision: Alternative 1 was adopted as it is an easier implementation and it makes it more convenient for the user to delete a record. It is intuitive that if a deleteMember or deleteIngredient command is called and these objects cease to exist in the restaurant book, the corresponding Booking or Recipe containing these objects should also cease to exist. To deal with the possibility that the member or ingredient is accidentally deleted, and all referenced bookings and recipes is unintentionally deleted, an additional field in the delete command can be added as a confirmation that these records should be deleted.</p>
+<p>Decision: Alternative 1 was adopted as it is an easier implementation and it makes it more convenient for the user to delete a record. It is intuitive that if a deleteMember or deleteIngredient command is called and these objects cease to exist in the restaurant book, the corresponding Booking or Recipe containing these objects should also cease to exist.
+To deal with the possibility that the member or ingredient is accidentally deleted, and all referenced bookings and recipes is unintentionally deleted, the number of bookings deleted, and all recipe names of recipes deleted will be shown. If the user had accidentally deleted the member or ingredient, he can execute the <code>undo</code> command.</p>
 </li>
 </ul>
 </div>
+<div class="paragraph">
+<p>The current implementation of deleteIngredient can be represented by the activity diagram below:<br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/activity_diagram_deleteingredient.png" alt="activity diagram deleteingredient" width="800">
+</div>
+<div class="title">Figure 5. Activity diagram for DeleteIngredient</div>
 </div>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 05:52:24 UTC</div></div></div></body></html>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 07:56:55 UTC</div></div></div></body></html>
