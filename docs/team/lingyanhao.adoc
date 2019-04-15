@@ -30,6 +30,7 @@ As the overall team leader, I was responsible for setting clear goals and direct
 * *Other contributions*:
 
 * Community:
+** Contributed to forum discussion: [https://github.com/nus-cs2103-AY1819S2/forum/issues/82[#82]]
 ** PRs reviewed (with non-trivial review comments): [https://github.com/cs2103-ay1819S2-w11-2/main/pull/110[#110]], [https://github.com/cs2103-ay1819S2-w11-2/main/pull/138[#138]]
 ** Reported bugs for other teams: [https://github.com/CS2103-AY1819S2-W14-3/main/issues/308[#308]], [https://github.com/CS2103-AY1819S2-W14-3/main/issues/309[#309]]
 
