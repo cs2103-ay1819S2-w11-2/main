@@ -482,7 +482,8 @@ Therefore, there are some design considerations that we have to make when it com
 ==== Current implementation
 * There are separate delete commands for each of the 4 components, namely `deleteMember`, `deleteBooking`, `deleteStaff`, `deleteIngredient` and `deleteRecipe`, and the command explicitly specifies the object being deleted.
  Each specific delete command has a `DeleteCommand` class that extends abstract class `Command` and is supported by a `CommandParser` class (e.g. `deleteIngredient` command has `deleteIngredientCommand` class and `deleteIngredientCommandParser` class).
-The sequence diagram for `deleteIngredient` command is as follows:
+The sequence diagram for `deleteIngredient` command is as follows: +
+
 .Sequence Diagram for DeleteIngredient
 image::DeleteIngredientSequenceDiagram.png[width="800"]
 
@@ -542,7 +543,8 @@ In other words, when RestaurantBook#deleteMember() or RestaurantBook#deleteIngre
 * Decision: Alternative 1 was adopted as it is an easier implementation and it makes it more convenient for the user to delete a record. It is intuitive that if a deleteMember or deleteIngredient command is called and these objects cease to exist in the restaurant book, the corresponding Booking or Recipe containing these objects should also cease to exist.
  To deal with the possibility that the member or ingredient is accidentally deleted, and all referenced bookings and recipes is unintentionally deleted, the number of bookings deleted, and all recipe names of recipes deleted will be shown. If the user had accidentally deleted the member or ingredient, he can execute the `undo` command.
 
-The current implementation of deleteIngredients can be represented by the activity diagram below:
+The current implementation of deleteIngredients can be represented by the activity diagram below: +
+
 .Activity diagram for DeleteIngredient
 image::activity_diagram_deleteingredient.png[width="800"]
 
