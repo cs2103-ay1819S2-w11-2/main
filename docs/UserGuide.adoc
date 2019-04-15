@@ -428,14 +428,12 @@ Shortcut: `ar r/RECIPE_NAME iq/INDEX&INGREDIENT_QUANTITY__IN_RECIPE ...`
 
 • `RECIPE_NAME` must contain only alphabets and spaces, and must contain at least 2 characters of the alphabet. (i.e, `r/c` is not accepted while `r/ch` is). All leading whitespaces will be trimmed.
 
-• `INGREDIENT_QUANTITY_IN_RECIPE` must be an integer between 1 and 2,147,483,647 inclusive, and refers to the quantity of
+• `INGREDIENT_QUANTITY_IN_RECIPE` must be an integer (whole number) between 1 and 2,147,483,647 inclusive, and refers to the quantity of
 ingredient required in 1 serving of the recipe.
 
-• There should be at least 1 ingredient `iq/INDEX&INGREDIENT_QUANTITY_IN_RECIPE` input but there cannot be duplicate ingredients in the recipe, i.e. there cannot be duplicate ingredient indexes inputted. (`addRecipe r/cheese fries iq/1&1 iq/2&1 iq/1&10` is rejected).
+• There should be at least 1 ingredient `iq/INDEX&INGREDIENT_QUANTITY_IN_RECIPE` input but there cannot be duplicate ingredients in the recipe, i.e. there cannot be duplicate ingredient indexes inputted. (`addRecipe r/cheese fries iq/1&1 iq/1&2` is rejected).
 
-• Each ingredient input should have the format `iq/INDEX&NGREDIENT_QUANTITY_IN_RECIPE`
-where ingredient index and quantity of ingredient in recipe is separated by &.
-Both the ingredient index and quantity must be an whole number.
+• Each ingredient input should have the format `iq/INDEX&NGREDIENT_QUANTITY_IN_RECIPE` where ingredient index and quantity of ingredient in recipe is separated by &.
 
 • Upon adding a new recipe, the number of servings of this recipe, according to the current ingredient quantity in inventory, is calculated
 and displayed on the recipe panel. Upon  executing `restockIngredient` or `consumeIngredient`, the number of servings will be
