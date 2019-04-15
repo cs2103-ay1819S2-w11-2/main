@@ -1226,13 +1226,13 @@ These instructions only provide a starting point for testers to work on; testers
 `addIngredient in/tomato ketchup q/20 w/10 u/bottles` +
 `addIngredient in/tomato soup q/10 w/20 u/cans` +
 `addIngredient in/potato q/10 w/20 u/sacks` +
-Expected: 4 ingredients, tomato, tomato ketchup, tomato soup and potato is added into ingredient panel. Upon success, ingredient panel should look like this:
+Expected: 4 ingredients, tomato, tomato ketchup, tomato soup and potato are added into ingredient panel. Upon success, ingredient panel should look like this:
 +
 .Successfully adding 4 ingredients into restaurant book
 image::addIngredients.png[width=1000]
 
 .. Test case: `listIngredients in/tomato`  +
-Expected: 3 ingredients, tomato, tomato ketchup and tomato soup containing the word "tomato" is listed on the ingredient panel. Upon success, ingredient panel should look like this:
+Expected: 3 ingredients, tomato, tomato ketchup and tomato soup containing the word "tomato" are listed on the ingredient panel. Upon success, ingredient panel should look like this:
 +
 .Successfully listing 3 ingredients in ingredient panel
 image::listIngredients_tomato.png[width=1000]
@@ -1244,7 +1244,7 @@ Expected: 1 ingredient, tomato soup, containing the word "tomato", and ingredien
 image::listingredients_tomato_warningamt.png[width=1000]
 
 .. Test case: +
-`listIngredients`
+`listIngredients` +
 `consumeIngredient i/1 q/15`  +
 Expected: 15 units of tomatoes are consumed, ingredient quantity of tomato in ingredient panel changes to 5 whole tomatoes. Upon success, ingredient panel should look like this:
 +
@@ -1255,7 +1255,7 @@ image::consumeIngredient.png[width=1000]
 Expected: 2 ingredients, tomato soup and tomato, containing the word "tomato", and ingredient quantity falling below ingredient warning amount is listed on the ingredient panel. Upon success, ingredient panel should look like this:
 +
 .Successfully listing 2 ingredients in ingredient panel
-image::listingredients_tomato_warningamt2.png[width=1000]
+image::listIngredient_tomato_warningamt2.png[width=1000]
 
 === Number of servings test for recipe feature
 . Test that the number of servings in recipe is correctly calculated based on ingredient quantity in inventory (ingredient panel) and ingredient quantity per serving (recipe panel).
