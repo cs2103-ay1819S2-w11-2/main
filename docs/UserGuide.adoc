@@ -297,9 +297,7 @@ Format: `listIngredients [in/INGREDIENT_NAME] [w/]` +
 Shortcut: `li [in/INGREDIENT_NAME] [w/]`
 
 ****
-• If `in/INGREDIENT_NAME` is present, all ingredients with name containing any of the key words inputted will be listed.
-
-• If `w/` is present, all ingredients with quantity falling below warning amount will be listed.
+• If `in/INGREDIENT_NAME` is present, all ingredients with name containing any of the key words inputted will be listed. If `w/` is present, all ingredients with quantity falling below warning amount will be listed.
 
 • By default, when both `in/INGREDIENT_NAME` and `w/` are not present, `listIngredients` will list all ingredients.
 
@@ -329,13 +327,9 @@ Format: `addIngredient in/INGREDIENT_NAME u/INGREDIENT_UNIT [q/INGREDIENT_QUANTI
 Shortcut: `ai in/INGREDIENT_NAME u/INGREDIENT_UNIT [q/INGREDIENT_QUANTITY] [w/INGREDIENT_WARNING_AMOUNT]`
 
 ****
-• `INGREDIENT_NAME` and `INGREDIENT_UNIT` must contain only alphabets and spaces, and must contain at least 2 characters of the alphabet. (i.e, `in/c` is not accepted while `in/ch` is).
+• `INGREDIENT_NAME` and `INGREDIENT_UNIT` must contain only alphabets and spaces, and must contain at least 2 characters of the alphabet. (i.e, `in/c` is not accepted while `in/ch` is). All leading whitespaces for `INGREDIENT_NAME` and `INGREDIENT_UNIT` will be trimmed.
 
-• All leading whitespaces for `INGREDIENT_NAME` and `INGREDIENT_UNIT` will be trimmed.
-
-• `INGREDIENT_QUANTITY` and `INGREDIENT_WARNING_AMOUNT` must be an integer between 0 and 2,147,483,647 inclusive.
-
-• If `INGREDIENT_QUANTITY` or `INGREDIENT_WARNING_AMOUNT` is not specified, they are respectively set to 0.
+• `INGREDIENT_QUANTITY` and `INGREDIENT_WARNING_AMOUNT` must be an integer between 0 and 2,147,483,647 inclusive, and if not specified, they are respectively set to 0.
 
 • If user inputs the warning amount for the ingredient `w/INGREDIENT_WARNING_AMOUNT`, and when the quantity in inventory
 falls below this stated amount, there is a need for restock of this ingredient.
@@ -432,16 +426,12 @@ Shortcut: `ar r/RECIPE_NAME iq/INDEX&INGREDIENT_QUANTITY__IN_RECIPE ...`
 ****
 • The index refers to the index number shown in the most recent listing of ingredients in the ingredients panel.
 
-• `RECIPE_NAME` must contain only alphabets and spaces, and must contain at least 2 characters of the alphabet. (i.e, `r/c` is not accepted while `r/ch` is).
-
-• All leading whitespaces for `RECIPE_NAME` will be trimmed.
+• `RECIPE_NAME` must contain only alphabets and spaces, and must contain at least 2 characters of the alphabet. (i.e, `r/c` is not accepted while `r/ch` is). All leading whitespaces will be trimmed.
 
 • `INGREDIENT_QUANTITY_IN_RECIPE` must be an integer between 1 and 2,147,483,647 inclusive, and refers to the quantity of
 ingredient required in 1 serving of the recipe.
 
-• There should be at least 1 ingredient `iq/INDEX&INGREDIENT_QUANTITY_IN_RECIPE` input.
-
-• There cannot be duplicate ingredients in the recipe, i.e. there cannot be duplicate ingredient indexes inputted. (`addRecipe r/cheese fries iq/1&1 iq/2&1 iq/1&10` is rejected).
+• There should be at least 1 ingredient `iq/INDEX&INGREDIENT_QUANTITY_IN_RECIPE` input but there cannot be duplicate ingredients in the recipe, i.e. there cannot be duplicate ingredient indexes inputted. (`addRecipe r/cheese fries iq/1&1 iq/2&1 iq/1&10` is rejected).
 
 • Each ingredient input should have the format `iq/INDEX&NGREDIENT_QUANTITY_IN_RECIPE`
 where ingredient index and quantity of ingredient in recipe is separated by &.
@@ -491,7 +481,6 @@ Example:
 * `deleteRecipe 3`
 
 Delete recipe at index 3.
-
 // end::inventory[]
 
 // tag::booking[]

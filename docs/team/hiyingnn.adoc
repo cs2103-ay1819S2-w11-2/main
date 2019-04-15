@@ -19,19 +19,17 @@ I was also in charge of the Storage component of REM, requiring a thorough conce
 
 == Summary of Contributions
 
-* *Major enhancement*: added *ingredient feature*
+* *Major enhancement*: added *ingredient and recipe features*
 ** What it does: allows the user to add, delete, restock and consume ingredients, keeping track of the quantity of ingredients present in the inventory.
 Ingredients with quantity in inventory falling below ingredient warning amount can also be listed.
+Users can also add and delete recipes consisting of ingredients already present in the inventory, and their respective ingredient quantity per serving for the recipe.
 ** Justification:
-This feature improves the product significantly, as the ingredient feature helps to keep track of the inventory status for the ingredients. This can enable the users to make decisions, such as to restock ingredients, especially if it falls below the user-specified warning amount.
-
-* *Major enhancement*: added *recipe feature*
-** What it does: allows the user to add and delete recipes consisting of ingredients already present in the inventory, and their respective ingredient quantity per serving for the recipe.
-** Justification: This feature improves the product significantly, along with the ingredient feature, it helps in the restaurant manager's menu management, as he/she is able to ensure sufficient ingredients for the dishes, as well as estimate
-how many servings are possible with current ingredient inventory. The restaurant manger can then ensure sufficient resources for the smooth running
-of the restaurant, according to the estimation of busyness of the restaurant via the booking and statistics feature.
-
-** Highlights: The challenge in implementing the recipe feature, is that recipe is highly tied to ingredients, and change
+These features improve the product significantly, as the ingredient feature helps to keep track of the inventory status for the ingredients.
+The users can choose to restock ingredients if it falls below the user-specified warning amount.
+Also, this helps in the user's menu management, as he can ensure sufficient ingredients for the dishes and estimate
+number of servings possible with current ingredient inventory. He can then ensure sufficient resources for the smooth running
+of the restaurant, according to the estimation of busyness of the restaurant via booking and statistics features.
+** Highlights: It was challenging to implement recipe feature, as recipe is highly tied to ingredients, and change
 in any of the ingredient quantities of a recipe should cause a change in the recipe and number of servings possible.
 Since recipes can contain more than 1 ingredient, this also increases the complexity of the data structure required to store the ingredients.
 
@@ -39,7 +37,7 @@ Since recipes can contain more than 1 ingredient, this also increases the comple
 
 * *Other contributions*:
 ** Project management:
-*** Wrote tests to increase coverage (Pull requests https://github.com/cs2103-ay1819S2-w11-2/main/pull/28[#28], https://github.com/cs2103-ay1819S2-w11-2/main/pull/71[#71], https://github.com/cs2103-ay1819S2-w11-2/main/pull/118[#118], https://github.com/cs2103-ay1819S2-w11-2/main/pull/202[#202])
+*** Wrote tests to increase coverage (Pull requests https://github.com/cs2103-ay1819S2-w11-2/main/pull/28[#28])
 *** Implemented storage component for ingredient (Pull requests https://github.com/cs2103-ay1819S2-w11-2/main/pull/35[#35])
 *** Refactored project (Pull requests https://github.com/cs2103-ay1819S2-w11-2/main/pull/28[#28])
 
@@ -47,8 +45,8 @@ Since recipes can contain more than 1 ingredient, this also increases the comple
 *** Did cosmetic tweaks to existing contents of the User Guide/ Developer Guide: (Pull requests https://github.com/cs2103-ay1819S2-w11-2/main/pull/202[#202], https://github.com/cs2103-ay1819S2-w11-2/main/pull/142[#142])
 
 ** Community:
-*** PRs reviewed (with non-trivial review comments):  (Pull requests https://github.com/cs2103-ay1819S2-w11-2/main/pull/106[#106], https://github.com/cs2103-ay1819S2-w11-2/main/pull/104[#104])
-*** Reported bugs for other teams: (Pull requests https://github.com/CS2103-AY1819S2-W17-2/main/issues/164[#164], https://github.com/CS2103-AY1819S2-W17-2/main/issues/156[#156])
+*** PRs reviewed (with non-trivial review comments):  (Pull requests https://github.com/cs2103-ay1819S2-w11-2/main/pull/106[#106])
+*** Reported bugs for other teams: (Pull requests https://github.com/CS2103-AY1819S2-W17-2/main/issues/164[#164])
 
 
 == Contributions to the User Guide

@@ -405,7 +405,7 @@ Therefore, there are some design considerations that we have to make when it com
 The sequence diagram for `deleteIngredient` command is as follows: +
 
 .Sequence Diagram for DeleteIngredient
-image::DeleteIngredientSequenceDiagram.png[width="800"]
+image::DeleteIngredientSequenceDiagram.png[width="600"]
 
 * The delete commands are called by typing the component-specific command, followed by an index, which refers to the index number shown in the most recent listing (e.g. `deleteIngredient 3`).
 
@@ -466,7 +466,7 @@ In other words, when RestaurantBook#deleteMember() or RestaurantBook#deleteIngre
 The current implementation of `deleteIngredient` can be represented by the activity diagram below: +
 
 .Activity diagram for `deleteIngredient`
-image::activity_diagram_deleteingredient.png[width="600"]
+image::activity_diagram_deleteingredient.png[width="400"]
 {sp} +
 The indication of the deletion of associated recipes when a particular ingredient is deleted is shown below:
 
