@@ -742,6 +742,23 @@ Example:
 
 Deletes the shift from 8am to 10.30am every Tuesday from the roster of the staff member with index 1 shown in the most recent listing.
 
+==== List Active Staff in Time Range: `activestaff` [Coming in v2.0]
+
+List all staff working in the restaurant in a certain time range.
+
+Format: `activestaff sd/START_DAY_OF_WEEK ts/START_TIME ed/END_DAY_OF_WEEK te/END_TIME`
+Shortcut: `ats sd/START_DAY_OF_WEEK ts/START_TIME ed/END_DAY_OF_WEEK te/END_TIME`
+
+****
+* The requirements for the fields `START_DAY_OF_WEEK`, `START_TIME`, `END_DAY_OF_WEEK`, `END_TIME` are identical to that of the addShift command.
+****
+
+Example
+
+* `activestaff sd/MONDAY ts/12:00 ed/TUESDAY te/12:00`
+
+Lists all staff who work a shift between 12pm every Monday to 12pm every Tuesday.
+
 // end::staff[]
 
 // tag::stats[]
