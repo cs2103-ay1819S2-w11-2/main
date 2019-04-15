@@ -554,7 +554,7 @@ The shifts feature allows users to maintain shift rosters for staff members, as 
 The shifts feature comprises of two main commands: the `addshift` command and the `deleteshift` command.
 The `addshift` command allows shifts to be added to the shift roster of a staff member, and the `deleteshift` command allows shifts to be deleted from the shift roster of a staff member.
 The shifts feature is supported by two models, the `Shift` model and the `ShiftRoster` model. The `Shift` model represents a single shift that takes place during a single interval of time, while the `ShiftRoster` model stores an immutable, sorted list of shifts for a single staff member.
-The following seqeuence diagram shows how the `addshift` command works.
+The following seqeuence diagram shows how the `addshift` command works, with some details in the model component omitted.
 
 image::AddShiftSequenceDiagram.png[width="700"]
 
@@ -580,7 +580,7 @@ image::AddShiftSequenceDiagram.png[width="700"]
 
 * **Alternative 1 (current choice):** Represent weekly shifts by storing the start day and time as well as the end day and time in a date range, where the start day and end day are different.
 ** Pros:
-*** Enables to possibility of storing shifts across multiple days.
+*** Enables to possibility of storing shifts across multiple days, thereby providing restaurant owners with the flexibility to define shifts in terms of day ranges instead of time ranges.
 *** Greater certainty as to exactly when a shift starts and ends.
 *** Allows validation checks by ensuring that shifts are of positive duration.
 ** Cons:
