@@ -1246,7 +1246,7 @@ image::listingredients_tomato_warningamt.png[width=1000]
 .. Test case: +
 `listIngredients`
 `consumeIngredient i/1 q/15`  +
-Expected: 1 ingredient, tomato, is consumed by 15 whole tomatoes, ingredient quantity of tomato in ingredient panel changes to 5 whole tomatoes. Upon success, ingredient panel should look like this:
+Expected: 15 units of tomatoes are consumed, ingredient quantity of tomato in ingredient panel changes to 5 whole tomatoes. Upon success, ingredient panel should look like this:
 +
 .Successfully consuming 1 ingredient in ingredient panel
 image::consumeIngredient.png[width=1000]
@@ -1255,7 +1255,7 @@ image::consumeIngredient.png[width=1000]
 Expected: 2 ingredients, tomato soup and tomato, containing the word "tomato", and ingredient quantity falling below ingredient warning amount is listed on the ingredient panel. Upon success, ingredient panel should look like this:
 +
 .Successfully listing 2 ingredients in ingredient panel
-image::listIngredients_tomato_warningamt2.png[width=1000]
+image::listingredients_tomato_warningamt2.png[width=1000]
 
 === Number of servings test for recipe feature
 . Test that the number of servings in recipe is correctly calculated based on ingredient quantity in inventory (ingredient panel) and ingredient quantity per serving (recipe panel).
