@@ -297,24 +297,13 @@ Format: `listIngredients [in/INGREDIENT_NAME] [w/]` +
 Shortcut: `li [in/INGREDIENT_NAME] [w/]`
 
 ****
-• If `in/INGREDIENT_NAME` is present, all ingredients with name containing any of the key words inputted will be listed.
-
-• If `w/` is present, all ingredients with quantity falling below warning amount will be listed.
+• If `in/INGREDIENT_NAME` is present, all ingredients with name containing any of the key words inputted will be listed. If `w/` is present, all ingredients with quantity falling below warning amount will be listed.
 
 • By default, when both `in/INGREDIENT_NAME` and `w/` are not present, `listIngredients` will list all ingredients.
 
 ****
 
 Example:
-
-* `listIngredients in/tomato`
-
-All ingredients with name containing the word 'tomato' will be listed,
-e.g. 'tomato sauce', 'tomato ketchup' will be listed.
-
-* `listIngredients w/`
-
-All ingredients with ingredient quantity falling below ingredient warning amount will be listed.
 
 * `listIngredients in/tomato w/`
 
@@ -329,13 +318,9 @@ Format: `addIngredient in/INGREDIENT_NAME u/INGREDIENT_UNIT [q/INGREDIENT_QUANTI
 Shortcut: `ai in/INGREDIENT_NAME u/INGREDIENT_UNIT [q/INGREDIENT_QUANTITY] [w/INGREDIENT_WARNING_AMOUNT]`
 
 ****
-• `INGREDIENT_NAME` and `INGREDIENT_UNIT` must contain only alphabets and spaces, and must contain at least 2 characters of the alphabet. (i.e, `in/c` is not accepted while `in/ch` is).
+• `INGREDIENT_NAME` and `INGREDIENT_UNIT` must contain only alphabets and spaces, and must contain at least 2 characters of the alphabet. (i.e, `in/c` is not accepted while `in/ch` is). All leading whitespaces for both inputs will be trimmed.
 
-• All leading whitespaces for `INGREDIENT_NAME` and `INGREDIENT_UNIT` will be trimmed.
-
-• `INGREDIENT_QUANTITY` and `INGREDIENT_WARNING_AMOUNT` must be an integer between 0 and 2,147,483,647 inclusive.
-
-• If `INGREDIENT_QUANTITY` or `INGREDIENT_WARNING_AMOUNT` is not specified, they are respectively set to 0.
+• `INGREDIENT_QUANTITY` and `INGREDIENT_WARNING_AMOUNT` must be an integer between 0 and 2,147,483,647 inclusive, and if not specified, they are respectively set to 0.
 
 • If user inputs the warning amount for the ingredient `w/INGREDIENT_WARNING_AMOUNT`, and when the quantity in inventory
 falls below this stated amount, there is a need for restock of this ingredient.
@@ -344,17 +329,9 @@ Calling `listIngredients w/` will display all ingredients that fall below their 
 
 Example:
 
-* `addIngredient in/chicken wings u/packets`
-
-Adds new ingredient, chicken wings (with default ingredient quantity as 0), counted in terms of packets, into inventory.
-
-* `addIngredient in/chicken wings q/10 u/packets`
-
-Adds 10 packets of chicken wings into inventory.
-
 * `addIngredient in/chicken wings q/10 u/packets w/2`
 
-Adds 10 packets of chicken wing into inventory and when quantity in inventory falls below 2 packets, `listIngredients w/` will display chicken.
+Adds 10 packets of chicken wing into inventory and when quantity falls below 2, it will be listed via `listIngredients w/` command.
 
 
 ==== Delete Ingredient: `deleteIngredient`
@@ -418,8 +395,8 @@ Example:
 +
 `consumeIngredient i/3 q/10`
 
-Decreases the quantity of chickens by 10 in the inventory. Assuming that the previous quantity for chicken was 20, the new quantity
-                                                          after `consumeIngredient i/3 q/10` was called, will be 10.
+Decreases the quantity of chickens by 10 in the inventory.
+Assuming that the previous quantity for chicken was 20, the new quantity after `consumeIngredient i/3 q/10` was called, will be 10.
 
 
 ==== Add Recipe: `addRecipe`
@@ -432,57 +409,34 @@ Shortcut: `ar r/RECIPE_NAME iq/INDEX&INGREDIENT_QUANTITY__IN_RECIPE ...`
 ****
 • The index refers to the index number shown in the most recent listing of ingredients in the ingredients panel.
 
-• `RECIPE_NAME` must contain only alphabets and spaces, and must contain at least 2 characters of the alphabet. (i.e, `r/c` is not accepted while `r/ch` is).
+• `RECIPE_NAME` must contain only alphabets and spaces, and must contain at least 2 characters of the alphabet. (i.e, `r/c` is not accepted while `r/ch` is). All leading whitespaces will be trimmed.
 
-• All leading whitespaces for `RECIPE_NAME` will be trimmed.
-
-• `INGREDIENT_QUANTITY_IN_RECIPE` must be an integer between 1 and 2,147,483,647 inclusive, and refers to the quantity of
+• `INGREDIENT_QUANTITY_IN_RECIPE` must be an integer (whole number) between 1 and 2,147,483,647 inclusive, and refers to the quantity of
 ingredient required in 1 serving of the recipe.
 
-• There should be at least 1 ingredient `iq/INDEX&INGREDIENT_QUANTITY_IN_RECIPE` input.
+• There should be at least 1 ingredient `iq/INDEX&INGREDIENT_QUANTITY_IN_RECIPE` input but there cannot be duplicate ingredients in the recipe, i.e. there cannot be duplicate ingredient indexes inputted. (`addRecipe r/cheese fries iq/1&1 iq/1&2` is rejected).
 
-• There cannot be duplicate ingredients in the recipe, i.e. there cannot be duplicate ingredient indexes inputted. (`addRecipe r/cheese fries iq/1&1 iq/2&1 iq/1&10` is rejected).
-
-• Each ingredient input should have the format `iq/INDEX&NGREDIENT_QUANTITY_IN_RECIPE`
-where ingredient index and quantity of ingredient in recipe is separated by &.
-Both the ingredient index and quantity must be an whole number.
+• Each ingredient input should have the format `iq/INDEX&INGREDIENT_QUANTITY_IN_RECIPE` where ingredient index and quantity of ingredient in 1 serving of the recipe is separated by &.
 
 • Upon adding a new recipe, the number of servings of this recipe, according to the current ingredient quantity in inventory, is calculated
 and displayed on the recipe panel. Upon  executing `restockIngredient` or `consumeIngredient`, the number of servings will be
 automatically adjusted and displayed.
 ****
 
-Example:
+Example: (Assuming that the restaurant book is empty.)
 
-(Assuming that the restaurant book is empty.)
-
-.  `addIngredient in/cheese u/slices q/20` +
-   `addIngredient in/fries u/packets q/10`
-   * These commands add cheese and fries into the ingredient panel. Upon success, the ingredient panel should look like this:
+.  `addIngredient in/cheese u/slices q/20`, `addIngredient in/fries u/packets q/10`, `addRecipe r/cheese fries iq/1&1 iq/2&1` +
+   * These commands add cheese and fries into the ingredient panel, and cheese fries into recipe panel. For each serving of cheese fries, 1 slice of cheese and 1
+    packet of fries is needed. There are 20 slices of cheese sufficient for 20 servings of cheese fries, but only 10 packets of fries sufficient for 10 servings of cheese fries.
+    Overall, there can only be 10 servings of cheese fries prepared. Refer to figure below:
 +
-.Successfully adding 2 ingredients into restaurant book
-image::addRecipe-addIngredientCommand.png[width=1000]
-
-.  `addRecipe r/cheese fries iq/1&1 iq/2&1`
-    • This command adds cheese fries into the recipe panel. For each serving of cheese fries, 1 slice of cheese and 1
-    packet of fries is needed.
-    • There are 20 slices of cheese sufficient for 20 servings of cheese fries, but only 10 packets of fries sufficient for 10 servings of cheese fries.
-    Overall, there can only be 10 servings of cheese fries prepared. Upon success, the recipe panel should look like this:
-+
-.Successfully adding 1 recipe, displaying the number of servings possible.
-image::addRecipe-successful.png[width=1000]
-
-.  `restockIngredient i/2 q/10`
-    • Restocks fries by 10 packets, and change in ingredient quantity of fries is reflected in ingredient's panel.
-    • Now, there are 20 slices of cheese sufficient for 20 servings of cheese fries, and 20 packets of fries sufficient for 20 servings of cheese fries.
-    Overall, there can be 20 servings of cheese fries prepared. Upon success, the recipe panel should look like this, with the reflected
-    change in number of servings of cheese fries:
+.Successfully adding 1 recipe containing 2 ingredients, displaying the number of servings possible.
+image::addRecipe-successful.png[width=170]
+. `restockIngredient i/2 q/10`
+   * Restocks fries by 10 packets, now there are 20 packets of fries sufficient for 20 servings of cheese fries. Overall, there can be 20 servings of cheese fries prepared. Refer to figure below:
 +
 .Successfully restocking 1 ingredient, displays the new number of servings possible.
-image::addRecipe-restockIngredient.png[width=1000]
-
-
-
+image::addRecipe-restockIngredient.png[width=170]
 
 ==== Delete Recipe: `deleteRecipe`
 
@@ -500,12 +454,6 @@ Example:
 * `deleteRecipe 3`
 
 Delete recipe at index 3.
-
-==== Recipe Summary `recipeSummary` `[coming in v2.0]`
-Displays the number of servings that can be made for each recipe, calculated based on the current inventory
-and the quantity required in each recipe.
-
-Format: `recipeSummary`
 // end::inventory[]
 
 // tag::booking[]

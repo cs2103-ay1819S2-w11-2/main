@@ -146,9 +146,9 @@ image::LogicClassDiagram.png[width="800"]
 [discrete]
 ==== How the architecture components interact with each other
 
-The _Sequence Diagram_ below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The _Sequence Diagram_ below shows how the components interact with each other for the scenario where the user issues the command `deleteMember 1`.
 
-.Component interactions for `delete 1` command
+.Component interactions for `deleteMember 1` command
 image::SDforDeletePerson.png[width="800"]
 
 The sections below give more details of each component.
@@ -180,15 +180,15 @@ image::LogicClassDiagram.png[width="800"]
 *API* :
 link:{repoURL}/src/main/java/seedu/address/logic/Logic.java[`Logic.java`]
 
-.  `Logic` uses the `AddressBookParser` class to parse the user command.
+.  `Logic` uses the `RestaurantBookParser` class to parse the user command.
 .  This results in a `Command` object which is executed by the `LogicManager`.
 .  The command execution can affect the `Model` (e.g. adding a person).
 .  The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 .  In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("deleteMember 1")` API call.
 
-.Interactions Inside the Logic Component for the `delete 1` Command
+.Interactions Inside the Logic Component for the `deleteMember 1` Command
 image::DeletePersonSdForLogic.png[width="800"]
 
 // tag::model[]
@@ -223,7 +223,7 @@ image::StorageClassDiagram.png[width="800"]
 The `Storage` component,
 
 * can save `UserPref` objects in json format and read it back.
-* can save the Address Book data in json format and read it back.
+* can save the Restaurant Book data in json format and read it back.
 
 [[Design-Commons]]
 === Common classes
@@ -275,86 +275,6 @@ For the `AddBooking` command, the list of bookings is sorted after the new booki
 ** Separating the add commands allows for greater versatility in customising the various add commands.
 
 // end::addfeature[]
-
-// tag::undoredo[]
-=== Undo/Redo feature
-==== Current Implementation
-
-The undo/redo mechanism is facilitated by `VersionedAddressBook`.
-It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`.
-Additionally, it implements the following operations:
-
-* `VersionedAddressBook#commit()` -- Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` -- Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` -- Restores a previously undone address book state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
-
-image::UndoRedoStartingStateListDiagram.png[width="800"]
-
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
-
-image::UndoRedoNewCommand1StateListDiagram.png[width="800"]
-
-Step 3. The user executes `add n/David ...` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
-
-image::UndoRedoNewCommand2StateListDiagram.png[width="800"]
-
-[NOTE]
-If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
-
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-image::UndoRedoExecuteUndoStateListDiagram.png[width="800"]
-
-[NOTE]
-If the `currentStatePointer` is at index 0, pointing to the initial address book state, then there are no previous address book states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the undo.
-
-The following sequence diagram shows how the undo operation works:
-
-image::UndoRedoSequenceDiagram.png[width="800"]
-
-The `redo` command does the opposite -- it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-[NOTE]
-If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone address book states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-image::UndoRedoNewCommand3StateListDiagram.png[width="800"]
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. We designed it this way because it no longer makes sense to redo the `add n/David ...` command. This is the behavior that most modern desktop applications follow.
-
-image::UndoRedoNewCommand4StateListDiagram.png[width="800"]
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-image::UndoRedoActivityDiagram.png[width="650"]
-
-==== Design Considerations
-
-===== Aspect: How undo & redo executes
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-** Pros: Easy to implement.
-** Cons: May have performance issues in terms of memory usage.
-* **Alternative 2:** Individual command knows how to undo/redo by itself.
-** Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-** Cons: We must ensure that the implementation of each individual command are correct.
-
-===== Aspect: Data structure to support the undo/redo commands
-
-* **Alternative 1 (current choice):** Use a list to store the history of address book states.
-** Pros: Easy for new Computer Science student undergraduates to understand, who are likely to be the new incoming developers of our project.
-** Cons: Logic is duplicated twice. For example, when a new command is executed, we must remember to update both `HistoryManager` and `VersionedAddressBook`.
-* **Alternative 2:** Use `HistoryManager` for undo/redo
-** Pros: We do not need to maintain a separate list, and just reuse what is already in the codebase.
-** Cons: Requires dealing with commands that have already been undone: We must remember to skip these commands. Violates Single Responsibility Principle and Separation of Concerns as `HistoryManager` now needs to do two different things.
-// end::undoredo[]
 
 // tag::ds[]
 
@@ -469,15 +389,12 @@ image::suggesttimeslot.png[width='800']
 === Delete Feature
 
 The delete feature is used to delete a specific record in the restaurant book, i.e. deleting a member, staff, booking, ingredient or recipe.
-
 In comparison to the original AB4 codebase, REstaurant Manager has more than 1 type of record in the restaurant book, and has a high level of dependency/ coupling between certain components:
 
 * Between Member and Booking: a booking contains a specific member -  Booking is highly coupled to Member
 * Between Ingredient and Recipe: a recipe contains ingredients – Recipe is highly coupled to Ingredient
 
-
 Therefore, there are some design considerations that we have to make when it comes to deleting a record.
-
 
 ==== Current implementation
 * There are separate delete commands for each of the 4 components, namely `deleteMember`, `deleteBooking`, `deleteStaff`, `deleteIngredient` and `deleteRecipe`, and the command explicitly specifies the object being deleted.
@@ -485,7 +402,7 @@ Therefore, there are some design considerations that we have to make when it com
 The sequence diagram for `deleteIngredient` command is as follows: +
 
 .Sequence Diagram for DeleteIngredient
-image::DeleteIngredientSequenceDiagram.png[width="800"]
+image::DeleteIngredientSequenceDiagram.png[width="630"]
 
 * The delete commands are called by typing the component-specific command, followed by an index, which refers to the index number shown in the most recent listing (e.g. `deleteIngredient 3`).
 
@@ -505,9 +422,8 @@ In other words, when RestaurantBook#deleteMember() or RestaurantBook#deleteIngre
 *** Pros: Shorter commands required from user, (e.g. `delete` vs `deleteIngredient`).
 *** Cons: Requires user to type in additional command prior to the `delete` command (e.g. list or filter command), to change the state of the intended list to active.
 
-* Decision: Alternative 1 was selected for the following reasons:
-*** Aliases are implemented as a shortcut to the long commands (e.g. `db` for `deleteBooking`, `dm` for `deleteMember`). It is no longer inconvenient for users as they can type the shorter command.
-*** 4 panels are implemented in U/I (link to u/i segment), 1 panel for each component provides easy cross-reference across linked records, and this supports Alternative 1's implementation. All lists are active at the same time, and they display all unfiltered records by default. Firstly, it is hard for the user to detect an active list at first glance, since all lists are already displayed. Secondly, a specific delete command can be called without a prior command to mark the list as active (e.g.  `deleteIngredient` can be called directly to make changes to Ingredient list) which makes it more convenient for the user
+* Decision: Alternative 1 was selected since aliases are implemented as a shortcut to the long commands (e.g. `db` for `deleteBooking`, `dm` for `deleteMember`) and no longer inconvenient for users.
+Since 4 panels are implemented in U/I, this provides easy cross-reference across linked records. It is hard for the user to detect an active list at first glance, since all lists are already displayed. With chosen implementation, specific delete command can be called without a prior command to mark the list as active (e.g.  `deleteIngredient` can be called directly to make changes to Ingredient list), providing convenience to user.
 
 
 ===== Aspect: Deletion by index/ Deletion by field
@@ -543,10 +459,14 @@ In other words, when RestaurantBook#deleteMember() or RestaurantBook#deleteIngre
 * Decision: Alternative 1 was adopted as it is an easier implementation and it makes it more convenient for the user to delete a record. It is intuitive that if a deleteMember or deleteIngredient command is called and these objects cease to exist in the restaurant book, the corresponding Booking or Recipe containing these objects should also cease to exist.
  To deal with the possibility that the member or ingredient is accidentally deleted, and all referenced bookings and recipes is unintentionally deleted, the number of bookings deleted, and all recipe names of recipes deleted will be shown. If the user had accidentally deleted the member or ingredient, he can execute the `undo` command.
 
-The current implementation of deleteIngredient can be represented by the activity diagram below: +
+The current implementation of `deleteIngredient` can be represented by the activity diagram below: +
 
-.Activity diagram for DeleteIngredient
-image::activity_diagram_deleteingredient.png[width="800"]
+.Activity diagram for `deleteIngredient`
+image::activity_diagram_deleteingredient.png[width="400"]
+The indication of the deletion of associated recipes when a particular ingredient is deleted is shown below:
+
+.Printed message for deleted recipes after an ingredient is deleted
+image::deleteingredientss.png[width="300"]
 
 // end::delete[]
 

@@ -9,17 +9,9 @@
 
 == Overview
 This portfolio serves the purpose of documenting my contributions to REstaurant Manager (REM),
-an application developed by 4 undergraduate students, in the course of Software Engineering Module, CS2103T, in NUS.
-
-REstaurant Manager (REM) is a desktop application tailored to restaurant owners of small/medium size restaurants.
+an application developed by 4 undergraduate students, in the course of Software Engineering Module, CS2103T, in NUS. REstaurant Manager (REM) is a desktop application tailored to restaurant owners of small/medium size restaurants.
 This application provides a single platform for them to manage many areas of the restaurant:
 customers with membership, staff, bookings, ingredient and recipe inventory.
-
-What separates REM from existing applications utilised by restaurant managers, is that REM, as a single platform can ensure
-the smooth running of the restaurant, whereas existing applications typically target only 1 niche area of the restaurant.
-With all records centralised in 1 system, restaurant managers can have greater knowledge on how to ensure that there are sufficient
-resources, i.e. by knowing the number of bookings made and number of servings of each dish available based on current ingredient stock,
-the manager can then decide to restock ingredients and allocate sufficient staff.
 
 My role was to implement the ingredient and recipe management features. Other than that, I was in charge of
 documentations in the team, to ensure that the features were well documented and corresponded to the actual implementation of the application.
@@ -27,42 +19,37 @@ I was also in charge of the Storage component of REM, requiring a thorough conce
 
 == Summary of Contributions
 
-* *Major enhancement*: added *ingredient feature*
-** What it does: allows the user to add, delete, restock and consume ingredients, keeping track of the quantity of ingredients present in the inventory.
-Ingredients with quantity in inventory falling below ingredient warning amount can also be listed.
+* *Major enhancement*: added *ingredient and recipe features*
+** What it does: allows user to add, delete, restock, consume ingredients and keep track of the quantity of ingredients present in the inventory.
+Ingredients with quantity in inventory falling below ingredient warning amount can be listed.
+Users can add and delete recipes consisting of ingredients present in the inventory, and their respective ingredient quantity per serving for the recipe.
 ** Justification:
-This feature improves the product significantly, as the ingredient feature helps to keep track of the inventory status for the ingredients. This can enable the users to make decisions, such as to restock ingredients, especially if it falls below the user-specified warning amount.
-
-* *Major enhancement*: added *recipe feature*
-** What it does: allows the user to add and delete recipes consisting of ingredients already present in the inventory, and their respective ingredient quantity per serving for the recipe.
-** Justification: This feature improves the product significantly, along with the ingredient feature, it helps in the restaurant manager's menu management, as he/she is able to ensure sufficient ingredients for the dishes, as well as estimate
-how many servings are possible with current ingredient inventory. The restaurant manger can then ensure sufficient resources for the smooth running
-of the restaurant, according to the estimation of busyness of the restaurant via the booking and statistics feature.
-
-** Highlights: The challenge in implementing the recipe feature, is that recipe is highly tied to ingredients, and change
+These features improve the product significantly, as the ingredient feature helps to keep track of the inventory status for the ingredients.
+The users can choose to restock ingredients if it falls below the user-specified warning amount.
+Also, this helps in the user's menu management, as he can ensure sufficient ingredients for the dishes and estimate
+number of servings possible with current ingredient inventory. He can then ensure sufficient resources for the smooth running
+of the restaurant, according to the estimation of busyness of the restaurant via booking and statistics features.
+** Highlights: It was challenging to implement recipe feature, as recipe is highly tied to ingredients, and change
 in any of the ingredient quantities of a recipe should cause a change in the recipe and number of servings possible.
 Since recipes can contain more than 1 ingredient, this also increases the complexity of the data structure required to store the ingredients.
 
-* *Code contributed*: [https://nus-cs2103-ay1819s2.github.io/cs2103-dashboard/#search=hiyingnn&sort=displayName&since=2019-02-10&until=2019-04-08&timeframe=day&reverse=false&repoSort=true[Code]]
+* *Code contributed*: https://nus-cs2103-ay1819s2.github.io/cs2103-dashboard/#search=hiyingnn&sort=displayName&since=2019-02-10&until=2019-04-15&timeframe=day&reverse=false&repoSort=true[Code]
 
 * *Other contributions*:
-
 ** Project management:
-*** Wrote tests to increase coverage (Pull requests https://github.com/cs2103-ay1819S2-w11-2/main/pull/28[#28], https://github.com/cs2103-ay1819S2-w11-2/main/pull/71[#71], https://github.com/cs2103-ay1819S2-w11-2/main/pull/118[#118], https://github.com/cs2103-ay1819S2-w11-2/main/pull/202[#202])
+*** Wrote tests to increase coverage (Pull requests https://github.com/cs2103-ay1819S2-w11-2/main/pull/28[#28])
 *** Implemented storage component for ingredient (Pull requests https://github.com/cs2103-ay1819S2-w11-2/main/pull/35[#35])
 *** Refactored project (Pull requests https://github.com/cs2103-ay1819S2-w11-2/main/pull/28[#28])
 
 ** Documentation:
-*** Did cosmetic tweaks to existing contents of the User Guide/ Developer Guide: (Pull requests https://github.com/cs2103-ay1819S2-w11-2/main/pull/202[#202], https://github.com/cs2103-ay1819S2-w11-2/main/pull/142[#142])
+*** Did cosmetic tweaks to existing contents of the User Guide/ Developer Guide: (Pull requests https://github.com/cs2103-ay1819S2-w11-2/main/pull/202[#202])
 
 ** Community:
-*** PRs reviewed (with non-trivial review comments):  (Pull requests https://github.com/cs2103-ay1819S2-w11-2/main/pull/106[#106], https://github.com/cs2103-ay1819S2-w11-2/main/pull/104[#104])
-*** Reported bugs for other teams: (Pull requests https://github.com/CS2103-AY1819S2-W17-2/main/issues/164[#164], https://github.com/CS2103-AY1819S2-W17-2/main/issues/156[#156])
+*** PRs reviewed (with non-trivial review comments):  (Pull requests https://github.com/cs2103-ay1819S2-w11-2/main/pull/106[#106])
+*** Reported bugs for other teams: (Pull requests https://github.com/CS2103-AY1819S2-W17-2/main/issues/164[#164])
 
 
 == Contributions to the User Guide
-
-
 |===
 |_Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users._
 |===
@@ -71,7 +58,6 @@ include::../UserGuide.adoc[tag=inventory]
 
 
 == Contributions to the Developer Guide
-
 |===
 |_Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project._
 |===
