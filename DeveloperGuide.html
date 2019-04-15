@@ -78,9 +78,12 @@
 <li><a href="#instructions-for-manual-testing">Appendix F: Instructions for Manual Testing</a>
 <ul class="sectlevel2">
 <li><a href="#launch-and-shutdown">F.1. Launch and Shutdown</a></li>
-<li><a href="#add-and-delete-bookings">F.2. Add and delete bookings</a></li>
-<li><a href="#capacity-tests-for-booking-feature">F.3. Capacity tests for booking feature</a></li>
-<li><a href="#saving-data">F.4. Saving data</a></li>
+<li><a href="#add-and-delete-members">F.2. Add and delete members</a></li>
+<li><a href="#list-members">F.3. List members</a></li>
+<li><a href="#add-and-delete-bookings">F.4. Add and delete bookings</a></li>
+<li><a href="#capacity-tests-for-booking-feature">F.5. Capacity tests for booking feature</a></li>
+<li><a href="#statistics">F.6. Statistics</a></li>
+<li><a href="#saving-data">F.7. Saving data</a></li>
 </ul>
 </li>
 </ul>
@@ -2799,7 +2802,81 @@ Expected: The most recent window size and location is retained.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="add-and-delete-bookings"><a class="link" href="#add-and-delete-bookings">F.2. Add and delete bookings</a></h3>
+<h3 id="add-and-delete-members"><a class="link" href="#add-and-delete-members">F.2. Add and delete members</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Add and delete members</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: List all members using the <code>listMembers</code> command. List of all members should be empty. The whole restaurant book can be cleared using the <code>clear</code> command</p>
+</li>
+<li>
+<p>Test case: <code>addmember n/John Doe p/98765432 e/johnd@example.com l/12</code><br>
+Expected: A new member is added. The name, phone number, email, as well as loyalty points is shown in the Member column.</p>
+</li>
+<li>
+<p>Test case: <code>addmember n/Alice Smith p/91234567 e/alice.s@example.com</code><br>
+Expected: A new member with 0 loyalty points is added. The name, phone number, email, as well as loyalty points is shown in the Member column.</p>
+</li>
+<li>
+<p>Test case: <code>deletemember 1</code><br>
+Expected: The member corresponding to the first index is deleted.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="list-members"><a class="link" href="#list-members">F.3. List members</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>List members by name and/or loyalty points</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: List all members using the <code>listMembers</code> command. List of all members should be empty. The whole restaurant book can be cleared using the <code>clear</code> command</p>
+</li>
+<li>
+<p>Test case: <code>addmember n/John Doe p/98765432 e/johnd@example.com l/12</code><br>
+Expected: A new member is added.</p>
+</li>
+<li>
+<p>Test case: <code>addmember n/Jane Doe p/98765433 e/janed@example.com l/23</code><br>
+Expected: A new member is added.</p>
+</li>
+<li>
+<p>Test case: <code>addmember n/Alice Smith p/98765434 e/alices@example.com l/100</code><br>
+Expected: A new member is added.</p>
+</li>
+<li>
+<p>Test case: <code>listmembers n/doe</code><br>
+Expected: <code>John Doe</code> and <code>Jane Doe</code> are listed.</p>
+</li>
+<li>
+<p>Test case: <code>listmembers n/doe l/20</code><br>
+Expected: <code>Jane Doe</code> is listed.</p>
+</li>
+<li>
+<p>Test case: <code>listmembers l/20</code><br>
+Expected: <code>Jane Doe</code> and <code>Alice Smith</code> are listed.</p>
+</li>
+<li>
+<p>Test case: <code>listmembers</code><br>
+Expected: All members are listed.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="add-and-delete-bookings"><a class="link" href="#add-and-delete-bookings">F.4. Add and delete bookings</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -2824,7 +2901,7 @@ Expected: The booking corresponding to the first index is deleted.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="capacity-tests-for-booking-feature"><a class="link" href="#capacity-tests-for-booking-feature">F.3. Capacity tests for booking feature</a></h3>
+<h3 id="capacity-tests-for-booking-feature"><a class="link" href="#capacity-tests-for-booking-feature">F.5. Capacity tests for booking feature</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -2857,7 +2934,56 @@ Expected: The booking is successfully added into the system. (Explanation: REM a
 </div>
 </div>
 <div class="sect2">
-<h3 id="saving-data"><a class="link" href="#saving-data">F.4. Saving data</a></h3>
+<h3 id="statistics"><a class="link" href="#statistics">F.6. Statistics</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Test that the statistics feature displays the bar graph correctly.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: There are exactly 3 bookings with date being: today&#8217;s date, yesterday&#8217;s date, and the day before&#8217;s date</p>
+</li>
+<li>
+<p>Test case: <code>statsdays 3</code><br>
+Expected: A new window appears displaying a bar graph with 3 bars. The height of the bar is the number of customers in each booking.</p>
+</li>
+<li>
+<p>Test case: <code>statsdays 10</code><br>
+Expected: A new window appears displaying a bar graph spanning 10 days, but only 3 of them have a bar. The height of the bar is the number of customers in each booking.<br></p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/statsdays_example.png" alt="statsdays example" width="700">
+</div>
+</div>
+<div class="paragraph">
+<p>The image above shows the new window, and the current bookings. The screenshot is taken on 15 April 2019.</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a" start="4">
+<li>
+<p>Test case: <code>statstime 3</code><br>
+Expected: A new window appears displaying a bar graph. The height of the bar is the number of customers in that specific time slot.</p>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/statstime_example.png" alt="statstime example" width="700">
+</div>
+</div>
+<div class="paragraph">
+<p>The image above shows the new window, and the current bookings. The screenshot is taken on 15 April 2019.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="saving-data"><a class="link" href="#saving-data">F.7. Saving data</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -2877,4 +3003,4 @@ Expected: The booking is successfully added into the system. (Explanation: REM a
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 01:36:09 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 03:14:21 UTC</div></div></div></body></html>
