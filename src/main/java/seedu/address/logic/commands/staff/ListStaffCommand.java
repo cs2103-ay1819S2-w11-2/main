@@ -27,7 +27,7 @@ public class ListStaffCommand extends Command {
             + "If fields are not specified, then all staff will be listed.\n"
             + "Parameters: [" + PREFIX_NAME + "NAME_1 NAME_2...] "
             + "[" + PREFIX_APPOINTMENT + "APPOINTMENT_1 APPOINTMENT_2...]\n"
-            + "Example: " + COMMAND_WORD + " alice bob charlie a/cook\n";
+            + "Example: " + COMMAND_WORD + " n/alice bob charlie a/cook\n";
 
     private final StaffPredicate predicate;
 

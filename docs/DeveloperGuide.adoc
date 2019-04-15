@@ -1325,6 +1325,45 @@ image::addRecipe-restockIngredient.png[width=1000]
 .. Test case: `deletestaff 1`
    Expected: The staff corresponding to the first index is deleted.
 
+=== List staff
+. List staff
+.. Prerequisites: Staff panel should be empty. Then, the commands below must be executed in sequence.
+... `addstaff n/Jane Smith p/91234567 e/jsmith@example.com a/Server`
+... `addstaff n/Jack Smith p/92345678 e/jasmith@example.com a/Server`
+... `addstaff n/Jack Tan p/91234567 e/jtan@example.com a/Cook`
+... `addstaff n/Simon Loh p/91234567 e/sloh@example.com a/Cook`
+.. After executing the four commands above, the staff panel should look like that in figure 25 below.
++
+.The staff panel after the four commands above have been executed
+image::liststaff_prereq.png[width=1000]
++
+.. Test case: `liststaff`
+   Expected: All four staff added by the command above are listed.
+.. Test case: `liststaff n/smith`
+   Expected: The two staff members whose names contain the word 'smith' are listed, as shown in figure 26 below.
++
+.The staff panel after the `liststaff n/smith` command has been executed
+image::liststaff_smith.png[width=1000]
++
+.. Test case: `liststaff a/cook`
+   Expected: The two staff members whose appointments contain the word 'cook' are listed, as shown in figure 27 below.
++
+.The staff panel after the `liststaff a/cook` command has been executed
+image::liststaff_cook.png[width=1000]
++
+.. Test case: `liststaff n/jack a/server`
+   Expected: The staff member whose name contains the word 'jack' and whose appointment contains the word `server` are listed, as shown in figure 28 below.
++
+.The staff panel after the `liststaff n/jack a/server` command has been executed
+image::liststaff_jack_server.png[width=1000]
++
+.. Test case: `liststaff n/simon a/server`
+   Expected: No staff members should be listed, as shown in figure 29 below.
++
+.The staff panel after the `liststaff n/simon a/server` command has been executed
+image::liststaff_simon_server.png[width=1000]
+
+
 === Add and delete shifts
 . Add shifts
 .. Prerequisites: List all staff using the `listStaff` command. List of staff has size of at least 2. The staff corresponding to the first and second index have no shifts.
@@ -1353,6 +1392,7 @@ image::addRecipe-restockIngredient.png[width=1000]
 .. Test case: `statsdays 10` +
    Expected: A new window appears displaying a bar graph spanning 10 days, but only 3 of them have a bar. The height of the bar is the number of customers in each booking. +
 
+.Bar graph displayed by `statsdays 10` command
 image::statsdays_example.png[width="700"]
 
 The image above shows the new window, and the current bookings. The screenshot is taken on 15 April 2019.
@@ -1361,14 +1401,7 @@ The image above shows the new window, and the current bookings. The screenshot i
 .. Test case: `statstime 3` +
    Expected: A new window appears displaying a bar graph. The height of the bar is the number of customers in that specific time slot.
 
+.Bar graph displayed by `statstime 3` command
 image::statstime_example.png[width="700"]
 
 The image above shows the new window, and the current bookings. The screenshot is taken on 15 April 2019.
-
-=== Saving data
-
-. Dealing with missing/corrupted data files
-
-.. _{explain how to simulate a missing/corrupted file and the expected behavior}_
-
-_{ more test cases ... }_
