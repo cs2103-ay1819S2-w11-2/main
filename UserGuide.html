@@ -1,9 +1,9 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]--><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="Asciidoctor 1.5.6.1"><title>REM - REstaurant Manager - User Guide</title><link rel="stylesheet" href="stylesheets/gh-pages.css">
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]--><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="Asciidoctor 1.5.6.1"><title>AddressBook Level 4 - User Guide</title><link rel="stylesheet" href="stylesheets/gh-pages.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="stylesheets/coderay-asciidoctor.css"></head><body class="article"><div id="site-header"><nav class="navbar navbar-light bg-light"><div class="container"><a class="navbar-brand" href="index.html">REstaurant Manager</a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link active" href="UserGuide.html">User Guide</a></li><li class="nav-item"><a class="nav-link" href="DeveloperGuide.html">Developer Guide</a></li><li class="nav-item"><a class="nav-link" href="AboutUs.html">About Us</a></li><li class="nav-item"><a class="nav-link" href="ContactUs.html">Contact Us</a></li><li class="navitem"><a class="nav-link" href="https://github.com/cs2103-ay1819S2-w11-2/main"><span class="fa fa-github fa-lg" aria-hidden="true"></span>&nbsp;View on GitHub</a></li></ul></div></nav></div><div id="header"><h1>REM - REstaurant Manager - User Guide</h1></div><div id="content"><div id="preamble">
+<link rel="stylesheet" href="stylesheets/coderay-asciidoctor.css"></head><body class="article"><div id="seedu-header"><nav class="navbar navbar-lg navbar-light bg-lighter"><div class="container"><a class="navbar-brand" href="https://se-edu.github.io/"><img src="images/SeEduLogo.png" alt="SE-EDU"></a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level1">AB-1</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level2">AB-2</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level3">AB-3</a></li><li class="nav-item"><a class="nav-link active" href="index.html">AB-4</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/collate">Collate</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/se-book">Book</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/learningresources">Resources</a></li></ul></div></nav></div><div id="site-header"><nav class="navbar navbar-light bg-light"><div class="container"><a class="navbar-brand" href="index.html">AddressBook-Level4</a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link active" href="UserGuide.html">User Guide</a></li><li class="nav-item"><a class="nav-link" href="DeveloperGuide.html">Developer Guide</a></li><li class="nav-item"><a class="nav-link" href="LearningOutcomes.html">LOs</a></li><li class="nav-item"><a class="nav-link" href="AboutUs.html">About Us</a></li><li class="nav-item"><a class="nav-link" href="ContactUs.html">Contact Us</a></li><li class="navitem"><a class="nav-link" href="https://github.com/se-edu/addressbook-level4"><span class="fa fa-github fa-lg" aria-hidden="true"></span>&nbsp;View on GitHub</a></li></ul></div></nav></div><div id="header"><h1>AddressBook Level 4 - User Guide</h1></div><div id="content"><div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>By: <code>Team W11-2</code>      Since: <code>Jan 2019</code>      Licence: <code>MIT</code></p>
+<p>By: <code>Team SE-EDU</code>      Since: <code>Jun 2016</code>      Licence: <code>MIT</code></p>
 </div>
 </div>
 <div id="toc" class="toc">
@@ -13,26 +13,24 @@
 <li><a href="#quick-start">2. Quick Start</a></li>
 <li><a href="#Features">3. Features</a>
 <ul class="sectlevel2">
-<li><a href="#general">3.1. General</a></li>
-<li><a href="#member-management">3.2. Member Management</a></li>
-<li><a href="#inventory-management">3.3. Inventory Management</a></li>
-<li><a href="#booking-management">3.4. Booking Management</a></li>
-<li><a href="#staff-management">3.5. Staff Management</a></li>
-<li><a href="#statistics">3.6. Statistics</a></li>
-<li><a href="#overall">3.7. Overall</a></li>
+<li><a href="#viewing-help-code-help-code">3.1. Viewing help : <code>help</code></a></li>
+<li><a href="#adding-a-person-code-add-code">3.2. Adding a person: <code>add</code></a></li>
+<li><a href="#listing-all-persons-code-list-code">3.3. Listing all persons : <code>list</code></a></li>
+<li><a href="#editing-a-person-code-edit-code">3.4. Editing a person : <code>edit</code></a></li>
+<li><a href="#locating-persons-by-name-code-find-code">3.5. Locating persons by name: <code>find</code></a></li>
+<li><a href="#deleting-a-person-code-delete-code">3.6. Deleting a person : <code>delete</code></a></li>
+<li><a href="#selecting-a-person-code-select-code">3.7. Selecting a person : <code>select</code></a></li>
+<li><a href="#listing-entered-commands-code-history-code">3.8. Listing entered commands : <code>history</code></a></li>
+<li><a href="#undoing-previous-command-code-undo-code">3.9. Undoing previous command : <code>undo</code></a></li>
+<li><a href="#redoing-the-previously-undone-command-code-redo-code">3.10. Redoing the previously undone command : <code>redo</code></a></li>
+<li><a href="#clearing-all-entries-code-clear-code">3.11. Clearing all entries : <code>clear</code></a></li>
+<li><a href="#exiting-the-program-code-exit-code">3.12. Exiting the program : <code>exit</code></a></li>
+<li><a href="#saving-the-data">3.13. Saving the data</a></li>
+<li><a href="#encrypting-data-files-code-coming-in-v2-0-code">3.14. Encrypting data files <code>[coming in v2.0]</code></a></li>
 </ul>
 </li>
 <li><a href="#faq">4. FAQ</a></li>
-<li><a href="#command-summary">5. Command Summary</a>
-<ul class="sectlevel2">
-<li><a href="#general-2">5.1. General</a></li>
-<li><a href="#member-management-2">5.2. Member Management</a></li>
-<li><a href="#inventory-management-2">5.3. Inventory Management</a></li>
-<li><a href="#booking-management-2">5.4. Booking Management</a></li>
-<li><a href="#staff-management-2">5.5. Staff Management</a></li>
-<li><a href="#statistics-2">5.6. Statistics</a></li>
-</ul>
-</li>
+<li><a href="#command-summary">5. Command Summary</a></li>
 </ul>
 </div>
 </div>
@@ -40,80 +38,7 @@
 <h2 id="introduction"><a class="link" href="#introduction">1. Introduction</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>REstaurant Manager (REM) is for small/medium size restaurant owners who <strong>prefer to use a desktop app for managing their restaurant</strong>. More importantly, REM is <strong>optimized for those who prefer to work with a Command Line Interface</strong> (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, REM can get your restaurant management tasks done faster than traditional GUI apps.</p>
-</div>
-<div class="paragraph">
-<p>As REM is targeted at <em>restaurant owners</em>, it aims to facilitate the management of a restaurant, in these 5 different areas:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Member Management</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Manage the contact details of the customers with membership</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Inventory Management</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Manage the inventory of recipes and stocks of inventory</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Booking Management</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Manage the reservations made by the general public</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Staff management</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Manage the contact details of the staff, and facilitate their shift work allocation</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Statistics</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Collates bookings data into graphs</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Overall</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Collation of feedback by customers, and general statistics of the performance of the restaurant</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>This user guide is designed to provide assistance to Restaurant Managers who utilise REM.</p>
-</div>
-<div class="paragraph">
-<p>Interested? Jump to the <a href="#quick-start">Section 2, &#8220;Quick Start&#8221;</a> to get started. Enjoy!</p>
+<p>AddressBook Level 4 (AB4) is for those who <strong>prefer to use a desktop app for managing contacts</strong>. More importantly, AB4 is <strong>optimized for those who prefer to work with a Command Line Interface</strong> (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB4 can get your contact management tasks done faster than traditional GUI apps. Interested? Jump to the <a href="#quick-start">Section 2, &#8220;Quick Start&#8221;</a> to get started. Enjoy!</p>
 </div>
 </div>
 </div>
@@ -126,10 +51,10 @@
 <p>Ensure you have Java version <code>9</code> or later installed in your Computer.</p>
 </li>
 <li>
-<p>Download the latest <code>rem.jar</code> <a href="https://github.com/cs2103-ay1819S2-w11-2/main/releases">here</a>.</p>
+<p>Download the latest <code>addressbook.jar</code> <a href="https://github.com/se-edu/addressbook-level4/releases">here</a>.</p>
 </li>
 <li>
-<p>Copy the file to the folder you want to use as the home folder for your Restaurant Manager.</p>
+<p>Copy the file to the folder you want to use as the home folder for your Address Book.</p>
 </li>
 <li>
 <p>Double-click the file to start the app. The GUI should appear in a few seconds.</p>
@@ -137,26 +62,24 @@
 <div class="content">
 <img src="images/Ui.png" alt="Ui" width="790">
 </div>
-<div class="title">Figure 1. The GUI of REM</div>
 </div>
 </li>
 <li>
 <p>Type the command in the command box and press <kbd>Enter</kbd> to execute it.<br>
 e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> will open the help window.</p>
+</li>
+<li>
+<p>Some example commands you can try:</p>
 <div class="ulist">
 <ul>
 <li>
-<p>After launching the application, below are some sample commands you can try:</p>
-<div class="ulist">
-<ul>
-<li>
-<p><strong><code>listMembers</code></strong> : lists all members of the restaurant</p>
+<p><strong><code>list</code></strong> : lists all contacts</p>
 </li>
 <li>
-<p><strong><code>addMember</code></strong><code>addMember n/John Doe e/johnd@gmail.com p/81234567</code> : adds a member named <code>John Doe</code> to the restaurant.</p>
+<p><strong><code>add</code></strong><code>n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01</code> : adds a contact named <code>John Doe</code> to the Address Book.</p>
 </li>
 <li>
-<p><strong><code>deleteMember</code></strong><code>3</code> : deletes the 3rd member shown in the current list of members</p>
+<p><strong><code>delete</code></strong><code>3</code> : deletes the 3rd contact shown in the current list</p>
 </li>
 <li>
 <p><strong><code>exit</code></strong> : exits the app</p>
@@ -164,11 +87,8 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 </ul>
 </div>
 </li>
-</ul>
-</div>
-</li>
 <li>
-<p>You can refer to <a href="#Features">Section 3, &#8220;Features&#8221;</a> for details of each command.</p>
+<p>Refer to <a href="#Features">Section 3, &#8220;Features&#8221;</a> for details of each command.</p>
 </li>
 </ol>
 </div>
@@ -185,85 +105,263 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <div class="ulist">
 <ul>
 <li>
-<p>Commands begin with the intended task, followed by a number of parameters preceded by a key (comprised of a one or more letters and forward slash, for example, <code>n/</code>). The intended task is non case-sensitive in the program and can be typed quickly as (for example, <code>addMember</code> can be typed as <code>addmember</code>), but is written in this manner in the user guide for greater readability.</p>
+<p>Words in <code>UPPER_CASE</code> are the parameters to be supplied by the user e.g. in <code>add n/NAME</code>, <code>NAME</code> is a parameter which can be used as <code>add n/John Doe</code>.</p>
 </li>
 <li>
-<p>Words in UPPER_CASE are the parameters to be supplied by the user. For example, <code>CUSTOMER_NAME</code>, <code>EMAIL</code> and <code>PHONE_NUMBER</code> in the command below are the parameters to be supplied by the user.</p>
-<div class="ulist">
-<ul>
-<li>
-<p><code>addMember n/CUSTOMER_NAME e/EMAIL p/PHONE_NUMBER</code>.</p>
-</li>
-</ul>
-</div>
+<p>Items in square brackets are optional e.g <code>n/NAME [t/TAG]</code> can be used as <code>n/John Doe t/friend</code> or as <code>n/John Doe</code>.</p>
 </li>
 <li>
-<p>Parameters in square brackets are optional parameters and can be omitted. For example, <code>LOYALTY_POINTS</code> below is an optional parameter.</p>
-<div class="ulist">
-<ul>
-<li>
-<p><code>addMember n/CUSTOMER_NAME e/EMAIL p/PHONE_NUMBER [l/LOYALTY_POINTS]</code></p>
-</li>
-</ul>
-</div>
+<p>Items with <code>…</code>​ after them can be used multiple times including zero times e.g. <code>[t/TAG]&#8230;&#8203;</code> can be used as <code>&#160;</code> (i.e. 0 times), <code>t/friend</code>, <code>t/friend t/family</code> etc.</p>
 </li>
 <li>
-<p>Parameters with <code>&#8230;&#8203;</code> after them can be used multiple times (including zero times) in the command. For example, <code>INGREDIENT_INDEX&amp;INGREDIENT_QUANTITY_IN_RECIPE</code> can be specified multiple times in the command below.</p>
-<div class="ulist">
-<ul>
-<li>
-<p><code>addRecipe r/RECIPE_NAME iq/INGREDIENT_INDEX&amp;INGREDIENT_QUANTITY_IN_RECIPE &#8230;&#8203;</code></p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Parameters can be supplied in any order. For example, the following way of writing the <code>addMember</code> command above is also valid.</p>
-<div class="ulist">
-<ul>
-<li>
-<p><code>addMember p/PHONE_NUMBER n/CUSTOMER_NAME e/EMAIL</code></p>
-</li>
-</ul>
-</div>
+<p>Parameters can be in any order e.g. if the command specifies <code>n/NAME p/PHONE_NUMBER</code>, <code>p/PHONE_NUMBER n/NAME</code> is also acceptable.</p>
 </li>
 </ul>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="general"><a class="link" href="#general">3.1. General</a></h3>
-<div class="sect3">
-<h4 id="viewing-help-code-help-code"><a class="link" href="#viewing-help-code-help-code">3.1.1. Viewing help : <code>help</code></a></h4>
-<div class="paragraph">
-<p>Displays this user guide to the user.</p>
-</div>
+<h3 id="viewing-help-code-help-code"><a class="link" href="#viewing-help-code-help-code">3.1. Viewing help : <code>help</code></a></h3>
 <div class="paragraph">
 <p>Format: <code>help</code></p>
 </div>
 </div>
-<div class="sect3">
-<h4 id="exit-code-exit-code"><a class="link" href="#exit-code-exit-code">3.1.2. Exit: <code>exit</code></a></h4>
+<div class="sect2">
+<h3 id="adding-a-person-code-add-code"><a class="link" href="#adding-a-person-code-add-code">3.2. Adding a person: <code>add</code></a></h3>
 <div class="paragraph">
-<p>Exits the program.</p>
+<p>Adds a person to the address book<br>
+Format: <code>add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]&#8230;&#8203;</code></p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+A person can have any number of tags (including 0)
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
-<p>Format: <code>exit</code></p>
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01</code></p>
+</li>
+<li>
+<p><code>add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal</code></p>
+</li>
+</ul>
 </div>
 </div>
-<div class="sect3">
-<h4 id="clear-code-clear-code"><a class="link" href="#clear-code-clear-code">3.1.3. Clear: <code>clear</code></a></h4>
+<div class="sect2">
+<h3 id="listing-all-persons-code-list-code"><a class="link" href="#listing-all-persons-code-list-code">3.3. Listing all persons : <code>list</code></a></h3>
 <div class="paragraph">
-<p>Removes all data from REM.</p>
+<p>Shows a list of all persons in the address book.<br>
+Format: <code>list</code></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="editing-a-person-code-edit-code"><a class="link" href="#editing-a-person-code-edit-code">3.4. Editing a person : <code>edit</code></a></h3>
+<div class="paragraph">
+<p>Edits an existing person in the address book.<br>
+Format: <code>edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]&#8230;&#8203;</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Edits the person at the specified <code>INDEX</code>. The index refers to the index number shown in the displayed person list. The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+<li>
+<p>At least one of the optional fields must be provided.</p>
+</li>
+<li>
+<p>Existing values will be updated to the input values.</p>
+</li>
+<li>
+<p>When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.</p>
+</li>
+<li>
+<p>You can remove all the person&#8217;s tags by typing <code>t/</code> without specifying any tags after it.</p>
+</li>
+</ul>
+</div>
+</div>
 </div>
 <div class="paragraph">
-<p>Format: <code>clear</code></p>
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>edit 1 p/91234567 e/johndoe@example.com</code><br>
+Edits the phone number and email address of the 1st person to be <code>91234567</code> and <code>johndoe@example.com</code> respectively.</p>
+</li>
+<li>
+<p><code>edit 2 n/Betsy Crower t/</code><br>
+Edits the name of the 2nd person to be <code>Betsy Crower</code> and clears all existing tags.</p>
+</li>
+</ul>
 </div>
 </div>
-<div class="sect3">
-<h4 id="undoing-previous-command-code-undo-code"><a class="link" href="#undoing-previous-command-code-undo-code">3.1.4. Undoing previous command : <code>undo</code></a></h4>
+<div class="sect2">
+<h3 id="locating-persons-by-name-code-find-code"><a class="link" href="#locating-persons-by-name-code-find-code">3.5. Locating persons by name: <code>find</code></a></h3>
 <div class="paragraph">
-<p>Restores the restaurant book to the state before the previous <em>undoable</em> command was executed.<br>
+<p>Finds persons whose names contain any of the given keywords.<br>
+Format: <code>find KEYWORD [MORE_KEYWORDS]</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>The search is case insensitive. e.g <code>hans</code> will match <code>Hans</code></p>
+</li>
+<li>
+<p>The order of the keywords does not matter. e.g. <code>Hans Bo</code> will match <code>Bo Hans</code></p>
+</li>
+<li>
+<p>Only the name is searched.</p>
+</li>
+<li>
+<p>Only full words will be matched e.g. <code>Han</code> will not match <code>Hans</code></p>
+</li>
+<li>
+<p>Persons matching at least one keyword will be returned (i.e. <code>OR</code> search). e.g. <code>Hans Bo</code> will return <code>Hans Gruber</code>, <code>Bo Yang</code></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>find John</code><br>
+Returns <code>john</code> and <code>John Doe</code></p>
+</li>
+<li>
+<p><code>find Betsy Tim John</code><br>
+Returns any person having names <code>Betsy</code>, <code>Tim</code>, or <code>John</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="deleting-a-person-code-delete-code"><a class="link" href="#deleting-a-person-code-delete-code">3.6. Deleting a person : <code>delete</code></a></h3>
+<div class="paragraph">
+<p>Deletes the specified person from the address book.<br>
+Format: <code>delete INDEX</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Deletes the person at the specified <code>INDEX</code>.</p>
+</li>
+<li>
+<p>The index refers to the index number shown in the displayed person list.</p>
+</li>
+<li>
+<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>list</code><br>
+<code>delete 2</code><br>
+Deletes the 2nd person in the address book.</p>
+</li>
+<li>
+<p><code>find Betsy</code><br>
+<code>delete 1</code><br>
+Deletes the 1st person in the results of the <code>find</code> command.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="selecting-a-person-code-select-code"><a class="link" href="#selecting-a-person-code-select-code">3.7. Selecting a person : <code>select</code></a></h3>
+<div class="paragraph">
+<p>Selects the person identified by the index number used in the displayed person list.<br>
+Format: <code>select INDEX</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Selects the person and loads the Google search page the person at the specified <code>INDEX</code>.</p>
+</li>
+<li>
+<p>The index refers to the index number shown in the displayed person list.</p>
+</li>
+<li>
+<p>The index <strong>must be a positive integer</strong> <code>1, 2, 3, &#8230;&#8203;</code></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>list</code><br>
+<code>select 2</code><br>
+Selects the 2nd person in the address book.</p>
+</li>
+<li>
+<p><code>find Betsy</code><br>
+<code>select 1</code><br>
+Selects the 1st person in the results of the <code>find</code> command.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="listing-entered-commands-code-history-code"><a class="link" href="#listing-entered-commands-code-history-code">3.8. Listing entered commands : <code>history</code></a></h3>
+<div class="paragraph">
+<p>Lists all the commands that you have entered in reverse chronological order.<br>
+Format: <code>history</code></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Pressing the <kbd>&uarr;</kbd> and <kbd>&darr;</kbd> arrows will display the previous and next input respectively in the command box.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="undoing-previous-command-code-undo-code"><a class="link" href="#undoing-previous-command-code-undo-code">3.9. Undoing previous command : <code>undo</code></a></h3>
+<div class="paragraph">
+<p>Restores the address book to the state before the previous <em>undoable</em> command was executed.<br>
 Format: <code>undo</code></p>
 </div>
 <div class="admonitionblock note">
@@ -274,7 +372,7 @@ Format: <code>undo</code></p>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Undoable commands: those commands that modify the restaurant book&#8217;s content (e.g. <code>add</code>, <code>delete</code>, <code>edit</code> and <code>clear</code>).</p>
+<p>Undoable commands: those commands that modify the address book&#8217;s content (<code>add</code>, <code>delete</code>, <code>edit</code> and <code>clear</code>).</p>
 </div>
 </td>
 </tr>
@@ -286,20 +384,27 @@ Format: <code>undo</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>deleteMember 1</code><br>
-<code>undo</code> (reverses the <code>deleteMember 1</code> command)<br></p>
+<p><code>delete 1</code><br>
+<code>list</code><br>
+<code>undo</code> (reverses the <code>delete 1</code> command)<br></p>
 </li>
 <li>
-<p><code>deleteMember 1</code><br>
+<p><code>select 1</code><br>
+<code>list</code><br>
+<code>undo</code><br>
+The <code>undo</code> command fails as there are no undoable commands executed previously.</p>
+</li>
+<li>
+<p><code>delete 1</code><br>
 <code>clear</code><br>
 <code>undo</code> (reverses the <code>clear</code> command)<br>
-<code>undo</code> (reverses the <code>deleteMember 1</code> command)<br></p>
+<code>undo</code> (reverses the <code>delete 1</code> command)<br></p>
 </li>
 </ul>
 </div>
 </div>
-<div class="sect3">
-<h4 id="redoing-the-previously-undone-command-code-redo-code"><a class="link" href="#redoing-the-previously-undone-command-code-redo-code">3.1.5. Redoing the previously undone command : <code>redo</code></a></h4>
+<div class="sect2">
+<h3 id="redoing-the-previously-undone-command-code-redo-code"><a class="link" href="#redoing-the-previously-undone-command-code-redo-code">3.10. Redoing the previously undone command : <code>redo</code></a></h3>
 <div class="paragraph">
 <p>Reverses the most recent <code>undo</code> command.<br>
 Format: <code>redo</code></p>
@@ -310,1285 +415,51 @@ Format: <code>redo</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>deleteMember 1</code><br>
-<code>undo</code> (reverses the <code>deleteMember 1</code> command)<br>
-<code>redo</code> (reapplies the <code>deleteMember 1</code> command)<br></p>
+<p><code>delete 1</code><br>
+<code>undo</code> (reverses the <code>delete 1</code> command)<br>
+<code>redo</code> (reapplies the <code>delete 1</code> command)<br></p>
 </li>
 <li>
-<p><code>deleteMember 1</code><br>
+<p><code>delete 1</code><br>
 <code>redo</code><br>
 The <code>redo</code> command fails as there are no <code>undo</code> commands executed previously.</p>
 </li>
 <li>
-<p><code>deleteMember 1</code><br>
+<p><code>delete 1</code><br>
 <code>clear</code><br>
 <code>undo</code> (reverses the <code>clear</code> command)<br>
-<code>undo</code> (reverses the <code>deleteMember 1</code> command)<br>
-<code>redo</code> (reapplies the <code>deleteMember 1</code> command)<br>
+<code>undo</code> (reverses the <code>delete 1</code> command)<br>
+<code>redo</code> (reapplies the <code>delete 1</code> command)<br>
 <code>redo</code> (reapplies the <code>clear</code> command)<br></p>
 </li>
 </ul>
 </div>
 </div>
-<div class="sect3">
-<h4 id="history-code-history-code"><a class="link" href="#history-code-history-code">3.1.6. History: <code>history</code></a></h4>
+<div class="sect2">
+<h3 id="clearing-all-entries-code-clear-code"><a class="link" href="#clearing-all-entries-code-clear-code">3.11. Clearing all entries : <code>clear</code></a></h3>
 <div class="paragraph">
-<p>Lists commands entered, displayed from most recent to earliest.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>history</code></p>
-</div>
+<p>Clears all entries from the address book.<br>
+Format: <code>clear</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="member-management"><a class="link" href="#member-management">3.2. Member Management</a></h3>
-<div class="sect3">
-<h4 id="add-member-code-addmember-code"><a class="link" href="#add-member-code-addmember-code">3.2.1. Add Member: <code>addMember</code></a></h4>
+<h3 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">3.12. Exiting the program : <code>exit</code></a></h3>
 <div class="paragraph">
-<p>Adds a customer who signs up for membership.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>addMember n/CUSTOMER_NAME e/EMAIL p/PHONE_NUMBER [l/LOYALTY_POINTS]</code><br>
-Shortcut: <code>am n/CUSTOMER_NAME e/EMAIL p/PHONE_NUMBER [l/LOYALTY_POINTS]</code></p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>If loyalty points is not specified, it will be taken to be 0.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>Example:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>addMember n/John Doe e/johnd@gmail.com p/81234567 l/20</code></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="list-members-code-listmembers-code"><a class="link" href="#list-members-code-listmembers-code">3.2.2. List Members: <code>listMembers</code></a></h4>
-<div class="paragraph">
-<p>Lists all members whose names contain any of the list of words (case-insensitive) and who has at least the specified amount of loyalty points.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>listMembers [n/NAME1 NAME2 &#8230;&#8203;] [l/LOYALTY_POINTS_MINIMUM]</code><br>
-Shortcut: <code>lm [n/NAME1 NAME2 &#8230;&#8203;] [l/LOYALTY_POINTS_MINIMUM]</code></p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>If loyalty points is not specified, it will be taken to be 0.</p>
-</li>
-<li>
-<p>The search is case insensitive. e.g hans will match Hans</p>
-</li>
-<li>
-<p>The order of the keywords does not matter. e.g. Hans Bo will match Bo Hans</p>
-</li>
-<li>
-<p>Only full words will be matched e.g. Han will not match Hans</p>
-</li>
-<li>
-<p>Persons matching at least one keyword will be returned (i.e. OR search). e.g. Hans Bo will return Hans Gruber, Bo Yang</p>
-</li>
-<li>
-<p>If the name field is not specified, all names will match</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>Example:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>listMembers n/Betsy Tim John</code></p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Lists all members having names Betsy, Tim, or John.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>listMembers l/10</code></p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Lists all members with at least 10 loyalty points.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>listMembers n/Betsy Tim l/6</code></p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Lists all members having names Betsy or Tim, and with at least 6 loyalty points.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>listMembers</code></p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Lists all members.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="delete-members-code-deletemember-code"><a class="link" href="#delete-members-code-deletemember-code">3.2.3. Delete Members: <code>deleteMember</code></a></h4>
-<div class="paragraph">
-<p>Deletes the specified member from the management system. Note that this action also deletes all bookings made by the member.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>deleteMember INDEX</code><br>
-Shortcut: <code>dm INDEX</code></p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>Deletes the member at the specified <code>INDEX</code>. The index refers to the index number shown in the most recent listing.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>Example:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>listMembers</code></p>
-<div class="paragraph">
-<p><code>deleteMember 2</code></p>
-</div>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Deletes the 2nd member in the restaurant book.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>listMembers n/Betsy</code></p>
-<div class="paragraph">
-<p><code>deleteMember 1</code></p>
-</div>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Deletes the 1st member in the results of the listMembers command.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="edit-member-code-editmember-code"><a class="link" href="#edit-member-code-editmember-code">3.2.4. Edit Member: <code>editMember</code></a></h4>
-<div class="paragraph">
-<p>Edits an existing member in the restaurant book.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>editMember INDEX [n/NAME] [p/PHONE] [e/EMAIL] [l/LOYALTY_POINTS]</code><br>
-Shortcut: <code>em INDEX [n/NAME] [p/PHONE] [e/EMAIL] [l/LOYALTY_POINTS]</code></p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>Edits the member at the specified <code>INDEX</code>. The index refers to the index number shown in the most recent listing.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>Example:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>editmember 1 p/91234567 e/johndoe@example.com</code></p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Edits the phone number and email address of the 1st person to be <code>91234567</code> and <code>johndoe@example.com</code> respectively.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>editmember 2 n/Betsy Crower</code></p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Edits the name of the 2nd person to be Betsy Crower.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="notify-via-email-code-notifyemail-code-code-coming-in-v2-0-code"><a class="link" href="#notify-via-email-code-notifyemail-code-code-coming-in-v2-0-code">3.2.5. Notify Via Email: <code>notifyEmail</code> <code>[coming in v2.0]</code></a></h4>
-<div class="paragraph">
-<p>Notifies all members with at least a minimum amount of loyalty points and with the specified email subscription settings.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>notifyEmail [l/LOYALTY_POINTS_MINIMUM] [se/TRUE_FALSE]</code></p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>If <code>l</code> not specified, it will be taken to be 0.</p>
-</li>
-<li>
-<p>If <code>se</code> is not specified, the email will be sent regardless of email subscription settings.</p>
-</li>
-<li>
-<p>After entering this command, an email window will appear, where the text body can be keyed in.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>Example:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>notifyEmail l/100 se/true</code></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="notify-via-sms-code-notifysms-code-code-coming-in-v2-0-code"><a class="link" href="#notify-via-sms-code-notifysms-code-code-coming-in-v2-0-code">3.2.6. Notify Via SMS: <code>notifySMS</code> <code>[coming in v2.0]</code></a></h4>
-<div class="paragraph">
-<p>Notifies all members with at least a minimum amount of loyalty points and with the specified SMS subscription settings.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>notifySMS [l/LOYALTY_POINTS_MINIMUM] [ss/TRUE_FALSE]</code></p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>If <code>l</code> not specified, it will be taken to be 0.</p>
-</li>
-<li>
-<p>If <code>ss</code> is not specified, the SMS will be sent regardless of SMS subscription settings.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>Example:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>notifySMS l/100 ss/true</code></p>
-</li>
-</ul>
-</div>
+<p>Exits the program.<br>
+Format: <code>exit</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="inventory-management"><a class="link" href="#inventory-management">3.3. Inventory Management</a></h3>
-<div class="sect3">
-<h4 id="list-ingredients-code-listingredients-code"><a class="link" href="#list-ingredients-code-listingredients-code">3.3.1. List Ingredients: <code>listIngredients</code></a></h4>
+<h3 id="saving-the-data"><a class="link" href="#saving-the-data">3.13. Saving the data</a></h3>
 <div class="paragraph">
-<p>List all ingredients in the inventory that has ingredient name containing any of the key words inputted,
-and has ingredient quantity falling below the ingredient warning amount.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>listIngredients [in/INGREDIENT_NAME] [w/]</code><br>
-Shortcut: <code>li [in/INGREDIENT_NAME] [w/]</code></p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>If <code>in/INGREDIENT_NAME</code> is present, all ingredients with name containing any of the key words inputted will be listed. If <code>w/</code> is present, all ingredients with quantity falling below warning amount will be listed.</p>
-</li>
-<li>
-<p>By default, when both <code>in/INGREDIENT_NAME</code> and <code>w/</code> are not present, <code>listIngredients</code> will list all ingredients.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>Example:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>listIngredients in/tomato w/</code></p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>All ingredients with name containing the word 'tomato', and having ingredient quantity that falls below
-ingredient warning amount will be listed.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="add-ingredient-code-addingredient-code"><a class="link" href="#add-ingredient-code-addingredient-code">3.3.2. Add Ingredient: <code>addIngredient</code></a></h4>
-<div class="paragraph">
-<p>Adds new ingredient into inventory. Previously not existing in inventory before.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>addIngredient in/INGREDIENT_NAME u/INGREDIENT_UNIT [q/INGREDIENT_QUANTITY] [w/INGREDIENT_WARNING_AMOUNT]</code><br>
-Shortcut: <code>ai in/INGREDIENT_NAME u/INGREDIENT_UNIT [q/INGREDIENT_QUANTITY] [w/INGREDIENT_WARNING_AMOUNT]</code></p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p><code>INGREDIENT_NAME</code> and <code>INGREDIENT_UNIT</code> must contain only alphabets and spaces, and must contain at least 2 characters of the alphabet. (i.e, <code>in/c</code> is not accepted while <code>in/ch</code> is). All leading whitespaces for both inputs will be trimmed.</p>
-</li>
-<li>
-<p><code>INGREDIENT_QUANTITY</code> and <code>INGREDIENT_WARNING_AMOUNT</code> must be an integer between 0 and 2,147,483,647 inclusive, and if not specified, they are respectively set to 0.</p>
-</li>
-<li>
-<p>If user inputs the warning amount for the ingredient <code>w/INGREDIENT_WARNING_AMOUNT</code>, and when the quantity in inventory
-falls below this stated amount, there is a need for restock of this ingredient.
-Calling <code>listIngredients w/</code> will display all ingredients that fall below their corresponding warning values.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>Example:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>addIngredient in/chicken wings q/10 u/packets w/2</code></p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Adds 10 packets of chicken wing into inventory and when quantity falls below 2, it will be listed via <code>listIngredients w/</code> command.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="delete-ingredient-code-deleteingredient-code"><a class="link" href="#delete-ingredient-code-deleteingredient-code">3.3.3. Delete Ingredient: <code>deleteIngredient</code></a></h4>
-<div class="paragraph">
-<p>Deletes the specified ingredient from the restaurant book. Note that this action also deletes all recipes that contain this ingredient, and all affected recipes will be shown upon deletion.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>deleteIngredient INDEX</code><br>
-Shortcut: <code>di INDEX</code></p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>The index refers to the index number shown in the most recent listing.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>Example:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>listIngredients</code> (returns chicken as 3rd index)</p>
-<div class="paragraph">
-<p><code>deleteIngredient 3</code></p>
-</div>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Delete chicken from inventory</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="restock-ingredient-code-restockingredient-code"><a class="link" href="#restock-ingredient-code-restockingredient-code">3.3.4. Restock Ingredient: <code>restockIngredient</code></a></h4>
-<div class="paragraph">
-<p>Restock an ingredient in inventory, by a particular amount, based on specified <code>INDEX</code> via <code>listIngredients</code>.
-Previously existing in inventory before.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>restockIngredient i/INDEX q/INGREDIENT_QUANTITY</code><br>
-Shortcut: <code>ri i/INDEX q/INGREDIENT_QUANTITY</code></p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>New ingredient quantity after <code>restockIngredient</code> command was called, must be an integer with value at most 2,147,483,647.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>Example:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>listIngredients</code> (returns chicken as 3rd index)</p>
-<div class="paragraph">
-<p><code>restockIngredient i/3 q/10</code></p>
-</div>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Increases the quantity of chickens by 10 in the inventory. Assuming that the previous quantity for chicken was 20, the new quantity
-after <code>restockIngredient i/3 q/10</code> was called, will be 30.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="consume-ingredient-code-consumeingredient-code"><a class="link" href="#consume-ingredient-code-consumeingredient-code">3.3.5. Consume Ingredient: <code>consumeIngredient</code></a></h4>
-<div class="paragraph">
-<p>Consume a particular amount of ingredient from inventory, based on specified <code>INDEX</code> via <code>listIngredients</code>.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>consumeIngredient i/INDEX q/INGREDIENT_QUANTITY</code><br>
-Shortcut: <code>ci i/INDEX q/INGREDIENT_QUANTITY</code></p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>Ingredient quantity to be consumed must be at most the ingredient quantity present in the inventory.
-New ingredient quantity after <code>consumeIngredient</code> command was called, must be non-negative.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>Example:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>listIngredients</code> (returns chicken as 3rd index)</p>
-<div class="paragraph">
-<p><code>consumeIngredient i/3 q/10</code></p>
-</div>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Decreases the quantity of chickens by 10 in the inventory.
-Assuming that the previous quantity for chicken was 20, the new quantity after <code>consumeIngredient i/3 q/10</code> was called, will be 10.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="add-recipe-code-addrecipe-code"><a class="link" href="#add-recipe-code-addrecipe-code">3.3.6. Add Recipe: <code>addRecipe</code></a></h4>
-<div class="paragraph">
-<p>Add recipe of dish served at the restaurant.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>addRecipe r/RECIPE_NAME iq/INDEX&amp;INGREDIENT_QUANTITY<em>IN_RECIPE &#8230;&#8203;</code><br>
-Shortcut: <code>ar r/RECIPE_NAME iq/INDEX&amp;INGREDIENT_QUANTITY</em>IN_RECIPE &#8230;&#8203;</code></p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>The index refers to the index number shown in the most recent listing of ingredients in the ingredients panel.</p>
-</li>
-<li>
-<p><code>RECIPE_NAME</code> must contain only alphabets and spaces, and must contain at least 2 characters of the alphabet. (i.e, <code>r/c</code> is not accepted while <code>r/ch</code> is). All leading whitespaces will be trimmed.</p>
-</li>
-<li>
-<p><code>INGREDIENT_QUANTITY_IN_RECIPE</code> must be an integer (whole number) between 1 and 2,147,483,647 inclusive, and refers to the quantity of
-ingredient required in 1 serving of the recipe.</p>
-</li>
-<li>
-<p>There should be at least 1 ingredient <code>iq/INDEX&amp;INGREDIENT_QUANTITY_IN_RECIPE</code> input but there cannot be duplicate ingredients in the recipe, i.e. there cannot be duplicate ingredient indexes inputted. (<code>addRecipe r/cheese fries iq/1&amp;1 iq/1&amp;2</code> is rejected).</p>
-</li>
-<li>
-<p>Each ingredient input should have the format <code>iq/INDEX&amp;INGREDIENT_QUANTITY_IN_RECIPE</code> where ingredient index and quantity of ingredient in 1 serving of the recipe is separated by &amp;.</p>
-</li>
-<li>
-<p>Upon adding a new recipe, the number of servings of this recipe, according to the current ingredient quantity in inventory, is calculated
-and displayed on the recipe panel. Upon  executing <code>restockIngredient</code> or <code>consumeIngredient</code>, the number of servings will be
-automatically adjusted and displayed.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>Example: (Assuming that the restaurant book is empty.)</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><code>addIngredient in/cheese u/slices q/20</code>, <code>addIngredient in/fries u/packets q/10</code>, <code>addRecipe r/cheese fries iq/1&amp;1 iq/2&amp;1</code><br></p>
-<div class="ulist">
-<ul>
-<li>
-<p>These commands add cheese and fries into the ingredient panel, and cheese fries into recipe panel. For each serving of cheese fries, 1 slice of cheese and 1
-packet of fries is needed. There are 20 slices of cheese sufficient for 20 servings of cheese fries, but only 10 packets of fries sufficient for 10 servings of cheese fries.
-Overall, there can only be 10 servings of cheese fries prepared. Refer to figure below:</p>
-<div class="imageblock">
-<div class="content">
-<img src="images/addRecipe-successful.png" alt="addRecipe successful" width="170">
-</div>
-<div class="title">Figure 2. Successfully adding 1 recipe containing 2 ingredients, displaying the number of servings possible.</div>
-</div>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><code>restockIngredient i/2 q/10</code></p>
-<div class="ulist">
-<ul>
-<li>
-<p>Restocks fries by 10 packets, now there are 20 packets of fries sufficient for 20 servings of cheese fries. Overall, there can be 20 servings of cheese fries prepared. Refer to figure below:</p>
-<div class="imageblock">
-<div class="content">
-<img src="images/addRecipe-restockIngredient.png" alt="addRecipe restockIngredient" width="170">
-</div>
-<div class="title">Figure 3. Successfully restocking 1 ingredient, displays the new number of servings possible.</div>
-</div>
-</li>
-</ul>
-</div>
-</li>
-</ol>
-</div>
-</div>
-<div class="sect3">
-<h4 id="delete-recipe-code-deleterecipe-code"><a class="link" href="#delete-recipe-code-deleterecipe-code">3.3.7. Delete Recipe: <code>deleteRecipe</code></a></h4>
-<div class="paragraph">
-<p>Delete a recipe based on specified INDEX via <code>listRecipes</code>.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>deleteRecipe INDEX</code><br>
-Shortcut:  <code>dr INDEX</code></p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>Deletes the recipe at the specified <code>INDEX</code>. The index refers to the index number shown in the most recent listing of recipe.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>Example:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>deleteRecipe 3</code></p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Delete recipe at index 3.</p>
-</div>
+<p>Address book data are saved in the hard disk automatically after any command that changes the data.<br>
+There is no need to save manually.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="booking-management"><a class="link" href="#booking-management">3.4. Booking Management</a></h3>
+<h3 id="encrypting-data-files-code-coming-in-v2-0-code"><a class="link" href="#encrypting-data-files-code-coming-in-v2-0-code">3.14. Encrypting data files <code>[coming in v2.0]</code></a></h3>
 <div class="paragraph">
-<p>The booking section models booking made by members.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>A booking consists of a member, a start time and an integer representing the number of persons coming to the restaurant.</p>
-</li>
-<li>
-<p>In this section, <code>TIME</code> parameters follow the yyyy-MM-ddTHH:mm (e.g. <code>2019-02-23T13:00</code> means 23 Feb 2019, 1300 hrs) or HH:mm (e.g. <code>12:00</code>) format. If the HH:mm format is used, the date is automatically chosen to be the current date at the point of command execution.</p>
-</li>
-<li>
-<p>For the exact specification of what date and time formats are allowed, please refer to the <code>LocalDateTime</code> and <code>LocalTime</code> class in Java.</p>
-</li>
-<li>
-<p>In order to ensure that the restaurant does not get overbooked, REM allows you to adjust the restaurant capacity. This capacity indicates the maximum number of customers that can be present in the restaurant at any given time. REM assumes that customers stay in the restaurant for 1 hour before leaving, although the end time is not displayed on screen.</p>
-</li>
-<li>
-<p>REM does not allow non-members to make bookings and every booking must correspond to a single member. If this member is deleted, all bookings made by the member will also be deleted.</p>
-</li>
-</ul>
-</div>
-<div class="sect3">
-<h4 id="list-booking-code-listbookings-code-coming-in-v2-0"><a class="link" href="#list-booking-code-listbookings-code-coming-in-v2-0">3.4.1. List Booking: <code>listBookings</code> [Coming in v2.0]</a></h4>
-<div class="paragraph">
-<p>View the current lists of bookings within a certain time frame</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>listBookings [ts/TIME_START] [te/TIME_END]</code><br></p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>The start and end times are optional arguments. If not specified, the list of all bookings (i.e. including future and past bookings) made so far will be displayed.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>Example:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>listBookings ts/2019-03-01T12:00 te/2019-03-04T15:00</code></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="update-restaurant-capacity-code-updatecapacity-code"><a class="link" href="#update-restaurant-capacity-code-updatecapacity-code">3.4.2. Update Restaurant Capacity: <code>updateCapacity</code></a></h4>
-<div class="paragraph">
-<p>Want to ensure that your restaurant does not get overbooked? Make sure to update the capacity of the restaurant accordingly.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>updateCapacity NUMBER</code><br>
-Shortcut: <code>uc NUMBER</code></p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>The default capacity of the restaurant is 200.</p>
-</li>
-<li>
-<p>If the capacity is full, the restaurant will not accept new bookings (refer to <a href="#Create New Booking: <code>addBooking</code>">addBooking command </a>).</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>Example:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>updateCapacity 50</code></p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>This updates the restaurants to cater for a capacity of 50 customers. If any operation results in having more than 50 customers at any point in time, REM will show an error message indicating that the restaurant is full (unless the <code>updateCapacity</code> command is used again).</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="add-new-booking-code-addbooking-code"><a class="link" href="#add-new-booking-code-addbooking-code">3.4.3. Add New Booking: <code>addBooking</code></a></h4>
-<div class="paragraph">
-<p>Creates a new booking.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>addBooking c/CUSTOMER_INDEX n/NUMBER OF PERSONS ts/TIME_START</code><br>
-Shortcut: <code>ab c/CUSTOMER_INDEX n/NUMBER OF PERSONS ts/TIME_START</code></p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>All bookings will last for 1 hour, although the end time is not shown in the UI.</p>
-</li>
-<li>
-<p>Customer INDEX refers to the index of the customer as displayed by the list.</p>
-</li>
-<li>
-<p>Bookings are a privileged feature restricted only to members. REM does not allow non-members to make bookings.</p>
-</li>
-<li>
-<p>If the booking is rejected due to capacity constraints, an alternative timeslot will be suggested. This timeslot is the earliest timeslot after the input date and time that can be accepted. Note that this does not automatically add the booking into REM- a separate <code>addBooking</code> command is required.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>Example (execute these commands in the order listed with no other commands inserted in between, starting with a list of at least 2 members and an initially empty list of bookings):</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>updateCapacity 10</code> (updates the restaurant capacity to 10)</p>
-</li>
-<li>
-<p><code>addBooking c/1 n/7 ts/2019-04-07T12:00</code> (adds a booking for the first customer on the current list, on 7 Apr, at 1200 hrs)</p>
-</li>
-<li>
-<p><code>addbooking c/2 n/7 ts/2019-04-07T11:30</code> (adds a booking for the second customer on the current list, on 7 Apr, at 1200 hrs)</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>This command will fail to execute. As bookings last for 1 hour, accepting this command will cause the restaurant to exceed the capacity of 10 customers at 2019-04-07T12:00 (in fact, 7+7=14 customers will be present if this command executes). Thus this booking is rejected.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/capacityexplanation.png" alt="capacityexplanation" width="500">
-</div>
-<div class="title">Figure 4. A pictorial representation showing why the capacity will be exceeded</div>
-</div>
-<div class="paragraph">
-<p>The user may also notice that an alternative booking time of 2019-04-07T13:00 is suggested by REM. The suggested booking time is the next available slot after the input time (in this case, 2019-04-07T11:30) that can hold the booking of 7 members. In this case, the restaurant is only free at 2019-04-07T13:00 after the previous group of 7 customers leave (recall that bookings last for 1 hour).</p>
-</div>
-<div class="paragraph">
-<p>The below screenshot shows what happens:</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/altbookingtime.png" alt="altbookingtime" width="500">
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="edit-booking-code-editbooking-code"><a class="link" href="#edit-booking-code-editbooking-code">3.4.4. Edit Booking: <code>editBooking</code></a></h4>
-<div class="paragraph">
-<p>Edits a booking by changing either the time, number of persons of both.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>editBooking INDEX [ts/TIME_START] [n/NUMBER_OF_PERSONS]</code><br>
-Shortcut: <code>eb INDEX [ts/TIME_START] [n/NUMBER_OF_PERSONS]</code></p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>Edits the booking at the specified <code>INDEX</code>. The index refers to the index number shown in the most recent listing. REM will not execute this operation if this causes capacity to be exceeded.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>Example:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>editBooking 3 ts/12:00 n/6</code></p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Edits the booking at index 3, changing the booking time to 12:00 for 6 persons. Since the date was unspecified, the current date (at the point of entering the command) will be used.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>editBooking 4 ts/2019-03-30T17:00</code></p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Edits the booking at index 4, changing the booking time to 30 March 2019, 12:00. The number of persons remains unchanged as it was previously unspecified.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="delete-booking-code-deletebooking-code"><a class="link" href="#delete-booking-code-deletebooking-code">3.4.5. Delete Booking: <code>deleteBooking</code></a></h4>
-<div class="paragraph">
-<p>Deletes a booking.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>deleteBooking INDEX</code><br>
-Shortcut: <code>db INDEX</code></p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>Deletes the booking at the specified <code>INDEX</code>. The index refers to the index number shown in the most recent listing.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>Example:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>deleteBooking 3</code></p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Deletes the booking with index 3.</p>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="staff-management"><a class="link" href="#staff-management">3.5. Staff Management</a></h3>
-<div class="sect3">
-<h4 id="add-staff-code-addstaff-code"><a class="link" href="#add-staff-code-addstaff-code">3.5.1. Add Staff: <code>addStaff</code></a></h4>
-<div class="paragraph">
-<p>Add a new staff member to the list of all staff.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>addStaff n/NAME p/PHONE e/EMAIL a/APPOINTMENT</code><br>
-Shortcut: <code>as n/NAME p/PHONE e/EMAIL a/APPOINTMENT</code></p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p><code>NAME</code> must only contain alphanumeric characters and spaces.</p>
-</li>
-<li>
-<p><code>PHONE</code> must contain only digits, and should be at least 3 digits long</p>
-</li>
-<li>
-<p><code>EMAIL</code> must be a valid email address</p>
-</li>
-<li>
-<p><code>APPOINTMENT</code> must only contain alphanumeric characters and spaces.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>Example:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>addStaff n/John Doe p/91234567 e/john@example.com a/Waiter</code></p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Adds a new staff with name John Doe, phone number 91234567, email <a href="mailto:john@example.com">john@example.com</a> and appointment Waiter to the restaurant.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="list-staff-code-liststaff-code"><a class="link" href="#list-staff-code-liststaff-code">3.5.2. List Staff: <code>listStaff</code></a></h4>
-<div class="paragraph">
-<p>Lists all staff members whose names and appointments contain a certain list of given keywords.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>listStaff [n/NAME_1 NAME_2 &#8230;&#8203;] [a/APPOINTMENT_1 APPOINTMENT_2 &#8230;&#8203;]</code><br>
-Shortcut: <code>ls [n/NAME_1 NAME_2 &#8230;&#8203;] [a/APPOINTMENT_1 APPOINTMENT_2 &#8230;&#8203;]</code></p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>Keywords should be separated by spaces.</p>
-</li>
-<li>
-<p>All leading, trailing and extra spaces in the list of keywords for <code>NAME</code> and <code>APPOINTMENT</code> will be ignored.</p>
-</li>
-<li>
-<p>Keywords are case-insensitive.</p>
-</li>
-<li>
-<p>The list of keywords for <code>NAME</code> and <code>APPOINTMENT</code> must only contain alphanumeric characters.</p>
-</li>
-<li>
-<p>Only staff members whose names contain the exact keywords and whose appointments contain the exact keywords will be displayed.</p>
-</li>
-<li>
-<p>If no keywords are provided for <code>NAME</code> or <code>APPOINTMENT</code>, then the corresponding field will be ignored in the filtering.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>Example:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>listStaff n/alice bob charlie a/cook</code></p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Displays all staff members who are cooks, and whose names contain the words 'alice', 'bob' and 'charlie'.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="delete-staff-code-deletestaff-code"><a class="link" href="#delete-staff-code-deletestaff-code">3.5.3. Delete Staff: <code>deleteStaff</code></a></h4>
-<div class="paragraph">
-<p>Deletes the staff member with the specified index from the system.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>deleteStaff INDEX</code><br>
-Shortcut: <code>ds INDEX</code></p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p><code>INDEX</code> must be a valid index number in the most recent listing.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>Example</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>deleteStaff 3</code></p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Deletes the staff at index 3 shown in the most recent listing.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="edit-staff-code-editstaff-code"><a class="link" href="#edit-staff-code-editstaff-code">3.5.4. Edit Staff: <code>editStaff</code></a></h4>
-<div class="paragraph">
-<p>Edits the staff member with the specified index.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>editStaff INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/APPOINTMENT]</code><br>
-Shortcut: <code>es INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/APPOINTMENT]</code></p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p><code>INDEX</code> must be a valid index number in the most recent listing.</p>
-</li>
-<li>
-<p>The requirements for the optional fields <code>NAME</code>, <code>PHONE</code>, <code>EMAIL</code>, <code>APPOINTMENT</code> are identical to that of the addStaff command.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>Example</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>editStaff 1 p/98765432 a/Manager</code></p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Edits the staff at index 1 shown in the most recent listing, by changing the phone number to 98765432 and appointment to Manager.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="add-shift-to-staff-code-addshift-code"><a class="link" href="#add-shift-to-staff-code-addshift-code">3.5.5. Add Shift to Staff: <code>addShift</code></a></h4>
-<div class="paragraph">
-<p>Adds a shift to the shift roster of an existing staff member in the restaurant with the specified index.
-The new shift added must start and end on different days of the week, must have a positive duration, and must not clash with any existing shift.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>addShift INDEX sd/START_DAY_OF_WEEK ts/START_TIME ed/END_DAY_OF_WEEK te/END_TIME</code><br>
-Shortcut: <code>ash INDEX sd/START_DAY_OF_WEEK ts/START_TIME ed/END_DAY_OF_WEEK te/END_TIME</code></p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p><code>START_DAY_OF_WEEK</code> and <code>END_DAY_OF_WEEK</code> must be one of <code>MONDAY</code>, <code>TUESDAY</code>, <code>WEDNESDAY</code>, <code>THURSDAY</code>, <code>FRIDAY</code>, <code>SATURDAY</code>, <code>SUNDAY</code>.</p>
-</li>
-<li>
-<p><code>START_TIME</code> and <code>END_TIME</code> must be valid 24-hour time in <code>HH:MM</code> format.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>Example:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>addshift 1 sd/MONDAY ts/12:00 ed/MONDAY te/14:00</code></p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Adds a shift from 12pm to 2pm every Monday to the roster of the staff member with index 1 shown in the most recent listing.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="delete-shift-from-staff-code-deleteshift-code"><a class="link" href="#delete-shift-from-staff-code-deleteshift-code">3.5.6. Delete Shift from Staff: <code>deleteShift</code></a></h4>
-<div class="paragraph">
-<p>Deletes a shift from the shift roster of an existing staff member in the restaurant with the specified index.
-The shift to be deleted must exist in the specified staff member&#8217;s shift roster.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>deleteshift INDEX sd/START_DAY_OF_WEEK ts/START_TIME ed/END_DAY_OF_WEEK te/END_TIME</code><br>
-Shortcut: <code>dsh INDEX sd/START_DAY_OF_WEEK ts/START_TIME ed/END_DAY_OF_WEEK te/END_TIME</code></p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>The requirements for the fields <code>START_DAY_OF_WEEK</code>, <code>START_TIME</code>, <code>END_DAY_OF_WEEK</code>, <code>END_TIME</code> are identical to that of the addShift command.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>Example:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>deleteshift 1 sd/TUESDAY ts/08:00 ed/TUESDAY te/10:30</code></p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Deletes the shift from 8am to 10.30am every Tuesday from the roster of the staff member with index 1 shown in the most recent listing.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="list-active-staff-in-time-range-code-activestaff-code-coming-in-v2-0"><a class="link" href="#list-active-staff-in-time-range-code-activestaff-code-coming-in-v2-0">3.5.7. List Active Staff in Time Range: <code>activestaff</code> [Coming in v2.0]</a></h4>
-<div class="paragraph">
-<p>List all staff working in the restaurant in a certain time range.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>activestaff sd/START_DAY_OF_WEEK ts/START_TIME ed/END_DAY_OF_WEEK te/END_TIME</code>
-Shortcut: <code>ats sd/START_DAY_OF_WEEK ts/START_TIME ed/END_DAY_OF_WEEK te/END_TIME</code></p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>The requirements for the fields <code>START_DAY_OF_WEEK</code>, <code>START_TIME</code>, <code>END_DAY_OF_WEEK</code>, <code>END_TIME</code> are identical to that of the addShift command.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>Example</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>activestaff sd/MONDAY ts/12:00 ed/TUESDAY te/12:00</code></p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Lists all staff who work a shift between 12pm every Monday to 12pm every Tuesday.</p>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="statistics"><a class="link" href="#statistics">3.6. Statistics</a></h3>
-<div class="sect3">
-<h4 id="view-bookings-per-day-code-statsdays-code"><a class="link" href="#view-bookings-per-day-code-statsdays-code">3.6.1. View bookings per day: <code>statsdays</code></a></h4>
-<div class="paragraph">
-<p>Displays the number of customers in bookings over the past few days in a bar graph.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>statsdays DAYS</code><br>
-Shortcut: <code>sd DAYS</code></p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p><code>DAYS</code> is an integer from 1 to 10000, inclusive</p>
-</li>
-<li>
-<p>The command considers all bookings from today&#8217;s date to (todays&#8217;s date - DAYS + 1)</p>
-</li>
-<li>
-<p>More days might be considered if necessary to make each bar represent the same number of days</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>Example:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>statsdays 30</code></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="view-bookings-per-hour-code-statstime-code"><a class="link" href="#view-bookings-per-hour-code-statstime-code">3.6.2. View bookings per hour: <code>statstime</code></a></h4>
-<div class="paragraph">
-<p>Displays the number of customers in bookings over the past few days in a bar graph, grouped by hour of the day.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>statstime DAYS</code><br>
-Shortcut: <code>st DAYS</code></p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p><code>DAYS</code> is an integer from 1 to 10000, inclusive</p>
-</li>
-<li>
-<p>The command considers all bookings from today&#8217;s date to (todays&#8217;s date - DAYS + 1)</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>Example:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>statstime 30</code></p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="overall"><a class="link" href="#overall">3.7. Overall</a></h3>
-<div class="sect3">
-<h4 id="view-feedback-code-viewfeedback-code-coming-in-v2-0"><a class="link" href="#view-feedback-code-viewfeedback-code-coming-in-v2-0">3.7.1. View Feedback: <code>viewFeedback</code> [Coming in v2.0]</a></h4>
-<div class="paragraph">
-<p>Lists all feedback submitted by customers.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>viewFeedback</code></p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="add-feedback-code-addfeedback-code-coming-in-v2-0"><a class="link" href="#add-feedback-code-addfeedback-code-coming-in-v2-0">3.7.2. Add Feedback: <code>addFeedback</code> [Coming in v2.0]</a></h4>
-<div class="paragraph">
-<p>Adds a feedback submitted by a customer.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>addFeedback FEEDBACK</code></p>
-</div>
-<div class="paragraph">
-<p>Example</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>addFeedback Good service and food!</code></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="add-rating-code-addrating-code-coming-in-v2-0"><a class="link" href="#add-rating-code-addrating-code-coming-in-v2-0">3.7.3. Add Rating: <code>addRating</code> [Coming in v2.0]</a></h4>
-<div class="paragraph">
-<p>Adds a rating submitted by a customer. Ratings are on a 5 point scale.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>addRating RATING</code></p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p><code>RATING</code> is an integer from 1 to 5, inclusive.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>Example</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>addRating 5</code></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="view-graph-rating-code-graphrating-code-coming-in-v2-0"><a class="link" href="#view-graph-rating-code-graphrating-code-coming-in-v2-0">3.7.4. View Graph Rating: <code>graphRating</code> [Coming in v2.0]</a></h4>
-<div class="paragraph">
-<p>Displays a graph of average rating per month against months.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>graphRating</code></p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="view-rating-statistics-code-ratingstats-code-coming-in-v2-0"><a class="link" href="#view-rating-statistics-code-ratingstats-code-coming-in-v2-0">3.7.5. View Rating Statistics: <code>ratingStats</code> [Coming in v2.0]</a></h4>
-<div class="paragraph">
-<p>Displays a summary of the overall rating statistics, such as the average rating and the rating distribution.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>ratingStats</code></p>
-</div>
+<p><em>{explain how the user can enable/disable data encryption}</em></p>
 </div>
 </div>
 </div>
@@ -1598,438 +469,54 @@ Shortcut: <code>st DAYS</code></p>
 <div class="sectionbody">
 <div class="paragraph">
 <p><strong>Q</strong>: How do I transfer my data to another Computer?<br>
-<strong>A</strong>: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Restaurant Book folder.</p>
+<strong>A</strong>: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Address Book folder.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="command-summary"><a class="link" href="#command-summary">5. Command Summary</a></h2>
 <div class="sectionbody">
-<div class="sect2">
-<h3 id="general-2"><a class="link" href="#general-2">5.1. General</a></h3>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>help</strong> <code>help</code></p>
+<p><strong>Add</strong> <code>add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]&#8230;&#8203;</code><br>
+e.g. <code>add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague</code></p>
 </li>
 <li>
-<p><strong>exit</strong> <code>exit</code></p>
+<p><strong>Clear</strong> : <code>clear</code></p>
 </li>
 <li>
-<p><strong>clear</strong> <code>clear</code></p>
+<p><strong>Delete</strong> : <code>delete INDEX</code><br>
+e.g. <code>delete 3</code></p>
 </li>
 <li>
-<p><strong>history</strong> <code>history</code></p>
+<p><strong>Edit</strong> : <code>edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]&#8230;&#8203;</code><br>
+e.g. <code>edit 2 n/James Lee e/jameslee@example.com</code></p>
 </li>
 <li>
-<p><strong>undo</strong> <code>undo</code></p>
+<p><strong>Find</strong> : <code>find KEYWORD [MORE_KEYWORDS]</code><br>
+e.g. <code>find James Jake</code></p>
 </li>
 <li>
-<p><strong>redo</strong> <code>redo</code></p>
+<p><strong>List</strong> : <code>list</code></p>
+</li>
+<li>
+<p><strong>Help</strong> : <code>help</code></p>
+</li>
+<li>
+<p><strong>Select</strong> : <code>select INDEX</code><br>
+e.g.<code>select 2</code></p>
+</li>
+<li>
+<p><strong>History</strong> : <code>history</code></p>
+</li>
+<li>
+<p><strong>Undo</strong> : <code>undo</code></p>
+</li>
+<li>
+<p><strong>Redo</strong> : <code>redo</code></p>
 </li>
 </ul>
 </div>
 </div>
-<div class="sect2">
-<h3 id="member-management-2"><a class="link" href="#member-management-2">5.2. Member Management</a></h3>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>addMember</strong></p>
-<div class="ulist">
-<ul>
-<li>
-<p>Format: <code>addMember n/CUSTOMER_NAME e/EMAIL p/PHONE_NUMBER [l/LOYALTY_POINTS]</code></p>
-</li>
-<li>
-<p>Shortcut: <code>am n/CUSTOMER_NAME e/EMAIL p/PHONE_NUMBER [l/LOYALTY_POINTS]</code></p>
-</li>
-<li>
-<p>e.g. <code>addMember n/John Doe e/johnd@gmail.com p/81234567 l/20</code></p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>listMembers</strong></p>
-<div class="ulist">
-<ul>
-<li>
-<p>Format: <code>listMembers [n/NAME1 NAME2 &#8230;&#8203;] [l/LOYALTY_POINTS_MINIMUM]</code></p>
-</li>
-<li>
-<p>Shortcut: <code>lm [n/NAME1 NAME2 &#8230;&#8203;] [l/LOYALTY_POINTS_MINIMUM]</code></p>
-</li>
-<li>
-<p>e.g. <code>listMembers n/Betsy Tim l/6</code></p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>deleteMember</strong></p>
-<div class="ulist">
-<ul>
-<li>
-<p>Format: <code>deleteMember INDEX</code></p>
-</li>
-<li>
-<p>Shortcut: <code>dm INDEX</code></p>
-</li>
-<li>
-<p>e.g. <code>deleteMember 2</code></p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>editMember</strong></p>
-<div class="ulist">
-<ul>
-<li>
-<p>Format: <code>editMember INDEX [n/NAME] [p/PHONE] [e/EMAIL] [l/LOYALTY_POINTS]</code></p>
-</li>
-<li>
-<p>Shortcut: <code>em INDEX [n/NAME] [p/PHONE] [e/EMAIL] [l/LOYALTY_POINTS]</code></p>
-</li>
-<li>
-<p>e.g. <code>editmember 1 p/91234567 e/johndoe@example.com</code></p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="inventory-management-2"><a class="link" href="#inventory-management-2">5.3. Inventory Management</a></h3>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>listIngredients</strong></p>
-<div class="ulist">
-<ul>
-<li>
-<p>Format: <code>listIngredients [in/INGREDIENT_NAME] [w/]</code><br></p>
-</li>
-<li>
-<p>Shortcut: <code>li [in/INGREDIENT_NAME] [w/]</code></p>
-</li>
-<li>
-<p>e.g. <code>listIngredients in/tomato w/</code></p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>addIngredient</strong></p>
-<div class="ulist">
-<ul>
-<li>
-<p>Format: <code>addIngredient in/INGREDIENT_NAME u/INGREDIENT_UNIT [q/INGREDIENT_QUANTITY] [w/INGREDIENT_WARNING_AMOUNT]</code></p>
-</li>
-<li>
-<p>Shortcut: <code>ai in/INGREDIENT_NAME u/INGREDIENT_UNIT [q/INGREDIENT_QUANTITY] [w/INGREDIENT_WARNING_AMOUNT]</code></p>
-</li>
-<li>
-<p>e.g. <code>addIngredient in/chicken u/full chickens q/100 w/10</code></p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>restockIngredient</strong></p>
-<div class="ulist">
-<ul>
-<li>
-<p>Format: <code>restockIngredient i/INGREDIENT_INDEX q/INGREDIENT_QUANTITY</code></p>
-</li>
-<li>
-<p>Shortcut: <code>ri i/INGREDIENT_INDEX q/INGREDIENT_QUANTITY</code></p>
-</li>
-<li>
-<p>e.g. <code>restockIngredient i/3 q/10</code></p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>consumeIngredient</strong></p>
-<div class="ulist">
-<ul>
-<li>
-<p>Format: <code>consumeIngredient i/INGREDIENT_INDEX q/INGREDIENT_QUANTITY</code></p>
-</li>
-<li>
-<p>Shortcut: <code>ci i/INGREDIENT_INDEX q/INGREDIENT_QUANTITY</code></p>
-</li>
-<li>
-<p>e.g. <code>consumeIngredient i/3 q/10</code></p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>deleteIngredient</strong></p>
-<div class="ulist">
-<ul>
-<li>
-<p>Format: <code>deleteIngredient INDEX</code></p>
-</li>
-<li>
-<p>Shortcut: <code>di INDEX</code></p>
-</li>
-<li>
-<p>e.g. <code>deleteIngredient 3</code></p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>addRecipe</strong></p>
-<div class="ulist">
-<ul>
-<li>
-<p>Format: <code>addRecipe r/RECIPE_NAME iq/INGREDIENT_INDEX&amp;INGREDIENT_QUANTITY_IN_RECIPE &#8230;&#8203;</code></p>
-</li>
-<li>
-<p>Shortcut: <code>ar r/RECIPE_NAME iq/INGREDIENT_INDEX&amp;INGREDIENT_QUANTITY_IN_RECIPE &#8230;&#8203;</code></p>
-</li>
-<li>
-<p>e.g. <code>addRecipe r/Chicken Rice iq/4&amp;1 iq/9&amp;3</code></p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>deleteRecipe</strong></p>
-<div class="ulist">
-<ul>
-<li>
-<p>Format: <code>deleteRecipe INDEX</code></p>
-</li>
-<li>
-<p>Shortcut: <code>dr INDEX</code></p>
-</li>
-<li>
-<p>e.g. <code>deleteRecipe 3</code></p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="booking-management-2"><a class="link" href="#booking-management-2">5.4. Booking Management</a></h3>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>updateCapacity</strong></p>
-<div class="ulist">
-<ul>
-<li>
-<p>Format: <code>updateCapacity NUMBER</code></p>
-</li>
-<li>
-<p>Shortcut: <code>uc NUMBER</code></p>
-</li>
-<li>
-<p>e.g. <code>updateCapacity 50</code></p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>addBooking</strong></p>
-<div class="ulist">
-<ul>
-<li>
-<p>Format: <code>addBooking c/CUSTOMER_INDEX n/NUMBER OF MEMBERS ts/TIME_START</code></p>
-</li>
-<li>
-<p>Shortcut: <code>ab c/CUSTOMER_INDEX n/NUMBER OF MEMBERS ts/TIME_START</code></p>
-</li>
-<li>
-<p>e.g. <code>addBooking c/1 n/7 ts/2019-04-07T12:00</code></p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>deleteBooking</strong></p>
-<div class="ulist">
-<ul>
-<li>
-<p>Format: <code>deleteBooking INDEX</code></p>
-</li>
-<li>
-<p>Shortcut: <code>db INDEX</code></p>
-</li>
-<li>
-<p>e.g. <code>deleteBooking 3</code></p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>editBooking</strong></p>
-<div class="ulist">
-<ul>
-<li>
-<p>Format: <code>editBooking INDEX [ts/TIME_START] [n/NUMBER_OF_PERSONS]</code></p>
-</li>
-<li>
-<p>Shortcut: <code>eb INDEX [ts/TIME_START] [n/NUMBER_OF_PERSONS]</code></p>
-</li>
-<li>
-<p>e.g. <code>editBooking 3 ts/12:00 n/6</code></p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="staff-management-2"><a class="link" href="#staff-management-2">5.5. Staff Management</a></h3>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>addStaff</strong></p>
-<div class="ulist">
-<ul>
-<li>
-<p>Format: <code>addStaff n/NAME p/PHONE e/EMAIL a/APPOINTMENT</code></p>
-</li>
-<li>
-<p>Shortcut: <code>as n/NAME p/PHONE e/EMAIL a/APPOINTMENT</code></p>
-</li>
-<li>
-<p>e.g. <code>addStaff n/John Doe p/91234567 e/john@example.com a/Waiter</code></p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>listStaff</strong></p>
-<div class="ulist">
-<ul>
-<li>
-<p>Format: <code>listStaff [n/NAME_1 NAME_2 &#8230;&#8203;] [a/APPOINTMENT_1 APPOINTMENT_2 &#8230;&#8203;]</code></p>
-</li>
-<li>
-<p>Shortcut: <code>ls [n/NAME_1 NAME_2 &#8230;&#8203;] [a/APPOINTMENT_1 APPOINTMENT_2 &#8230;&#8203;]</code></p>
-</li>
-<li>
-<p>e.g. <code>listStaff n/alice bob charlie a/cook</code></p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>deleteStaff</strong></p>
-<div class="ulist">
-<ul>
-<li>
-<p>Format: <code>deleteStaff INDEX</code></p>
-</li>
-<li>
-<p>Shortcut: <code>ds INDEX</code>
-e.g. <code>deleteStaff 3</code></p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>editStaff</strong></p>
-<div class="ulist">
-<ul>
-<li>
-<p>Format: <code>editStaff INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/APPOINTMENT]</code></p>
-</li>
-<li>
-<p>Shortcut: <code>es INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/APPOINTMENT]</code></p>
-</li>
-<li>
-<p>e.g. <code>editStaff 1 p/98765432 a/Manager</code></p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>addShift</strong></p>
-<div class="ulist">
-<ul>
-<li>
-<p>Format: <code>addShift INDEX sd/START_DAY_OF_WEEK ts/START_TIME ed/END_DAY_OF_WEEK te/END_TIME</code></p>
-</li>
-<li>
-<p>Shortcut: <code>ash INDEX sd/START_DAY_OF_WEEK ts/START_TIME ed/END_DAY_OF_WEEK te/END_TIME</code></p>
-</li>
-<li>
-<p>e.g. <code>addshift 1 sd/MONDAY ts/12:00 ed/MONDAY te/14:00</code></p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>deleteShift</strong></p>
-<div class="ulist">
-<ul>
-<li>
-<p>Format: <code>deleteshift INDEX sd/START_DAY_OF_WEEK ts/START_TIME ed/END_DAY_OF_WEEK te/END_TIME</code></p>
-</li>
-<li>
-<p>Shortcut: <code>dsh INDEX sd/START_DAY_OF_WEEK ts/START_TIME ed/END_DAY_OF_WEEK te/END_TIME</code></p>
-</li>
-<li>
-<p>e.g. <code>deleteshift 1 sd/TUESDAY ts/08:00 ed/TUESDAY te/10:30</code></p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="statistics-2"><a class="link" href="#statistics-2">5.6. Statistics</a></h3>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>statsdays</strong></p>
-<div class="ulist">
-<ul>
-<li>
-<p>Format: <code>statsdays DAYS</code></p>
-</li>
-<li>
-<p>Shortcut: <code>sd DAYS</code></p>
-</li>
-<li>
-<p>e.g. <code>statsdays 30</code></p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>statstime</strong></p>
-<div class="ulist">
-<ul>
-<li>
-<p>Format: <code>statstime DAYS</code></p>
-</li>
-<li>
-<p>Shortcut: <code>st DAYS</code></p>
-</li>
-<li>
-<p>e.g. <code>statstime 30</code></p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 14:20:11 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-06-02 13:40:52 UTC</div></div></div></body></html>
